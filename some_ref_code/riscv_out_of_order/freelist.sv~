@@ -1,0 +1,163 @@
+%Warning-TIMESCALEMOD: common.sv:1:9: Timescale missing on this module as other modules have it (IEEE 1800-2017 3.14.2.3)
+    1 | package common;
+      |         ^~~~~~
+                       /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:6:8: ... Location of module with timescale
+    6 | module id_stage( 
+      |        ^~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=4.218
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-IMPORTSTAR: /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:2:14: Import::* in $unit scope may pollute global namespace
+    2 | import common::*;
+      |              ^~
+%Warning-IMPORTSTAR: control_unit.sv:3:14: Import::* in $unit scope may pollute global namespace
+    3 | import common::*;
+      |              ^~
+                     /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:33:1: ... note: In file included from id_stage.sv
+%Warning-UNUSED: /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:18:18: Signal is not used: 'control0'
+                                                                   : ... In instance id_stage
+   18 |     control_type control0;
+      |                  ^~~~~~~~
+%Warning-UNUSED: /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:19:18: Signal is not used: 'control1'
+                                                                   : ... In instance id_stage
+   19 |     control_type control1;
+      |                  ^~~~~~~~
+%Warning-UNUSED: control_unit.sv:7:11: Signal is not used: 'clk'
+                                     : ... In instance id_stage.inst_control1
+    7 |     input clk,
+      |           ^~~
+                 /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:33:1: ... note: In file included from id_stage.sv
+%Warning-UNUSED: control_unit.sv:8:11: Signal is not used: 'reset_n'
+                                     : ... In instance id_stage.inst_control1
+    8 |     input reset_n,
+      |           ^~~~~~~
+                 /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:33:1: ... note: In file included from id_stage.sv
+%Warning-UNUSED: control_unit.sv:9:22: Bits of signal are not used: 'if_instr'[108:76]
+                                     : ... In instance id_stage.inst_control1
+    9 |     input if_id_type if_instr, 
+      |                      ^~~~~~~~
+                 /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:33:1: ... note: In file included from id_stage.sv
+%Warning-UNUSED: common.sv:6:22: Parameter is not used: 'INSTRUCTION_NOP'
+                               : ... In instance id_stage.inst_control1
+    6 |    localparam [31:0] INSTRUCTION_NOP = 32'h00000013;
+      |                      ^~~~~~~~~~~~~~~
+%Warning-UNUSED: common.sv:7:22: Parameter is not used: 'PC_INIT'
+                               : ... In instance id_stage.inst_control1
+    7 |    localparam [31:0] PC_INIT         = 32'h00000000;
+      |                      ^~~~~~~
+%Warning-UNUSED: common.sv:10:21: Parameter is not used: 'F3_ADDX'
+                                : ... In instance id_stage.inst_control1
+   10 |    localparam [2:0] F3_ADDX  = 3'b000 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:11:21: Parameter is not used: 'F3_SUB'
+                                : ... In instance id_stage.inst_control1
+   11 |    localparam [2:0] F3_SUB   = 3'b000 ;
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:12:21: Parameter is not used: 'F3_SLTX'
+                                : ... In instance id_stage.inst_control1
+   12 |    localparam [2:0] F3_SLTX  = 3'b010 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:13:21: Parameter is not used: 'F3_SLTUX'
+                                : ... In instance id_stage.inst_control1
+   13 |    localparam [2:0] F3_SLTUX = 3'b011 ;
+      |                     ^~~~~~~~
+%Warning-UNUSED: common.sv:14:21: Parameter is not used: 'F3_XORX'
+                                : ... In instance id_stage.inst_control1
+   14 |    localparam [2:0] F3_XORX  = 3'b100 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:15:21: Parameter is not used: 'F3_ORX'
+                                : ... In instance id_stage.inst_control1
+   15 |    localparam [2:0] F3_ORX   = 3'b110 ;
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:16:21: Parameter is not used: 'F3_ANDX'
+                                : ... In instance id_stage.inst_control1
+   16 |    localparam [2:0] F3_ANDX  = 3'b111 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:17:21: Parameter is not used: 'F3_SLLX'
+                                : ... In instance id_stage.inst_control1
+   17 |    localparam [2:0] F3_SLLX  = 3'b001 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:18:21: Parameter is not used: 'F3_SRXX'
+                                : ... In instance id_stage.inst_control1
+   18 |    localparam [2:0] F3_SRXX  = 3'b101 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:20:21: Parameter is not used: 'F3_JALR'
+                                : ... In instance id_stage.inst_control1
+   20 |    localparam [2:0] F3_JALR = 3'b000 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:21:21: Parameter is not used: 'F3_BEQ'
+                                : ... In instance id_stage.inst_control1
+   21 |    localparam [2:0] F3_BEQ  = 3'b000 ;
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:22:21: Parameter is not used: 'F3_BNE'
+                                : ... In instance id_stage.inst_control1
+   22 |    localparam [2:0] F3_BNE  = 3'b001 ;
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:23:21: Parameter is not used: 'F3_BLT'
+                                : ... In instance id_stage.inst_control1
+   23 |    localparam [2:0] F3_BLT  = 3'b100 ;
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:24:21: Parameter is not used: 'F3_BGE'
+                                : ... In instance id_stage.inst_control1
+   24 |    localparam [2:0] F3_BGE  = 3'b101 ;  
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:25:21: Parameter is not used: 'F3_BLTU'
+                                : ... In instance id_stage.inst_control1
+   25 |    localparam [2:0] F3_BLTU = 3'b110 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:26:21: Parameter is not used: 'F3_BGEU'
+                                : ... In instance id_stage.inst_control1
+   26 |    localparam [2:0] F3_BGEU = 3'b111 ;
+      |                     ^~~~~~~
+%Warning-UNUSED: common.sv:28:21: Parameter is not used: 'F3_LB'
+                                : ... In instance id_stage.inst_control1
+   28 |    localparam [2:0] F3_LB   = 3'b000 ;
+      |                     ^~~~~
+%Warning-UNUSED: common.sv:29:21: Parameter is not used: 'F3_LH'
+                                : ... In instance id_stage.inst_control1
+   29 |    localparam [2:0] F3_LH   = 3'b001 ;
+      |                     ^~~~~
+%Warning-UNUSED: common.sv:30:21: Parameter is not used: 'F3_LW'
+                                : ... In instance id_stage.inst_control1
+   30 |    localparam [2:0] F3_LW   = 3'b010 ;
+      |                     ^~~~~
+%Warning-UNUSED: common.sv:31:21: Parameter is not used: 'F3_LBU'
+                                : ... In instance id_stage.inst_control1
+   31 |    localparam [2:0] F3_LBU  = 3'b100 ;
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:32:21: Parameter is not used: 'F3_LHU'
+                                : ... In instance id_stage.inst_control1
+   32 |    localparam [2:0] F3_LHU  = 3'b101 ;
+      |                     ^~~~~~
+%Warning-UNUSED: common.sv:33:21: Parameter is not used: 'F3_SB'
+                                : ... In instance id_stage.inst_control1
+   33 |    localparam [2:0] F3_SB   = 3'b000 ;
+      |                     ^~~~~
+%Warning-UNUSED: common.sv:34:21: Parameter is not used: 'F3_SH'
+                                : ... In instance id_stage.inst_control1
+   34 |    localparam [2:0] F3_SH   = 3'b001 ;
+      |                     ^~~~~
+%Warning-UNUSED: common.sv:35:21: Parameter is not used: 'F3_SW'
+                                : ... In instance id_stage.inst_control1
+   35 |    localparam [2:0] F3_SW   = 3'b010 ;
+      |                     ^~~~~
+%Warning-UNUSED: common.sv:39:19: Parameter is not used: 'GSHARE_PHT_SIZE'
+                                : ... In instance id_stage.inst_control1
+   39 |    localparam int GSHARE_PHT_SIZE = 1024;
+      |                   ^~~~~~~~~~~~~~~
+%Warning-UNUSED: common.sv:42:21: Parameter is not used: 'BTB_ENTRY_NUM'
+                                : ... In instance id_stage.inst_control1
+   42 |    localparam int   BTB_ENTRY_NUM = 512;
+      |                     ^~~~~~~~~~~~~
+%Warning-UNUSED: common.sv:203:57: Bits of signal are not used: 'instruction'[6:0]
+                                 : ... In instance id_stage.inst_control1
+  203 |    function [31:0] immediate_extension(instruction_type instruction, encoding_type inst_encoding);
+      |                                                         ^~~~~~~~~~~
+%Warning-UNUSED: common.sv:237:35: Bits of signal are not used: 'branch_pc'[31:12,1:0]
+                                 : ... In instance id_stage.inst_control1
+  237 |     input logic [XLEN_WIDTH-1 :0] branch_pc
+      |                                   ^~~~~~~~~
+%Warning-CASEINCOMPLETE: control_unit.sv:103:9: Case values incompletely covered (example pattern 0x0)
+  103 |         case (instruction.opcode)
+      |         ^~~~
+                         /mnt/hgfs/riscv/riscv_supercalar/id_stage.sv:33:1: ... note: In file included from id_stage.sv
+%Error: Exiting due to 39 warning(s)

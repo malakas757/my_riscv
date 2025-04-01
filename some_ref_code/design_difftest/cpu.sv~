@@ -1,0 +1,314 @@
+`timescale 1ns / 1ps
+
+import common::*;
+
+
+module cpu(/*AUTOARG*/
+   // Inputs
+   clk, reset_n
+   );
+   input clk;
+   input reset_n;
+   output        io_imem_en;
+   output [63:0] io_imem_addr;
+   input  [31:0] io_imem_rdata;
+  // New data memory ports
+   output        io_dmem_en;
+   output [63:0] io_dmem_addr;
+   input  [63:0] io_dmem_rdata;
+   output [63:0] io_dmem_wdata;
+   output 	 io_dmem_wen;
+   
+   
+
+   /*AUTOWIRE*/
+   // Beginning of automatic wires (for undeclared instantiated-module outputs)
+   logic		branch_flush;		// From inst_execute_stage of execute_stage.v
+   logic [31:0]		branch_pc;		// From inst_execute_stage of execute_stage.v
+   logic [1:0]		fwd_sel_rs1;		// From inst_fwd_unit of fwd_unit.v
+   logic [1:0]		fwd_sel_rs2;		// From inst_fwd_unit of fwd_unit.v
+   wire			hazard;			// From inst_hazard_detect of hazard_detect.v
+   logic [31:0]		memory_addr;		// From inst_execute_stage of execute_stage.v
+   // End of automatics
+   /*AUTOREG*/
+   
+    logic [31:0] program_mem_address ;
+    logic program_mem_write_enable = 0;         
+    logic [31:0] program_mem_write_data = 0; 
+    logic [31:0] program_mem_read_data;
+    
+    logic [4:0] decode_reg_rd_id;
+    logic [31:0] decode_data1;
+    logic [31:0] decode_data2;
+    logic [31:0] decode_immediate_data;
+    logic [31:0] decode_pc;
+    control_type decode_control;
+    
+    logic [31:0] execute_alu_data;
+    control_type execute_control;
+    logic [31:0] execute_memory_data;
+    
+    logic [31:0] memory_memory_data;
+    logic [31:0] memory_alu_data;
+    control_type memory_control;
+    
+    logic [4:0] wb_reg_rd_id;
+    logic [31:0] wb_result;
+    logic wb_write_back_en;    
+    
+    if_id_type if_id_reg;
+    id_ex_type id_ex_reg;
+    ex_mem_type ex_mem_reg;
+    mem_wb_type mem_wb_reg;
+
+   logic  branch_predict;
+   
+   
+
+   
+   logic  PC_stall;
+   logic  if_id_stall;
+   logic  id_ex_stall;
+   logic  ex_mem_stall;
+   logic  mem_wb_stall;
+   logic  if_id_flush;
+   logic  id_ex_flush;
+   logic  ex_mem_flush;
+   logic  mem_wb_flush;
+   
+   
+  
+   assign branch_predict = 0; // 0 means not take branch pc
+   assign io_imem_en     = 1;
+   assign io_imem_addr   = {{32'd0},program_mem_address};
+   assign program_;
+   
+
+    
+   
+    always_ff @(posedge clk) begin
+
+       
+	   if(if_id_flush | !reset_n) begin
+	      if_id_reg<='0;
+	      end
+	   else if (if_id_stall) begin
+	      if_id_reg<=if_id_reg;
+	      end
+	   else begin
+              if_id_reg.pc <= program_mem_address;
+              if_id_reg.branch_predict <= branch_predict;	      
+              if_id_reg.instruction <= program_mem_read_data;
+	      end
+
+	   if(id_ex_flush | !reset_n) begin
+	      id_ex_reg<='0;
+	      end
+	   else if (id_ex_stall) begin
+	      id_ex_reg<=id_ex_reg;
+	      end
+	   else begin
+              id_ex_reg.reg_rd_id <= decode_reg_rd_id;
+              id_ex_reg.data1 <= decode_data1;
+              id_ex_reg.data2 <= decode_data2;
+              id_ex_reg.pc <= decode_pc;
+              id_ex_reg.immediate_data <= decode_immediate_data;
+              id_ex_reg.control <= decode_control;              
+              id_ex_reg.branch_predict <= branch_predict;              
+              end
+	      
+
+	   if(ex_mem_flush | !reset_n) begin
+	      ex_mem_reg<='0;
+	      end
+	   else if (ex_mem_stall) begin
+	      ex_mem_reg<=ex_mem_reg;
+	      end
+	   else begin
+	    ex_mem_reg.reg_rd_id <= id_ex_reg.reg_rd_id;
+            ex_mem_reg.control <= execute_control;
+            ex_mem_reg.alu_data <= execute_alu_data; // if it is LOAD/STORE , alu_data = mem_addr
+            ex_mem_reg.memory_data <= execute_memory_data;
+              end
+
+
+	   if(mem_wb_flush | !reset_n) begin
+	      mem_wb_reg<='0;
+	      end
+	   else if (mem_wb_stall) begin
+	      mem_wb_reg<=mem_wb_reg;
+	      end
+	   else begin
+            mem_wb_reg.reg_rd_id <= ex_mem_reg.reg_rd_id;
+            mem_wb_reg.memory_data <= memory_memory_data;
+            mem_wb_reg.alu_data <= memory_alu_data;
+            mem_wb_reg.control <= memory_control;
+              end
+       
+       end
+
+
+   /* program_memory inst_mem(
+        .clk(clk),        
+        .byte_address(program_mem_address),
+        .write_enable(program_mem_write_enable),
+        .write_data(program_mem_write_data),
+        .read_data(program_mem_read_data)
+    );*/
+    
+/*fetch_stage AUTO_TEMPLATE(
+         .address(program_mem_address),
+         
+ )*/
+    fetch_stage inst_fetch_stage(
+/*AUTOINST*/
+				 // Outputs
+				 .address		(program_mem_address), // Templated
+				 // Inputs
+				 .clk			(clk),
+				 .reset_n		(reset_n),
+				 .PC_stall		(PC_stall),
+				 .branch_flush		(branch_flush),
+				 .branch_pc		(branch_pc[31:0]));
+
+
+
+
+   hazard_detect inst_hazard_detect(/*AUTOINST*/
+				    // Outputs
+				    .hazard		(hazard),
+				    // Inputs
+				    .if_id_reg		(if_id_reg),
+				    .id_ex_reg		(id_ex_reg));
+   
+   
+
+   
+    /*decode_stage AUTO_TEMPLATE(
+        .instruction(if_id_reg.instruction),
+        .pc(if_id_reg.pc),
+        .pc_out(decode_pc),
+        .write_en(wb_write_back_en),
+        .write_id(wb_reg_rd_id),        
+        .write_data(wb_result),
+        .reg_rd_id(decode_reg_rd_id),
+        .read_data1(decode_data1),
+        .read_data2(decode_data2),
+        .immediate_data(decode_immediate_data),
+        .control_signals(decode_control),
+    )*/
+   decode_stage inst_decode_stage(/*AUTOINST*/
+				  // Outputs
+				  .reg_rd_id		(decode_reg_rd_id), // Templated
+				  .pc_out		(decode_pc),	 // Templated
+				  .read_data1		(decode_data1),	 // Templated
+				  .read_data2		(decode_data2),	 // Templated
+				  .immediate_data	(decode_immediate_data), // Templated
+				  .control_signals	(decode_control), // Templated
+				  // Inputs
+				  .clk			(clk),
+				  .reset_n		(reset_n),
+				  .instruction		(if_id_reg.instruction), // Templated
+				  .pc			(if_id_reg.pc),	 // Templated
+				  .write_en		(wb_write_back_en), // Templated
+				  .write_id		(wb_reg_rd_id),	 // Templated
+				  .write_data		(wb_result));	 // Templated
+   
+
+   fwd_unit inst_fwd_unit(/*AUTOINST*/
+			  // Outputs
+			  .fwd_sel_rs1		(fwd_sel_rs1[1:0]),
+			  .fwd_sel_rs2		(fwd_sel_rs2[1:0]),
+			  // Inputs
+			  .id_ex_reg		(id_ex_reg),
+			  .ex_mem_reg		(ex_mem_reg),
+			  .mem_wb_reg		(mem_wb_reg));
+   
+   
+   /* execute_stage AUTO_TEMPLATE (
+        .data1(id_ex_reg.data1),
+        .data2(id_ex_reg.data2),
+        .immediate_data(id_ex_reg.immediate_data),
+        .control_in(id_ex_reg.control),
+        .control_out(execute_control),
+        .rd_data(execute_alu_data),
+        .memory_data(execute_memory_data),
+        .fwd_data_ex_mem(ex_mem_reg.alu_data),
+        .pc(id_ex_reg.pc),
+        .branch_predict(id_ex_reg.branch_predict),
+        .fwd_data_mem_wb(wb_result),
+    )*/
+    execute_stage inst_execute_stage(/*AUTOINST*/
+				     // Outputs
+				     .control_out	(execute_control), // Templated
+				     .rd_data		(execute_alu_data), // Templated
+				     .branch_pc		(branch_pc[31:0]),
+				     .branch_flush	(branch_flush),
+				     .memory_data	(execute_memory_data), // Templated
+				     .memory_addr	(memory_addr[31:0]),
+				     // Inputs
+				     .clk		(clk),
+				     .reset_n		(reset_n),
+				     .data1		(id_ex_reg.data1), // Templated
+				     .data2		(id_ex_reg.data2), // Templated
+				     .pc		(id_ex_reg.pc),	 // Templated
+				     .immediate_data	(id_ex_reg.immediate_data), // Templated
+				     .control_in	(id_ex_reg.control), // Templated
+				     .branch_predict	(id_ex_reg.branch_predict), // Templated
+				     .fwd_sel_rs1	(fwd_sel_rs1[1:0]),
+				     .fwd_sel_rs2	(fwd_sel_rs2[1:0]),
+				     .fwd_data_ex_mem	(ex_mem_reg.alu_data), // Templated
+				     .fwd_data_mem_wb	(wb_result));	 // Templated
+
+   
+ /*mem_stage AUTO_TEMPLATE(
+        .alu_data_in(ex_mem_reg.alu_data),
+        .memory_data_in(ex_mem_reg.memory_data),
+        .control_in(ex_mem_reg.control),
+        .control_out(memory_control),
+        .memory_data_out(memory_memory_data),
+        .alu_data_out(memory_alu_data),
+  ) */   
+    
+    mem_stage inst_mem_stage(
+/*AUTOINST*/
+			     // Outputs
+			     .control_out	(memory_control), // Templated
+			     .memory_data_out	(memory_memory_data), // Templated
+			     .alu_data_out	(memory_alu_data), // Templated
+			     // Inputs
+			     .clk		(clk),
+			     .reset_n		(reset_n),
+			     .alu_data_in	(ex_mem_reg.alu_data), // Templated
+			     .memory_data_in	(ex_mem_reg.memory_data), // Templated
+			     .control_in	(ex_mem_reg.control)); // Templated
+
+   always_comb begin
+      if_id_stall='0;
+      PC_stall='0;
+      id_ex_stall='0;
+      ex_mem_stall='0;
+      mem_wb_stall='0;
+      if_id_flush='0;
+      id_ex_flush='0;
+      ex_mem_flush='0;
+      mem_wb_flush='0;
+      if ( hazard ) begin
+	 if_id_stall=1'b1;
+	 PC_stall = 1'b1;
+	 id_ex_flush=1'b1;
+         end
+      else if ( branch_flush ) begin
+	 if_id_flush = 1'b1;
+	 id_ex_flush = 1'b1;
+	 
+	 end
+
+      end
+
+   
+    assign wb_reg_rd_id = mem_wb_reg.reg_rd_id;
+    assign wb_write_back_en = mem_wb_reg.control.reg_write;
+    assign wb_result = mem_wb_reg.control.mem_read ? mem_wb_reg.memory_data : mem_wb_reg.alu_data;
+
+endmodule

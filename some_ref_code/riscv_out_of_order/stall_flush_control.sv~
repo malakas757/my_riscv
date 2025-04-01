@@ -1,0 +1,24 @@
+`timescale 1ns/1ps
+
+import common::*;
+
+module stall_flush_control (/*AUTOARG*/);
+  
+
+   //From IF
+   output   PC_stall;
+   output   PC_flush;
+   output   IF_stall;
+   input    imem_miss;
+
+
+
+
+   // IF_stage
+
+   assign PC_stall = imem_miss;
+   
+
+
+
+endmodule

@@ -1,0 +1,73 @@
+`timescale 1ns / 1ps
+
+
+
+module Ram2r1w(
+  input         clock,
+  input         io_imem_en,
+  input  [63:0] io_imem_addr,
+  output [63:0] io_imem_rdata
+);
+  wire  mem_clk; // @[Ram.scala 37:19]
+  wire [63:0] mem_imem_addr; // @[Ram.scala 37:19]
+  wire  mem_imem_en; // @[Ram.scala 37:19]
+  wire [31:0] mem_imem_data; // @[Ram.scala 37:19]
+  wire  mem_dmem_en; // @[Ram.scala 37:19]
+  wire [63:0] mem_dmem_addr; // @[Ram.scala 37:19]
+  wire [63:0] mem_dmem_rdata; // @[Ram.scala 37:19]
+  wire [63:0] mem_dmem_wdata; // @[Ram.scala 37:19]
+  wire [63:0] mem_dmem_wmask; // @[Ram.scala 37:19]
+  wire  mem_dmem_wen; // @[Ram.scala 37:19]
+  ram_2r1w mem ( // @[Ram.scala 37:19]
+    .clk(mem_clk),
+    .imem_addr(mem_imem_addr),
+    .imem_en(mem_imem_en),
+    .imem_data(mem_imem_data),
+    .dmem_en(mem_dmem_en),
+    .dmem_addr(mem_dmem_addr),
+    .dmem_rdata(mem_dmem_rdata),
+    .dmem_wdata(mem_dmem_wdata),
+    .dmem_wmask(mem_dmem_wmask),
+    .dmem_wen(mem_dmem_wen)
+  );
+  assign io_imem_rdata = {{32'd0}, mem_imem_data}; // @[Ram.scala 41:20]
+  assign mem_clk = clock; // @[Ram.scala 38:20]
+  assign mem_imem_addr = io_imem_addr; // @[Ram.scala 40:20]
+  assign mem_imem_en = io_imem_en; // @[Ram.scala 39:20]
+  assign mem_dmem_en = io_d; // @[Ram.scala 42:20]
+  assign mem_dmem_addr = 64'h0; // @[Ram.scala 43:20]
+  assign mem_dmem_wdata = 64'h0; // @[Ram.scala 45:20]
+  assign mem_dmem_wmask = 64'h0; // @[Ram.scala 44:20]
+  assign mem_dmem_wen = 1'h0; // @[Ram.scala 46:20]
+endmodule
+
+
+
+module Simtop (
+	       /*AUTOARG*/
+);
+
+  input         clock;
+  input         reset;
+  input  [63:0] io_logCtrl_log_begin;
+  input  [63:0] io_logCtrl_log_end;
+  input  [63:0] io_logCtrl_log_level;
+  input         io_perfInfo_clean;
+  input         io_perfInfo_dump;
+  output        io_uart_out_valid;
+  output [7:0]  io_uart_out_ch;
+  output        io_uart_in_valid;
+  input [7:0] 	io_uart_in_ch;
+   
+   
+  assign io_uart_out_valid = 1'h0;
+  assign io_uart_out_ch = 8'h0;
+  assign io_uart_in_valid = 1'h0;
+
+   cpu cpu_inst(
+/*AUTOINST*/
+		);
+   
+		
+
+endmodule   
