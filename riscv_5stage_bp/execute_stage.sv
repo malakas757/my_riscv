@@ -87,7 +87,7 @@ module execute_stage(
 
 
     always_comb begin: operand_selector
-        alu_left_operand = rs1_after_fwd;
+        alu_left_operand  = (control_in.is_auipc)? pc : rs1_after_fwd ;// add AUIPC
         alu_right_operand = rs2_after_fwd;
         if (control_in.alu_src) begin
             alu_right_operand = immediate_data;
