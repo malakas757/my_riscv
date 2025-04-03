@@ -4,7 +4,7 @@ import common::*;
 
 module rob(/*AUTOARG*/
    // Outputs
-   can_alloc, instr0_robid, instr1_robid, retire0_valid,
+   alloc_num, instr0_robid, instr1_robid, retire0_valid,
    retire1_valid, retire0_is_wb, retire1_is_wb, retire0_arf_id,
    retire1_arf_id, retire0_fl_Told, retire1_fl_Told, retire0_T,
    retire1_T, retire0_robid, retire1_robid, rob_state, walk0_valid,
@@ -22,7 +22,8 @@ module rob(/*AUTOARG*/
  
    input                 clk;
    input 		 reset_n;
-   output                can_alloc;
+  
+   output [1:0] 	 alloc_num;//00 means full, 01 means 1, 10 means more than two
  
 
 // from and to dispatch
@@ -120,14 +121,14 @@ module rob(/*AUTOARG*/
 // head pointer and req valid logic
 
    logic [1:0] 		 disp_num;
-   logic [1:0] 		 alloc_num; //00 means no empty entry,01 means one, 10 means more than 2  
+   
  		 
    integer 		 i,i1,i2,i3,i4,i5;
    assign  disp_num = (instr0_valid && instr1_valid)? 2:
 		      (instr0_valid || instr1_valid)? 1:0;
    assign  alloc_num = (rob_head[ROB_WIDTH] ^ rob_tail[ROB_WIDTH] && rob_head[ROB_WIDTH-1:0] == rob_tail[ROB_WIDTH-1:0])? 2'b00:
 		       (rob_head[ROB_WIDTH] ^ rob_tail[ROB_WIDTH] && ((rob_head[ROB_WIDTH-1:0] + 1) == rob_tail[ROB_WIDTH-1:0]) )? 2'b01:2'b10;
-   assign  can_alloc = (alloc_num >= disp_num)? 1:0;
+
    
 
      
@@ -148,7 +149,7 @@ module rob(/*AUTOARG*/
 	   reg_rob[i2].valid  <= rollback_valid[i2];
 	 
       end
-      else if (can_alloc) begin
+      else  begin
 	 if(instr0_valid) begin
 	    reg_rob[rob_head].valid <= 1'b1;
 	   // reg_rob[rob_head].robid <= rob_head;	    
@@ -170,7 +171,7 @@ module rob(/*AUTOARG*/
       else if(is_rollback) begin
 	 rob_head <= flush_robid_latch + 1;	 
       end
-      else if (can_alloc) begin // when walking,stop take in instr by flushing register in ir/is and stall
+      else  begin // when walking,stop take in instr by flushing register in ir/is and stall
 	 rob_head <= rob_head + disp_num;	 
       end
       
@@ -237,7 +238,7 @@ module rob(/*AUTOARG*/
 	    reg_rob[i3].instruction <= 'b0;
 `endif	 
       end
-      else if (can_alloc) begin
+      else  begin
 	 if(instr0_valid) begin
 	    reg_rob[rob_head].T <= instr0_T;
 	    reg_rob[rob_head].T_old <= instr0_T_old;

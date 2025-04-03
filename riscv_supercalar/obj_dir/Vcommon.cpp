@@ -11,54 +11,50 @@ Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , reset_n{vlSymsp->TOP.reset_n}
-    , can_alloc{vlSymsp->TOP.can_alloc}
-    , instr0_valid{vlSymsp->TOP.instr0_valid}
-    , instr1_valid{vlSymsp->TOP.instr1_valid}
-    , instr0_is_wb{vlSymsp->TOP.instr0_is_wb}
-    , instr1_is_wb{vlSymsp->TOP.instr1_is_wb}
-    , instr0_T{vlSymsp->TOP.instr0_T}
-    , instr1_T{vlSymsp->TOP.instr1_T}
-    , instr0_T_old{vlSymsp->TOP.instr0_T_old}
-    , instr1_T_old{vlSymsp->TOP.instr1_T_old}
-    , instr0_arf_id{vlSymsp->TOP.instr0_arf_id}
-    , instr1_arf_id{vlSymsp->TOP.instr1_arf_id}
+    , instr0_enq_valid{vlSymsp->TOP.instr0_enq_valid}
+    , instr1_enq_valid{vlSymsp->TOP.instr1_enq_valid}
     , instr0_robid{vlSymsp->TOP.instr0_robid}
     , instr1_robid{vlSymsp->TOP.instr1_robid}
-    , int0alu_wb_valid{vlSymsp->TOP.int0alu_wb_valid}
-    , int0mul_wb_valid{vlSymsp->TOP.int0mul_wb_valid}
-    , int1alu_wb_valid{vlSymsp->TOP.int1alu_wb_valid}
-    , int1lsu_wb_valid{vlSymsp->TOP.int1lsu_wb_valid}
-    , int0alu_wb_robid{vlSymsp->TOP.int0alu_wb_robid}
-    , int0mul_wb_robid{vlSymsp->TOP.int0mul_wb_robid}
-    , int1alu_wb_robid{vlSymsp->TOP.int1alu_wb_robid}
-    , int1lsu_wb_robid{vlSymsp->TOP.int1lsu_wb_robid}
-    , retire0_valid{vlSymsp->TOP.retire0_valid}
-    , retire1_valid{vlSymsp->TOP.retire1_valid}
-    , retire0_is_wb{vlSymsp->TOP.retire0_is_wb}
-    , retire1_is_wb{vlSymsp->TOP.retire1_is_wb}
-    , retire0_arf_id{vlSymsp->TOP.retire0_arf_id}
-    , retire1_arf_id{vlSymsp->TOP.retire1_arf_id}
-    , retire0_fl_Told{vlSymsp->TOP.retire0_fl_Told}
-    , retire1_fl_Told{vlSymsp->TOP.retire1_fl_Told}
-    , retire0_T{vlSymsp->TOP.retire0_T}
-    , retire1_T{vlSymsp->TOP.retire1_T}
-    , retire0_robid{vlSymsp->TOP.retire0_robid}
-    , retire1_robid{vlSymsp->TOP.retire1_robid}
-    , flush_robid{vlSymsp->TOP.flush_robid}
+    , instr0_src1_id{vlSymsp->TOP.instr0_src1_id}
+    , instr0_src2_id{vlSymsp->TOP.instr0_src2_id}
+    , instr1_src1_id{vlSymsp->TOP.instr1_src1_id}
+    , instr1_src2_id{vlSymsp->TOP.instr1_src2_id}
+    , instr0_T{vlSymsp->TOP.instr0_T}
+    , instr1_T{vlSymsp->TOP.instr1_T}
+    , instr0_src1_busy{vlSymsp->TOP.instr0_src1_busy}
+    , instr0_src2_busy{vlSymsp->TOP.instr0_src2_busy}
+    , instr1_src1_busy{vlSymsp->TOP.instr1_src1_busy}
+    , instr1_src2_busy{vlSymsp->TOP.instr1_src2_busy}
+    , intisq_left{vlSymsp->TOP.intisq_left}
+    , writeback0_valid{vlSymsp->TOP.writeback0_valid}
+    , writeback0_need_to_wb{vlSymsp->TOP.writeback0_need_to_wb}
+    , writeback0_prd{vlSymsp->TOP.writeback0_prd}
+    , writeback1_valid{vlSymsp->TOP.writeback1_valid}
+    , writeback1_need_to_wb{vlSymsp->TOP.writeback1_need_to_wb}
+    , writeback1_prd{vlSymsp->TOP.writeback1_prd}
+    , writeback2_valid{vlSymsp->TOP.writeback2_valid}
+    , writeback2_need_to_wb{vlSymsp->TOP.writeback2_need_to_wb}
+    , writeback2_prd{vlSymsp->TOP.writeback2_prd}
+    , writeback3_valid{vlSymsp->TOP.writeback3_valid}
+    , writeback3_need_to_wb{vlSymsp->TOP.writeback3_need_to_wb}
+    , writeback3_prd{vlSymsp->TOP.writeback3_prd}
     , flush_valid{vlSymsp->TOP.flush_valid}
-    , rob_state{vlSymsp->TOP.rob_state}
-    , walk0_valid{vlSymsp->TOP.walk0_valid}
-    , walk1_valid{vlSymsp->TOP.walk1_valid}
-    , walk0_complete{vlSymsp->TOP.walk0_complete}
-    , walk1_complete{vlSymsp->TOP.walk1_complete}
-    , walk0_arf_id{vlSymsp->TOP.walk0_arf_id}
-    , walk1_arf_id{vlSymsp->TOP.walk1_arf_id}
-    , walk0_T{vlSymsp->TOP.walk0_T}
-    , walk1_T{vlSymsp->TOP.walk1_T}
+    , flush_robid{vlSymsp->TOP.flush_robid}
+    , mul_slot_busy{vlSymsp->TOP.mul_slot_busy}
+    , ex_slot0_valid{vlSymsp->TOP.ex_slot0_valid}
+    , ex_slot1_valid{vlSymsp->TOP.ex_slot1_valid}
+    , slot0_T{vlSymsp->TOP.slot0_T}
+    , slot1_T{vlSymsp->TOP.slot1_T}
+    , slot0_robid{vlSymsp->TOP.slot0_robid}
+    , slot1_robid{vlSymsp->TOP.slot1_robid}
     , instr0_pc{vlSymsp->TOP.instr0_pc}
     , instr1_pc{vlSymsp->TOP.instr1_pc}
-    , instr0_instr{vlSymsp->TOP.instr0_instr}
-    , instr1_instr{vlSymsp->TOP.instr1_instr}
+    , slot0_pc{vlSymsp->TOP.slot0_pc}
+    , slot1_pc{vlSymsp->TOP.slot1_pc}
+    , instr0_control{vlSymsp->TOP.instr0_control}
+    , instr1_control{vlSymsp->TOP.instr1_control}
+    , slot0_control{vlSymsp->TOP.slot0_control}
+    , slot1_control{vlSymsp->TOP.slot1_control}
     , rootp{&(vlSymsp->TOP)}
 {
 }

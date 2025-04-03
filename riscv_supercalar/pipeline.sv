@@ -268,10 +268,10 @@ module pipeline(/*AUTOARG*/
 		    .T_1		(ir_is_reg1_next.T),
 		    .T_old_0		(ir_is_reg0_next.T_old),
 		    .T_old_1		(ir_is_reg1_next.T_old),
-		    .instr0_prf_rs1	(ir_is_reg0_next.instr0_prf_rs1),
-		    .instr0_prf_rs2	(ir_is_reg0_next.instr0_prf_rs2),
-		    .instr1_prf_rs1	(ir_is_reg1_next.instr0_prf_rs1),
-		    .instr1_prf_rs2	(ir_is_reg1_next.instr0_prf_rs2),		    // Inputs
+		    .instr0_prf_rs1	(ir_is_reg0_next.prf_rs1),
+		    .instr0_prf_rs2	(ir_is_reg0_next.prf_rs2),
+		    .instr1_prf_rs1	(ir_is_reg1_next.prf_rs1),
+		    .instr1_prf_rs2	(ir_is_reg1_next.prf_rs2),		    // Inputs
 		    .clk		(clk),
 		    .reset_n		(reset_n),
 		    .dec_instr0		(id_ir_reg0),
@@ -305,10 +305,10 @@ module pipeline(/*AUTOARG*/
 		    .T_1		(ir_is_reg1_next.T),	 // Templated
 		    .T_old_0		(ir_is_reg0_next.T_old), // Templated
 		    .T_old_1		(ir_is_reg1_next.T_old), // Templated
-		    .instr0_prf_rs1	(ir_is_reg0_next.instr0_prf_rs1), // Templated
-		    .instr0_prf_rs2	(ir_is_reg0_next.instr0_prf_rs2), // Templated
-		    .instr1_prf_rs1	(ir_is_reg1_next.instr0_prf_rs1), // Templated
-		    .instr1_prf_rs2	(ir_is_reg1_next.instr0_prf_rs2), // Templated
+		    .instr0_prf_rs1	(ir_is_reg0_next.prf_rs1), // Templated
+		    .instr0_prf_rs2	(ir_is_reg0_next.prf_rs2), // Templated
+		    .instr1_prf_rs1	(ir_is_reg1_next.prf_rs1), // Templated
+		    .instr1_prf_rs2	(ir_is_reg1_next.prf_rs2), // Templated
 		    // Inputs
 		    .clk		(clk),			 // Templated
 		    .reset_n		(reset_n),		 // Templated

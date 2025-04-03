@@ -26,6 +26,13 @@ package common;
    localparam int ROB_NUM  = 64;
    localparam int ROBID_WIDTH  = 7;
    
+   localparam int SQ_WIDTH  = 2;
+   
+   localparam int INTISQ_WIDTH  = 3;
+   localparam int INTISQ_NUM  = 8;
+
+   
+   
    
 
    localparam [2:0] F3_ADDX  = 3'b000 ;
@@ -121,6 +128,7 @@ package common;
         logic is_jumpr;
         logic is_lui;
         logic is_auipc;
+        logic is_mul;
         branch_predict_type predict;
         logic [XLEN_WIDTH-1:0] imm_data;
     } control_type;
@@ -155,8 +163,8 @@ package common;
     {
         logic [PRF_WIDTH-1:0]       T; // The current PRF id in ROB
         logic [PRF_WIDTH-1:0]       T_old; //To ROB for FL to release PRF
-        logic [PRF_WIDTH-1:0]       instr0_prf_rs1;
-        logic [PRF_WIDTH-1:0]       instr0_prf_rs2;
+        logic [PRF_WIDTH-1:0]       prf_rs1;
+        logic [PRF_WIDTH-1:0]       prf_rs2;
         control_type                control;
        
     } ir_is_type;

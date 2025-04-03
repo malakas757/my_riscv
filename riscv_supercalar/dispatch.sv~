@@ -1,0 +1,149 @@
+`timescale 1ns/1ps
+
+import common::*;
+`define debug
+
+
+module dispatch(/*AUTOARF*/);
+
+   output                    can_dispatch;
+   output 		     instr0_valid;
+   output 		     instr1_valid;
+   output [1:0] 	     mem_instr_vec;
+   output [1:0] 	     int_instr_vec;
+  
+//From pipeline reg   
+   input ir_is_type          instr0_disp;
+   input ir_is_type          instr1_disp;
+
+   input logic [31:0]        instr0_pc_in;
+   input logic [31:0] 	     instr1_pc_in;
+   input logic [31:0] 	     instr0_instr_in;
+   input logic [31:0] 	     instr1_instr_in;      
+
+
+
+//input from and output to ROB
+   input logic [1:0] 	      rob_left;
+   input [ROB_WIDTH:0] 	      instr0_robid_in;
+   input [ROB_WIDTH:0] 	      instr1_robid_in;  
+   output control_type	      instr0_control_type;
+   output control_type	      instr1_control_type;
+`ifdef debug
+   output [31:0] 	      instr0_pc;
+   output [31:0] 	      instr1_pc;
+   output instruction_type    instr0_instr;
+   output instruction_type    instr1_instr;
+`endif 			
+   output [PRF_WIDTH-1:0]     instr0_T;
+   output [PRF_WIDTH-1:0]     instr1_T;
+   output [PRF_WIDTH-1:0]     instr0_T_old;
+   output [PRF_WIDTH-1:0]     instr1_T_old;
+
+
+// from busy table
+   output [PRF_WIDTH-1:0]     instr0_src1;
+   output [PRF_WIDTH-1:0]     instr0_src2;
+   output [PRF_WIDTH-1:0]     instr1_src1;
+   output [PRF_WIDTH-1:0]     instr1_src2;
+   input 		      instr0_src1_busy_in;
+   input 		      instr0_src2_busy_in;
+   input 		      instr1_src1_busy_in;
+   input 		      instr1_src2_busy_in;
+
+
+//input from and output to ISSUE QUEUE
+   input logic [1:0] 	     int_isq_left;
+   input logic [1:0] 	     mem_isq_left;
+   output [ROB_WIDTH:0]      isq_robid_0;
+   output [ROB_WIDTH:0]      isq_robid_1;
+   output 		     isq_src1_busy_0;
+   output 		     isq_src2_busy_0;
+   output 		     isq_src1_busy_1;
+   output 		     isq_src2_busy_1;
+  
+   
+
+
+//input from and output to STORE QUEUE
+   input  logic [1:0] 	         sq_left;
+   output logic [SQ_WIDTH-1:0] 	 instr0_sqid;
+   output logic [SQ_WIDTH-1:0] 	 instr1_sqid;
+   
+
+
+
+
+   
+
+
+//dispatch logic: can alloc? 
+//if there is enough space for rob, isq, store queue,
+
+   logic 		     rob_can_alloc;
+   logic 		     intisq_can_alloc;
+   logic 		     memisq_can_alloc;
+   logic 		     sq_can_alloc;
+   logic 		     can_dispatch;
+   
+
+   logic [1:0] 		     mem_instr_num;
+   logic [1:0] 		     int_instr_num;
+ 	
+   always_comb begin
+      mem_instr_vec = '0;
+      int_instr_vec = '0;
+      if (instr0_disp.control.is_valid && (instr0_disp.contol.mem_read || instr0_disp.contol.mem_write))
+	  mem_instr_vec[0] = 1'b1;
+      else if ( instr0_disp.control.is_valid)
+	  int_instr_vec[0] = 1'b1;
+      if (instr1_disp.control.is_valid && (instr1_disp.contol.mem_read || instr1_disp.contol.mem_write))
+	  mem_instr_vec[1] = 1'b1;
+      else if ( instr1_disp.control.is_valid)
+	  int_instr_vec[1] = 1'b1;
+   end // always_comb
+
+   assign int_instr_num = int_instr_vec[1] + int_instr_vec[0];
+   assign mem_instr_num = mem_instr_vec[1] + mem_instr_vec[0];
+   
+
+   assign rob_can_alloc = (rob_left >= (mem_instr_num + int_instr_num))?1 : 0 ;
+   assign intisq_can_alloc = (int_isq_left >= int_instr_num)?1 : 0 ;
+   assign memisq_can_alloc = (mem_isq_left >= mem_instr_num)?1 : 0 ;
+   assign sq_can_alloc = (sq_left >= mem_instr_num)?1 : 0 ;
+   assign can_dispatch = rob_can_alloc & intisq_can_alloc & memisq_can_alloc & sq_can_alloc;
+   assign instr0_valid = instr0_disp.control.is_valid & can_dispatch;
+   assign instr1_valid = instr1_disp.control.is_valid & can_dispatch;
+
+
+// output to ROB logic
+   assign  instr0_control_type    = instr0_disp.control ; //also to isq
+   assign  instr1_control_type    = instr1_disp.control ;
+`ifdef debug   
+   assign  instr0_pc       = instr0_pc_in ;             	
+   assign  instr1_pc       = instr1_pc_in ;             	
+   assign  instr0_instr    = instr0_instr_in ;
+   assign  instr1_instr    = instr1_instr_in ;
+`endif   
+   assign  instr0_T        = instr0_disp.T ;         	
+   assign  instr1_T        = instr0_disp.T ;         	
+   assign  instr0_T_old    = instr0_disp.T_old ;
+   assign  instr1_T_old    = instr0_disp.T_old ;
+ 
+
+//output logic to ISSUE QUEUE
+
+   assign isq_robid_0 = instr0_robid_in;
+   assign isq_robid_1 = instr1_robid_in;
+   assign isq_src1_busy_0 = instr0_src1_busy_in;
+   assign isq_src2_busy_0 = instr0_src2_busy_in;
+   assign isq_src1_busy_1 = instr1_src1_busy_in;
+   assign isq_src2_busy_1 = instr1_src2_busy_in;   
+
+
+
+
+   
+   
+
+endmodule // dispatch

@@ -26,6 +26,7 @@ module control_unit(
     localparam [6:0] OP_STORE   = 7'b010_0011 ;  // 0x23
     localparam [6:0] OP_ALU     = 7'b011_0011 ;  // 0x33
     localparam [6:0] OP_ALUI    = 7'b001_0011 ;  // 0x13
+
    
 // R-type (funct7, funct3, opcode)
 localparam logic [16:0] ADD_INSTRUCTION   = {7'b0000000, 3'b000, 7'b0110011};
@@ -38,6 +39,14 @@ localparam logic [16:0] SRL_INSTRUCTION   = {7'b0000000, 3'b101, 7'b0110011};
 localparam logic [16:0] SRA_INSTRUCTION   = {7'b0100000, 3'b101, 7'b0110011};
 localparam logic [16:0] SLT_INSTRUCTION   = {7'b0000000, 3'b010, 7'b0110011};
 localparam logic [16:0] SLTU_INSTRUCTION  = {7'b0000000, 3'b011, 7'b0110011};
+localparam logic [16:0] MUL_INSTRUCTION    = {7'b0000001, 3'b000, 7'b0110011};
+localparam logic [16:0] MULH_INSTRUCTION   = {7'b0000001, 3'b001, 7'b0110011};
+localparam logic [16:0] MULHSU_INSTRUCTION = {7'b0000001, 3'b010, 7'b0110011};
+localparam logic [16:0] MULHU_INSTRUCTION  = {7'b0000001, 3'b011, 7'b0110011};
+localparam logic [16:0] DIV_INSTRUCTION    = {7'b0000001, 3'b100, 7'b0110011};
+localparam logic [16:0] DIVU_INSTRUCTION   = {7'b0000001, 3'b101, 7'b0110011};
+localparam logic [16:0] REM_INSTRUCTION    = {7'b0000001, 3'b110, 7'b0110011};
+localparam logic [16:0] REMU_INSTRUCTION   = {7'b0000001, 3'b111, 7'b0110011};   
 // 普通 I-type ALU (funct3, opcode)
 localparam logic [9:0]  ADDI_INSTRUCTION  = {3'b000, 7'b0010011};
 localparam logic [9:0]  ANDI_INSTRUCTION  = {3'b111, 7'b0010011};
@@ -100,6 +109,8 @@ localparam logic [6:0] AUIPC_INSTRUCTION = 7'b0010111;
         control.is_valid = if_instr.instr_valid;
         control.rs1_valid = 1'b1;
         control.rs2_valid = 1'b1;
+        control.is_mul = 1'b0;
+       
        
        
        
@@ -107,7 +118,9 @@ localparam logic [6:0] AUIPC_INSTRUCTION = 7'b0010111;
         case (instruction.opcode)
             OP_ALU: begin
                 control.encoding = R_TYPE;
-                control.reg_write = 1'b1; 
+                control.reg_write = 1'b1;
+	       if(instruction.funct7 == 7'b0000001)
+		 control.is_mul = 1'b1;	       
             end
             
             OP_LOAD: begin
