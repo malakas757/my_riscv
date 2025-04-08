@@ -9,11 +9,11 @@ module ir_stage(/*AUTOARG*/
    fl_can_alloc, T_0, T_1, T_old_0, T_old_1, instr0_prf_rs1,
    instr0_prf_rs2, instr1_prf_rs1, instr1_prf_rs2,
    // Inputs
-   clk, reset_n, dec_instr0, dec_instr1, fl_write_en_0, fl_write_en_1,
-   fl_write_data_0, fl_write_data_1, retire_arf_id_0, retire_arf_id_1,
-   retire_prf_id_0, retire_prf_id_1, retire_valid_0, retire_valid_1,
-   retire_wb_0, retire_wb_1, rob_state, fl_walk_0, fl_walk_1,
-   rat_walk_0_valid, rat_walk_1_valid, rat_walk_0_rd_id,
+   clk, reset_n, dec_instr0, dec_instr1, ID_stall, fl_write_en_0,
+   fl_write_en_1, fl_write_data_0, fl_write_data_1, retire_arf_id_0,
+   retire_arf_id_1, retire_prf_id_0, retire_prf_id_1, retire_valid_0,
+   retire_valid_1, retire_wb_0, retire_wb_1, rob_state, fl_walk_0,
+   fl_walk_1, rat_walk_0_valid, rat_walk_1_valid, rat_walk_0_rd_id,
    rat_walk_1_rd_id, rat_walk_0_rd_prf, rat_walk_1_rd_prf
    );
    
@@ -25,6 +25,9 @@ module ir_stage(/*AUTOARG*/
    // From decode stage
    input   control_type   dec_instr0;
    input   control_type   dec_instr1;
+   input                  ID_stall;
+  
+
 
    //From retire to fl
    input 		              fl_write_en_0;
@@ -79,9 +82,9 @@ module ir_stage(/*AUTOARG*/
    logic [PRF_WIDTH-1:0] resp_prf_0;
    logic [PRF_WIDTH-1:0] resp_prf_1;
    
-   //if it is not valid instr,or rd_id == 0, dont alloc phyreg
-   assign fl_req_0 = (dec_instr0.reg_write && ~(dec_instr0.rd_id == 0) && dec_instr0.is_valid);
-   assign fl_req_1 = (dec_instr1.reg_write && ~(dec_instr1.rd_id == 0) && dec_instr1.is_valid);
+   //if it is not valid instr,or rd_id == 0, or pipeline is stall,dont alloc phyreg
+   assign fl_req_0 = (~ID_stall && dec_instr0.reg_write && ~(dec_instr0.rd_id == 0) && dec_instr0.is_valid);
+   assign fl_req_1 = (~ID_stall && dec_instr1.reg_write && ~(dec_instr1.rd_id == 0) && dec_instr1.is_valid);
    
    
 

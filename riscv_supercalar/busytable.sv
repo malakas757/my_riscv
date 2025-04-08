@@ -3,7 +3,7 @@ import common::*;
 
 
 
-module busy_table (
+module busytable (
 /*AUTOARG*/
    // Outputs
    instr0_rs1_busy, instr0_rs2_busy, instr1_rs1_busy, instr1_rs2_busy,
@@ -117,7 +117,9 @@ module busy_table (
         end
     end
 
-//reg_busy_table read 
+//reg_busy_table read
+
+// be careful about the src1_state forwarding; if it is to set '0,no problem, but if it is '1,you should check the valid of src1/2 !!! 
     always_comb begin
         if (int0_alu_wb_en && (int0_alu_wb == instr0_disp2bt_rs1)) begin
             instr0_rs1_busy = 'b0;  //bypass logic
@@ -154,7 +156,7 @@ module busy_table (
     end
     always_comb begin
         if (int0_alu_wb_en && (int0_alu_wb == instr1_disp2bt_rs1)) begin
-            instr1_rs1_busy = 'b0;  //bypass logic
+            instr1_rs1_busy = 'b0;  //bypass logic both for wb and instr0 dispatch
         end
 	else if (int0_mul_wb_en && (int0_mul_wb == instr1_disp2bt_rs1)) begin
             instr1_rs1_busy = 'b0;  //bypass logic
@@ -164,10 +166,13 @@ module busy_table (
         end
 	else if (mem_alu_wb_en && (mem_alu_wb == instr1_disp2bt_rs1)) begin
             instr1_rs1_busy = 'b0;  //bypass logic	   
-        end
+        end     
 	else begin
             instr1_rs1_busy = reg_busy_table[instr1_disp2bt_rs1] && instr1_disp2bt_rs1_valid;
         end
+        if (instr0_disp2bt_rd_en && (instr0_disp2bt_rd == instr1_disp2bt_rs1)) begin
+            instr1_rs1_busy = instr1_disp2bt_rs1_valid;  //bypass logic	   
+        end 
     end
     always_comb begin
         if (int0_alu_wb_en && (int0_alu_wb == instr1_disp2bt_rs2)) begin
@@ -185,5 +190,8 @@ module busy_table (
 	else begin
             instr1_rs2_busy = reg_busy_table[instr1_disp2bt_rs2] && instr1_disp2bt_rs2_valid;
         end
+       if (instr0_disp2bt_rd_en && (instr0_disp2bt_rd == instr1_disp2bt_rs2)) begin
+            instr1_rs2_busy = instr1_disp2bt_rs2_valid;  //bypass logic	   
+        end 
     end
 endmodule

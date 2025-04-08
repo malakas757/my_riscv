@@ -5,11 +5,13 @@ import common::*;
 
 module pipeline(/*AUTOARG*/
    // Inputs
-   clk, reset_n, retire_arf_id_0, retire_arf_id_1, retire_prf_id_0,
-   retire_prf_id_1, retire_valid_0, retire_valid_1, retire_wb_0,
-   retire_wb_1, rob_state, fl_walk_0, fl_walk_1, rat_walk_0_valid,
-   rat_walk_1_valid, rat_walk_0_rd_id, rat_walk_1_rd_id,
-   rat_walk_0_rd_prf, rat_walk_1_rd_prf
+   clk, reset_n, writeback0_valid, writeback0_need_to_wb,
+   writeback0_prd, writeback1_valid, writeback1_need_to_wb,
+   writeback1_prd, writeback2_valid, writeback2_need_to_wb,
+   writeback2_prd, writeback3_valid, writeback3_need_to_wb,
+   writeback3_prd, writeback0_robid, writeback1_robid,
+   writeback2_robid, writeback3_robid, mul_slot_busy, flush_robid,
+   flush_valid
    );
    input clk;
    input reset_n;
@@ -17,23 +19,26 @@ module pipeline(/*AUTOARG*/
 
 
    //debug///////////////////////////////////////////////
-   input logic [4:0] 		      retire_arf_id_0;
-   input logic [4:0] 		      retire_arf_id_1;
-   input logic [PRF_WIDTH-1:0] 	      retire_prf_id_0;
-   input logic [PRF_WIDTH-1:0] 	      retire_prf_id_1;
-   input 			      retire_valid_0;
-   input 			      retire_valid_1;
-   input 			      retire_wb_0;
-   input 			      retire_wb_1;
-   input logic [1:0] 		      rob_state; 			      	
-   input 			      fl_walk_0;
-   input 			      fl_walk_1;
-   input  			      rat_walk_0_valid;
-   input  			      rat_walk_1_valid;
-   input logic [ARF_WIDTH-1:0] 	      rat_walk_0_rd_id;
-   input logic [ARF_WIDTH-1:0] 	      rat_walk_1_rd_id;
-   input logic [PRF_WIDTH-1:0] 	      rat_walk_0_rd_prf;
-   input logic [PRF_WIDTH-1:0] 	      rat_walk_1_rd_prf;
+   input logic                 writeback0_valid;//int0 mul
+   input logic 		       writeback0_need_to_wb;
+   input logic [PRF_WIDTH-1:0] writeback0_prd;	 
+   input logic 		       writeback1_valid;//int0alu
+   input logic 		       writeback1_need_to_wb;
+   input logic [PRF_WIDTH-1:0] writeback1_prd;
+   input logic                 writeback2_valid;//int1alu
+   input logic 		       writeback2_need_to_wb;
+   input logic [PRF_WIDTH-1:0] writeback2_prd;	 
+   input logic 		       writeback3_valid;//mem
+   input logic 		       writeback3_need_to_wb;
+   input logic [PRF_WIDTH-1:0] writeback3_prd;
+   input logic [ROB_WIDTH:0]   writeback0_robid;
+   input logic [ROB_WIDTH:0]   writeback1_robid;
+   input logic [ROB_WIDTH:0]   writeback2_robid;
+   input logic [ROB_WIDTH:0]   writeback3_robid;   
+   input logic                 mul_slot_busy;
+   input logic [ROB_WIDTH:0]   flush_robid;
+   input 		       flush_valid;
+
    /////////////////////////////////////////////////////////
 
 
@@ -47,6 +52,42 @@ module pipeline(/*AUTOARG*/
    wire			IR_stall;		// From inst_stall_flush of stall_flush_control.v
    wire			PC_flush;		// From inst_stall_flush of stall_flush_control.v
    wire			PC_stall;		// From inst_stall_flush of stall_flush_control.v
+   wire			can_dispatch;		// From inst_is_stage of is_stage.v
+   logic		ex_slot0_valid;		// From inst_is_stage of is_stage.v
+   logic		ex_slot1_valid;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	instr0_src1;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	instr0_src2;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	instr1_src1;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	instr1_src2;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	retire0_T;		// From inst_is_stage of is_stage.v
+   wire [ARF_WIDTH-1:0]	retire0_arf_id;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	retire0_fl_Told;	// From inst_is_stage of is_stage.v
+   wire			retire0_is_wb;		// From inst_is_stage of is_stage.v
+   wire [ROB_WIDTH:0]	retire0_robid;		// From inst_is_stage of is_stage.v
+   wire			retire0_valid;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	retire1_T;		// From inst_is_stage of is_stage.v
+   wire [ARF_WIDTH-1:0]	retire1_arf_id;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	retire1_fl_Told;	// From inst_is_stage of is_stage.v
+   wire			retire1_is_wb;		// From inst_is_stage of is_stage.v
+   wire [ROB_WIDTH:0]	retire1_robid;		// From inst_is_stage of is_stage.v
+   wire			retire1_valid;		// From inst_is_stage of is_stage.v
+   wire [1:0]		rob_state;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	slot0_T;		// From inst_is_stage of is_stage.v
+   control_type		slot0_control;		// From inst_is_stage of is_stage.v
+   wire [31:0]		slot0_pc;		// From inst_is_stage of is_stage.v
+   wire [ROB_WIDTH:0]	slot0_robid;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	slot1_T;		// From inst_is_stage of is_stage.v
+   control_type		slot1_control;		// From inst_is_stage of is_stage.v
+   wire [31:0]		slot1_pc;		// From inst_is_stage of is_stage.v
+   wire [ROB_WIDTH:0]	slot1_robid;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	walk0_T;		// From inst_is_stage of is_stage.v
+   wire [ARF_WIDTH-1:0]	walk0_arf_id;		// From inst_is_stage of is_stage.v
+   wire			walk0_complete;		// From inst_is_stage of is_stage.v
+   wire			walk0_valid;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	walk1_T;		// From inst_is_stage of is_stage.v
+   wire [ARF_WIDTH-1:0]	walk1_arf_id;		// From inst_is_stage of is_stage.v
+   wire			walk1_complete;		// From inst_is_stage of is_stage.v
+   wire			walk1_valid;		// From inst_is_stage of is_stage.v
    // End of automatics
 
 
@@ -72,7 +113,9 @@ module pipeline(/*AUTOARG*/
 					.IF_flush	(IF_flush),
 					.IR_flush	(IR_flush),
 					// Inputs
-					.imem_miss	(imem_miss));
+					.imem_miss	(imem_miss),
+					.can_dispatch	(can_dispatch),
+					.flush_valid	(flush_valid));
    
 
 
@@ -125,7 +168,7 @@ module pipeline(/*AUTOARG*/
 			  .clk			(clk),
 			  .reset_n		(reset_n),
 			  .instr_resp		(imem_resp),
-			  .ex_branch_in		(ex_branch_in),
+			  .ex_branch_in		('0),
 			  .PC_stall		(PC_stall),
 			  .PC_flush		(PC_flush),
 			  .IF_stall		(IF_stall));
@@ -271,32 +314,32 @@ module pipeline(/*AUTOARG*/
 		    .instr0_prf_rs1	(ir_is_reg0_next.prf_rs1),
 		    .instr0_prf_rs2	(ir_is_reg0_next.prf_rs2),
 		    .instr1_prf_rs1	(ir_is_reg1_next.prf_rs1),
-		    .instr1_prf_rs2	(ir_is_reg1_next.prf_rs2),		    // Inputs
+		    .instr1_prf_rs2	(ir_is_reg1_next.prf_rs2),		    
+                    // Inputs
 		    .clk		(clk),
 		    .reset_n		(reset_n),
 		    .dec_instr0		(id_ir_reg0),
 		    .dec_instr1		(id_ir_reg1),
-		    .fl_write_en_0	('0),
-		    .fl_write_en_1	('0),
-		    .fl_write_data_0	('0),
-		    .fl_write_data_1	('0),
-		    .retire_arf_id_0	(retire_arf_id_0[4:0]),
-		    .retire_arf_id_1	(retire_arf_id_1[4:0]),
-		    .retire_prf_id_0	(retire_prf_id_0[PRF_WIDTH-1:0]),
-		    .retire_prf_id_1	(retire_prf_id_1[PRF_WIDTH-1:0]),
-		    .retire_valid_0	(retire_valid_0),
-		    .retire_valid_1	(retire_valid_1),
-		    .retire_wb_0	(retire_wb_0),
-		    .retire_wb_1	(retire_wb_1),
-		    .rob_state		(rob_state[1:0]),
-		    .fl_walk_0		(fl_walk_0),
-		    .fl_walk_1		(fl_walk_1),
-		    .rat_walk_0_valid	(rat_walk_0_valid),
-		    .rat_walk_1_valid	(rat_walk_1_valid),
-		    .rat_walk_0_rd_id	(rat_walk_0_rd_id[ARF_WIDTH-1:0]),
-		    .rat_walk_1_rd_id	(rat_walk_1_rd_id[ARF_WIDTH-1:0]),
-		    .rat_walk_0_rd_prf	(rat_walk_0_rd_prf[PRF_WIDTH-1:0]),
-		    .rat_walk_1_rd_prf	(rat_walk_1_rd_prf[PRF_WIDTH-1:0]));*/
+		    .fl_write_en_0	(retire0_valid & retire0_is_wb),//
+		    .fl_write_en_1	(retire1_valid & retire1_is_wb),//
+		    .fl_write_data_0	(retire0_fl_Told),//
+		    .fl_write_data_1	(retire1_fl_Told),//
+		    .retire_arf_id_0	(retire0_arf_id[4:0]),//
+		    .retire_arf_id_1	(retire1_arf_id[4:0]),//
+		    .retire_prf_id_0	(retire0_T[PRF_WIDTH-1:0]),//
+		    .retire_prf_id_1	(retire1_T[PRF_WIDTH-1:0]),//
+		    .retire_valid_0	(retire0_valid),        // 
+		    .retire_valid_1	(retire1_valid),	// 
+		    .retire_wb_0	(retire0_is_wb),	// 
+		    .retire_wb_1	(retire1_is_wb),	// 		   
+		    .fl_walk_0		(walk0_valid),         //
+		    .fl_walk_1		(walk1_valid),        //
+		    .rat_walk_0_valid	(walk0_valid),       //
+		    .rat_walk_1_valid	(walk0_valid),       // 
+		    .rat_walk_0_rd_id	(walk0_arf_id[ARF_WIDTH-1:0]),//
+		    .rat_walk_1_rd_id	(walk1_arf_id[ARF_WIDTH-1:0]),//
+		    .rat_walk_0_rd_prf	(walk0_T[PRF_WIDTH-1:0]),//
+		    .rat_walk_1_rd_prf	(walk1_T[PRF_WIDTH-1:0]));*/
    
    ir_stage inst_ir(/*AUTOINST*/
 		    // Outputs
@@ -314,27 +357,28 @@ module pipeline(/*AUTOARG*/
 		    .reset_n		(reset_n),		 // Templated
 		    .dec_instr0		(id_ir_reg0),		 // Templated
 		    .dec_instr1		(id_ir_reg1),		 // Templated
-		    .fl_write_en_0	('0),			 // Templated
-		    .fl_write_en_1	('0),			 // Templated
-		    .fl_write_data_0	('0),			 // Templated
-		    .fl_write_data_1	('0),			 // Templated
-		    .retire_arf_id_0	(retire_arf_id_0[4:0]),	 // Templated
-		    .retire_arf_id_1	(retire_arf_id_1[4:0]),	 // Templated
-		    .retire_prf_id_0	(retire_prf_id_0[PRF_WIDTH-1:0]), // Templated
-		    .retire_prf_id_1	(retire_prf_id_1[PRF_WIDTH-1:0]), // Templated
-		    .retire_valid_0	(retire_valid_0),	 // Templated
-		    .retire_valid_1	(retire_valid_1),	 // Templated
-		    .retire_wb_0	(retire_wb_0),		 // Templated
-		    .retire_wb_1	(retire_wb_1),		 // Templated
-		    .rob_state		(rob_state[1:0]),	 // Templated
-		    .fl_walk_0		(fl_walk_0),		 // Templated
-		    .fl_walk_1		(fl_walk_1),		 // Templated
-		    .rat_walk_0_valid	(rat_walk_0_valid),	 // Templated
-		    .rat_walk_1_valid	(rat_walk_1_valid),	 // Templated
-		    .rat_walk_0_rd_id	(rat_walk_0_rd_id[ARF_WIDTH-1:0]), // Templated
-		    .rat_walk_1_rd_id	(rat_walk_1_rd_id[ARF_WIDTH-1:0]), // Templated
-		    .rat_walk_0_rd_prf	(rat_walk_0_rd_prf[PRF_WIDTH-1:0]), // Templated
-		    .rat_walk_1_rd_prf	(rat_walk_1_rd_prf[PRF_WIDTH-1:0])); // Templated
+		    .ID_stall		(ID_stall),
+		    .fl_write_en_0	(retire0_valid & retire0_is_wb), // Templated
+		    .fl_write_en_1	(retire1_valid & retire1_is_wb), // Templated
+		    .fl_write_data_0	(retire0_fl_Told),	 // Templated
+		    .fl_write_data_1	(retire1_fl_Told),	 // Templated
+		    .retire_arf_id_0	(retire0_arf_id[4:0]),	 // Templated
+		    .retire_arf_id_1	(retire1_arf_id[4:0]),	 // Templated
+		    .retire_prf_id_0	(retire0_T[PRF_WIDTH-1:0]), // Templated
+		    .retire_prf_id_1	(retire1_T[PRF_WIDTH-1:0]), // Templated
+		    .retire_valid_0	(retire0_valid),	 // Templated
+		    .retire_valid_1	(retire1_valid),	 // Templated
+		    .retire_wb_0	(retire0_is_wb),	 // Templated
+		    .retire_wb_1	(retire1_is_wb),	 // Templated
+		    .rob_state		(rob_state[1:0]),
+		    .fl_walk_0		(walk0_valid),		 // Templated
+		    .fl_walk_1		(walk1_valid),		 // Templated
+		    .rat_walk_0_valid	(walk0_valid),		 // Templated
+		    .rat_walk_1_valid	(walk0_valid),		 // Templated
+		    .rat_walk_0_rd_id	(walk0_arf_id[ARF_WIDTH-1:0]), // Templated
+		    .rat_walk_1_rd_id	(walk1_arf_id[ARF_WIDTH-1:0]), // Templated
+		    .rat_walk_0_rd_prf	(walk0_T[PRF_WIDTH-1:0]), // Templated
+		    .rat_walk_1_rd_prf	(walk1_T[PRF_WIDTH-1:0])); // Templated
    
    
       always_ff @(posedge clk) begin
@@ -372,7 +416,147 @@ module pipeline(/*AUTOARG*/
 `endif	      
 	   end
    end
+
+
+  /////////////////////////////////////////////////////////////////////
+
+                    //IS STAGE(***RENAME stage)//
+
+   ///////////////////////////////////////////////////////////////////
+    /* is_stage AUTO_TEMPLATE(
+			  // Outputs
+			  .can_dispatch		(can_dispatch),                  // 
+			  .instr0_src1		(instr0_src1[PRF_WIDTH-1:0]),	 // 
+			  .instr0_src2		(instr0_src2[PRF_WIDTH-1:0]),	 // 
+			  .instr1_src1		(instr1_src1[PRF_WIDTH-1:0]),	 // 
+			  .instr1_src2		(instr1_src2[PRF_WIDTH-1:0]),	 // 
+			  .retire0_valid	(retire0_valid),		 // 
+			  .retire1_valid	(retire1_valid),		 // 
+			  .retire0_is_wb	(retire0_is_wb),		 // 
+			  .retire1_is_wb	(retire1_is_wb),		 // 
+			  .retire0_arf_id	(retire0_arf_id[ARF_WIDTH-1:0]), // 
+			  .retire1_arf_id	(retire1_arf_id[ARF_WIDTH-1:0]), // 
+			  .retire0_fl_Told	(retire0_fl_Told[PRF_WIDTH-1:0]),// 
+			  .retire1_fl_Told	(retire1_fl_Told[PRF_WIDTH-1:0]),// 
+			  .retire0_T		(retire0_T[PRF_WIDTH-1:0]),	 // 
+			  .retire1_T		(retire1_T[PRF_WIDTH-1:0]),	 //   	  
+			  .rob_state		(rob_state[1:0]),		 // 
+			  .walk0_valid		(walk0_valid),			 // 
+			  .walk1_valid		(walk1_valid),			 // 
+			  .walk0_complete	(walk0_complete),		 // 
+			  .walk1_complete	(walk1_complete),		 // 
+			  .walk0_arf_id		(walk0_arf_id[ARF_WIDTH-1:0]),	 // 
+			  .walk1_arf_id		(walk1_arf_id[ARF_WIDTH-1:0]),	 // 
+			  .walk0_T		(walk0_T[PRF_WIDTH-1:0]),	 // 
+			  .walk1_T		(walk1_T[PRF_WIDTH-1:0]),	 // 
+			  .ex_slot0_valid	(ex_slot0_valid),		 // 
+			  .ex_slot1_valid	(ex_slot1_valid),		 // 
+			  .slot0_T		(slot0_T[PRF_WIDTH-1:0]),	 // 
+			  .slot1_T		(slot1_T[PRF_WIDTH-1:0]),	 // 
+			  .slot0_control	(slot0_control),		 // 
+			  .slot1_control	(slot1_control),		 // 
+			  .slot0_pc		(slot0_pc[31:0]),		 // 
+			  .slot1_pc		(slot1_pc[31:0]),		 // 
+			  .slot0_robid		(slot0_robid[ROB_WIDTH:0]),	 // 
+			  .slot1_robid		(slot1_robid[ROB_WIDTH:0]),	 // 
+			  // Inputs
+			  .clk			(clk),
+			  .reset_n		(reset_n),
+			  .ir_is_reg0		(ir_is_reg0),
+			  .ir_is_reg1		(ir_is_reg1),
+			  .ir_is_reg0_pc	(ir_is_reg0_pc[31:0]),
+			  .ir_is_reg1_pc	(ir_is_reg1_pc[31:0]),
+			  .ir_is_reg0_instr	(ir_is_reg0_instr[31:0]),
+			  .ir_is_reg1_instr	(ir_is_reg1_instr[31:0]),
+			  .flush_valid		(flush_valid),
+			  .writeback0_valid	(writeback0_valid),
+			  .writeback0_need_to_wb(writeback0_need_to_wb),
+			  .writeback0_prd	(writeback0_prd[PRF_WIDTH-1:0]),
+			  .writeback1_valid	(writeback1_valid),
+			  .writeback1_need_to_wb(writeback1_need_to_wb),
+			  .writeback1_prd	(writeback1_prd[PRF_WIDTH-1:0]),
+			  .writeback2_valid	(writeback2_valid),
+			  .writeback2_need_to_wb(writeback2_need_to_wb),
+			  .writeback2_prd	(writeback2_prd[PRF_WIDTH-1:0]),
+			  .writeback3_valid	(writeback3_valid),
+			  .writeback3_need_to_wb(writeback3_need_to_wb),
+			  .writeback3_prd	(writeback3_prd[PRF_WIDTH-1:0]),
+			  .writeback0_robid	(writeback0_robid[ROB_WIDTH:0]),
+			  .writeback1_robid	(writeback1_robid[ROB_WIDTH:0]),
+			  .writeback2_robid	(writeback2_robid[ROB_WIDTH:0]),
+			  .writeback3_robid	(writeback3_robid[ROB_WIDTH:0]),
+			  .mul_slot_busy	(mul_slot_busy)); */
+
+
+   is_stage inst_is_stage(/*AUTOINST*/
+			  // Outputs
+			  .can_dispatch		(can_dispatch),	 // Templated
+			  .instr0_src1		(instr0_src1[PRF_WIDTH-1:0]), // Templated
+			  .instr0_src2		(instr0_src2[PRF_WIDTH-1:0]), // Templated
+			  .instr1_src1		(instr1_src1[PRF_WIDTH-1:0]), // Templated
+			  .instr1_src2		(instr1_src2[PRF_WIDTH-1:0]), // Templated
+			  .retire0_valid	(retire0_valid), // Templated
+			  .retire1_valid	(retire1_valid), // Templated
+			  .retire0_is_wb	(retire0_is_wb), // Templated
+			  .retire1_is_wb	(retire1_is_wb), // Templated
+			  .retire0_arf_id	(retire0_arf_id[ARF_WIDTH-1:0]), // Templated
+			  .retire1_arf_id	(retire1_arf_id[ARF_WIDTH-1:0]), // Templated
+			  .retire0_fl_Told	(retire0_fl_Told[PRF_WIDTH-1:0]), // Templated
+			  .retire1_fl_Told	(retire1_fl_Told[PRF_WIDTH-1:0]), // Templated
+			  .retire0_T		(retire0_T[PRF_WIDTH-1:0]), // Templated
+			  .retire1_T		(retire1_T[PRF_WIDTH-1:0]), // Templated
+			  .retire0_robid	(retire0_robid[ROB_WIDTH:0]),
+			  .retire1_robid	(retire1_robid[ROB_WIDTH:0]),
+			  .rob_state		(rob_state[1:0]), // Templated
+			  .walk0_valid		(walk0_valid),	 // Templated
+			  .walk1_valid		(walk1_valid),	 // Templated
+			  .walk0_complete	(walk0_complete), // Templated
+			  .walk1_complete	(walk1_complete), // Templated
+			  .walk0_arf_id		(walk0_arf_id[ARF_WIDTH-1:0]), // Templated
+			  .walk1_arf_id		(walk1_arf_id[ARF_WIDTH-1:0]), // Templated
+			  .walk0_T		(walk0_T[PRF_WIDTH-1:0]), // Templated
+			  .walk1_T		(walk1_T[PRF_WIDTH-1:0]), // Templated
+			  .ex_slot0_valid	(ex_slot0_valid), // Templated
+			  .ex_slot1_valid	(ex_slot1_valid), // Templated
+			  .slot0_T		(slot0_T[PRF_WIDTH-1:0]), // Templated
+			  .slot1_T		(slot1_T[PRF_WIDTH-1:0]), // Templated
+			  .slot0_control	(slot0_control), // Templated
+			  .slot1_control	(slot1_control), // Templated
+			  .slot0_pc		(slot0_pc[31:0]), // Templated
+			  .slot1_pc		(slot1_pc[31:0]), // Templated
+			  .slot0_robid		(slot0_robid[ROB_WIDTH:0]), // Templated
+			  .slot1_robid		(slot1_robid[ROB_WIDTH:0]), // Templated
+			  // Inputs
+			  .clk			(clk),		 // Templated
+			  .reset_n		(reset_n),	 // Templated
+			  .ir_is_reg0		(ir_is_reg0),	 // Templated
+			  .ir_is_reg1		(ir_is_reg1),	 // Templated
+			  .ir_is_reg0_pc	(ir_is_reg0_pc[31:0]), // Templated
+			  .ir_is_reg1_pc	(ir_is_reg1_pc[31:0]), // Templated
+			  .ir_is_reg0_instr	(ir_is_reg0_instr[31:0]), // Templated
+			  .ir_is_reg1_instr	(ir_is_reg1_instr[31:0]), // Templated
+			  .flush_robid		(flush_robid[ROB_WIDTH:0]),
+			  .flush_valid		(flush_valid),	 // Templated
+			  .writeback0_valid	(writeback0_valid), // Templated
+			  .writeback0_need_to_wb(writeback0_need_to_wb), // Templated
+			  .writeback0_prd	(writeback0_prd[PRF_WIDTH-1:0]), // Templated
+			  .writeback1_valid	(writeback1_valid), // Templated
+			  .writeback1_need_to_wb(writeback1_need_to_wb), // Templated
+			  .writeback1_prd	(writeback1_prd[PRF_WIDTH-1:0]), // Templated
+			  .writeback2_valid	(writeback2_valid), // Templated
+			  .writeback2_need_to_wb(writeback2_need_to_wb), // Templated
+			  .writeback2_prd	(writeback2_prd[PRF_WIDTH-1:0]), // Templated
+			  .writeback3_valid	(writeback3_valid), // Templated
+			  .writeback3_need_to_wb(writeback3_need_to_wb), // Templated
+			  .writeback3_prd	(writeback3_prd[PRF_WIDTH-1:0]), // Templated
+			  .writeback0_robid	(writeback0_robid[ROB_WIDTH:0]), // Templated
+			  .writeback1_robid	(writeback1_robid[ROB_WIDTH:0]), // Templated
+			  .writeback2_robid	(writeback2_robid[ROB_WIDTH:0]), // Templated
+			  .writeback3_robid	(writeback3_robid[ROB_WIDTH:0]), // Templated
+			  .mul_slot_busy	(mul_slot_busy)); // Templated
+
    
 
+   
 
 endmodule

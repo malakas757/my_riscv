@@ -8,10 +8,10 @@
 #include "Vcommon__Syms.h"
 #include "Vcommon_if_stage.h"
 
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__8(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__7(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__8\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__7\n"); );
     // Init
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__0;
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__1;
@@ -8768,10 +8768,10 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__8(V
     }
 }
 
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__9(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__8(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__9\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__8\n"); );
     // Init
     SData/*9:0*/ __PVT__gshare_inst__DOT__instr0_pht_addr;
     SData/*9:0*/ __PVT__gshare_inst__DOT__instr1_pht_addr;

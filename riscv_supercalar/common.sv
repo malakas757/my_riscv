@@ -27,6 +27,7 @@ package common;
    localparam int ROBID_WIDTH  = 7;
    
    localparam int SQ_WIDTH  = 2;
+   localparam int SQ_NUM  = 4;
    
    localparam int INTISQ_WIDTH  = 3;
    localparam int INTISQ_NUM  = 8;

@@ -7,7 +7,7 @@ module stall_flush_control (/*AUTOARG*/
    PC_stall, PC_flush, IF_stall, ID_stall, IR_stall, ID_flush,
    IF_flush, IR_flush,
    // Inputs
-   imem_miss
+   imem_miss, can_dispatch, flush_valid
    );
   
 
@@ -21,20 +21,24 @@ module stall_flush_control (/*AUTOARG*/
    output   IF_flush;
    output   IR_flush;
    input    imem_miss;
+   input    can_dispatch;
+   input    flush_valid;
 
 
 
 
    // IF_stage
+   
+   assign PC_stall = imem_miss || ~can_dispatch;
+   assign IF_stall = ~can_dispatch;
+   assign ID_stall = ~can_dispatch;
+   assign IR_stall = ~can_dispatch;
+   assign PC_flush = flush_valid;
+   assign IF_flush = flush_valid || imem_miss;
+   assign ID_flush = flush_valid;
+   assign IR_flush = flush_valid;
 
-   assign PC_stall = imem_miss;
-   assign PC_flush = 1'b0;
-   assign IF_stall = 1'b0;
-   assign ID_stall = 1'b0;
-   assign IR_stall = 1'b0;
-   assign IF_flush = 1'b0;
-   assign ID_flush = 1'b0;
-   assign IR_flush = 1'b0;
+
    
    
 

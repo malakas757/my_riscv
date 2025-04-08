@@ -4,12 +4,12 @@ import common::*;
 
 module rob(/*AUTOARG*/
    // Outputs
-   alloc_num, instr0_robid, instr1_robid, retire0_valid,
-   retire1_valid, retire0_is_wb, retire1_is_wb, retire0_arf_id,
-   retire1_arf_id, retire0_fl_Told, retire1_fl_Told, retire0_T,
-   retire1_T, retire0_robid, retire1_robid, rob_state, walk0_valid,
-   walk1_valid, walk0_complete, walk1_complete, walk0_arf_id,
-   walk1_arf_id, walk0_T, walk1_T,
+   rob_left, instr0_robid, instr1_robid, retire0_valid, retire1_valid,
+   retire0_is_wb, retire1_is_wb, retire0_arf_id, retire1_arf_id,
+   retire0_fl_Told, retire1_fl_Told, retire0_T, retire1_T,
+   retire0_robid, retire1_robid, rob_state, walk0_valid, walk1_valid,
+   walk0_complete, walk1_complete, walk0_arf_id, walk1_arf_id,
+   walk0_T, walk1_T,
    // Inputs
    clk, reset_n, instr0_valid, instr1_valid, instr0_is_wb,
    instr1_is_wb, instr0_pc, instr1_pc, instr0_instr, instr1_instr,
@@ -23,7 +23,7 @@ module rob(/*AUTOARG*/
    input                 clk;
    input 		 reset_n;
   
-   output [1:0] 	 alloc_num;//00 means full, 01 means 1, 10 means more than two
+   output [1:0] 	 rob_left;//00 means full, 01 means 1, 10 means more than two
  
 
 // from and to dispatch
@@ -68,11 +68,11 @@ module rob(/*AUTOARG*/
    output [PRF_WIDTH-1:0] 		retire1_fl_Told;
    output [PRF_WIDTH-1:0] 		retire0_T;
    output [PRF_WIDTH-1:0] 		retire1_T;
-   output [PRF_WIDTH-1:0] 		retire0_robid;
-   output [PRF_WIDTH-1:0] 		retire1_robid;
+   output [ROB_WIDTH:0] 		retire0_robid;
+   output [ROB_WIDTH:0] 		retire1_robid;
 							
 //flush logic
-   input [PRF_WIDTH-1:0] 		flush_robid;
+   input [ROB_WIDTH:0] 			flush_robid;
    input 				flush_valid;
 
 
@@ -126,7 +126,7 @@ module rob(/*AUTOARG*/
    integer 		 i,i1,i2,i3,i4,i5;
    assign  disp_num = (instr0_valid && instr1_valid)? 2:
 		      (instr0_valid || instr1_valid)? 1:0;
-   assign  alloc_num = (rob_head[ROB_WIDTH] ^ rob_tail[ROB_WIDTH] && rob_head[ROB_WIDTH-1:0] == rob_tail[ROB_WIDTH-1:0])? 2'b00:
+   assign  rob_left = (rob_head[ROB_WIDTH] ^ rob_tail[ROB_WIDTH] && rob_head[ROB_WIDTH-1:0] == rob_tail[ROB_WIDTH-1:0])? 2'b00:
 		       (rob_head[ROB_WIDTH] ^ rob_tail[ROB_WIDTH] && ((rob_head[ROB_WIDTH-1:0] + 1) == rob_tail[ROB_WIDTH-1:0]) )? 2'b01:2'b10;
 
    
@@ -198,6 +198,8 @@ module rob(/*AUTOARG*/
    end // always_ff@ (posedge clk)
 
    always_comb begin
+      retire_num = 0;
+      
       if(retire0_valid) begin
 	 retire_num = 1;
 	 if(retire1_valid)
@@ -276,25 +278,33 @@ module rob(/*AUTOARG*/
 
    //write from exe
    always_ff@(posedge clk) begin
+      int i;
+      
       if(~reset_n) begin
-      	 for(i4=0;i4<ROB_NUM;i4=i4+1) begin
-	    reg_rob[i4].complete <= 1'b0;
-	  
+      	 for(i=0;i<ROB_NUM;i=i+1) begin
+	    reg_rob[i].complete <= 1'b0;	  
 	 end
       end
-      else
-	if(int0alu_wb_valid)
-	  reg_rob[int0alu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
+      else begin
+	 if(int0alu_wb_valid)
+	   reg_rob[int0alu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
 	 
-	if(int0mul_wb_valid)	 		 
-	  reg_rob[int0mul_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
+	 if(int0mul_wb_valid)	 		 
+	   reg_rob[int0mul_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
 	 
-	if(int1alu_wb_valid)	 		
-	  reg_rob[int1alu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
+	 if(int1alu_wb_valid)	 		
+	   reg_rob[int1alu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
 	 
-	if(int1lsu_wb_valid)	 		
-	  reg_rob[int1lsu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;      
-	 
+	 if(int1lsu_wb_valid)	 		
+	   reg_rob[int1lsu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
+
+         if(retire_num == 1)
+	   reg_rob[rob_tail].complete <= 1'b0;
+         if(retire_num == 2) begin
+	    reg_rob[rob_tail].complete <= 1'b0;
+	    reg_rob[rob_tail+1].complete <= 1'b0;
+	 end
+      end
    end
 
 

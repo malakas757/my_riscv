@@ -8,10 +8,10 @@
 #include "Vcommon__Syms.h"
 #include "Vcommon_if_stage.h"
 
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__6(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__5(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__6\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__5\n"); );
     // Init
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__0;
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__1;

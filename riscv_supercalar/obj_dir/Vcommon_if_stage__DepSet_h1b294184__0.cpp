@@ -8,22 +8,10 @@
 #include "Vcommon__Syms.h"
 #include "Vcommon_if_stage.h"
 
-VL_INLINE_OPT void Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__1(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__3(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__1\n"); );
-    // Body
-    vlSelf->__PVT__instr0_if_id[2U] = ((0xffffefffU 
-                                        & vlSelf->__PVT__instr0_if_id[2U]) 
-                                       | (0x1000U & 
-                                          (vlSymsp->TOP__pipeline.__PVT__imem_resp[0U] 
-                                           << 0xcU)));
-}
-
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__4(Vcommon_if_stage* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__4\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__3\n"); );
     // Init
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__0;
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__1;
@@ -4286,10 +4274,10 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__4(V
             : 2U);
 }
 
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__5(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__4(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__5\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__4\n"); );
     // Init
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__0;
     VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__1;

@@ -8,11 +8,16 @@
 #include "Vcommon__Syms.h"
 #include "Vcommon_if_stage.h"
 
-VL_INLINE_OPT void Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__11(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__9(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__11\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__9\n"); );
     // Body
+    vlSelf->__PVT__instr0_if_id[2U] = ((0xffffefffU 
+                                        & vlSelf->__PVT__instr0_if_id[2U]) 
+                                       | (0x1000U & 
+                                          (vlSymsp->TOP__pipeline.__PVT__imem_resp[0U] 
+                                           << 0xcU)));
     vlSelf->__PVT__instr1_if_id[0U] = (IData)((((QData)((IData)(vlSelf->__PVT__instr1_btb_target_addr)) 
                                                 << 0x20U) 
                                                | (QData)((IData)(

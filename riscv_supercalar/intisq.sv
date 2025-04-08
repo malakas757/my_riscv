@@ -85,7 +85,7 @@ module intisq(/*AUTOARG*/
     
 
 
-   integer 		       i,i1,i2,i3,i4,i5;   	  
+   	  
 //empty finder
 
    logic [INTISQ_WIDTH-1:0] 		       empty_id0;
@@ -97,6 +97,7 @@ module intisq(/*AUTOARG*/
 //entry define
    logic                    intisq_valid[INTISQ_NUM-1:0];
    logic [INTISQ_WIDTH:0] intisq_age [INTISQ_NUM-1:0]; // one more bit to deal with conner case: like two instrs stay very long time
+   logic [INTISQ_WIDTH:0] intisq_age_order_reverse [INTISQ_NUM-1:0]; // reverse order to adapt to Picker
    logic [INTISQ_WIDTH:0] intisq_age_next [INTISQ_NUM-1:0];
    logic                    intisq_src1_state[INTISQ_NUM-1:0];
    logic                    intisq_src2_state[INTISQ_NUM-1:0];
@@ -107,7 +108,7 @@ module intisq(/*AUTOARG*/
    logic [ROB_WIDTH:0] 	    intisq_robid[INTISQ_NUM-1:0];
    control_type             intisq_control[INTISQ_NUM-1:0];
    logic                    intisq_entry_ready[INTISQ_NUM-1:0];//means both src ref is ready
-		    
+   logic                    intisq_entry_ready_order_reverse[INTISQ_NUM-1:0];//to adapta picker	    
 // depart define
    logic [INTISQ_WIDTH-1:0]    old0_id;
    logic [INTISQ_WIDTH-1:0]    old1_id;
@@ -126,8 +127,11 @@ module intisq(/*AUTOARG*/
    logic                       old1_is_mul;
    logic                       old1_is_bju;
    logic                       old1_is_alu;     
+   logic                       intisq_empty[INTISQ_NUM-1:0];     
    
    always_comb begin
+      int i;
+      
      
         for(i=0; i<INTISQ_NUM; i=i+1) begin
 	   in_id[i] = i;	 
@@ -152,12 +156,20 @@ module intisq(/*AUTOARG*/
 					.out_alloc_valid_1(empty_id1_valid), // Templated
 					// Inputs
 					.in_id		(in_id),	 // Templated
-					.in_alloc_valid	(intisq_valid));	 // Templated
+					.in_alloc_valid	(intisq_empty));	 // Templated
    
    
 
    assign intisq_left = empty_id0_valid + empty_id1_valid;
    
+   always_comb begin
+      int i;
+      
+      for(i=0;i<INTISQ_NUM;i=i+1)
+	intisq_empty[i] = ~intisq_valid[i];
+      
+      
+   end
 
 
 
@@ -167,6 +179,8 @@ module intisq(/*AUTOARG*/
 //fluch vector
    logic 		    flush_valid_vector[INTISQ_NUM-1:0];
    always_comb begin
+      int i;
+      
       flush_valid_vector = '{default: 0};      
       for (i=0;i<INTISQ_NUM;i=i+1) begin
 	 if (intisq_valid[i] & (intisq_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH]) & (intisq_robid[i][ROB_WIDTH-1:0] < flush_robid[ROB_WIDTH-1:0]))
@@ -180,6 +194,8 @@ module intisq(/*AUTOARG*/
 //entry valid logic 
 
    always_ff@(posedge clk) begin
+      int i,i1;
+      
       if (~reset_n) begin
 	 for (i=0 ;i<INTISQ_NUM;i=i+1)
 	   intisq_valid[i] <= 1'b0;
@@ -197,17 +213,18 @@ module intisq(/*AUTOARG*/
       else if (instr1_enq_valid) begin
 	 intisq_valid[empty_id0] <= 1'b1;
       end
-      else begin
-	 if(deq0_valid)
-	   intisq_valid[deq0_id] <= 1'b0;
-	 if(deq1_valid)
-	   intisq_valid[deq1_id] <= 1'b0;
-      end
+      if(deq0_valid)
+	intisq_valid[deq0_id] <= 1'b0;
+      if(deq1_valid)
+	intisq_valid[deq1_id] <= 1'b0;
+
    end // always_ff@ (posedge clk)
 
    
 //age reg
    always_ff@(posedge clk) begin
+      int i;
+      
       for (i=0 ;i<INTISQ_NUM;i=i+1)
 	if (~reset_n) begin
 	   intisq_age[i] <= '0;
@@ -217,18 +234,21 @@ module intisq(/*AUTOARG*/
    end
 
    always_comb begin
+      int i;
+      
       intisq_age_next = intisq_age;
 // dispatch
       for(i=0;i<INTISQ_NUM;i=i+1)  begin      
-	 if(instr0_enq_valid) begin	    
-	    intisq_age_next[i] = (i==empty_id0)?  0:
-				 (intisq_age[i] == '1)? intisq_age[i] : intisq_age[i]+1;	 
-	    if(instr1_enq_valid)	      
-	      intisq_age_next[i] = (i==empty_id1)?  0:
-				   (intisq_age[i] == '1)? intisq_age[i] : intisq_age[i]+1;	 
-	 end
-	 else if (instr1_enq_valid)	    
+	 if(instr0_enq_valid & instr1_enq_valid) 
+	    intisq_age_next[i] = (i==empty_id0)?  1:
+				 (i==empty_id1)?  0:
+				 (intisq_age[i] == '1)? intisq_age[i] : intisq_age[i]+2;	 
+	 else  if(~instr1_enq_valid & instr0_enq_valid)	      
 	   intisq_age_next[i] = (i==empty_id0)?  0:
+				(intisq_age[i] == '1)? intisq_age[i] : intisq_age[i]+1;	 
+	 
+	 else if (instr1_enq_valid & ~instr0_enq_valid)	    
+	   intisq_age_next[i] = (i==empty_id1)?  0:
 	                        (intisq_age[i] == '1)? intisq_age[i] : intisq_age[i]+1;	 
       end
       
@@ -258,7 +278,7 @@ module intisq(/*AUTOARG*/
    assign old0_is_mul = intisq_control[old0_id].is_mul ;
    assign old1_is_mul = intisq_control[old1_id].is_mul ;
 
-
+   
 
    
    
@@ -269,19 +289,34 @@ module intisq(/*AUTOARG*/
 
    
    always_comb begin // if the src data is ready?
+      int i;
+      
       for (i=0;i<INTISQ_NUM;i=i+1)
-	 intisq_entry_ready[i] = intisq_valid[i] & ((intisq_control[i].rs1_valid & ~intisq_src1_state) || ~intisq_control[i].rs1_valid) &  ((intisq_control[i].rs2_valid & ~intisq_src2_state) || ~intisq_control[i].rs2_valid); 	 	      
+	 intisq_entry_ready[i] = intisq_valid[i] & ((intisq_control[i].rs1_valid & !intisq_src1_state[i]) || !intisq_control[i].rs1_valid) &  ((intisq_control[i].rs2_valid & !intisq_src2_state[i]) || !intisq_control[i].rs2_valid); 	 	      
+   end
+
+   //reverse order to adapt to Picker
+   always_comb begin
+      int i;
+      for (i=0;i<INTISQ_NUM;i=i+1) begin
+	 intisq_age_order_reverse[i] = intisq_age[7-i];
+	 intisq_entry_ready_order_reverse[i] = intisq_entry_ready[7-i];
+	 
+	 
+      end
+      
+
    end
 
    Picker8_2 inst_oldest_picker(
 				// Outputs
-				.out_id_1	(old0_id),
-				.out_id_0	(old1_id),
+				.out_id_1	(old1_id),
+				.out_id_0	(old0_id),
 				.out_valid_0	(old0_valid),
 				.out_valid_1	(old1_valid),
 				// Inputs
-				.in_age		(intisq_age),
-				.in_valid	(intisq_entry_ready));
+				.in_age		(intisq_age_order_reverse),
+				.in_valid	(intisq_entry_ready_order_reverse));
    
 
    assign ready_vec = {old1_valid,old0_valid};
@@ -296,25 +331,25 @@ module intisq(/*AUTOARG*/
       case (ready_vec)
 	2'b11: 
 	  if(old0_is_mul & old1_is_mul) begin
-	     ex_slot0_valid =  ~mul_slot_busy;
+	     ex_slot0_valid =  !mul_slot_busy;
 	     ex_slot1_valid = 0;	     	     
 	  end
 	  else if(old0_is_mul & old1_is_alu) begin
-	     ex_slot0_valid =  ~mul_slot_busy;
+	     ex_slot0_valid =  !mul_slot_busy;
 	     ex_slot1_valid = 1;	     	     
 	  end
 	  else if(old1_is_mul & old0_is_alu) begin
-	     ex_slot0_valid =  ~mul_slot_busy;
+	     ex_slot0_valid =  !mul_slot_busy;
 	     ex_slot1_valid = 1;
 	     slot0_entry_id = old1_id;
 	     slot1_entry_id = old0_id;	     	     
 	  end
 	  else if(old0_is_mul & old1_is_bju) begin
-	     ex_slot0_valid =  ~mul_slot_busy;
+	     ex_slot0_valid =  !mul_slot_busy;
 	     ex_slot1_valid = 1;     	     
 	  end
 	  else if(old1_is_mul & old0_is_bju) begin
-	     ex_slot0_valid =  ~mul_slot_busy;
+	     ex_slot0_valid =  !mul_slot_busy;
 	     ex_slot1_valid = 1;
 	     slot0_entry_id = old1_id;
 	     slot1_entry_id = old0_id;     	     
@@ -378,7 +413,9 @@ module intisq(/*AUTOARG*/
 // wrtie the data into isq when set valid  
 
    always_ff@(posedge clk) begin
-      if (~reset_n) begin
+      int i;
+      
+      if (!reset_n) begin
 	 for (i=0 ;i<INTISQ_NUM;i=i+1) begin	
 	    intisq_src1_id[i]    <= '0;     
 	    intisq_src2_id[i]    <= '0;     
@@ -420,7 +457,9 @@ module intisq(/*AUTOARG*/
 
    
    always_ff@(posedge clk) begin
-      if (~reset_n) begin
+      int i2,i;
+      
+      if (!reset_n) begin
 	 for (i=0 ;i<INTISQ_NUM;i=i+1) begin	
             intisq_src1_state[i] <= '0;  
 	    intisq_src2_state[i] <= '0;  

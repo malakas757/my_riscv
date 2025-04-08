@@ -1,0 +1,917 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Design implementation internals
+// See Vcommon.h for the primary calling header
+
+#include "verilated.h"
+#include "verilated_dpi.h"
+
+#include "Vcommon__Syms.h"
+#include "Vcommon_pipeline.h"
+
+VL_INLINE_OPT void Vcommon_pipeline___combo__TOP__pipeline__5(Vcommon_pipeline* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_pipeline___combo__TOP__pipeline__5\n"); );
+    // Init
+    CData/*0:0*/ __PVT__retire0_valid;
+    CData/*0:0*/ __PVT__retire1_valid;
+    // Body
+    vlSelf->__PVT__IF_flush = (1U & ((IData)(vlSymsp->TOP.flush_valid) 
+                                     | (~ vlSelf->__PVT__imem_resp[0U])));
+    vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__int0_alu_wb_en 
+        = ((IData)(vlSymsp->TOP.writeback1_valid) & (IData)(vlSymsp->TOP.writeback1_need_to_wb));
+    vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__int0_mul_wb_en 
+        = ((IData)(vlSymsp->TOP.writeback0_valid) & (IData)(vlSymsp->TOP.writeback0_need_to_wb));
+    vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__int1_alu_wb_en 
+        = ((IData)(vlSymsp->TOP.writeback2_valid) & (IData)(vlSymsp->TOP.writeback2_need_to_wb));
+    vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__mem_alu_wb_en 
+        = ((IData)(vlSymsp->TOP.writeback3_valid) & (IData)(vlSymsp->TOP.writeback3_need_to_wb));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[7U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[6U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[5U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[4U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[3U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[2U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[1U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[0U] = 0U;
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [0U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [0U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [0U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[0U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [0U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [0U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [0U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[0U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [1U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [1U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [1U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[1U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [1U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [1U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [1U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[1U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [2U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [2U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [2U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[2U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [2U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [2U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [2U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[2U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [3U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [3U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [3U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[3U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [3U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [3U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [3U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[3U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [4U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [4U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [4U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[4U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [4U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [4U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [4U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[4U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [5U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [5U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [5U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[5U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [5U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [5U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [5U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[5U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [6U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [6U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [6U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[6U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [6U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [6U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [6U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[6U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [7U] & ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                   [7U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                  >> 6U)) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                              [7U]) < (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[7U] = 1U;
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+          [7U] & (~ ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                      [7U] ^ (IData)(vlSymsp->TOP.flush_robid)) 
+                     >> 6U))) & ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid
+                                  [7U]) > (0x3fU & (IData)(vlSymsp->TOP.flush_robid))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__flush_valid_vector[7U] = 1U;
+    }
+    vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__next_state 
+        = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))
+            ? ((IData)(vlSymsp->TOP.flush_valid) ? 1U
+                : 0U) : ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))
+                          ? ((IData)(vlSymsp->TOP.flush_valid)
+                              ? 1U : 2U) : ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))
+                                             ? ((IData)(vlSymsp->TOP.flush_valid)
+                                                 ? 1U
+                                                 : 
+                                                ((1U 
+                                                  & ((~ 
+                                                      (vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                                       [
+                                                       (0x3fU 
+                                                        & ((IData)(1U) 
+                                                           + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_ptr)))][2U] 
+                                                       >> 0x13U)) 
+                                                     | (~ 
+                                                        (vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                                         [
+                                                         (0x3fU 
+                                                          & ((IData)(2U) 
+                                                             + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_ptr)))][2U] 
+                                                         >> 0x13U))))
+                                                  ? 0U
+                                                  : 2U))
+                                             : 0U)));
+    __PVT__retire0_valid = ((((~ (IData)(vlSymsp->TOP.flush_valid)) 
+                              & (0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                             & (vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                [(0x3fU & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))][2U] 
+                                >> 0x13U)) & (vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                              [(0x3fU 
+                                                & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))][2U] 
+                                              >> 6U));
+    vlSelf->__PVT__ex_slot0_valid = 0U;
+    if ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec))) {
+        if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_mul) 
+             & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_mul))) {
+            vlSelf->__PVT__ex_slot0_valid = (1U & (~ (IData)(vlSymsp->TOP.mul_slot_busy)));
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_mul) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu))) {
+            vlSelf->__PVT__ex_slot0_valid = (1U & (~ (IData)(vlSymsp->TOP.mul_slot_busy)));
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_mul) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_alu))) {
+            vlSelf->__PVT__ex_slot0_valid = (1U & (~ (IData)(vlSymsp->TOP.mul_slot_busy)));
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_mul) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_bju))) {
+            vlSelf->__PVT__ex_slot0_valid = (1U & (~ (IData)(vlSymsp->TOP.mul_slot_busy)));
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_mul) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_bju))) {
+            vlSelf->__PVT__ex_slot0_valid = (1U & (~ (IData)(vlSymsp->TOP.mul_slot_busy)));
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_bju) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_bju))) {
+            vlSelf->__PVT__ex_slot0_valid = 0U;
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_bju) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu))) {
+            vlSelf->__PVT__ex_slot0_valid = 1U;
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_bju) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_alu))) {
+            vlSelf->__PVT__ex_slot0_valid = 1U;
+        } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_alu) 
+                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu))) {
+            vlSelf->__PVT__ex_slot0_valid = 1U;
+        }
+    } else if ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec))) {
+        if (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_mul) {
+            vlSelf->__PVT__ex_slot0_valid = 1U;
+        } else if ((1U & (~ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_bju)))) {
+            vlSelf->__PVT__ex_slot0_valid = 1U;
+        }
+    } else if ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec))) {
+        if (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_mul) {
+            vlSelf->__PVT__ex_slot0_valid = 1U;
+        }
+    } else {
+        vlSelf->__PVT__ex_slot0_valid = 0U;
+    }
+    vlSelf->__PVT__PC_stall = (1U & ((~ vlSelf->__PVT__imem_resp[0U]) 
+                                     | (~ (IData)(vlSelf->__PVT__can_dispatch))));
+    vlSelf->__PVT__imem_resp[0U] = (1U | ((IData)((
+                                                   ((QData)((IData)(
+                                                                    vlSelf->__PVT__inst_imem__DOT__ram
+                                                                    [
+                                                                    (0xffU 
+                                                                     & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                                        >> 0xfU))])) 
+                                                    << 0x20U) 
+                                                   | (QData)((IData)(
+                                                                     vlSelf->__PVT__inst_imem__DOT__ram
+                                                                     [
+                                                                     (0xffU 
+                                                                      & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr1_if_id[2U] 
+                                                                         >> 0xfU))])))) 
+                                          << 1U));
+    vlSelf->__PVT__imem_resp[1U] = (((IData)((((QData)((IData)(
+                                                               vlSelf->__PVT__inst_imem__DOT__ram
+                                                               [
+                                                               (0xffU 
+                                                                & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                                   >> 0xfU))])) 
+                                               << 0x20U) 
+                                              | (QData)((IData)(
+                                                                vlSelf->__PVT__inst_imem__DOT__ram
+                                                                [
+                                                                (0xffU 
+                                                                 & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr1_if_id[2U] 
+                                                                    >> 0xfU))])))) 
+                                     >> 0x1fU) | ((IData)(
+                                                          ((((QData)((IData)(
+                                                                             vlSelf->__PVT__inst_imem__DOT__ram
+                                                                             [
+                                                                             (0xffU 
+                                                                              & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                                                >> 0xfU))])) 
+                                                             << 0x20U) 
+                                                            | (QData)((IData)(
+                                                                              vlSelf->__PVT__inst_imem__DOT__ram
+                                                                              [
+                                                                              (0xffU 
+                                                                               & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr1_if_id[2U] 
+                                                                                >> 0xfU))]))) 
+                                                           >> 0x20U)) 
+                                                  << 1U));
+    vlSelf->__PVT__imem_resp[2U] = ((IData)(((((QData)((IData)(
+                                                               vlSelf->__PVT__inst_imem__DOT__ram
+                                                               [
+                                                               (0xffU 
+                                                                & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                                   >> 0xfU))])) 
+                                               << 0x20U) 
+                                              | (QData)((IData)(
+                                                                vlSelf->__PVT__inst_imem__DOT__ram
+                                                                [
+                                                                (0xffU 
+                                                                 & (vlSymsp->TOP__pipeline__inst_if_stage.__PVT__instr1_if_id[2U] 
+                                                                    >> 0xfU))]))) 
+                                             >> 0x20U)) 
+                                    >> 0x1fU);
+    vlSelf->__Vcellinp__inst_ir__fl_write_en_0 = ((IData)(__PVT__retire0_valid) 
+                                                  & (IData)(vlSelf->__PVT__retire0_is_wb));
+    vlSelf->__PVT__inst_ir__DOT__rename_0 = ((0x3ffffcfffULL 
+                                              & vlSelf->__PVT__inst_ir__DOT__rename_0) 
+                                             | ((QData)((IData)(
+                                                                (((IData)(__PVT__retire0_valid) 
+                                                                  << 1U) 
+                                                                 | (IData)(vlSelf->__PVT__retire0_is_wb)))) 
+                                                << 0xcU));
+    __PVT__retire1_valid = (((IData)(__PVT__retire0_valid) 
+                             & (vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                [(0x3fU & ((IData)(1U) 
+                                           + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)))][2U] 
+                                >> 0x13U)) & (vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                              [(0x3fU 
+                                                & ((IData)(1U) 
+                                                   + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)))][2U] 
+                                              >> 6U));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [7U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [6U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [5U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [4U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [3U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [2U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [1U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [0U];
+    if (vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [0U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [0U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+                = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [0U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [0U]))));
+        }
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [1U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [1U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+                = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [1U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [1U]))));
+        }
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [2U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [2U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+                = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [2U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [2U]))));
+        }
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [3U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [3U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+                = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [3U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [3U]))));
+        }
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [4U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [4U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+                = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [4U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [4U]))));
+        }
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [5U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [5U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+                = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [5U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [5U]))));
+        }
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [6U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [6U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+                = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [6U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [6U]))));
+        }
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [7U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [7U]))));
+        if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+                = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                    ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                     [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                    [7U] : ((IData)(1U) 
+                                            + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                            [7U]))));
+        }
+    } else if (vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [0U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [0U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [1U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [1U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [2U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [2U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [3U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [3U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [4U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [4U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [5U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [5U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [6U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [6U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [7U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [7U]))));
+    }
+    if (vlSelf->__PVT__ex_slot0_valid) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__slot0_entry_id] = 0U;
+    }
+    if (vlSelf->__PVT__ex_slot1_valid) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__slot1_entry_id] = 0U;
+    }
+    vlSelf->__PVT__ir_is_reg0_next[4U] = ((0x1fU & 
+                                           vlSelf->__PVT__ir_is_reg0_next[4U]) 
+                                          | (0x7e0U 
+                                             & ((IData)(vlSelf->__PVT__inst_ir__DOT__rename_0) 
+                                                << 5U)));
+    vlSelf->__PVT__ir_is_reg0_next[3U] = ((0x8007ffffU 
+                                           & vlSelf->__PVT__ir_is_reg0_next[3U]) 
+                                          | (0xfff80000U 
+                                             & ((vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                                 [(0x1fU 
+                                                   & (IData)(
+                                                             (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                              >> 0x1dU)))] 
+                                                 << 0x19U) 
+                                                | (vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                                   [
+                                                   (0x1fU 
+                                                    & (IData)(
+                                                              (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                               >> 0x18U)))] 
+                                                   << 0x13U))));
+    vlSelf->__PVT__ir_is_reg0_next[3U] = ((0x7fffffffU 
+                                           & vlSelf->__PVT__ir_is_reg0_next[3U]) 
+                                          | (vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                             [(0x1fU 
+                                               & (IData)(
+                                                         (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                          >> 0x13U)))] 
+                                             << 0x1fU));
+    vlSelf->__PVT__ir_is_reg0_next[4U] = ((0x7e0U & 
+                                           vlSelf->__PVT__ir_is_reg0_next[4U]) 
+                                          | (0x7ffU 
+                                             & (vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                                [(0x1fU 
+                                                  & (IData)(
+                                                            (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                             >> 0x13U)))] 
+                                                >> 1U)));
+    if (__PVT__retire0_valid) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__retire_num = 1U;
+        if (__PVT__retire1_valid) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__retire_num = 2U;
+        }
+    } else {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__retire_num = 0U;
+    }
+    vlSelf->__Vcellinp__inst_ir__fl_write_en_1 = ((IData)(__PVT__retire1_valid) 
+                                                  & (IData)(vlSelf->__PVT__retire1_is_wb));
+    vlSelf->__PVT__inst_ir__DOT__rename_1 = ((0x3ffffcfffULL 
+                                              & vlSelf->__PVT__inst_ir__DOT__rename_1) 
+                                             | ((QData)((IData)(
+                                                                (((IData)(__PVT__retire1_valid) 
+                                                                  << 1U) 
+                                                                 | (IData)(vlSelf->__PVT__retire1_is_wb)))) 
+                                                << 0xcU));
+    vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail_next 
+        = (0x3fU & (((IData)(vlSelf->__Vcellinp__inst_ir__fl_write_en_0) 
+                     & (IData)(vlSelf->__Vcellinp__inst_ir__fl_write_en_1))
+                     ? ((IData)(2U) + (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail))
+                     : (((IData)(vlSelf->__Vcellinp__inst_ir__fl_write_en_0) 
+                         | (IData)(vlSelf->__Vcellinp__inst_ir__fl_write_en_1))
+                         ? ((IData)(1U) + (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail))
+                         : (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail))));
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x1fU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x1fU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x1eU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x1eU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x1dU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x1dU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x1cU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x1cU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x1bU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x1bU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x1aU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x1aU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x19U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x19U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x18U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x18U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x17U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x17U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x16U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x16U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x15U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x15U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x14U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x14U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x13U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x13U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x12U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x12U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x11U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x11U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0x10U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0x10U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0xfU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0xfU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0xeU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0xeU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0xdU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0xdU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0xcU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0xcU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0xbU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0xbU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0xaU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0xaU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[9U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [9U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[8U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [8U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[7U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [7U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[6U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [6U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[5U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [5U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[4U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [4U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[3U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [3U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[2U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [2U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[1U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [1U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [0U];
+    if ((IData)((0x3000ULL == (0x3000ULL & vlSelf->__PVT__inst_ir__DOT__rename_0)))) {
+        vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[(0x1fU 
+                                                              & (IData)(
+                                                                        (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                                         >> 0xeU)))] 
+            = (0x3fU & (IData)((vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                >> 6U)));
+    }
+    if ((IData)((0x3000ULL == (0x3000ULL & vlSelf->__PVT__inst_ir__DOT__rename_1)))) {
+        vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[(0x1fU 
+                                                              & (IData)(
+                                                                        (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                                         >> 0xeU)))] 
+            = (0x3fU & (IData)((vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                >> 6U)));
+    }
+    vlSelf->__PVT__ir_is_reg1_next[4U] = ((0x1fU & 
+                                           vlSelf->__PVT__ir_is_reg1_next[4U]) 
+                                          | (0x7e0U 
+                                             & ((IData)(vlSelf->__PVT__inst_ir__DOT__rename_1) 
+                                                << 5U)));
+    vlSelf->__PVT__ir_is_reg1_next[3U] = ((0x8007ffffU 
+                                           & vlSelf->__PVT__ir_is_reg1_next[3U]) 
+                                          | (0xfff80000U 
+                                             & ((0x7e000000U 
+                                                 & ((((IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_0) 
+                                                      & ((0x1fU 
+                                                          & (IData)(
+                                                                    (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                                     >> 0x1dU))) 
+                                                         == 
+                                                         (0x1fU 
+                                                          & (IData)(
+                                                                    (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                                     >> 0x13U)))))
+                                                      ? (IData)(vlSelf->__PVT__inst_ir__DOT__rename_0)
+                                                      : 
+                                                     vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                                     [
+                                                     (0x1fU 
+                                                      & (IData)(
+                                                                (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                                 >> 0x1dU)))]) 
+                                                    << 0x19U)) 
+                                                | (0x1f80000U 
+                                                   & ((((IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_0) 
+                                                        & ((0x1fU 
+                                                            & (IData)(
+                                                                      (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                                       >> 0x18U))) 
+                                                           == 
+                                                           (0x1fU 
+                                                            & (IData)(
+                                                                      (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                                       >> 0x13U)))))
+                                                        ? (IData)(vlSelf->__PVT__inst_ir__DOT__rename_0)
+                                                        : 
+                                                       vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                                       [
+                                                       (0x1fU 
+                                                        & (IData)(
+                                                                  (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                                   >> 0x18U)))]) 
+                                                      << 0x13U)))));
+    vlSelf->__PVT__ir_is_reg1_next[3U] = ((0x7fffffffU 
+                                           & vlSelf->__PVT__ir_is_reg1_next[3U]) 
+                                          | (((((IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_0) 
+                                                & (IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_1)) 
+                                               & ((0x1fU 
+                                                   & (IData)(
+                                                             (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                              >> 0x13U))) 
+                                                  == 
+                                                  (0x1fU 
+                                                   & (IData)(
+                                                             (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                              >> 0x13U)))))
+                                               ? (IData)(vlSelf->__PVT__inst_ir__DOT__rename_0)
+                                               : vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                              [(0x1fU 
+                                                & (IData)(
+                                                          (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                           >> 0x13U)))]) 
+                                             << 0x1fU));
+    vlSelf->__PVT__ir_is_reg1_next[4U] = ((0x7e0U & 
+                                           vlSelf->__PVT__ir_is_reg1_next[4U]) 
+                                          | (0x1fU 
+                                             & (((((IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_0) 
+                                                   & (IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_1)) 
+                                                  & ((0x1fU 
+                                                      & (IData)(
+                                                                (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                                 >> 0x13U))) 
+                                                     == 
+                                                     (0x1fU 
+                                                      & (IData)(
+                                                                (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                                 >> 0x13U)))))
+                                                  ? (IData)(vlSelf->__PVT__inst_ir__DOT__rename_0)
+                                                  : 
+                                                 vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+                                                 [(0x1fU 
+                                                   & (IData)(
+                                                             (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                              >> 0x13U)))]) 
+                                                >> 1U)));
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x1fU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x1fU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x1eU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x1eU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x1dU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x1dU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x1cU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x1cU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x1bU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x1bU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x1aU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x1aU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x19U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x19U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x18U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x18U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x17U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x17U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x16U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x16U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x15U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x15U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x14U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x14U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x13U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x13U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x12U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x12U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x11U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x11U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0x10U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0x10U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0xfU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0xfU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0xeU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0xeU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0xdU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0xdU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0xcU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0xcU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0xbU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0xbU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0xaU] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0xaU];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[9U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [9U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[8U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [8U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[7U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [7U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[6U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [6U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[5U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [5U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[4U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [4U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[3U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [3U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[2U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [2U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[1U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [1U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[0U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT
+        [0U];
+    if ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) {
+        if (((IData)(vlSelf->__PVT__walk0_valid) & 
+             (~ ((IData)(vlSelf->__PVT__walk0_valid) 
+                 & ((IData)(vlSelf->__PVT__walk0_arf_id) 
+                    == (IData)(vlSelf->__PVT__walk1_arf_id)))))) {
+            vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[vlSelf->__PVT__walk0_arf_id] 
+                = vlSelf->__PVT__walk0_T;
+        }
+        if (vlSelf->__PVT__walk0_valid) {
+            vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[vlSelf->__PVT__walk1_arf_id] 
+                = vlSelf->__PVT__walk1_T;
+        }
+    } else {
+        if (((IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_0) 
+             & (~ ((IData)(vlSelf->__PVT__inst_ir__DOT__fl_req_1) 
+                   & ((0x1fU & (IData)((vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                        >> 0x13U))) 
+                      == (0x1fU & (IData)((vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                           >> 0x13U)))))))) {
+            vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[(0x1fU 
+                                                                 & (IData)(
+                                                                           (vlSelf->__PVT__inst_ir__DOT__rename_0 
+                                                                            >> 0x13U)))] 
+                = (0x3fU & (IData)(vlSelf->__PVT__inst_ir__DOT__rename_0));
+        }
+        if (vlSelf->__PVT__inst_ir__DOT__fl_req_1) {
+            vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT[(0x1fU 
+                                                                 & (IData)(
+                                                                           (vlSelf->__PVT__inst_ir__DOT__rename_1 
+                                                                            >> 0x13U)))] 
+                = (0x3fU & (IData)(vlSelf->__PVT__inst_ir__DOT__rename_1));
+        }
+    }
+}
