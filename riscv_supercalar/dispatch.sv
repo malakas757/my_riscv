@@ -10,15 +10,15 @@ module dispatch(/*AUTOARG*/
    instr1_valid_rob, instr0_pc, instr1_pc, instr0_instr, instr1_instr,
    instr0_T, instr1_T, instr0_T_old, instr1_T_old, instr0_src1,
    instr0_src2, instr1_src1, instr1_src2, instr0_valid_intisq,
-   instr1_valid_intisq, isq_robid_0, isq_robid_1, isq_src1_busy_0,
-   isq_src2_busy_0, isq_src1_busy_1, isq_src2_busy_1, instr0_sqid,
-   instr1_sqid,
+   instr1_valid_intisq, instr0_valid_memisq, instr1_valid_memisq,
+   isq_robid_0, isq_robid_1, isq_src1_busy_0, isq_src2_busy_0,
+   isq_src1_busy_1, isq_src2_busy_1,
    // Inputs
    instr0_pipe_reg, instr1_pipe_reg, instr0_pc_in, instr1_pc_in,
    instr0_instr_in, instr1_instr_in, rob_left, instr0_robid_in,
    instr1_robid_in, instr0_src1_busy_in, instr0_src2_busy_in,
    instr1_src1_busy_in, instr1_src2_busy_in, intisq_left, memisq_left,
-   sq_left
+   sq_left, flush_valid
    );
 
    output                    can_dispatch;
@@ -71,6 +71,8 @@ module dispatch(/*AUTOARG*/
    input logic [1:0] 	     memisq_left;
    output logic 	     instr0_valid_intisq; 	
    output logic 	     instr1_valid_intisq; 	
+   output logic 	     instr0_valid_memisq; 	
+   output logic 	     instr1_valid_memisq; 	
    
    output [ROB_WIDTH:0]      isq_robid_0;
    output [ROB_WIDTH:0]      isq_robid_1;
@@ -84,8 +86,11 @@ module dispatch(/*AUTOARG*/
 
 //input from and output to STORE QUEUE
    input  logic [1:0] 	         sq_left;
-   output logic [SQ_WIDTH-1:0] 	 instr0_sqid;
-   output logic [SQ_WIDTH-1:0] 	 instr1_sqid;
+
+
+//flush
+   input                         flush_valid;
+    
    
 
 
@@ -105,6 +110,7 @@ module dispatch(/*AUTOARG*/
    logic 		     can_dispatch;
    logic [1:0] 		     mem_instr_num;
    logic [1:0] 		     int_instr_num;
+   logic [1:0] 		     store_instr_num;
    logic [1:0] 		     mem_instr_vec;
    logic [1:0] 		     int_instr_vec;
    logic [1:0] 		     store_instr_vec;
@@ -136,9 +142,11 @@ module dispatch(/*AUTOARG*/
    assign intisq_can_alloc = (intisq_left >= int_instr_num)?1 : 0 ;
    assign memisq_can_alloc = (memisq_left >= mem_instr_num)?1 : 0 ;
    assign sq_can_alloc = (sq_left >= store_instr_num)?1 : 0 ;
-   assign can_dispatch = rob_can_alloc & intisq_can_alloc & memisq_can_alloc & sq_can_alloc;
+   assign can_dispatch = rob_can_alloc & intisq_can_alloc & memisq_can_alloc & sq_can_alloc & ~flush_valid;
    assign instr0_valid_intisq = instr0_valid_rob & int_instr_vec[0];
    assign instr1_valid_intisq = instr1_valid_rob & int_instr_vec[1];
+   assign instr0_valid_memisq = instr0_valid_rob & mem_instr_vec[0];
+   assign instr1_valid_memisq = instr1_valid_rob & mem_instr_vec[1];
 
 
 

@@ -21,42 +21,15 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__1(Vco
     SData/*9:0*/ __Vfunc_gshare_hash__1__Vfuncout;
     SData/*9:0*/ __Vfunc_gshare_hash__1__GHSR;
     IData/*31:0*/ __Vfunc_gshare_hash__1__branch_pc;
-    SData/*9:0*/ __Vfunc_gshare_hash__2__Vfuncout;
-    SData/*9:0*/ __Vfunc_gshare_hash__2__GHSR;
-    IData/*31:0*/ __Vfunc_gshare_hash__2__branch_pc;
     CData/*0:0*/ __Vfunc_if_branch_taken__3__Vfuncout;
     CData/*1:0*/ __Vfunc_if_branch_taken__3__biomd;
     CData/*0:0*/ __Vfunc_if_branch_taken__4__Vfuncout;
     CData/*1:0*/ __Vfunc_if_branch_taken__4__biomd;
-    VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__0;
-    VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__1;
-    VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__2;
-    VlWide<3>/*95:0*/ __Vtemp_h9f28c8e0__3;
     // Body
     vlSelf->__PVT__instr0_btb_target_addr = (0xfffffffcU 
                                              & vlSelf->__PVT__instr0_btb_target_addr);
     vlSelf->__PVT__instr1_btb_target_addr = (0xfffffffcU 
                                              & vlSelf->__PVT__instr1_btb_target_addr);
-    VL_EXTEND_WI(77,1, __Vtemp_h9f28c8e0__0, (IData)(vlSymsp->TOP__pipeline.__PVT__ex_branch_in));
-    VL_EXTEND_WI(77,1, __Vtemp_h9f28c8e0__1, (IData)(vlSymsp->TOP__pipeline.__PVT__ex_branch_in));
-    vlSelf->__PVT__btb_inst__DOT__update_BTB = (IData)(
-                                                       ((__Vtemp_h9f28c8e0__0[2U] 
-                                                         >> 0xcU) 
-                                                        & (__Vtemp_h9f28c8e0__1[2U] 
-                                                           >> 0xbU)));
-    VL_EXTEND_WI(77,1, __Vtemp_h9f28c8e0__2, (IData)(vlSymsp->TOP__pipeline.__PVT__ex_branch_in));
-    __Vfunc_gshare_hash__2__branch_pc = ((__Vtemp_h9f28c8e0__2[2U] 
-                                          << 0x15U) 
-                                         | (__Vtemp_h9f28c8e0__2[1U] 
-                                            >> 0xbU));
-    VL_EXTEND_WI(77,1, __Vtemp_h9f28c8e0__3, (IData)(vlSymsp->TOP__pipeline.__PVT__ex_branch_in));
-    __Vfunc_gshare_hash__2__GHSR = (0x3ffU & __Vtemp_h9f28c8e0__3[0U]);
-    __Vfunc_gshare_hash__2__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__2__GHSR) 
-                                                  ^ 
-                                                  (__Vfunc_gshare_hash__2__branch_pc 
-                                                   >> 2U)));
-    vlSelf->__PVT__gshare_inst__DOT__update_pht_addr 
-        = __Vfunc_gshare_hash__2__Vfuncout;
     vlSelf->__PVT__instr0_if_id[2U] = ((0xffffefffU 
                                         & vlSelf->__PVT__instr0_if_id[2U]) 
                                        | (0x1000U & 

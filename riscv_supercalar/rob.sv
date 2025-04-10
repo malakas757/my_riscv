@@ -123,7 +123,7 @@ module rob(/*AUTOARG*/
    logic [1:0] 		 disp_num;
    
  		 
-   integer 		 i,i1,i2,i3,i4,i5;
+
    assign  disp_num = (instr0_valid && instr1_valid)? 2:
 		      (instr0_valid || instr1_valid)? 1:0;
    assign  rob_left = (rob_head[ROB_WIDTH] ^ rob_tail[ROB_WIDTH] && rob_head[ROB_WIDTH-1:0] == rob_tail[ROB_WIDTH-1:0])? 2'b00:
@@ -140,13 +140,16 @@ module rob(/*AUTOARG*/
    
    
    always_ff@(posedge clk) begin
+      int i;
+      
       if(~reset_n) begin
-	 for(i1=0;i1<ROB_NUM;i1=i1+1) 
-	    reg_rob[i1].valid <= 1'b0;
+	 for(i=0;i<ROB_NUM;i=i+1) 
+	    reg_rob[i].valid <= 1'b0;
       end
       else if (is_rollback) begin
-	 for(i2=0;i2<ROB_NUM;i2=i2+1) 
-	   reg_rob[i2].valid  <= rollback_valid[i2];
+	 for(i=0;i<ROB_NUM;i=i+1)
+	   if(rollback_valid[i])
+	   reg_rob[i].valid  <= '0;
 	 
       end
       else  begin
@@ -228,16 +231,18 @@ module rob(/*AUTOARG*/
 // reg_rob write and read
    //write from dispatch
       always_ff@(posedge clk) begin
+	 int i;
+	 
       if(~reset_n) begin
-	 for(i3=0;i3<ROB_NUM;i3=i3+1) begin
-	    reg_rob[i3].T <= 'b0;
-	    reg_rob[i3].T_old <= 'b0;	   
-	    reg_rob[i3].is_wb <= 'b0;
-	    reg_rob[i3].arf_id <= 'b0;
+	 for(i=0;i<ROB_NUM;i=i+1) begin
+	    reg_rob[i].T <= 'b0;
+	    reg_rob[i].T_old <= 'b0;	   
+	    reg_rob[i].is_wb <= 'b0;
+	    reg_rob[i].arf_id <= 'b0;
 	 end
 `ifdef debug
-	    reg_rob[i3].pc <= 'b0;
-	    reg_rob[i3].instruction <= 'b0;
+	    reg_rob[i].pc <= 'b0;
+	    reg_rob[i].instruction <= 'b0;
 `endif	 
       end
       else  begin
@@ -285,6 +290,7 @@ module rob(/*AUTOARG*/
 	    reg_rob[i].complete <= 1'b0;	  
 	 end
       end
+
       else begin
 	 if(int0alu_wb_valid)
 	   reg_rob[int0alu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
@@ -297,6 +303,13 @@ module rob(/*AUTOARG*/
 	 
 	 if(int1lsu_wb_valid)	 		
 	   reg_rob[int1lsu_wb_robid[ROB_WIDTH-1:0]].complete <= 1'b1;
+	 
+	 if (is_rollback) begin
+	    for(i=0;i<ROB_NUM;i=i+1)
+	      if(rollback_valid[i])
+		reg_rob[i].complete  <= '0;
+	 
+	 end
 
          if(retire_num == 1)
 	   reg_rob[rob_tail].complete <= 1'b0;
@@ -368,16 +381,17 @@ module rob(/*AUTOARG*/
 
    
    always_comb begin
+      int i;      
       for(i=0;i<ROB_NUM;i=i+1)
-      rollback_valid[i] = reg_rob[i].valid;
+      rollback_valid[i] = '0;
       for(i=0; i<ROB_NUM;i=i+1) begin
 	 if (rob_tail[ROB_WIDTH-1:0] > flush_robid_latch[ROB_WIDTH-1:0]) begin
 	   if(i < rob_tail && i > flush_robid_latch)
-	     rollback_valid[i] = 1'b0;	    
+	     rollback_valid[i] = 1'b1;	    
 	 end
 	 else begin
 	   if( i > flush_robid_latch || i < rob_tail)
-	     rollback_valid[i] = 1'b0;
+	     rollback_valid[i] = 1'b1;
 	 end
       end
    end

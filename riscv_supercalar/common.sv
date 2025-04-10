@@ -32,7 +32,8 @@ package common;
    localparam int INTISQ_WIDTH  = 3;
    localparam int INTISQ_NUM  = 8;
 
-   
+   localparam int MEMISQ_WIDTH  = 2;
+   localparam int MEMISQ_NUM  = 4;   
    
    
 

@@ -79,6 +79,8 @@ module busytable (
       
 
 // busy table write from dispatch/WB/walk
+
+//**** when rollback, wb is still working, Busy table cant set the correct value. But it is fine because wb can set "complete" signal in rob, then use that to recover.    
    always_ff@( posedge clk) begin
         integer i;
         if (!reset_n | is_rollback) begin
@@ -86,7 +88,7 @@ module busytable (
                 reg_busy_table[i] <= 1'b0;  //means all ready
             end
         end 
-	else begin
+	else begin// be careful when walk and wb occur together!!! the wb operation is the newest, so take wb result
            if (instr0_disp2bt_rd_en) begin
                 reg_busy_table[instr0_disp2bt_rd] <= 1'b1;
             end

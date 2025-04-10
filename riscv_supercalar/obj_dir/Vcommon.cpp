@@ -3,6 +3,7 @@
 
 #include "Vcommon.h"
 #include "Vcommon__Syms.h"
+#include "verilated_dpi.h"
 
 //============================================================
 // Constructors
@@ -11,27 +12,29 @@ Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , reset_n{vlSymsp->TOP.reset_n}
-    , sq_left{vlSymsp->TOP.sq_left}
-    , disp2sq_instr0_valid{vlSymsp->TOP.disp2sq_instr0_valid}
-    , disp2sq_instr1_valid{vlSymsp->TOP.disp2sq_instr1_valid}
-    , disp2sq_instr0_robid{vlSymsp->TOP.disp2sq_instr0_robid}
-    , disp2sq_instr1_robid{vlSymsp->TOP.disp2sq_instr1_robid}
-    , disp2sq_instr0_pc{vlSymsp->TOP.disp2sq_instr0_pc}
-    , disp2sq_instr1_pc{vlSymsp->TOP.disp2sq_instr1_pc}
-    , lsuint_wb_valid{vlSymsp->TOP.lsuint_wb_valid}
-    , lsuint_wb_is_store{vlSymsp->TOP.lsuint_wb_is_store}
-    , retire0_valid{vlSymsp->TOP.retire0_valid}
-    , retire1_valid{vlSymsp->TOP.retire1_valid}
-    , retire0_robid{vlSymsp->TOP.retire0_robid}
-    , retire1_robid{vlSymsp->TOP.retire1_robid}
-    , retire_sq2mem_valid{vlSymsp->TOP.retire_sq2mem_valid}
-    , flush_valid{vlSymsp->TOP.flush_valid}
+    , writeback0_valid{vlSymsp->TOP.writeback0_valid}
+    , writeback0_need_to_wb{vlSymsp->TOP.writeback0_need_to_wb}
+    , writeback0_prd{vlSymsp->TOP.writeback0_prd}
+    , writeback1_valid{vlSymsp->TOP.writeback1_valid}
+    , writeback1_need_to_wb{vlSymsp->TOP.writeback1_need_to_wb}
+    , writeback1_prd{vlSymsp->TOP.writeback1_prd}
+    , writeback2_valid{vlSymsp->TOP.writeback2_valid}
+    , writeback2_need_to_wb{vlSymsp->TOP.writeback2_need_to_wb}
+    , writeback2_prd{vlSymsp->TOP.writeback2_prd}
+    , writeback3_valid{vlSymsp->TOP.writeback3_valid}
+    , writeback3_need_to_wb{vlSymsp->TOP.writeback3_need_to_wb}
+    , writeback3_prd{vlSymsp->TOP.writeback3_prd}
+    , writeback0_robid{vlSymsp->TOP.writeback0_robid}
+    , writeback1_robid{vlSymsp->TOP.writeback1_robid}
+    , writeback2_robid{vlSymsp->TOP.writeback2_robid}
+    , writeback3_robid{vlSymsp->TOP.writeback3_robid}
+    , writeback3_is_store{vlSymsp->TOP.writeback3_is_store}
+    , mul_slot_busy{vlSymsp->TOP.mul_slot_busy}
     , flush_robid{vlSymsp->TOP.flush_robid}
-    , lsuint_wb_data{vlSymsp->TOP.lsuint_wb_data}
-    , lsuint_wb_addr{vlSymsp->TOP.lsuint_wb_addr}
-    , lsuint_wb_robid{vlSymsp->TOP.lsuint_wb_robid}
-    , retire_sq2mem_data{vlSymsp->TOP.retire_sq2mem_data}
-    , retire_sq2mem_addr{vlSymsp->TOP.retire_sq2mem_addr}
+    , flush_valid{vlSymsp->TOP.flush_valid}
+    , writeback3_data{vlSymsp->TOP.writeback3_data}
+    , writeback3_addr{vlSymsp->TOP.writeback3_addr}
+    , pipeline{vlSymsp->TOP.pipeline}
     , rootp{&(vlSymsp->TOP)}
 {
 }
@@ -77,7 +80,7 @@ static void _eval_initial_loop(Vcommon__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/storequeue.sv", 5, "",
+            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/pipeline.sv", 6, "",
                 "Verilated model didn't DC converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
@@ -107,7 +110,7 @@ void Vcommon::eval_step() {
             Verilated::debug(1);
             __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/storequeue.sv", 5, "",
+            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/pipeline.sv", 6, "",
                 "Verilated model didn't converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {

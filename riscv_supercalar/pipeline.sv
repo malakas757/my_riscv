@@ -10,7 +10,8 @@ module pipeline(/*AUTOARG*/
    writeback1_prd, writeback2_valid, writeback2_need_to_wb,
    writeback2_prd, writeback3_valid, writeback3_need_to_wb,
    writeback3_prd, writeback0_robid, writeback1_robid,
-   writeback2_robid, writeback3_robid, mul_slot_busy, flush_robid,
+   writeback2_robid, writeback3_robid, writeback3_is_store,
+   writeback3_data, writeback3_addr, mul_slot_busy, flush_robid,
    flush_valid
    );
    input clk;
@@ -34,7 +35,10 @@ module pipeline(/*AUTOARG*/
    input logic [ROB_WIDTH:0]   writeback0_robid;
    input logic [ROB_WIDTH:0]   writeback1_robid;
    input logic [ROB_WIDTH:0]   writeback2_robid;
-   input logic [ROB_WIDTH:0]   writeback3_robid;   
+   input logic [ROB_WIDTH:0]   writeback3_robid;
+   input logic 		       writeback3_is_store; // memint if the finished instr is store  
+   input logic [31:0] 	       writeback3_data; // the data to be writed backto mem
+   input logic [31:0] 	       writeback3_addr; // the addr to be writed backto mem     
    input logic                 mul_slot_busy;
    input logic [ROB_WIDTH:0]   flush_robid;
    input 		       flush_valid;
@@ -55,6 +59,7 @@ module pipeline(/*AUTOARG*/
    wire			can_dispatch;		// From inst_is_stage of is_stage.v
    logic		ex_slot0_valid;		// From inst_is_stage of is_stage.v
    logic		ex_slot1_valid;		// From inst_is_stage of is_stage.v
+   logic		ex_slot2_valid;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	instr0_src1;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	instr0_src2;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	instr1_src1;		// From inst_is_stage of is_stage.v
@@ -71,6 +76,9 @@ module pipeline(/*AUTOARG*/
    wire			retire1_is_wb;		// From inst_is_stage of is_stage.v
    wire [ROB_WIDTH:0]	retire1_robid;		// From inst_is_stage of is_stage.v
    wire			retire1_valid;		// From inst_is_stage of is_stage.v
+   logic [31:0]		retire_sq2mem_addr;	// From inst_is_stage of is_stage.v
+   logic [31:0]		retire_sq2mem_data;	// From inst_is_stage of is_stage.v
+   wire			retire_sq2mem_valid;	// From inst_is_stage of is_stage.v
    wire [1:0]		rob_state;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	slot0_T;		// From inst_is_stage of is_stage.v
    control_type		slot0_control;		// From inst_is_stage of is_stage.v
@@ -80,6 +88,10 @@ module pipeline(/*AUTOARG*/
    control_type		slot1_control;		// From inst_is_stage of is_stage.v
    wire [31:0]		slot1_pc;		// From inst_is_stage of is_stage.v
    wire [ROB_WIDTH:0]	slot1_robid;		// From inst_is_stage of is_stage.v
+   wire [PRF_WIDTH-1:0]	slot2_T;		// From inst_is_stage of is_stage.v
+   control_type		slot2_control;		// From inst_is_stage of is_stage.v
+   wire [31:0]		slot2_pc;		// From inst_is_stage of is_stage.v
+   wire [ROB_WIDTH:0]	slot2_robid;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	walk0_T;		// From inst_is_stage of is_stage.v
    wire [ARF_WIDTH-1:0]	walk0_arf_id;		// From inst_is_stage of is_stage.v
    wire			walk0_complete;		// From inst_is_stage of is_stage.v
@@ -518,14 +530,22 @@ module pipeline(/*AUTOARG*/
 			  .walk1_T		(walk1_T[PRF_WIDTH-1:0]), // Templated
 			  .ex_slot0_valid	(ex_slot0_valid), // Templated
 			  .ex_slot1_valid	(ex_slot1_valid), // Templated
+			  .ex_slot2_valid	(ex_slot2_valid),
 			  .slot0_T		(slot0_T[PRF_WIDTH-1:0]), // Templated
 			  .slot1_T		(slot1_T[PRF_WIDTH-1:0]), // Templated
+			  .slot2_T		(slot2_T[PRF_WIDTH-1:0]),
 			  .slot0_control	(slot0_control), // Templated
 			  .slot1_control	(slot1_control), // Templated
+			  .slot2_control	(slot2_control),
 			  .slot0_pc		(slot0_pc[31:0]), // Templated
 			  .slot1_pc		(slot1_pc[31:0]), // Templated
+			  .slot2_pc		(slot2_pc[31:0]),
 			  .slot0_robid		(slot0_robid[ROB_WIDTH:0]), // Templated
 			  .slot1_robid		(slot1_robid[ROB_WIDTH:0]), // Templated
+			  .slot2_robid		(slot2_robid[ROB_WIDTH:0]),
+			  .retire_sq2mem_data	(retire_sq2mem_data[31:0]),
+			  .retire_sq2mem_addr	(retire_sq2mem_addr[31:0]),
+			  .retire_sq2mem_valid	(retire_sq2mem_valid),
 			  // Inputs
 			  .clk			(clk),		 // Templated
 			  .reset_n		(reset_n),	 // Templated
@@ -553,6 +573,9 @@ module pipeline(/*AUTOARG*/
 			  .writeback1_robid	(writeback1_robid[ROB_WIDTH:0]), // Templated
 			  .writeback2_robid	(writeback2_robid[ROB_WIDTH:0]), // Templated
 			  .writeback3_robid	(writeback3_robid[ROB_WIDTH:0]), // Templated
+			  .writeback3_is_store	(writeback3_is_store),
+			  .writeback3_data	(writeback3_data[31:0]),
+			  .writeback3_addr	(writeback3_addr[31:0]),
 			  .mul_slot_busy	(mul_slot_busy)); // Templated
 
    

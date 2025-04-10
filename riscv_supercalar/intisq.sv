@@ -193,7 +193,7 @@ module intisq(/*AUTOARG*/
    
 //entry valid logic 
 
-   always_ff@(posedge clk) begin
+   always_ff@(posedge clk) begin // when flush valid cant issue and disp
       int i,i1;
       
       if (~reset_n) begin
@@ -203,20 +203,22 @@ module intisq(/*AUTOARG*/
       else if (flush_valid) begin
 	 for(i1=0; i1<INTISQ_NUM;i1=i1+1)
 	   if(flush_valid_vector[i1])
-	   intisq_valid[i1] <= '0;
+	     intisq_valid[i1] <= '0;
       end
-      else if(instr0_enq_valid) begin// instr0 is int and can alloc(see dispatch.v line 115)
-	 intisq_valid[empty_id0] <= 1'b1;
-	 if (instr1_enq_valid) 
-	    intisq_valid[empty_id1] <= 1'b1;
+      else begin
+	 if(instr0_enq_valid) begin// instr0 is int and can alloc(see dispatch.v line 115)
+	    intisq_valid[empty_id0] <= 1'b1;
+	    if (instr1_enq_valid) 
+	      intisq_valid[empty_id1] <= 1'b1;
+	 end
+	 else if (instr1_enq_valid) begin
+	    intisq_valid[empty_id0] <= 1'b1;
+	 end
+	 if(deq0_valid)
+	   intisq_valid[deq0_id] <= 1'b0;
+	 if(deq1_valid)
+	   intisq_valid[deq1_id] <= 1'b0;
       end
-      else if (instr1_enq_valid) begin
-	 intisq_valid[empty_id0] <= 1'b1;
-      end
-      if(deq0_valid)
-	intisq_valid[deq0_id] <= 1'b0;
-      if(deq1_valid)
-	intisq_valid[deq1_id] <= 1'b0;
 
    end // always_ff@ (posedge clk)
 
@@ -237,7 +239,7 @@ module intisq(/*AUTOARG*/
       int i;
       
       intisq_age_next = intisq_age;
-// dispatch
+// dispatch age cal
       for(i=0;i<INTISQ_NUM;i=i+1)  begin      
 	 if(instr0_enq_valid & instr1_enq_valid) 
 	    intisq_age_next[i] = (i==empty_id0)?  1:
@@ -252,7 +254,7 @@ module intisq(/*AUTOARG*/
 	                        (intisq_age[i] == '1)? intisq_age[i] : intisq_age[i]+1;	 
       end
       
-//deq      
+//deq age cal     
       if (deq0_valid)
 	intisq_age_next[deq0_id] = '0;
       if (deq1_valid)
@@ -327,83 +329,84 @@ module intisq(/*AUTOARG*/
       slot0_entry_id = old0_id;
       slot1_entry_id = old1_id;
       ex_slot0_valid = 0;
-      ex_slot1_valid = 0;	     
-      case (ready_vec)
-	2'b11: 
-	  if(old0_is_mul & old1_is_mul) begin
-	     ex_slot0_valid =  !mul_slot_busy;
-	     ex_slot1_valid = 0;	     	     
-	  end
-	  else if(old0_is_mul & old1_is_alu) begin
-	     ex_slot0_valid =  !mul_slot_busy;
-	     ex_slot1_valid = 1;	     	     
-	  end
-	  else if(old1_is_mul & old0_is_alu) begin
-	     ex_slot0_valid =  !mul_slot_busy;
-	     ex_slot1_valid = 1;
-	     slot0_entry_id = old1_id;
-	     slot1_entry_id = old0_id;	     	     
-	  end
-	  else if(old0_is_mul & old1_is_bju) begin
-	     ex_slot0_valid =  !mul_slot_busy;
-	     ex_slot1_valid = 1;     	     
-	  end
-	  else if(old1_is_mul & old0_is_bju) begin
-	     ex_slot0_valid =  !mul_slot_busy;
-	     ex_slot1_valid = 1;
-	     slot0_entry_id = old1_id;
-	     slot1_entry_id = old0_id;     	     
-	  end
-	  else if(old0_is_bju & old1_is_bju) begin
-	     ex_slot0_valid = 0;
-	     ex_slot1_valid = 1;     	     
-	  end
-	  else if(old0_is_bju & old1_is_alu) begin
-	     ex_slot0_valid = 1;
-	     ex_slot1_valid = 1;
-	     slot0_entry_id = old1_id;
-	     slot1_entry_id = old0_id;     	     
-	  end
-	  else if(old1_is_bju & old0_is_alu) begin
-	     ex_slot0_valid = 1;
-	     ex_slot1_valid = 1;     	     
-	  end
-	  else if(old0_is_alu & old1_is_alu) begin
-	     ex_slot0_valid = 1;
-	     ex_slot1_valid = 1;     	     
-	  end
-	2'b01:
-	  if (old0_is_mul) begin
-	     ex_slot0_valid = 1;
-	  end
-	  else if (old0_is_bju) begin
-	     ex_slot1_valid = 1;
-	     slot0_entry_id = old1_id;
-	     slot1_entry_id = old0_id; 
-	  end
-	  else begin
-	     ex_slot0_valid = 1;
-	  end
-	2'b10:
-	  if (old1_is_mul) begin
-	     ex_slot0_valid = 1;
-	     slot0_entry_id = old1_id;
-	     slot1_entry_id = old0_id; 	     
-	  end
-	  else if (old1_is_bju) begin
-	     ex_slot1_valid = 1;
-	  end
-	  else begin
-	     ex_slot1_valid = 1;
-	  end
-	default: begin
-	   slot0_entry_id = old0_id;
-	   slot1_entry_id = old1_id;
-	   ex_slot0_valid = 0;
-	   ex_slot1_valid = 0;
-	end
-	  
-      endcase
+      ex_slot1_valid = 0;
+      if (~flush_valid) begin	   // when flush_valid, stop issue   
+	 case (ready_vec)
+	   2'b11: 
+	     if(old0_is_mul & old1_is_mul) begin
+		ex_slot0_valid =  !mul_slot_busy;
+		ex_slot1_valid = 0;	     	     
+	     end
+	     else if(old0_is_mul & old1_is_alu) begin
+		ex_slot0_valid =  !mul_slot_busy;
+		ex_slot1_valid = 1;	     	     
+	     end
+	     else if(old1_is_mul & old0_is_alu) begin
+		ex_slot0_valid =  !mul_slot_busy;
+		ex_slot1_valid = 1;
+		slot0_entry_id = old1_id;
+		slot1_entry_id = old0_id;	     	     
+	     end
+	     else if(old0_is_mul & old1_is_bju) begin
+		ex_slot0_valid =  !mul_slot_busy;
+		ex_slot1_valid = 1;     	     
+	     end
+	     else if(old1_is_mul & old0_is_bju) begin
+		ex_slot0_valid =  !mul_slot_busy;
+		ex_slot1_valid = 1;
+		slot0_entry_id = old1_id;
+		slot1_entry_id = old0_id;     	     
+	     end
+	     else if(old0_is_bju & old1_is_bju) begin
+		ex_slot0_valid = 0;
+		ex_slot1_valid = 1;     	     
+	     end
+	     else if(old0_is_bju & old1_is_alu) begin
+		ex_slot0_valid = 1;
+		ex_slot1_valid = 1;
+		slot0_entry_id = old1_id;
+		slot1_entry_id = old0_id;     	     
+	     end
+	     else if(old1_is_bju & old0_is_alu) begin
+		ex_slot0_valid = 1;
+		ex_slot1_valid = 1;     	     
+	     end
+	     else if(old0_is_alu & old1_is_alu) begin
+		ex_slot0_valid = 1;
+		ex_slot1_valid = 1;     	     
+	     end
+	   2'b01:
+	     if (old0_is_mul) begin
+		ex_slot0_valid = 1;
+	     end
+	     else if (old0_is_bju) begin
+		ex_slot1_valid = 1;
+		slot0_entry_id = old1_id;
+		slot1_entry_id = old0_id; 
+	     end
+	     else begin
+		ex_slot0_valid = 1;
+	     end
+	   2'b10:
+	     if (old1_is_mul) begin
+		ex_slot0_valid = 1;
+		slot0_entry_id = old1_id;
+		slot1_entry_id = old0_id; 	     
+	     end
+	     else if (old1_is_bju) begin
+		ex_slot1_valid = 1;
+	     end
+	     else begin
+		ex_slot1_valid = 1;
+	     end
+	   default: begin
+	      slot0_entry_id = old0_id;
+	      slot1_entry_id = old1_id;
+	      ex_slot0_valid = 0;
+	      ex_slot1_valid = 0;
+	   end
+	 endcase
+      end
 
    end // always_comb
 
@@ -466,18 +469,20 @@ module intisq(/*AUTOARG*/
 
 	 end
       end
-      else if(instr0_enq_valid) begin// instr0 is int and can alloc(see dispatch.v line 115)
+      else begin 
+	 if(instr0_enq_valid) begin// instr0 is int and can alloc(see dispatch.v line 115)
             intisq_src1_state[empty_id0] <= instr0_src1_busy;  
 	    intisq_src2_state[empty_id0] <= instr0_src2_busy;  
-	 if (instr1_enq_valid) 
-            intisq_src1_state[empty_id1] <= instr1_src1_busy;  
-	    intisq_src2_state[empty_id1] <= instr1_src2_busy;  
-      end
-      else if (instr1_enq_valid) begin
+	    if (instr1_enq_valid) begin
+               intisq_src1_state[empty_id1] <= instr1_src1_busy;  
+	       intisq_src2_state[empty_id1] <= instr1_src2_busy;
+	    end
+         end
+         else if (instr1_enq_valid) begin
 	    intisq_src1_state[empty_id0] <= instr1_src1_busy;  
 	    intisq_src2_state[empty_id0] <= instr1_src2_busy;  	 
-      end
-      else   begin
+	 end
+	 
 	 for(i2=0 ; i2 < INTISQ_NUM ; i2=i2+1) begin
 	    if ((writeback0_need_to_wb & writeback0_valid & intisq_valid[i2] & intisq_src1_id[i2] == writeback0_prd) ||
 		(writeback1_need_to_wb & writeback1_valid & intisq_valid[i2] & intisq_src1_id[i2] == writeback1_prd) || 
@@ -489,9 +494,10 @@ module intisq(/*AUTOARG*/
 		(writeback2_need_to_wb & writeback2_valid & intisq_valid[i2] & intisq_src2_id[i2] == writeback2_prd) || 
 		(writeback3_need_to_wb & writeback3_valid & intisq_valid[i2] & intisq_src2_id[i2] == writeback3_prd))
 	      intisq_src2_state[i2] <= 1'b0;
-	   
+	    
 	 end
-      end
+      end 
+      
    end // always_ff@ (posedge clk)
    
 // output data to exe
