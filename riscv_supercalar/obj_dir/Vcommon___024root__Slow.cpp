@@ -3,7 +3,6 @@
 // See Vcommon.h for the primary calling header
 
 #include "verilated.h"
-#include "verilated_dpi.h"
 
 #include "Vcommon__Syms.h"
 #include "Vcommon___024root.h"

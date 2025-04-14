@@ -1,0 +1,118 @@
+`timescale 1ns/1ps
+import common::*;
+
+module int1_alu_bju(/*AUTOARG*/
+   // Outputs
+   writeback2_valid, writeback2_need_to_wb, writeback2_prd,
+   writeback2_robid, writeback2_data, ex2if_branch_valid,
+   ex2if_branch_taken, ex2if_branch_addr, ex2if_branch_target_addr,
+   ex2if_branch_update_GHSR, ex2if_GHSR_restore, branch_target_pc,
+   branch_flush,
+   // Inputs
+   clk, reset_n, int1_valid, int1_pc, int1_control, int1_rs1,
+   int1_rs2, int1_T, int1_robid
+   );
+   input                       clk;
+   input                       reset_n;
+  // input                       flush_valid;
+   //input [ROB_WIDTH:0] 	       flush_robid;
+
+   //from buffer
+   input                       int1_valid;
+   input logic [31:0] 	       int1_pc;
+   input control_type          int1_control;
+   input logic [31:0]          int1_rs1;
+   input logic [31:0]          int1_rs2;
+   input logic [PRF_WIDTH-1:0] int1_T;
+   input logic [ROB_WIDTH:0]   int1_robid;
+   //output to writeback2 alu
+   output logic                 writeback2_valid;//int0 mul
+   output logic 		writeback2_need_to_wb;
+   output logic [PRF_WIDTH-1:0] writeback2_prd;                     
+   output logic [ROB_WIDTH:0] 	writeback2_robid;                     
+   output logic [31:0] 		writeback2_data;  
+
+   //output about bp
+   output  logic 		            ex2if_branch_valid;   // remeber comb with valid
+   output  logic 			    ex2if_branch_taken;
+   output  logic [31:0] 		    ex2if_branch_addr;//pc
+   output  logic [31:0] 		    ex2if_branch_target_addr;  
+   output  logic 			    ex2if_branch_update_GHSR; //
+   output  logic [GSHARE_GHSR_WIDTH-1:0]    ex2if_GHSR_restore ;
+   output  logic [31:0] 		    branch_target_pc; // branch target pc
+   output  logic 			    branch_flush;   
+
+
+
+   logic [31:0] 		alu_left_operand;
+   logic [31:0] 		alu_right_operand;
+
+
+   logic                        is_bj;
+   logic                        bju_flush_result;// is just cal result need comb with valid
+   logic [31:0] 		j_next_pc;// result for jal and jalr next pc
+   logic [31:0] 		alu_data;// result for alu_data
+   
+
+
+   assign is_bj = int1_control.is_jump | int1_control.is_jumpr | int1_control.is_branch;
+   assign ex2if_branch_valid = is_bj & int1_valid;
+   assign branch_flush = int1_valid & bju_flush_result;
+
+   
+
+   always_comb begin: operand_selector
+      alu_left_operand  = (int1_control.is_auipc)? int1_pc : int1_rs1 ;// add AUIPC
+      alu_right_operand = int1_rs2;
+      if (int1_control.alu_src) begin
+         alu_right_operand = int1_control.imm_data;
+      end
+   end
+
+
+ //  assign need_to_flush = (flush_valid & (reg_robid[ROB_WIDTH] ^ flush_robid[ROB_WIDTH] ^ (reg_robid[ROB_WIDTH-1:0] < flush_robid[ROB_WIDTH-1:0])))?1:0;
+   
+   //for alu
+   alu inst_alu(
+		.control(int1_control.alu_op),
+		.left_operand(alu_left_operand), 
+		.right_operand(alu_right_operand),
+		.result(alu_data)
+		);
+
+   assign writeback2_need_to_wb = int1_control.reg_write;
+   assign writeback2_valid =  int1_valid ;
+   assign writeback2_prd = int1_T;
+   assign writeback2_robid = int1_robid;
+   assign writeback2_data = (int1_control.is_jumpr | int1_control.is_jump)? j_next_pc : alu_data;
+   
+
+
+   //bju
+
+
+   
+   bju inst_bju(
+		// Outputs
+		.j_next_pc		(j_next_pc[31:0]),
+		.branch_target_pc	(ex2if_branch_target_addr),
+		.branch_taken		(ex2if_branch_taken),
+		.flush			(bju_flush_result),
+		.GHSR_restore		(ex2if_GHSR_restore),
+		.update_GHSR		(ex2if_branch_update_GHSR),
+		// Inputs
+		.left_operand		(int1_rs1),
+		.right_operand		(int1_rs2),
+		.pc			(int1_pc),
+		.clk			(clk),
+		.reset_n		(reset_n),
+		.control		(int1_control),
+		.immediate_data		(int1_control.imm_data),
+		.branch_predict		(int1_control.predict));
+
+
+      assign  ex2if_branch_addr  = int1_pc;
+      assign  branch_target_pc  = ex2if_branch_target_addr;
+   
+  
+endmodule

@@ -33,7 +33,14 @@ VL_ATTR_COLD void Vcommon___024root___ctor_var_reset(Vcommon___024root* vlSelf) 
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcommon___024root___ctor_var_reset\n"); );
     // Body
-    VL_RAND_RESET_W(65, vlSelf->if_id_reg);
-    VL_RAND_RESET_W(164, vlSelf->id_ex_reg);
-    vlSelf->hazard = VL_RAND_RESET_I(1);
+    vlSelf->left_operand = VL_RAND_RESET_I(32);
+    vlSelf->right_operand = VL_RAND_RESET_I(32);
+    vlSelf->pc = VL_RAND_RESET_I(32);
+    vlSelf->control = VL_RAND_RESET_I(30);
+    vlSelf->immediate_data = VL_RAND_RESET_I(32);
+    vlSelf->branch_predict = VL_RAND_RESET_I(1);
+    vlSelf->j_next_pc = VL_RAND_RESET_I(32);
+    vlSelf->branch_pc = VL_RAND_RESET_I(32);
+    vlSelf->branch_taken = VL_RAND_RESET_I(1);
+    vlSelf->flush = VL_RAND_RESET_I(1);
 }

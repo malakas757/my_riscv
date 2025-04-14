@@ -12,7 +12,6 @@ module is_stage(/*AUTOARG*/
    ex_slot1_valid, ex_slot2_valid, slot0_T, slot1_T, slot2_T,
    slot0_control, slot1_control, slot2_control, slot0_pc, slot1_pc,
    slot2_pc, slot0_robid, slot1_robid, slot2_robid,
-   retire_sq2mem_data, retire_sq2mem_addr, retire_sq2mem_valid,
    // Inputs
    clk, reset_n, ir_is_reg0, ir_is_reg1, ir_is_reg0_pc, ir_is_reg1_pc,
    ir_is_reg0_instr, ir_is_reg1_instr, flush_robid, flush_valid,
@@ -22,7 +21,7 @@ module is_stage(/*AUTOARG*/
    writeback3_valid, writeback3_need_to_wb, writeback3_prd,
    writeback0_robid, writeback1_robid, writeback2_robid,
    writeback3_robid, writeback3_is_store, writeback3_data,
-   writeback3_addr, mul_slot_busy
+   writeback3_addr, mul_slot_busy, mem_issue_stall
    );
 
 
@@ -115,10 +114,10 @@ module is_stage(/*AUTOARG*/
    output [ROB_WIDTH:0]        slot1_robid;
    output [ROB_WIDTH:0]        slot2_robid;
 
-//to dmem
-   output logic [31:0] 	       retire_sq2mem_data;
-   output logic [31:0] 	       retire_sq2mem_addr;
-   output 		       retire_sq2mem_valid;       
+//from int_mem
+   input 		       mem_issue_stall;
+   
+     
    
 
 /*AUTOWIRE*/
@@ -157,7 +156,12 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
    wire                 instr1_rs2_busy;
    wire                 instr0_rs1_busy;
    wire                 instr1_rs2_busy;
-   
+   wire [PRF_WIDTH-1:0] slot0_src1_id;
+   wire [PRF_WIDTH-1:0] slot0_src2_id;
+   wire [PRF_WIDTH-1:0] slot1_src1_id;
+   wire [PRF_WIDTH-1:0] slot1_src2_id;
+   wire [PRF_WIDTH-1:0] slot2_src1_id;
+   wire [PRF_WIDTH-1:0] slot2_src2_id;
 
 /*   dispatch AUTO_TEMPLATE(
 			  // Outputs
@@ -179,7 +183,7 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 			  .instr1_src2_busy_in	(instr1_rs2_busy),// 
 			  .intisq_left		(intisq_left[1:0]),//
 			  .memisq_left		(memisq_left),//
-			  .sq_left		(sq_left));*/
+			  );*/
 
 
    dispatch inst_dispatch(/*AUTOINST*/
@@ -227,7 +231,6 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 			  .instr1_src2_busy_in	(instr1_rs2_busy), // Templated
 			  .intisq_left		(intisq_left[1:0]), // Templated
 			  .memisq_left		(memisq_left),	 // Templated
-			  .sq_left		(sq_left),	 // Templated
 			  .flush_valid		(flush_valid));
 
    
@@ -340,6 +343,10 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 		      .slot1_pc		(slot1_pc[31:0]),//
 		      .slot0_robid	(slot0_robid[ROB_WIDTH:0]),//
 		      .slot1_robid	(slot1_robid[ROB_WIDTH:0]),//
+		      .slot0_src1_id	(slot0_src1_id),//
+		      .slot0_src2_id	(slot0_src2_id),//
+		      .slot1_src1_id	(slot1_src1_id),//
+		      .slot1_src2_id	(slot1_src2_id),//
 		      // Inputs
 		      .clk		(clk),
 		      .reset_n		(reset_n),
@@ -421,6 +428,8 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 		      .memisq_left	(memisq_left[1:0]),
 		      .slot2_valid	(ex_slot2_valid),
 		      .slot2_T		(slot2_T[PRF_WIDTH-1:0]),
+		      .slot2_src1_id	(slot2_src1_id[PRF_WIDTH-1:0]),
+		      .slot2_src2_id	(slot2_src2_id[PRF_WIDTH-1:0]),
 		      .slot2_control	(slot2_control),
 		      .slot2_pc		(slot2_pc[31:0]),
 		      .slot2_robid	(slot2_robid[ROB_WIDTH:0]),
@@ -458,10 +467,11 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 		      .writeback3_need_to_wb(writeback3_need_to_wb),
 		      .writeback3_prd	(writeback3_prd[PRF_WIDTH-1:0]),
 		      .flush_valid	(flush_valid),
-		      .flush_robid	(flush_robid[ROB_WIDTH:0]));
+		      .flush_robid	(flush_robid[ROB_WIDTH:0]),
+		      .mem_issue_stall  (mem_issue_stall));
 
 
-   storequeue inst_sq(
+/*   storequeue inst_sq(
 		      // Outputs
 		      .sq_left		(sq_left[1:0]),
 		      .retire_sq2mem_data(retire_sq2mem_data[31:0]),
@@ -486,7 +496,7 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 		      .retire0_robid	(retire0_robid[ROB_WIDTH:0]),
 		      .retire1_robid	(retire1_robid[ROB_WIDTH:0]),
 		      .flush_valid	(flush_valid),
-		      .flush_robid	(flush_robid[ROB_WIDTH:0]));
+		      .flush_robid	(flush_robid[ROB_WIDTH:0]));  */
    
    
 endmodule

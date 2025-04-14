@@ -15,21 +15,7 @@ VL_INLINE_OPT void Vcommon___024root___combo__TOP__4(Vcommon___024root* vlSelf) 
     CData/*1:0*/ is_stage__DOT__inst_dispatch__DOT__int_instr_num;
     CData/*1:0*/ is_stage__DOT__inst_dispatch__DOT__mem_instr_vec;
     CData/*1:0*/ is_stage__DOT__inst_dispatch__DOT__int_instr_vec;
-    CData/*1:0*/ is_stage__DOT__inst_dispatch__DOT__store_instr_vec;
     // Body
-    is_stage__DOT__inst_dispatch__DOT__store_instr_vec = 0U;
-    if ((1U & ((vlSelf->ir_is_reg0[3U] >> 0xbU) & (
-                                                   vlSelf->ir_is_reg0[2U] 
-                                                   >> 0x14U)))) {
-        is_stage__DOT__inst_dispatch__DOT__store_instr_vec 
-            = (1U | (IData)(is_stage__DOT__inst_dispatch__DOT__store_instr_vec));
-    }
-    if ((1U & ((vlSelf->ir_is_reg1[3U] >> 0xbU) & (
-                                                   vlSelf->ir_is_reg1[2U] 
-                                                   >> 0x14U)))) {
-        is_stage__DOT__inst_dispatch__DOT__store_instr_vec 
-            = (2U | (IData)(is_stage__DOT__inst_dispatch__DOT__store_instr_vec));
-    }
     is_stage__DOT__inst_dispatch__DOT__mem_instr_vec = 0U;
     if (((vlSelf->ir_is_reg0[3U] >> 0xbU) & (0U != 
                                              (0x300000U 
@@ -286,11 +272,11 @@ VL_INLINE_OPT void Vcommon___024root___combo__TOP__4(Vcommon___024root* vlSelf) 
                                                  & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail))][2U] 
                                                >> 6U));
     vlSelf->is_stage__DOT__inst_memisq__DOT__deq_valid 
-        = ((vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_entry_ready
-            [vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_tail] 
-            & vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_valid
-            [vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_tail]) 
-           & (~ (IData)(vlSelf->flush_valid)));
+        = (((vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_entry_ready
+             [vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_tail] 
+             & vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_valid
+             [vlSelf->is_stage__DOT__inst_memisq__DOT__memisq_tail]) 
+            & (~ (IData)(vlSelf->flush_valid))) & (~ (IData)(vlSelf->mem_issue_stall)));
     vlSelf->ex_slot1_valid = 0U;
     if ((1U & (~ (IData)(vlSelf->flush_valid)))) {
         if ((3U == (IData)(vlSelf->is_stage__DOT__inst_intisq__DOT__ready_vec))) {
@@ -549,44 +535,37 @@ VL_INLINE_OPT void Vcommon___024root___combo__TOP__4(Vcommon___024root* vlSelf) 
         [vlSelf->is_stage__DOT__inst_intisq__DOT__slot0_entry_id];
     vlSelf->slot0_robid = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_robid
         [vlSelf->is_stage__DOT__inst_intisq__DOT__slot0_entry_id];
-    vlSelf->can_dispatch = (1U & (((((((((((IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head) 
-                                           ^ (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                          >> 6U) & 
-                                         ((0x3fU & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head)) 
-                                          == (0x3fU 
-                                              & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                         ? 0U : (((
-                                                   ((IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head) 
-                                                    ^ (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                                   >> 6U) 
-                                                  & (((IData)(1U) 
-                                                      + 
-                                                      (0x3fU 
-                                                       & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head))) 
-                                                     == 
+    vlSelf->can_dispatch = (1U & ((((((((((IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head) 
+                                          ^ (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                         >> 6U) & (
+                                                   (0x3fU 
+                                                    & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head)) 
+                                                   == 
+                                                   (0x3fU 
+                                                    & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail))))
+                                        ? 0U : (((((IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head) 
+                                                   ^ (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                                  >> 6U) 
+                                                 & (((IData)(1U) 
+                                                     + 
                                                      (0x3fU 
-                                                      & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                                  ? 1U
-                                                  : 2U)) 
-                                       >= (3U & ((IData)(is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
-                                                 + (IData)(is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
-                                       ? 1U : 0U) & 
-                                     (((3U & ((IData)(vlSelf->is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
-                                              + (IData)(vlSelf->is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
-                                       >= (IData)(is_stage__DOT__inst_dispatch__DOT__int_instr_num))
-                                       ? 1U : 0U)) 
-                                    & (((IData)(vlSelf->is_stage__DOT__memisq_left) 
-                                        >= (IData)(is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
-                                        ? 1U : 0U)) 
-                                   & (((IData)(vlSelf->is_stage__DOT__sq_left) 
-                                       >= (3U & ((1U 
-                                                  & ((IData)(is_stage__DOT__inst_dispatch__DOT__store_instr_vec) 
-                                                     >> 1U)) 
-                                                 + 
-                                                 (1U 
-                                                  & (IData)(is_stage__DOT__inst_dispatch__DOT__store_instr_vec)))))
-                                       ? 1U : 0U)) 
-                                  & (~ (IData)(vlSelf->flush_valid))));
+                                                      & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head))) 
+                                                    == 
+                                                    (0x3fU 
+                                                     & (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail))))
+                                                 ? 1U
+                                                 : 2U)) 
+                                      >= (3U & ((IData)(is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
+                                                + (IData)(is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
+                                      ? 1U : 0U) & 
+                                    (((3U & ((IData)(vlSelf->is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
+                                             + (IData)(vlSelf->is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
+                                      >= (IData)(is_stage__DOT__inst_dispatch__DOT__int_instr_num))
+                                      ? 1U : 0U)) & 
+                                   (((IData)(vlSelf->is_stage__DOT__memisq_left) 
+                                     >= (IData)(is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
+                                     ? 1U : 0U)) & 
+                                  (~ (IData)(vlSelf->flush_valid))));
     if (vlSelf->retire0_valid) {
         vlSelf->is_stage__DOT__inst_rob__DOT__retire_num = 1U;
         if (vlSelf->retire1_valid) {
@@ -614,12 +593,6 @@ VL_INLINE_OPT void Vcommon___024root___combo__TOP__4(Vcommon___024root* vlSelf) 
     vlSelf->is_stage__DOT____Vcellinp__inst_bt__instr0_disp2bt_rd_en 
         = ((IData)(vlSelf->is_stage__DOT__instr0_valid_rob) 
            & (vlSelf->ir_is_reg0[2U] >> 0x13U));
-    vlSelf->is_stage__DOT____Vcellinp__inst_sq__disp2sq_instr1_valid 
-        = ((IData)(vlSelf->is_stage__DOT__instr1_valid_memisq) 
-           & (vlSelf->ir_is_reg1[2U] >> 0x14U));
-    vlSelf->is_stage__DOT____Vcellinp__inst_sq__disp2sq_instr0_valid 
-        = ((IData)(vlSelf->is_stage__DOT__instr0_valid_memisq) 
-           & (vlSelf->ir_is_reg0[2U] >> 0x14U));
     vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
         = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_age
         [7U];
@@ -966,5 +939,7 @@ void Vcommon___024root___eval_debug_assertions(Vcommon___024root* vlSelf) {
         Verilated::overWidthError("writeback3_is_store");}
     if (VL_UNLIKELY((vlSelf->mul_slot_busy & 0xfeU))) {
         Verilated::overWidthError("mul_slot_busy");}
+    if (VL_UNLIKELY((vlSelf->mem_issue_stall & 0xfeU))) {
+        Verilated::overWidthError("mem_issue_stall");}
 }
 #endif  // VL_DEBUG

@@ -21,6 +21,11 @@ module bju(
    input [31:0] immediate_data;
    input 	branch_predict;
    
+
+   logic 	is_rs1_eq_rs2;
+   logic 	is_rs1_lt_rs2;
+   logic 	is_sign_rs1_lt_rs2;
+   logic 	is_branch_taken_diff;
    
    output logic [31:0] j_next_pc;// result for jal and jalr next pc
    output logic [31:0] branch_pc;// branch tagart pc

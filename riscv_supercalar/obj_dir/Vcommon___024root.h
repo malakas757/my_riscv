@@ -8,40 +8,31 @@
 #include "verilated.h"
 
 class Vcommon__Syms;
-class Vcommon_pipeline;
-
 VL_MODULE(Vcommon___024root) {
   public:
-    // CELLS
-    Vcommon_pipeline* pipeline;
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(reset_n,0,0);
-    VL_IN8(writeback0_valid,0,0);
-    VL_IN8(writeback0_need_to_wb,0,0);
-    VL_IN8(writeback0_prd,5,0);
-    VL_IN8(writeback1_valid,0,0);
-    VL_IN8(writeback1_need_to_wb,0,0);
-    VL_IN8(writeback1_prd,5,0);
-    VL_IN8(writeback2_valid,0,0);
-    VL_IN8(writeback2_need_to_wb,0,0);
-    VL_IN8(writeback2_prd,5,0);
-    VL_IN8(writeback3_valid,0,0);
-    VL_IN8(writeback3_need_to_wb,0,0);
-    VL_IN8(writeback3_prd,5,0);
-    VL_IN8(writeback0_robid,6,0);
-    VL_IN8(writeback1_robid,6,0);
-    VL_IN8(writeback2_robid,6,0);
-    VL_IN8(writeback3_robid,6,0);
-    VL_IN8(writeback3_is_store,0,0);
-    VL_IN8(mul_slot_busy,0,0);
-    VL_IN8(flush_robid,6,0);
-    VL_IN8(flush_valid,0,0);
+    VL_OUT8(branch_taken,0,0);
+    VL_OUT8(flush,0,0);
+    VL_OUT8(update_GHSR,0,0);
+    CData/*0:0*/ bju__DOT__is_rs1_eq_rs2;
+    CData/*0:0*/ bju__DOT__is_rs1_lt_rs2;
+    CData/*0:0*/ bju__DOT__is_sign_rs1_lt_rs2;
+    CData/*0:0*/ bju__DOT__is_bj;
     CData/*0:0*/ __Vclklast__TOP__clk;
-    VL_IN(writeback3_data,31,0);
-    VL_IN(writeback3_addr,31,0);
-    VlWide<3>/*64:0*/ __Vchglast__TOP__pipeline__imem_resp;
+    VL_OUT16(GHSR_restore,9,0);
+    SData/*10:0*/ bju__DOT__GHSR_checkpoint;
+    VL_IN(left_operand,31,0);
+    VL_IN(right_operand,31,0);
+    VL_IN(pc,31,0);
+    VL_IN(immediate_data,31,0);
+    VL_OUT(j_next_pc,31,0);
+    VL_OUT(branch_target_pc,31,0);
+    IData/*31:0*/ bju__DOT__pc_plus_imm;
+    VL_INW(control,114,0,4);
+    VL_IN64(branch_predict,43,0);
 
     // INTERNAL VARIABLES
     Vcommon__Syms* vlSymsp;  // Symbol table

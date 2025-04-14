@@ -1,0 +1,40 @@
+`timescale 1ns/1ps
+
+import common::*;
+
+module ex_stage(/*AUTOARG*/);
+
+   input                      clk;
+   input                      reset_n;
+   
+   
+   //from isq
+   input logic                ex_slot0_valid;
+   input logic                ex_slot1_valid;
+   input logic                ex_slot2_valid;
+   input [PRF_WIDTH-1:0]      slot0_T;
+   input [PRF_WIDTH-1:0]      slot1_T;
+   input [PRF_WIDTH-1:0]      slot2_T;
+   input control_type	      slot0_control;
+   input control_type	      slot1_control;
+   input control_type	      slot2_control;
+   input [31:0] 	      slot0_pc;
+   input [31:0] 	      slot1_pc;
+   input [31:0] 	      slot2_pc;
+   input [ROB_WIDTH:0] 	      slot0_robid;
+   input [ROB_WIDTH:0] 	      slot1_robid;
+   input [ROB_WIDTH:0] 	      slot2_robid;
+   
+
+
+
+
+
+   logic      int1_reg_
+
+
+
+
+
+
+endmodule

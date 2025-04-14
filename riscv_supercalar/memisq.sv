@@ -6,8 +6,8 @@ import common::*;
 
 module memisq(/*AUTOARG*/
    // Outputs
-   memisq_left, slot2_valid, slot2_T, slot2_control, slot2_pc,
-   slot2_robid,
+   memisq_left, slot2_valid, slot2_T, slot2_src1_id, slot2_src2_id,
+   slot2_control, slot2_pc, slot2_robid,
    // Inputs
    clk, reset_n, instr0_enq_valid, instr1_enq_valid, instr0_control,
    instr1_control, instr0_pc, instr1_pc, instr0_robid, instr1_robid,
@@ -17,7 +17,8 @@ module memisq(/*AUTOARG*/
    writeback0_need_to_wb, writeback0_prd, writeback1_valid,
    writeback1_need_to_wb, writeback1_prd, writeback2_valid,
    writeback2_need_to_wb, writeback2_prd, writeback3_valid,
-   writeback3_need_to_wb, writeback3_prd, flush_valid, flush_robid
+   writeback3_need_to_wb, writeback3_prd, flush_valid, flush_robid,
+   mem_issue_stall
    );
    input clk;
    input reset_n;
@@ -70,9 +71,15 @@ module memisq(/*AUTOARG*/
 //input/output from/to exe
    output logic                slot2_valid;
    output [PRF_WIDTH-1:0]      slot2_T;
+   output [PRF_WIDTH-1:0]      slot2_src1_id;
+   output [PRF_WIDTH-1:0]      slot2_src2_id;
    output control_type	       slot2_control;
    output [31:0]               slot2_pc;
    output [ROB_WIDTH:0]        slot2_robid;
+
+//input from ex, need to stall if : no enough sq or data miss
+   input  		       mem_issue_stall;
+    
    
 
    
@@ -97,10 +104,12 @@ module memisq(/*AUTOARG*/
    logic [MEMISQ_WIDTH-1:0] memisq_head;
    logic [MEMISQ_WIDTH-1:0] memisq_tail;
    
-   logic [MEMISQ_WIDTH-1:0] memisq_empty_num;  
+   logic [MEMISQ_WIDTH:0] memisq_empty_num;  
    logic                    memisq_entry_ready[MEMISQ_NUM-1:0]; // means both srcs are ready 
    logic                    deq_valid; //  
    logic 		    flush_valid_vector[MEMISQ_NUM-1:0];
+ 
+   
  
 // Dispatch
    // sq_head logic
@@ -221,7 +230,10 @@ module memisq(/*AUTOARG*/
 	memisq_entry_ready[i] = memisq_valid[i] & ((memisq_control[i].rs1_valid & !memisq_src1_state[i]) || !memisq_control[i].rs1_valid) &  ((memisq_control[i].rs2_valid & !memisq_src2_state[i]) || !memisq_control[i].rs2_valid); 	 	      
    end
 
-   assign deq_valid = memisq_entry_ready[memisq_tail] & memisq_valid[memisq_tail] & ~flush_valid;
+
+   
+   
+   assign deq_valid = memisq_entry_ready[memisq_tail] & memisq_valid[memisq_tail] & ~flush_valid & ~mem_issue_stall;
    
 
    
@@ -281,6 +293,8 @@ module memisq(/*AUTOARG*/
    
 
    assign  slot2_T        = memisq_T[memisq_tail];     
+   assign  slot2_src1_id  = memisq_src1_id[memisq_tail];     
+   assign  slot2_src2_id  = memisq_src2_id[memisq_tail];     
    assign  slot2_control  = memisq_control[memisq_tail];     
    assign  slot2_pc       = memisq_pc[memisq_tail];  
    assign  slot2_robid    = memisq_robid[memisq_tail]; 

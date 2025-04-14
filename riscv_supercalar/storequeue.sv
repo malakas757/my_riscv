@@ -5,14 +5,12 @@ import common::*;
 module storequeue(/*AUTOARG*/
    // Outputs
    sq_left, retire_sq2mem_data, retire_sq2mem_addr,
-   retire_sq2mem_valid,
+   retire_sq2mem_valid, sq_fwd_data, sq_fwd_valid,
    // Inputs
-   clk, reset_n, disp2sq_instr0_valid, disp2sq_instr1_valid,
-   disp2sq_instr0_robid, disp2sq_instr1_robid, disp2sq_instr0_pc,
-   disp2sq_instr1_pc, lsuint_wb_valid, lsuint_wb_is_store,
-   lsuint_wb_data, lsuint_wb_addr, lsuint_wb_robid, retire0_valid,
+   clk, reset_n, lsuint2sq_instr0_valid, lsuint2sq_instr0_robid,
+   lsuint2sq_instr0_pc, lsuint_wb_data, lsuint_wb_addr, retire0_valid,
    retire1_valid, retire0_robid, retire1_robid, flush_valid,
-   flush_robid
+   flush_robid, load_addr
    );
    input                  clk;
    input                  reset_n;
@@ -21,21 +19,21 @@ module storequeue(/*AUTOARG*/
 
 // Dispatch
    output logic [1:0] 	         sq_left;
-   input                         disp2sq_instr0_valid;
-   input                         disp2sq_instr1_valid;
-   input [ROB_WIDTH:0] 		 disp2sq_instr0_robid;
-   input [ROB_WIDTH:0] 		 disp2sq_instr1_robid;
+   input                         lsuint2sq_instr0_valid;
+//   input                         lsuint2sq_instr1_valid;
+   input [ROB_WIDTH:0] 		 lsuint2sq_instr0_robid;
+//   input [ROB_WIDTH:0] 		 lsuint2sq_instr1_robid;
    //debug
-   input [ROB_WIDTH:0] 		 disp2sq_instr0_pc;
-   input [ROB_WIDTH:0] 		 disp2sq_instr1_pc;
+   input [ROB_WIDTH:0] 		 lsuint2sq_instr0_pc;
+//   input [ROB_WIDTH:0] 		 lsuint2sq_instr1_pc;
 
    
 // WB
-   input                         lsuint_wb_valid;
-   input                         lsuint_wb_is_store;
+//   input                         lsuint_wb_valid;
+//   input                         lsuint_wb_is_store;
    input [31:0] 		 lsuint_wb_data;
    input [31:0] 		 lsuint_wb_addr;
-   input [ROB_WIDTH:0] 		 lsuint_wb_robid;
+
    
    
     
@@ -52,6 +50,13 @@ module storequeue(/*AUTOARG*/
 //flush
    input                         flush_valid;
    input [ROB_WIDTH:0] 		 flush_robid;
+
+
+//forward to load
+   input [31:0] 		 load_addr;
+   output [31:0] 		 sq_fwd_data;
+   output 			 sq_fwd_valid;
+ 
                          
 ////////////////////
 
@@ -65,6 +70,9 @@ module storequeue(/*AUTOARG*/
    logic 			 sq_reg_ready[SQ_NUM-1:0];
 
    logic [SQ_WIDTH:0] 		 sq_empty_num;
+   logic                         load_addr_hit[SQ_NUM];
+   logic [SQ_WIDTH-1:0] 	 sq_fwd_id;
+   
    
    
 //dispatch write to sq reg
@@ -74,7 +82,7 @@ module storequeue(/*AUTOARG*/
 	for (i=0;i<SQ_NUM;i=i+1) begin
 	   sq_reg_valid[i] <= '0;
 	end
-      else begin       // anytime can retire to mem, but when flush , stop disp2sq
+      else begin       // anytime can retire to mem, but when flush , stop lsuint2sq
 	 if(sq_reg_ready[sq_tail] & sq_reg_ready[sq_tail]) begin
 	    sq_reg_valid[sq_tail] <= '0;	   
 	 end
@@ -85,17 +93,17 @@ module storequeue(/*AUTOARG*/
 		 sq_reg_valid[i] <= '0;	    
 	    end	 
 	 end
-	 else begin     
-	    if (disp2sq_instr0_valid) begin
-	       sq_reg_valid[sq_head] <= '1;    
-	       if (disp2sq_instr1_valid) begin
+	 
+	 if (lsuint2sq_instr0_valid) 
+	    sq_reg_valid[sq_head] <= '1;    
+	    /*   if (lsuint2sq_instr1_valid) begin
 		  sq_reg_valid[sq_head+1] <= '1;
 	       end
 	    end
-	    else if (disp2sq_instr1_valid) begin
+	    else if (lsuint2sq_instr1_valid) begin
 	       sq_reg_valid[sq_head] <= '1;
-	    end
-	 end   
+	    end*/
+	   
       end   
    end // always_ff@ (posedge clk)
 
@@ -106,20 +114,26 @@ module storequeue(/*AUTOARG*/
 	for (i=0;i<SQ_NUM;i=i+1) begin
 	   sq_reg_robid[i] <= '0;
 	   sq_reg_pc[i] <= '0;
+	   sq_reg_addr[i] <= '0;
+	   sq_reg_data[i] <= '0;
 	end      
       else begin     
-	 if (disp2sq_instr0_valid) begin
-	    sq_reg_robid[sq_head] <= disp2sq_instr0_robid;     
-	    sq_reg_pc[sq_head] <= disp2sq_instr0_pc;     
-	    if (disp2sq_instr1_valid) begin
-	       sq_reg_robid[sq_head+1] <= disp2sq_instr1_robid;
-	       sq_reg_pc[sq_head+1] <= disp2sq_instr1_pc;
+	 if (lsuint2sq_instr0_valid) begin
+	    sq_reg_robid[sq_head] <= lsuint2sq_instr0_robid;     
+	    sq_reg_pc[sq_head] <= lsuint2sq_instr0_pc;
+	    sq_reg_addr[sq_head] <= lsuint_wb_addr;
+	    sq_reg_data[sq_head] <= lsuint_wb_data;	 
+     
+	  /*  if (lsuint2sq_instr1_valid) begin
+	       sq_reg_robid[sq_head+1] <= lsuint2sq_instr1_robid;
+	       sq_reg_pc[sq_head+1] <= lsuint2sq_instr1_pc;
 	    end
 	 end
-	 else if (disp2sq_instr1_valid) begin
-	    sq_reg_robid[sq_head] <= disp2sq_instr1_robid;
-	    sq_reg_pc[sq_head] <= disp2sq_instr1_pc;
-	 end
+	 else if (lsuint2sq_instr1_valid) begin
+	    sq_reg_robid[sq_head] <= lsuint2sq_instr1_robid;
+	    sq_reg_pc[sq_head] <= lsuint2sq_instr1_pc;
+	*/
+	 end	 
       end   
    end   
    
@@ -181,7 +195,7 @@ module storequeue(/*AUTOARG*/
 
    
 //wb 
-   always_ff@(posedge clk) begin
+ /*  always_ff@(posedge clk) begin
       int i;
       
       if (~reset_n) begin
@@ -197,9 +211,32 @@ module storequeue(/*AUTOARG*/
 	      sq_reg_data[i] <= lsuint_wb_data;	      
 	   end	  
       end
-   end    
+   end  */
 
+
+   //forward
+   always_comb begin
+      int i;
+      for (i=0;i<SQ_NUM;i=i+1) begin	 
+	    load_addr_hit[i] = '0;
+      end
+      for (i=0;i<SQ_NUM;i=i+1) begin	 
+	    if (load_addr == sq_reg_addr[i] & sq_reg_valid[i])
+	      load_addr_hit[i] = 1;	 
+      end
+   end
+
+   //pick the latest data to forward
+   load_forward_unit inst_load_picker(
+				      // Outputs
+				      .hit		(sq_fwd_valid),
+				      .hit_index	(sq_fwd_id),
+				      // Inputs
+				      .match		(load_addr_hit),
+				      .push_head	(sq_head));
    
    
+   assign sq_fwd_data = sq_reg_data[sq_fwd_id];
+ 
 
 endmodule

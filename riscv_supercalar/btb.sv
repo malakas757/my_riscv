@@ -9,8 +9,9 @@ module btb
    instr0_btb_hit, instr0_btb_target_addr, instr1_btb_hit,
    instr1_btb_target_addr,
    // Inputs
-   clk, reset_n, IF_instr0_pc, IF_instr1_pc, branch_valid,
-   branch_taken, branch_addr, branch_target_addr
+   clk, reset_n, IF_instr0_pc, IF_instr1_pc, IF_instr0_valid,
+   IF_instr1_valid, branch_valid, branch_taken, branch_addr,
+   branch_target_addr
    );
    input           clk;
    input 	   reset_n;
@@ -18,6 +19,8 @@ module btb
     //PC stage -> IF stage pc
    input   logic [31:0]    IF_instr0_pc;
    input   logic [31:0]    IF_instr1_pc;
+   input 		   IF_instr0_valid;
+   input 		   IF_instr1_valid;
 
     // From EXE branch unit ; use to update btb entry and status
    input   logic 	   branch_valid;
@@ -60,8 +63,8 @@ module btb
       
 
    //BTB hit 
-   assign instr0_btb_hit  = btb_entry_valids[IF_instr0_pc[INDEX_WIDTH-1+WORD_WIDTH:WORD_WIDTH]] && ( IF_instr0_pc[XLEN_WIDTH-1:XLEN_WIDTH-TAG_WIDTH] == tag_0);
-   assign instr1_btb_hit  = btb_entry_valids[IF_instr1_pc[INDEX_WIDTH-1+WORD_WIDTH:WORD_WIDTH]] && ( IF_instr1_pc[XLEN_WIDTH-1:XLEN_WIDTH-TAG_WIDTH] == tag_1);
+   assign instr0_btb_hit  = (IF_instr0_valid)? btb_entry_valids[IF_instr0_pc[INDEX_WIDTH-1+WORD_WIDTH:WORD_WIDTH]] && ( IF_instr0_pc[XLEN_WIDTH-1:XLEN_WIDTH-TAG_WIDTH] == tag_0) : 0;
+   assign instr1_btb_hit  = (IF_instr1_valid)? btb_entry_valids[IF_instr1_pc[INDEX_WIDTH-1+WORD_WIDTH:WORD_WIDTH]] && ( IF_instr1_pc[XLEN_WIDTH-1:XLEN_WIDTH-TAG_WIDTH] == tag_1) : 0;
    
    //BTB write
    assign update_BTB            =  branch_valid && branch_taken;

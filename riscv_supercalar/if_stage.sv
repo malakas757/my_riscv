@@ -184,6 +184,8 @@ pc_counter inst_pc(
 		.IF_instr1_pc		(pcplus4),
 		.branch_valid		(ex_branch_in.valid),
 		.branch_taken		(ex_branch_in.taken),
+  		.IF_instr0_valid	(instr_resp.ready),
+		.IF_instr1_valid	(instr_resp.ready),
 		.branch_addr		(ex_branch_in.addr),
 		.branch_target_addr	(ex_branch_in.target_addr),
          
@@ -199,6 +201,8 @@ pc_counter inst_pc(
 		.reset_n		(reset_n),		 // Templated
 		.IF_instr0_pc		(pc),			 // Templated
 		.IF_instr1_pc		(pcplus4),		 // Templated
+		.IF_instr0_valid	(instr_resp.ready),	 // Templated
+		.IF_instr1_valid	(instr_resp.ready),	 // Templated
 		.branch_valid		(ex_branch_in.valid),	 // Templated
 		.branch_taken		(ex_branch_in.taken),	 // Templated
 		.branch_addr		(ex_branch_in.addr),	 // Templated

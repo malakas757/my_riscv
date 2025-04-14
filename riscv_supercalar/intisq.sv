@@ -8,7 +8,8 @@ module intisq(/*AUTOARG*/
    // Outputs
    intisq_left, ex_slot0_valid, ex_slot1_valid, slot0_T, slot1_T,
    slot0_control, slot1_control, slot0_pc, slot1_pc, slot0_robid,
-   slot1_robid,
+   slot1_robid, slot0_src1_id, slot0_src2_id, slot1_src1_id,
+   slot1_src2_id,
    // Inputs
    clk, reset_n, instr0_enq_valid, instr1_enq_valid, instr0_control,
    instr1_control, instr0_pc, instr1_pc, instr0_robid, instr1_robid,
@@ -81,6 +82,10 @@ module intisq(/*AUTOARG*/
    output [31:0] 	       slot1_pc;
    output [ROB_WIDTH:0]        slot0_robid;
    output [ROB_WIDTH:0]        slot1_robid;   
+   output [PRF_WIDTH-1:0]      slot0_src1_id;   
+   output [PRF_WIDTH-1:0]      slot0_src2_id;   
+   output [PRF_WIDTH-1:0]      slot1_src1_id;   
+   output [PRF_WIDTH-1:0]      slot1_src2_id;   
    
     
 
@@ -156,7 +161,7 @@ module intisq(/*AUTOARG*/
 					.out_alloc_valid_1(empty_id1_valid), // Templated
 					// Inputs
 					.in_id		(in_id),	 // Templated
-					.in_alloc_valid	(intisq_empty));	 // Templated
+					.in_alloc_valid	(intisq_valid));	 // Templated
    
    
 
@@ -511,6 +516,10 @@ module intisq(/*AUTOARG*/
    assign  slot1_pc       = intisq_pc[slot1_entry_id];   
    assign  slot0_robid    = intisq_robid[slot0_entry_id]; 
    assign  slot1_robid    = intisq_robid[slot1_entry_id]; 
+   assign  slot0_src1_id  = intisq_src1_id[slot0_entry_id]; 
+   assign  slot0_src2_id  = intisq_src2_id[slot0_entry_id]; 
+   assign  slot1_src1_id  = intisq_src1_id[slot1_entry_id]; 
+   assign  slot1_src2_id  = intisq_src2_id[slot1_entry_id]; 
 
 
 

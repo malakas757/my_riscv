@@ -109,6 +109,7 @@ module rob(/*AUTOARG*/
    logic           rollback_valid[ROB_NUM-1:0];
    logic [ROB_WIDTH:0] flush_robid_latch;  // latch the robid from exe stage
    
+
    
    assign is_idle     = (rob_state == rob_idle);
    assign is_rollback = (rob_state == rob_rollback);
@@ -383,15 +384,17 @@ module rob(/*AUTOARG*/
    always_comb begin
       int i;      
       for(i=0;i<ROB_NUM;i=i+1)
-      rollback_valid[i] = '0;
+	rollback_valid[i] = '0;
       for(i=0; i<ROB_NUM;i=i+1) begin
-	 if (rob_tail[ROB_WIDTH-1:0] > flush_robid_latch[ROB_WIDTH-1:0]) begin
-	   if(i < rob_tail && i > flush_robid_latch)
-	     rollback_valid[i] = 1'b1;	    
-	 end
-	 else begin
-	   if( i > flush_robid_latch || i < rob_tail)
-	     rollback_valid[i] = 1'b1;
+	 if(reg_rob[i].valid == 1) begin 
+	    if (rob_tail[ROB_WIDTH-1:0] > flush_robid_latch[ROB_WIDTH-1:0]) begin
+	       if(i < rob_tail && i > flush_robid_latch)
+		 rollback_valid[i] = 1'b1;	    
+	    end
+	    else begin
+	       if( i > flush_robid_latch || i < rob_tail)
+		 rollback_valid[i] = 1'b1;
+	    end
 	 end
       end
    end

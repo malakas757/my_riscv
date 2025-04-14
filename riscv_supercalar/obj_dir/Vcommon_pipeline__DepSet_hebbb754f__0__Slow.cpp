@@ -53,9 +53,11 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     vlSelf->mul_slot_busy = VL_RAND_RESET_I(1);
     vlSelf->flush_robid = VL_RAND_RESET_I(7);
     vlSelf->flush_valid = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__ID_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__IF_flush = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__IF_stall = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__IR_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__PC_stall = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__can_dispatch = VL_RAND_RESET_I(1);
     vlSelf->__PVT__ex_slot0_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT__ex_slot1_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT__retire0_is_wb = VL_RAND_RESET_I(1);

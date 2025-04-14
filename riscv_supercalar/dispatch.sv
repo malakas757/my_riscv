@@ -18,7 +18,7 @@ module dispatch(/*AUTOARG*/
    instr0_instr_in, instr1_instr_in, rob_left, instr0_robid_in,
    instr1_robid_in, instr0_src1_busy_in, instr0_src2_busy_in,
    instr1_src1_busy_in, instr1_src2_busy_in, intisq_left, memisq_left,
-   sq_left, flush_valid
+   flush_valid
    );
 
    output                    can_dispatch;
@@ -84,8 +84,7 @@ module dispatch(/*AUTOARG*/
    
 
 
-//input from and output to STORE QUEUE
-   input  logic [1:0] 	         sq_left;
+
 
 
 //flush
@@ -106,19 +105,18 @@ module dispatch(/*AUTOARG*/
    logic 		     rob_can_alloc;
    logic 		     intisq_can_alloc;
    logic 		     memisq_can_alloc;
-   logic 		     sq_can_alloc;
    logic 		     can_dispatch;
    logic [1:0] 		     mem_instr_num;
    logic [1:0] 		     int_instr_num;
-   logic [1:0] 		     store_instr_num;
+  // logic [1:0] 		     store_instr_num;
    logic [1:0] 		     mem_instr_vec;
    logic [1:0] 		     int_instr_vec;
-   logic [1:0] 		     store_instr_vec;
+   //logic [1:0] 		     store_instr_vec;
  	
    always_comb begin
       mem_instr_vec = '0;
       int_instr_vec = '0;
-      store_instr_vec = '0;
+    //  store_instr_vec = '0;
       if (instr0_pipe_reg.control.is_valid && (instr0_pipe_reg.control.mem_read || instr0_pipe_reg.control.mem_write))
 	  mem_instr_vec[0] = 1'b1;
       else if ( instr0_pipe_reg.control.is_valid)
@@ -127,22 +125,21 @@ module dispatch(/*AUTOARG*/
 	  mem_instr_vec[1] = 1'b1;
       else if ( instr1_pipe_reg.control.is_valid)
 	  int_instr_vec[1] = 1'b1;
-      if (instr0_pipe_reg.control.is_valid && ( instr0_pipe_reg.control.mem_write))
+     /* if (instr0_pipe_reg.control.is_valid && ( instr0_pipe_reg.control.mem_write))
 	  store_instr_vec[0] = 1'b1;
       if (instr1_pipe_reg.control.is_valid && ( instr1_pipe_reg.control.mem_write))
-	  store_instr_vec[1] = 1'b1;
+	  store_instr_vec[1] = 1'b1;*/
    end // always_comb
 
    assign int_instr_num = int_instr_vec[1] + int_instr_vec[0];
    assign mem_instr_num = mem_instr_vec[1] + mem_instr_vec[0];
-   assign store_instr_num = store_instr_vec[1] + store_instr_vec[0];
+  // assign store_instr_num = store_instr_vec[1] + store_instr_vec[0];
    
 
    assign rob_can_alloc = (rob_left >= (mem_instr_num + int_instr_num))?1 : 0 ;
    assign intisq_can_alloc = (intisq_left >= int_instr_num)?1 : 0 ;
    assign memisq_can_alloc = (memisq_left >= mem_instr_num)?1 : 0 ;
-   assign sq_can_alloc = (sq_left >= store_instr_num)?1 : 0 ;
-   assign can_dispatch = rob_can_alloc & intisq_can_alloc & memisq_can_alloc & sq_can_alloc & ~flush_valid;
+   assign can_dispatch = rob_can_alloc & intisq_can_alloc & memisq_can_alloc & ~flush_valid;
    assign instr0_valid_intisq = instr0_valid_rob & int_instr_vec[0];
    assign instr1_valid_intisq = instr1_valid_rob & int_instr_vec[1];
    assign instr0_valid_memisq = instr0_valid_rob & mem_instr_vec[0];

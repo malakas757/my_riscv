@@ -127,7 +127,8 @@ module pipeline(/*AUTOARG*/
 					// Inputs
 					.imem_miss	(imem_miss),
 					.can_dispatch	(can_dispatch),
-					.flush_valid	(flush_valid));
+					.flush_valid	(flush_valid),
+					.rob_state	(rob_state[1:0]));
    
 
 

@@ -13,6 +13,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_pipeline___settle__TOP__pipeline__1\n"); );
     // Init
+    CData/*0:0*/ __PVT__can_dispatch;
     CData/*0:0*/ __PVT__inst_ir__DOT__fl_can_alloc;
     CData/*0:0*/ __PVT__inst_ir__DOT__fl_req_0;
     CData/*0:0*/ __PVT__inst_ir__DOT__fl_req_1;
@@ -1442,30 +1443,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
                 = (2U | (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_vec));
         }
     }
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[0U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [0U]));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[1U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [1U]));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[2U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [2U]));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[3U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [3U]));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[4U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [4U]));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[5U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [5U]));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[6U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [6U]));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[7U] 
-        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
-                 [7U]));
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_order_reverse[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
         [7U];
@@ -1490,6 +1467,30 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_order_reverse[7U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
         [0U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[0U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [0U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[1U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [1U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[2U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [2U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[3U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [3U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[4U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [4U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[5U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [5U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[6U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [6U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[7U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
+                 [7U]));
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_entry_ready[0U] 
         = ((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
             [0U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
@@ -2336,30 +2337,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
     vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num 
         = (3U & ((1U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_vec) 
                         >> 1U)) + (1U & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_vec))));
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [7U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [6U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[2U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [5U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[3U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [4U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[4U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [3U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[5U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [2U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[6U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[7U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
-        [0U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_oldest_picker__in_age[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_order_reverse
         [7U];
@@ -2383,6 +2360,30 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
         [1U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_oldest_picker__in_age[7U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_order_reverse
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
+        [7U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[2U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[3U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[4U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[5U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[6U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[7U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
         [0U];
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_entry_ready_order_reverse[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_entry_ready
@@ -2474,30 +2475,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id[1U] 
         = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_id
         [7U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [2U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [3U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [4U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [5U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [6U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
-        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
-        [7U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l1__BRA__0__KET____DOT__l1_picker__in_age[0U] 
         = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_oldest_picker__in_age
         [0U];
@@ -2521,6 +2498,30 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
         [6U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l1__BRA__6__KET____DOT__l1_picker__in_age[1U] 
         = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_oldest_picker__in_age
+        [7U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
         [7U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_oldest_picker__in_valid[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_entry_ready_order_reverse
@@ -3527,52 +3528,43 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_valid;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_valid[1U] 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_valid;
-    vlSelf->__PVT__can_dispatch = (1U & (((((((((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                                  ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                                 >> 6U) 
-                                                & ((0x3fU 
+    __PVT__can_dispatch = (1U & (((((((((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
+                                          ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                         >> 6U) & (
+                                                   (0x3fU 
                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head)) 
                                                    == 
                                                    (0x3fU 
                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                                ? 0U
-                                                : (
-                                                   ((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                                      ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                                     >> 6U) 
-                                                    & (((IData)(1U) 
-                                                        + 
-                                                        (0x3fU 
-                                                         & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head))) 
-                                                       == 
-                                                       (0x3fU 
-                                                        & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                                    ? 1U
-                                                    : 2U)) 
-                                              >= (3U 
-                                                  & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
-                                                     + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
-                                              ? 1U : 0U) 
-                                            & (((3U 
-                                                 & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
-                                                    + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
-                                                >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))
-                                                ? 1U
-                                                : 0U)) 
-                                           & (((IData)(vlSelf->__PVT__inst_is_stage__DOT__memisq_left) 
-                                               >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
-                                               ? 1U
-                                               : 0U)) 
-                                          & (((IData)(vlSelf->__PVT__inst_is_stage__DOT__sq_left) 
-                                              >= (3U 
-                                                  & ((1U 
-                                                      & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__store_instr_vec) 
-                                                         >> 1U)) 
+                                        ? 0U : (((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
+                                                   ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                                  >> 6U) 
+                                                 & (((IData)(1U) 
                                                      + 
-                                                     (1U 
-                                                      & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__store_instr_vec)))))
-                                              ? 1U : 0U)) 
-                                         & (~ (IData)(vlSymsp->TOP.flush_valid))));
+                                                     (0x3fU 
+                                                      & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head))) 
+                                                    == 
+                                                    (0x3fU 
+                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
+                                                 ? 1U
+                                                 : 2U)) 
+                                      >= (3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
+                                                + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
+                                      ? 1U : 0U) & 
+                                    (((3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
+                                             + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
+                                      >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))
+                                      ? 1U : 0U)) & 
+                                   (((IData)(vlSelf->__PVT__inst_is_stage__DOT__memisq_left) 
+                                     >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
+                                     ? 1U : 0U)) & 
+                                  (((IData)(vlSelf->__PVT__inst_is_stage__DOT__sq_left) 
+                                    >= (3U & ((1U & 
+                                               ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__store_instr_vec) 
+                                                >> 1U)) 
+                                              + (1U 
+                                                 & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__store_instr_vec)))))
+                                    ? 1U : 0U)) & (~ (IData)(vlSymsp->TOP.flush_valid))));
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_id[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_id
         [0U];
@@ -3609,30 +3601,25 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid[1U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_valid
         [1U];
-    vlSelf->__PVT__PC_stall = (1U & ((~ vlSelf->__PVT__imem_resp[0U]) 
-                                     | (~ (IData)(vlSelf->__PVT__can_dispatch))));
+    vlSelf->__PVT__IF_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
+    vlSelf->__PVT__IR_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
+    vlSelf->__PVT__PC_stall = (1U & ((((~ vlSelf->__PVT__imem_resp[0U]) 
+                                       | (~ (IData)(__PVT__can_dispatch))) 
+                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
     vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_rob 
         = ((vlSelf->__PVT__ir_is_reg1[3U] >> 0xbU) 
-           & (IData)(vlSelf->__PVT__can_dispatch));
+           & (IData)(__PVT__can_dispatch));
     vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob 
         = ((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) 
-           & (IData)(vlSelf->__PVT__can_dispatch));
-    __PVT__inst_ir__DOT__fl_req_1 = ((((IData)(vlSelf->__PVT__can_dispatch) 
-                                       & (vlSelf->__PVT__id_ir_reg1[2U] 
-                                          >> 0x13U)) 
-                                      & (0U != (0x1fU 
-                                                & (vlSelf->__PVT__id_ir_reg1[2U] 
-                                                   >> 0x1aU)))) 
-                                     & (vlSelf->__PVT__id_ir_reg1[3U] 
-                                        >> 0xbU));
-    __PVT__inst_ir__DOT__fl_req_0 = ((((IData)(vlSelf->__PVT__can_dispatch) 
-                                       & (vlSelf->__PVT__id_ir_reg0[2U] 
-                                          >> 0x13U)) 
-                                      & (0U != (0x1fU 
-                                                & (vlSelf->__PVT__id_ir_reg0[2U] 
-                                                   >> 0x1aU)))) 
-                                     & (vlSelf->__PVT__id_ir_reg0[3U] 
-                                        >> 0xbU));
+           & (IData)(__PVT__can_dispatch));
+    vlSelf->__PVT__ID_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                     | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp[0U] 
         = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_valid
             [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_age
@@ -3666,22 +3653,22 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
     vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__instr0_disp2bt_rd_en 
         = ((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob) 
            & (vlSelf->__PVT__ir_is_reg0[2U] >> 0x13U));
-    __PVT__inst_ir__DOT__fl_can_alloc = (((((IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head) 
-                                            == (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail))
-                                            ? 0U : 
-                                           (((0x3fU 
-                                              & ((IData)(1U) 
-                                                 + (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head))) 
-                                             == (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail))
-                                             ? 1U : 3U)) 
-                                          >= (((IData)(__PVT__inst_ir__DOT__fl_req_0) 
-                                               & (IData)(__PVT__inst_ir__DOT__fl_req_1))
-                                               ? 2U
-                                               : (((IData)(__PVT__inst_ir__DOT__fl_req_0) 
-                                                   | (IData)(__PVT__inst_ir__DOT__fl_req_1))
-                                                   ? 1U
-                                                   : 0U)))
-                                          ? 1U : 0U);
+    __PVT__inst_ir__DOT__fl_req_1 = ((((~ (IData)(vlSelf->__PVT__ID_stall)) 
+                                       & (vlSelf->__PVT__id_ir_reg1[2U] 
+                                          >> 0x13U)) 
+                                      & (0U != (0x1fU 
+                                                & (vlSelf->__PVT__id_ir_reg1[2U] 
+                                                   >> 0x1aU)))) 
+                                     & (vlSelf->__PVT__id_ir_reg1[3U] 
+                                        >> 0xbU));
+    __PVT__inst_ir__DOT__fl_req_0 = ((((~ (IData)(vlSelf->__PVT__ID_stall)) 
+                                       & (vlSelf->__PVT__id_ir_reg0[2U] 
+                                          >> 0x13U)) 
+                                      & (0U != (0x1fU 
+                                                & (vlSelf->__PVT__id_ir_reg0[2U] 
+                                                   >> 0x1aU)))) 
+                                     & (vlSelf->__PVT__id_ir_reg0[3U] 
+                                        >> 0xbU));
     if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
           [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
           [1U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp
@@ -3833,6 +3820,71 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
             = (1U & (vlSelf->__PVT__ir_is_reg1[3U] 
                      >> 4U));
     }
+    __PVT__inst_ir__DOT__fl_can_alloc = (((((IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head) 
+                                            == (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail))
+                                            ? 0U : 
+                                           (((0x3fU 
+                                              & ((IData)(1U) 
+                                                 + (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head))) 
+                                             == (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail))
+                                             ? 1U : 3U)) 
+                                          >= (((IData)(__PVT__inst_ir__DOT__fl_req_0) 
+                                               & (IData)(__PVT__inst_ir__DOT__fl_req_1))
+                                               ? 2U
+                                               : (((IData)(__PVT__inst_ir__DOT__fl_req_0) 
+                                                   | (IData)(__PVT__inst_ir__DOT__fl_req_1))
+                                                   ? 1U
+                                                   : 0U)))
+                                          ? 1U : 0U);
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec 
+        = (((IData)(__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_valid) 
+            << 1U) | (IData)(__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_valid));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_alu 
+        = (1U & (~ ((((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                       >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                    [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                                    >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                                                 >> 0x11U)) 
+                    | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                       >> 0xcU))));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_bju 
+        = (1U & (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                   [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                   >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                                >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                             [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                                             >> 0x11U)));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_mul 
+        = (1U & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
+                 >> 0xcU));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu 
+        = (1U & (~ ((((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                       >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                    [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                                    >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                                                 >> 0x11U)) 
+                    | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                       >> 0xcU))));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_bju 
+        = (1U & (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                   [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                   >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                                >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                                             [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                                             >> 0x11U)));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_mul 
+        = (1U & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
+                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
+                 >> 0xcU));
     vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head_next 
         = (0x3fU & ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))
                      ? ((IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head) 
@@ -3894,61 +3946,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
     } else {
         __PVT__inst_ir__DOT__inst_fl__DOT__read_0 = 0U;
     }
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec 
-        = (((IData)(__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_valid) 
-            << 1U) | (IData)(__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_valid));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_alu 
-        = (1U & (~ ((((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                       >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                    [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                                    >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                                                 >> 0x11U)) 
-                    | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                       >> 0xcU))));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_bju 
-        = (1U & (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                   [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                   >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                                >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                             [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                                             >> 0x11U)));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_is_mul 
-        = (1U & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id][2U] 
-                 >> 0xcU));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu 
-        = (1U & (~ ((((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                       >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                    [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                                    >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                                                 >> 0x11U)) 
-                    | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                       [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                       >> 0xcU))));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_bju 
-        = (1U & (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                   [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                   >> 0x10U) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                                >> 0xfU)) | (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                                             [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                                             >> 0x11U)));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_mul 
-        = (1U & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
-                 [vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id][2U] 
-                 >> 0xcU));
-    vlSelf->__PVT__inst_ir__DOT__rename_1 = ((0x3ffffffc0ULL 
-                                              & vlSelf->__PVT__inst_ir__DOT__rename_1) 
-                                             | (IData)((IData)(__PVT__inst_ir__DOT__inst_fl__DOT__read_1)));
-    vlSelf->__PVT__inst_ir__DOT__rename_0 = ((0x3ffffffc0ULL 
-                                              & vlSelf->__PVT__inst_ir__DOT__rename_0) 
-                                             | (IData)((IData)(__PVT__inst_ir__DOT__inst_fl__DOT__read_0)));
     vlSelf->__PVT__ex_slot1_valid = 0U;
     if ((1U & (~ (IData)(vlSymsp->TOP.flush_valid)))) {
         if ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec))) {
@@ -4129,6 +4126,233 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
             = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id;
         vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__slot0_entry_id 
             = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id;
+    }
+    vlSelf->__PVT__inst_ir__DOT__rename_1 = ((0x3ffffffc0ULL 
+                                              & vlSelf->__PVT__inst_ir__DOT__rename_1) 
+                                             | (IData)((IData)(__PVT__inst_ir__DOT__inst_fl__DOT__read_1)));
+    vlSelf->__PVT__inst_ir__DOT__rename_0 = ((0x3ffffffc0ULL 
+                                              & vlSelf->__PVT__inst_ir__DOT__rename_0) 
+                                             | (IData)((IData)(__PVT__inst_ir__DOT__inst_fl__DOT__read_0)));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [7U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [6U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [5U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [4U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [3U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [2U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [1U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+        [0U];
+    if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq) 
+         & (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [0U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [0U])))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [1U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [1U])))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [2U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [2U])))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [3U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [3U])))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [4U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [4U])))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [5U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [5U])))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [6U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [6U])))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 1U : ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                          [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                         [7U] : ((IData)(2U) 
+                                                 + 
+                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                                 [7U])))));
+    } else if (((~ (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq)) 
+                & (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [0U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [0U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [1U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [1U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [2U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [2U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [3U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [3U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [4U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [4U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [5U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [5U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [6U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [6U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [7U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [7U]))));
+    } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) 
+                & (~ (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq)))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
+            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [0U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [0U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
+            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [1U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [1U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
+            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [2U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [2U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
+            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [3U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [3U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
+            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [4U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [4U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
+            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [5U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [5U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
+            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [6U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [6U]))));
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
+            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
+                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                 [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                [7U] : ((IData)(1U) 
+                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
+                                        [7U]))));
+    }
+    if (vlSelf->__PVT__ex_slot0_valid) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__slot0_entry_id] = 0U;
+    }
+    if (vlSelf->__PVT__ex_slot1_valid) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__slot1_entry_id] = 0U;
     }
     vlSelf->__PVT__ir_is_reg1_next[4U] = ((0x1fU & 
                                            vlSelf->__PVT__ir_is_reg1_next[4U]) 
@@ -4498,227 +4722,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__1(Vcommon_pipeline* 
                                                                             >> 0x13U)))] 
                 = (0x3fU & (IData)(vlSelf->__PVT__inst_ir__DOT__rename_1));
         }
-    }
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [7U];
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [6U];
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [5U];
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [4U];
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [3U];
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [2U];
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [1U];
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-        [0U];
-    if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq) 
-         & (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq))) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
-            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [0U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [0U])))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
-            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [1U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [1U])))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
-            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [2U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [2U])))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
-            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [3U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [3U])))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
-            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [4U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [4U])))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
-            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [5U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [5U])))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
-            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [6U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [6U])))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
-            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 1U : ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                         ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                          [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                         [7U] : ((IData)(2U) 
-                                                 + 
-                                                 vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                                 [7U])))));
-    } else if (((~ (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq)) 
-                & (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq))) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
-            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [0U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [0U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
-            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [1U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [1U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
-            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [2U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [2U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
-            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [3U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [3U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
-            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [4U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [4U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
-            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [5U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [5U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
-            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [6U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [6U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
-            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [7U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [7U]))));
-    } else if (((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq) 
-                & (~ (IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq)))) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[0U] 
-            = ((0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [0U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [0U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [0U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[1U] 
-            = ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [1U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [1U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [1U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[2U] 
-            = ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [2U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [2U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [2U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[3U] 
-            = ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [3U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [3U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [3U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[4U] 
-            = ((4U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [4U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [4U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [4U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[5U] 
-            = ((5U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [5U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [5U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [5U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[6U] 
-            = ((6U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [6U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [6U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [6U]))));
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[7U] 
-            = ((7U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1))
-                ? 0U : (0xfU & ((0xfU == vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                 [7U]) ? vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                [7U] : ((IData)(1U) 
-                                        + vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age
-                                        [7U]))));
-    }
-    if (vlSelf->__PVT__ex_slot0_valid) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__slot0_entry_id] = 0U;
-    }
-    if (vlSelf->__PVT__ex_slot1_valid) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_age_next[vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__slot1_entry_id] = 0U;
     }
 }
 

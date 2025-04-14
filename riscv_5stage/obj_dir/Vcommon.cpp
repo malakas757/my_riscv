@@ -9,9 +9,16 @@
 
 Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
-    , hazard{vlSymsp->TOP.hazard}
-    , if_id_reg{vlSymsp->TOP.if_id_reg}
-    , id_ex_reg{vlSymsp->TOP.id_ex_reg}
+    , branch_predict{vlSymsp->TOP.branch_predict}
+    , branch_taken{vlSymsp->TOP.branch_taken}
+    , flush{vlSymsp->TOP.flush}
+    , left_operand{vlSymsp->TOP.left_operand}
+    , right_operand{vlSymsp->TOP.right_operand}
+    , pc{vlSymsp->TOP.pc}
+    , control{vlSymsp->TOP.control}
+    , immediate_data{vlSymsp->TOP.immediate_data}
+    , j_next_pc{vlSymsp->TOP.j_next_pc}
+    , branch_pc{vlSymsp->TOP.branch_pc}
     , rootp{&(vlSymsp->TOP)}
 {
 }
