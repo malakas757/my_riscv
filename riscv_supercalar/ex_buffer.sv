@@ -11,11 +11,10 @@ module ex_buffer(/*AUTOARG*/
    // Inputs
    clk, reset_n, flush_valid, flush_robid, ex_slot0_valid,
    ex_slot1_valid, ex_slot2_valid, slot0_T, slot1_T, slot2_T,
-   slot0_rs1_id, slot1_rs1_id, slot2_rs1_id, slot0_rs2_id,
-   slot1_rs2_id, slot2_rs2_id, slot0_control, slot1_control,
-   slot2_control, slot0_pc, slot1_pc, slot2_pc, slot0_robid,
-   slot1_robid, slot2_robid, IQ0_rs1_data, IQ0_rs2_data, IQ1_rs1_data,
-   IQ1_rs2_data, MEM_rs1_data, MEM_rs2_data, mem_issue_stall
+   slot0_control, slot1_control, slot2_control, slot0_pc, slot1_pc,
+   slot2_pc, slot0_robid, slot1_robid, slot2_robid, IQ0_rs1_data,
+   IQ0_rs2_data, IQ1_rs1_data, IQ1_rs2_data, MEM_rs1_data,
+   MEM_rs2_data, mem_issue_stall
    );
 
    input                      clk;
@@ -31,13 +30,7 @@ module ex_buffer(/*AUTOARG*/
    input logic                ex_slot2_valid;
    input [PRF_WIDTH-1:0]      slot0_T;
    input [PRF_WIDTH-1:0]      slot1_T;
-   input [PRF_WIDTH-1:0]      slot2_T;
-   input [PRF_WIDTH-1:0]      slot0_rs1_id;
-   input [PRF_WIDTH-1:0]      slot1_rs1_id;
-   input [PRF_WIDTH-1:0]      slot2_rs1_id;
-   input [PRF_WIDTH-1:0]      slot0_rs2_id;
-   input [PRF_WIDTH-1:0]      slot1_rs2_id;
-   input [PRF_WIDTH-1:0]      slot2_rs2_id;   
+   input [PRF_WIDTH-1:0]      slot2_T;   
    input control_type	      slot0_control;
    input control_type	      slot1_control;
    input control_type	      slot2_control;
@@ -118,7 +111,7 @@ module ex_buffer(/*AUTOARG*/
       int i;      
       slot_need_to_flush ='{default:0};
       for(i=0; i<3 ; i=i+1) begin
-	 if (slot_reg_valid[i] & (slot_reg_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH] ^ (slot_reg_robid[i][ROB_WIDTH-1:0] < flush_robid[ROB_WIDTH-1:0])))
+	 if (flush_valid & slot_reg_valid[i] & (slot_reg_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH] ^ (slot_reg_robid[i][ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0])))
 	   slot_need_to_flush[i] = 1'b1;           
       end
    end
@@ -163,29 +156,16 @@ module ex_buffer(/*AUTOARG*/
 	 for(i=0;i<3;i=i+1) begin
 	    if(slot_need_to_flush[i])
 	      slot_reg_valid[i] <= 0;
-	    else if(slot_need_to_stall[i]) 
-	      slot_reg_valid[i] <= slot_reg_valid[i];
-	    else
+	    else if (~slot_need_to_stall[i] & ~flush_valid) 
 	      slot_reg_valid[i] <= slot_valid_in[i];	    
 	 end
       end
    end
    // data in
    always_ff@(posedge clk) begin
-      int i;
-      if(~reset_n) begin
+      int i;     	 
 	 for(i=0; i<3; i=i+1) begin
-	    slot_reg_T [i] <= '0;
-	    slot_reg_pc [i] <= '0;
-	    slot_reg_robid [i] <= '0;
-	    slot_reg_rs1 [i] <= '0;
-	    slot_reg_rs2 [i] <= '0;
-	    slot_reg_control [i] <= '0;
-	 end
-      end
-      else begin	 
-	 for(i=0; i<3; i=i+1) begin
-	    if( slot_valid_in[i] ) begin
+	    if(~slot_need_to_stall[i] & ~flush_valid) begin
 	       slot_reg_T [i] <= slot_T_in[i];   
 	       slot_reg_pc [i] <= slot_pc_in[i];
 	       slot_reg_control[i] <= slot_control_in[i];
@@ -194,13 +174,14 @@ module ex_buffer(/*AUTOARG*/
 	       slot_reg_robid[i] <= slot_robid_in[i];	       
 	    end
 	  end	 
-      end
+      
    end
       
 //output
-   assign int0_valid = slot_reg_valid[0] & ~flush_valid;
-   assign int1_valid = slot_reg_valid[1] & ~flush_valid;
+   assign int0_valid = slot_reg_valid[0] & ~flush_valid;   
+   assign int1_valid = slot_reg_valid[1] & ~flush_valid;   
    assign int2_valid = slot_reg_valid[2] & ~flush_valid;
+   
 
    assign int0_T     = slot_reg_T[0];
    assign int1_T     = slot_reg_T[1];

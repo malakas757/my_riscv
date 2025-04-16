@@ -27,6 +27,10 @@ module busytable (
    input [PRF_WIDTH-1:0] 	     instr0_disp2bt_rs2;
    input [PRF_WIDTH-1:0] 	     instr1_disp2bt_rs1;
    input [PRF_WIDTH-1:0] 	     instr1_disp2bt_rs2;
+   //input [ARF_WIDTH-1:0] 	     instr0_disp2bt_rs1_arfid;
+   //input [ARF_WIDTH-1:0] 	     instr0_disp2bt_rs2_arfid;
+   //input [ARF_WIDTH-1:0] 	     instr1_disp2bt_rs1_arfid;
+   //input [ARF_WIDTH-1:0] 	     instr1_disp2bt_rs2_arfid;
    input 			     instr0_disp2bt_rs1_valid;
    input 			     instr0_disp2bt_rs2_valid;
    input 			     instr1_disp2bt_rs1_valid;
@@ -88,7 +92,7 @@ module busytable (
                 reg_busy_table[i] <= 1'b0;  //means all ready
             end
         end 
-	else begin// be careful when walk and wb occur together!!! the wb operation is the newest, so take wb result
+	else begin// be careful when walk and wb occur together!!! the wb operation is the newest, so take wb result.	   
            if (instr0_disp2bt_rd_en) begin
                 reg_busy_table[instr0_disp2bt_rd] <= 1'b1;
             end
@@ -121,7 +125,10 @@ module busytable (
 
 //reg_busy_table read
 
-// be careful about the src1_state forwarding; if it is to set '0,no problem, but if it is '1,you should check the valid of src1/2 !!! 
+// be careful about the src1_state forwarding; if it is to set '0,no problem, but if it is '1,you should check the valid of src1/2 !!!
+
+//if prfid ==0l always not busy!!!
+   
     always_comb begin
         if (int0_alu_wb_en && (int0_alu_wb == instr0_disp2bt_rs1)) begin
             instr0_rs1_busy = 'b0;  //bypass logic
@@ -138,6 +145,9 @@ module busytable (
 	else begin
             instr0_rs1_busy = reg_busy_table[instr0_disp2bt_rs1] && instr0_disp2bt_rs1_valid;
         end
+        if (instr0_disp2bt_rs1 == 0) begin
+	    instr0_rs1_busy = 'b0;       
+	end
     end
     always_comb begin
         if (int0_alu_wb_en && (int0_alu_wb == instr0_disp2bt_rs2)) begin
@@ -155,6 +165,9 @@ module busytable (
 	else begin
             instr0_rs2_busy = reg_busy_table[instr0_disp2bt_rs2] && instr0_disp2bt_rs2_valid;
         end
+        if (instr0_disp2bt_rs2 == 0) begin
+	    instr0_rs2_busy = 'b0;       
+	end
     end
     always_comb begin
         if (int0_alu_wb_en && (int0_alu_wb == instr1_disp2bt_rs1)) begin
@@ -174,7 +187,10 @@ module busytable (
         end
         if (instr0_disp2bt_rd_en && (instr0_disp2bt_rd == instr1_disp2bt_rs1)) begin
             instr1_rs1_busy = instr1_disp2bt_rs1_valid;  //bypass logic	   
-        end 
+        end
+       if (instr1_disp2bt_rs1 == 0) begin
+	    instr1_rs1_busy = 'b0;       
+	end
     end
     always_comb begin
         if (int0_alu_wb_en && (int0_alu_wb == instr1_disp2bt_rs2)) begin
@@ -194,6 +210,9 @@ module busytable (
         end
        if (instr0_disp2bt_rd_en && (instr0_disp2bt_rd == instr1_disp2bt_rs2)) begin
             instr1_rs2_busy = instr1_disp2bt_rs2_valid;  //bypass logic	   
-        end 
+       end
+       if (instr1_disp2bt_rs2 == 0) begin
+	  instr1_rs2_busy = 'b0;       
+	end
     end
 endmodule

@@ -264,7 +264,7 @@ package common;
     {
        logic            	       valid; // if it is a branch/jump?
        logic 			       taken;
-       logic [ADDR_WIDTH-1:0] 	       addr; // instr content of branch
+       logic [ADDR_WIDTH-1:0] 	       addr; // instr pc of branch
        logic [ADDR_WIDTH-1:0] 	       target_addr; 
        logic 			       update_GHSR; //
        logic [GSHARE_GHSR_WIDTH-1:0]   GHSR_restore ;

@@ -521,6 +521,10 @@ VL_INLINE_OPT void Vcommon___024root___combo__TOP__4(Vcommon___024root* vlSelf) 
         [vlSelf->is_stage__DOT__inst_intisq__DOT__slot1_entry_id];
     vlSelf->slot1_robid = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_robid
         [vlSelf->is_stage__DOT__inst_intisq__DOT__slot1_entry_id];
+    vlSelf->slot1_src1_id = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_src1_id
+        [vlSelf->is_stage__DOT__inst_intisq__DOT__slot1_entry_id];
+    vlSelf->slot1_src2_id = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_src2_id
+        [vlSelf->is_stage__DOT__inst_intisq__DOT__slot1_entry_id];
     vlSelf->slot0_T = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_T
         [vlSelf->is_stage__DOT__inst_intisq__DOT__slot0_entry_id];
     vlSelf->slot0_control[0U] = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_control
@@ -534,6 +538,10 @@ VL_INLINE_OPT void Vcommon___024root___combo__TOP__4(Vcommon___024root* vlSelf) 
     vlSelf->slot0_pc = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_pc
         [vlSelf->is_stage__DOT__inst_intisq__DOT__slot0_entry_id];
     vlSelf->slot0_robid = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_robid
+        [vlSelf->is_stage__DOT__inst_intisq__DOT__slot0_entry_id];
+    vlSelf->slot0_src1_id = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_src1_id
+        [vlSelf->is_stage__DOT__inst_intisq__DOT__slot0_entry_id];
+    vlSelf->slot0_src2_id = vlSelf->is_stage__DOT__inst_intisq__DOT__intisq_src2_id
         [vlSelf->is_stage__DOT__inst_intisq__DOT__slot0_entry_id];
     vlSelf->can_dispatch = (1U & ((((((((((IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_head) 
                                           ^ (IData)(vlSelf->is_stage__DOT__inst_rob__DOT__rob_tail)) 
@@ -935,8 +943,6 @@ void Vcommon___024root___eval_debug_assertions(Vcommon___024root* vlSelf) {
         Verilated::overWidthError("writeback2_robid");}
     if (VL_UNLIKELY((vlSelf->writeback3_robid & 0x80U))) {
         Verilated::overWidthError("writeback3_robid");}
-    if (VL_UNLIKELY((vlSelf->writeback3_is_store & 0xfeU))) {
-        Verilated::overWidthError("writeback3_is_store");}
     if (VL_UNLIKELY((vlSelf->mul_slot_busy & 0xfeU))) {
         Verilated::overWidthError("mul_slot_busy");}
     if (VL_UNLIKELY((vlSelf->mem_issue_stall & 0xfeU))) {

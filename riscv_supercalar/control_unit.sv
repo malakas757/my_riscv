@@ -182,7 +182,8 @@ localparam logic [6:0] AUIPC_INSTRUCTION = 7'b0010111;
                 control.rs1_valid = 1'b0;                            
                 control.rs2_valid = 1'b0;                            
             end
-	  	  
+	  default: control ='0;
+	  
         endcase // case (instruction.opcode)
 
 ////////////////////////////////////////////////////////////////////////////
@@ -310,6 +311,9 @@ localparam logic [6:0] AUIPC_INSTRUCTION = 7'b0010111;
 /////////////////////////////////////////////////////////////////////////////   
 
        control.imm_data = immediate_extension(instruction, control.encoding);
+       if( control.rd_id == '0)
+	 control.reg_write = 1'b0;
+       
        
        
        

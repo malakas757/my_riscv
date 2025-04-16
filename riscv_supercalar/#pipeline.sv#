@@ -50,7 +50,6 @@ module pipeline(/*AUTOARG*/
    wire [PRF_WIDTH-1:0]	instr0_src2;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	instr1_src1;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	instr1_src2;		// From inst_is_stage of is_stage.v
-   instr_req_type	instr_req;		// From inst_if_stage of if_stage.v
    logic [PRF_WIDTH-1:0] int0_T;		// From inst_buffer of ex_buffer.v
    control_type		int0_control;		// From inst_buffer of ex_buffer.v
    logic [31:0]		int0_pc;		// From inst_buffer of ex_buffer.v
@@ -678,10 +677,10 @@ module pipeline(/*AUTOARG*/
 			.IQ1_rs2_addr	(slot1_src2_id),	 // Templated
 			.MEM_rs1_addr	(slot2_src1_id),	 // Templated
 			.MEM_rs2_addr	(slot2_src2_id),	 // Templated
-			.writeback0_need_to_wb(writeback0_need_to_wb & writeback0_valid), // Templated
-			.writeback1_need_to_wb(writeback1_need_to_wb & writeback1_valid), // Templated
-			.writeback2_need_to_wb(writeback2_need_to_wb & writeback2_valid), // Templated
-			.writeback3_need_to_wb(writeback3_need_to_wb & writeback3_valid), // Templated
+			.writeback0_need_to_wb(writeback0_need_to_wb & writeback0_valid),
+			.writeback1_need_to_wb(writeback1_need_to_wb & writeback1_valid),
+			.writeback2_need_to_wb(writeback2_need_to_wb & writeback2_valid),
+			.writeback3_need_to_wb(writeback3_need_to_wb & writeback3_valid),
 			.writeback0_prd	(writeback0_prd[PRF_WIDTH-1:0]),
 			.writeback1_prd	(writeback1_prd[PRF_WIDTH-1:0]),
 			.writeback2_prd	(writeback2_prd[PRF_WIDTH-1:0]),

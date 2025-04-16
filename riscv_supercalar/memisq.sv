@@ -189,13 +189,14 @@ module memisq(/*AUTOARG*/
 	    memisq_pc[memisq_head]         <= instr0_pc;          
 	    memisq_robid[memisq_head]      <= instr0_robid;       
 	    memisq_control[memisq_head]    <= instr0_control;     
-	 if (instr1_enq_valid) 
+	 if (instr1_enq_valid) begin
 	    memisq_src1_id[memisq_head+1]    <= instr1_src1_id;     
 	    memisq_src2_id[memisq_head+1]    <= instr1_src2_id;     
 	    memisq_T[memisq_head+1]          <= instr1_T;           
 	    memisq_pc[memisq_head+1]         <= instr1_pc;          
 	    memisq_robid[memisq_head+1]      <= instr1_robid;       
-	    memisq_control[memisq_head+1]    <= instr1_control;	   
+	    memisq_control[memisq_head+1]    <= instr1_control;	 
+	 end  
       end
       else if (instr1_enq_valid) begin
 	    memisq_src1_id[memisq_head]    <= instr1_src1_id;     
@@ -216,10 +217,8 @@ module memisq(/*AUTOARG*/
       
       flush_valid_vector = '{default: 0};      
       for (i=0;i<MEMISQ_NUM;i=i+1) begin
-	 if (memisq_valid[i] & (memisq_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH]) & (memisq_robid[i][ROB_WIDTH-1:0] < flush_robid[ROB_WIDTH-1:0]))
-	   flush_valid_vector[i] = 1'b1;
-	 if (memisq_valid[i] & ~(memisq_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH]) & (memisq_robid[i][ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0]))	 
-	   flush_valid_vector[i] = 1'b1;
+	 if (memisq_valid[i] & ((memisq_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH]) ^ (memisq_robid[i][ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0])))
+	   flush_valid_vector[i] = 1'b1;	 
       end      
    end
    

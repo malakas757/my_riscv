@@ -140,8 +140,8 @@ module mult_stage #(parameter XLEN = 32, parameter NUM_STAGE = 4) (
  	 done      <= 1'b0;
 	 reg_valid <= 1'b0;	 
       end
-      else if (start) begin  //when ~start, keep value 		   
- 	 done     <= 1'b1;
+      else if (~flush_valid) begin  //when ~start, keep value 		   
+ 	 done      <= start;
 	 reg_valid <= valid;
  	 reg_prf_id <= prf_id;
  	 reg_robid <= rob_id; 
@@ -150,11 +150,11 @@ module mult_stage #(parameter XLEN = 32, parameter NUM_STAGE = 4) (
    
   
        // flush
-   assign need_to_flush = (flush_valid & (reg_robid[ROB_WIDTH] ^ flush_robid[ROB_WIDTH] ^ (reg_robid[ROB_WIDTH-1:0] < flush_robid[ROB_WIDTH-1:0])))?1:0;
+   assign need_to_flush = (flush_valid & (reg_robid[ROB_WIDTH] ^ flush_robid[ROB_WIDTH] ^ (reg_robid[ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0])))?1:0;
    assign out_prf_id = reg_prf_id;
    assign out_rob_id = reg_robid;
    assign out_valid  = reg_valid;
-   assign out_done  = done & ~flush_valid;
+   assign out_done  = done ;
    
 endmodule
 

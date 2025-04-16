@@ -161,7 +161,7 @@ module intisq(/*AUTOARG*/
 					.out_alloc_valid_1(empty_id1_valid), // Templated
 					// Inputs
 					.in_id		(in_id),	 // Templated
-					.in_alloc_valid	(intisq_valid));	 // Templated
+					.in_alloc_valid	(intisq_empty));	 // Templated
    
    
 
@@ -188,10 +188,9 @@ module intisq(/*AUTOARG*/
       
       flush_valid_vector = '{default: 0};      
       for (i=0;i<INTISQ_NUM;i=i+1) begin
-	 if (intisq_valid[i] & (intisq_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH]) & (intisq_robid[i][ROB_WIDTH-1:0] < flush_robid[ROB_WIDTH-1:0]))
+	 if (intisq_valid[i] & ((intisq_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH]) ^ (intisq_robid[i][ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0])))
 	   flush_valid_vector[i] = 1'b1;
-	 if (intisq_valid[i] & ~(intisq_robid[i][ROB_WIDTH] ^ flush_robid[ROB_WIDTH]) & (intisq_robid[i][ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0]))	 
-	   flush_valid_vector[i] = 1'b1;
+
       end      
    end
    
@@ -440,13 +439,14 @@ module intisq(/*AUTOARG*/
 	    intisq_pc[empty_id0]         <= instr0_pc;          
 	    intisq_robid[empty_id0]      <= instr0_robid;       
 	    intisq_control[empty_id0]    <= instr0_control;     
-	 if (instr1_enq_valid) 
+	 if (instr1_enq_valid) begin
 	    intisq_src1_id[empty_id1]    <= instr1_src1_id;     
 	    intisq_src2_id[empty_id1]    <= instr1_src2_id;     
 	    intisq_T[empty_id1]          <= instr1_T;           
 	    intisq_pc[empty_id1]         <= instr1_pc;          
 	    intisq_robid[empty_id1]      <= instr1_robid;       
-	    intisq_control[empty_id1]    <= instr1_control;	   
+	    intisq_control[empty_id1]    <= instr1_control;
+	    end
       end
       else if (instr1_enq_valid) begin
 	    intisq_src1_id[empty_id0]    <= instr1_src1_id;     
@@ -485,7 +485,7 @@ module intisq(/*AUTOARG*/
          end
          else if (instr1_enq_valid) begin
 	    intisq_src1_state[empty_id0] <= instr1_src1_busy;  
-	    intisq_src2_state[empty_id0] <= instr1_src2_busy;  	 
+      	    intisq_src2_state[empty_id0] <= instr1_src2_busy;  	 
 	 end
 	 
 	 for(i2=0 ; i2 < INTISQ_NUM ; i2=i2+1) begin

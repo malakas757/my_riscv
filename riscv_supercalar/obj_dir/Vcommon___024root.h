@@ -14,25 +14,8 @@ VL_MODULE(Vcommon___024root) {
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(reset_n,0,0);
-    VL_OUT8(branch_taken,0,0);
-    VL_OUT8(flush,0,0);
-    VL_OUT8(update_GHSR,0,0);
-    CData/*0:0*/ bju__DOT__is_rs1_eq_rs2;
-    CData/*0:0*/ bju__DOT__is_rs1_lt_rs2;
-    CData/*0:0*/ bju__DOT__is_sign_rs1_lt_rs2;
-    CData/*0:0*/ bju__DOT__is_bj;
-    CData/*0:0*/ __Vclklast__TOP__clk;
-    VL_OUT16(GHSR_restore,9,0);
-    SData/*10:0*/ bju__DOT__GHSR_checkpoint;
-    VL_IN(left_operand,31,0);
-    VL_IN(right_operand,31,0);
-    VL_IN(pc,31,0);
-    VL_IN(immediate_data,31,0);
-    VL_OUT(j_next_pc,31,0);
-    VL_OUT(branch_target_pc,31,0);
-    IData/*31:0*/ bju__DOT__pc_plus_imm;
-    VL_INW(control,114,0,4);
-    VL_IN64(branch_predict,43,0);
+    VL_INW(if_instr,108,0,4);
+    VL_OUTW(control,114,0,4);
 
     // INTERNAL VARIABLES
     Vcommon__Syms* vlSymsp;  // Symbol table

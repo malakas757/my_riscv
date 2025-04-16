@@ -8,1840 +8,1820 @@
 #include "Vcommon__Syms.h"
 #include "Vcommon_if_stage.h"
 
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__if_stage__8(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__8(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_if_stage___sequent__TOP__if_stage__8\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__8\n"); );
     // Init
     IData/*31:0*/ __Vilp;
     // Body
     if (vlSymsp->TOP.reset_n) {
-        vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v928 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
-                ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                    [0x3a0U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                                  [0x3a0U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
-                                                ? 3U
-                                                : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
-                                      ? 3U : 1U)) : 
-                   ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a0U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
-                                   ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
-                                                  ? 1U
-                                                  : 0U)))
-                : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-               [0x3a0U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v929 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a1U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a1U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a1U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a1U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a1U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v930 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a2U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a2U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a2U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a2U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a2U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v931 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a3U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a3U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a3U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a3U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a3U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v932 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a4U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a4U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a4U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a4U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a4U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v933 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a5U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a5U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a5U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a5U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a5U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v934 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a6U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a6U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a6U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a6U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a6U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v935 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a7U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a7U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a7U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a7U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a7U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v936 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a8U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a8U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a8U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a8U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a8U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v937 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3a9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3a9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3a9U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3a9U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3a9U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3a9U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3a9U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v938 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3aaU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3aaU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3aaU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3aaU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3aaU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3aaU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3aaU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v939 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3abU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3abU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3abU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3abU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3abU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3abU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3abU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v940 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3acU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3acU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3acU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3acU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3acU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3acU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3acU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v941 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3adU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3adU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3adU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3adU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3adU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3adU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3adU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v942 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3aeU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3aeU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3aeU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3aeU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3aeU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3aeU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3aeU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v943 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3afU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3afU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3afU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3afU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3afU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3afU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3afU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v944 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b0U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b0U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b0U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b0U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b0U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v945 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b1U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b1U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b1U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b1U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b1U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v946 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b2U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b2U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b2U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b2U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b2U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v947 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b3U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b3U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b3U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b3U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b3U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v948 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b4U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b4U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b4U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b4U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b4U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v949 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b5U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b5U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b5U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b5U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b5U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v950 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b6U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b6U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b6U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b6U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b6U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v951 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b7U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b7U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b7U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b7U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b7U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v952 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b8U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b8U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b8U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b8U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b8U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v953 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3b9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3b9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3b9U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3b9U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3b9U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3b9U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3b9U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v954 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3baU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3baU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3baU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3baU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3baU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3baU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3baU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v955 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3bbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3bbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3bbU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3bbU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3bbU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3bbU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3bbU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v956 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3bcU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3bcU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3bcU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3bcU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3bcU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3bcU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3bcU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v957 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3bdU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3bdU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3bdU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3bdU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3bdU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3bdU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3bdU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v958 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3beU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3beU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3beU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3beU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3beU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3beU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3beU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v959 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3bfU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3bfU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3bfU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3bfU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3bfU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3bfU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3bfU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v960 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c0U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c0U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c0U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c0U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c0U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v961 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c1U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c1U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c1U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c1U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c1U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v962 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c2U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c2U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c2U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c2U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c2U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v963 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c3U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c3U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c3U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c3U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c3U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v964 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c4U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c4U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c4U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c4U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c4U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v965 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c5U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c5U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c5U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c5U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c5U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v966 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c6U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c6U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c6U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c6U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c6U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v967 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c7U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c7U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c7U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c7U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c7U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v968 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c8U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c8U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c8U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c8U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c8U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v969 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3c9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3c9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3c9U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3c9U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3c9U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3c9U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3c9U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v970 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3caU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3caU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3caU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3caU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3caU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3caU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3caU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v971 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3cbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3cbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3cbU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3cbU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3cbU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3cbU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3cbU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v972 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3ccU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3ccU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3ccU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3ccU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3ccU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3ccU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3ccU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v973 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3cdU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3cdU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3cdU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3cdU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3cdU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3cdU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3cdU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v974 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3ceU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3ceU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3ceU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3ceU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3ceU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3ceU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3ceU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v975 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3cfU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3cfU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3cfU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3cfU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3cfU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3cfU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3cfU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v976 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d0U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d0U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d0U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d0U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d0U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v977 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d1U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d1U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d1U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d1U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d1U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v978 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d2U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d2U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d2U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d2U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d2U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v979 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d3U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d3U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d3U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d3U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d3U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v980 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d4U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d4U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d4U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d4U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d4U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v981 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d5U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d5U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d5U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d5U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d5U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v982 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d6U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d6U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d6U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d6U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d6U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v983 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d7U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d7U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d7U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d7U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d7U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v984 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d8U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d8U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d8U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d8U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d8U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v985 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3d9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3d9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3d9U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3d9U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3d9U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3d9U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3d9U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v986 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3daU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3daU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3daU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3daU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3daU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3daU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3daU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v987 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3dbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3dbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3dbU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3dbU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3dbU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3dbU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3dbU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v988 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3dcU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3dcU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3dcU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3dcU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3dcU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3dcU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3dcU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v989 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3ddU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3ddU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3ddU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3ddU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3ddU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3ddU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3ddU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v990 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3deU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3deU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3deU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3deU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3deU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3deU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3deU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v991 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3dfU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3dfU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3dfU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3dfU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3dfU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3dfU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3dfU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v992 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e0U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e0U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e0U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e0U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e0U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v993 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e1U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e1U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e1U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e1U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e1U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v994 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e2U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e2U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e2U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e2U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e2U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v995 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e3U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e3U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e3U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e3U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e3U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v996 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e4U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e4U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e4U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e4U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e4U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v997 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e5U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e5U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e5U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e5U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e5U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v998 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e6U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e6U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e6U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e6U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e6U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v999 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e7U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e7U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e7U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e7U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e7U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1000 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e8U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e8U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e8U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e8U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e8U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1001 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3e9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3e9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3e9U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3e9U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3e9U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3e9U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3e9U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1002 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3eaU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3eaU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3eaU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3eaU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3eaU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3eaU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3eaU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1003 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3ebU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3ebU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3ebU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3ebU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3ebU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3ebU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3ebU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1004 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3ecU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3ecU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3ecU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3ecU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3ecU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3ecU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3ecU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1005 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3edU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3edU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3edU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3edU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3edU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3edU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3edU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1006 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3eeU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3eeU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3eeU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3eeU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3eeU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3eeU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3eeU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1007 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3efU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3efU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3efU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3efU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3efU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3efU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3efU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1008 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f0U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f0U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f0U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f0U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f0U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f0U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1009 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f1U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f1U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f1U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f1U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f1U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1010 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f2U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f2U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f2U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f2U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f2U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f2U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1011 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f3U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f3U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f3U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f3U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f3U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f3U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1012 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f4U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f4U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f4U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f4U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f4U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f4U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1013 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f5U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f5U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f5U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f5U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f5U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f5U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1014 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f6U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f6U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f6U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f6U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f6U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f6U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1015 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f7U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f7U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f7U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f7U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f7U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f7U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1016 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f8U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f8U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f8U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f8U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f8U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f8U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1017 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3f9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3f9U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3f9U]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3f9U]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3f9U]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3f9U]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3f9U]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1018 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3faU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3faU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3faU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3faU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3faU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3faU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3faU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1019 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3fbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3fbU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3fbU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3fbU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3fbU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3fbU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3fbU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1020 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3fcU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3fcU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3fcU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3fcU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3fcU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3fcU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3fcU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1021 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3fdU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3fdU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3fdU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3fdU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3fdU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3fdU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3fdU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1022 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3feU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3feU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3feU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3feU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3feU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3feU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3feU]);
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1023 
-            = (((vlSymsp->TOP.ex_branch_in[2U] >> 0xcU) 
-                & (0x3ffU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
+            = (((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                 >> 0xcU) & (0x3ffU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
                 ? ((2U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                     [0x3ffU]) ? ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                                   [0x3ffU]) ? ((0x800U 
-                                                & vlSymsp->TOP.ex_branch_in[2U])
+                                                & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                 ? 3U
                                                 : 2U)
-                                  : ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                                  : ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                       ? 3U : 1U)) : 
                    ((1U & vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
-                     [0x3ffU]) ? ((0x800U & vlSymsp->TOP.ex_branch_in[2U])
+                     [0x3ffU]) ? ((0x800U & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                    ? 2U : 0U) : ((0x800U 
-                                                  & vlSymsp->TOP.ex_branch_in[2U])
+                                                  & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])
                                                   ? 1U
                                                   : 0U)))
                 : vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
                [0x3ffU]);
     } else {
-        vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v928 = 2U;
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v929 = 2U;
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v930 = 2U;
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v931 = 2U;
@@ -3882,12 +3862,32 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__if_stage__8(Vcommon_if_stage
         = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v441;
     vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1baU] 
         = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v442;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1bbU] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v443;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1bcU] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v444;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1bdU] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v445;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1beU] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v446;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1bfU] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v447;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1c0U] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v448;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1c1U] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v449;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1c2U] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v450;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1c3U] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v451;
+    vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1c4U] 
+        = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v452;
 }
 
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__if_stage__10(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__10(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_if_stage___sequent__TOP__if_stage__10\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__10\n"); );
     // Init
     SData/*9:0*/ __PVT__gshare_inst__DOT__instr0_pht_addr;
     SData/*9:0*/ __PVT__gshare_inst__DOT__instr1_pht_addr;
@@ -3897,49 +3897,91 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__if_stage__10(Vcommon_if_stag
     SData/*9:0*/ __Vfunc_gshare_hash__1__Vfuncout;
     SData/*9:0*/ __Vfunc_gshare_hash__1__GHSR;
     IData/*31:0*/ __Vfunc_gshare_hash__1__branch_pc;
+    SData/*9:0*/ __Vfunc_gshare_hash__2__Vfuncout;
+    SData/*9:0*/ __Vfunc_gshare_hash__2__GHSR;
+    IData/*31:0*/ __Vfunc_gshare_hash__2__branch_pc;
     CData/*0:0*/ __Vfunc_if_branch_taken__3__Vfuncout;
     CData/*1:0*/ __Vfunc_if_branch_taken__3__biomd;
     CData/*0:0*/ __Vfunc_if_branch_taken__4__Vfuncout;
     CData/*1:0*/ __Vfunc_if_branch_taken__4__biomd;
     // Body
-    vlSelf->instr0_if_id[2U] = ((0x1fffU & vlSelf->instr0_if_id[2U]) 
-                                | (vlSymsp->TOP__if_stage__inst_pc.pc 
-                                   << 0xdU));
-    vlSelf->instr0_if_id[3U] = (vlSymsp->TOP__if_stage__inst_pc.pc 
-                                >> 0x13U);
-    vlSelf->instr1_if_id[2U] = ((0x1fffU & vlSelf->instr1_if_id[2U]) 
-                                | (((IData)(4U) + vlSymsp->TOP__if_stage__inst_pc.pc) 
-                                   << 0xdU));
-    vlSelf->instr1_if_id[3U] = (((IData)(4U) + vlSymsp->TOP__if_stage__inst_pc.pc) 
-                                >> 0x13U);
+    vlSelf->__PVT__instr0_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr0_if_id[2U]) 
+                                       | (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
+                                          << 0xdU));
+    vlSelf->__PVT__instr0_if_id[3U] = (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
+                                       >> 0x13U);
+    vlSelf->__PVT__instr1_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr1_if_id[2U]) 
+                                       | (((IData)(4U) 
+                                           + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
+                                          << 0xdU));
+    vlSelf->__PVT__instr1_if_id[3U] = (((IData)(4U) 
+                                        + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
+                                       >> 0x13U);
     vlSelf->__PVT__instr1_btb_target_addr = ((3U & vlSelf->__PVT__instr1_btb_target_addr) 
                                              | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
                                                 [(0x1ffU 
                                                   & (((IData)(4U) 
-                                                      + vlSymsp->TOP__if_stage__inst_pc.pc) 
+                                                      + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
                                                      >> 2U))] 
                                                 << 2U));
     vlSelf->__PVT__instr0_btb_target_addr = ((3U & vlSelf->__PVT__instr0_btb_target_addr) 
                                              | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
                                                 [(0x1ffU 
-                                                  & (vlSymsp->TOP__if_stage__inst_pc.pc 
+                                                  & (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
                                                      >> 2U))] 
                                                 << 2U));
+    vlSelf->__PVT__instr1_btb_hit = (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
+                                     [(0x1ffU & (((IData)(4U) 
+                                                  + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
+                                                 >> 2U))] 
+                                     & ((((IData)(4U) 
+                                          + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
+                                         >> 0xbU) == 
+                                        vlSelf->__PVT__btb_inst__DOT__btb_tag_inst__DOT__history_table
+                                        [(0x1ffU & 
+                                          (((IData)(4U) 
+                                            + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
+                                           >> 2U))]));
+    vlSelf->__PVT__instr0_btb_hit = (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
+                                     [(0x1ffU & (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
+                                                 >> 2U))] 
+                                     & ((vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
+                                         >> 0xbU) == 
+                                        vlSelf->__PVT__btb_inst__DOT__btb_tag_inst__DOT__history_table
+                                        [(0x1ffU & 
+                                          (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
+                                           >> 2U))]));
     __Vfunc_gshare_hash__1__branch_pc = ((IData)(4U) 
-                                         + vlSymsp->TOP__if_stage__inst_pc.pc);
+                                         + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc);
     __Vfunc_gshare_hash__1__GHSR = vlSelf->__PVT__gshare_inst__DOT__GHSR;
     __Vfunc_gshare_hash__1__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__1__GHSR) 
                                                   ^ 
                                                   (__Vfunc_gshare_hash__1__branch_pc 
                                                    >> 2U)));
     __PVT__gshare_inst__DOT__instr1_pht_addr = __Vfunc_gshare_hash__1__Vfuncout;
-    __Vfunc_gshare_hash__0__branch_pc = vlSymsp->TOP__if_stage__inst_pc.pc;
+    __Vfunc_gshare_hash__0__branch_pc = vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc;
     __Vfunc_gshare_hash__0__GHSR = vlSelf->__PVT__gshare_inst__DOT__GHSR;
     __Vfunc_gshare_hash__0__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__0__GHSR) 
                                                   ^ 
                                                   (__Vfunc_gshare_hash__0__branch_pc 
                                                    >> 2U)));
     __PVT__gshare_inst__DOT__instr0_pht_addr = __Vfunc_gshare_hash__0__Vfuncout;
+    vlSelf->__PVT__btb_inst__DOT__update_BTB = (IData)(
+                                                       (0x1800U 
+                                                        == 
+                                                        (0x1800U 
+                                                         & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])));
+    __Vfunc_gshare_hash__2__branch_pc = ((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
+                                          << 0x15U) 
+                                         | (vlSymsp->TOP__pipeline.__PVT__ex_branch_in[1U] 
+                                            >> 0xbU));
+    __Vfunc_gshare_hash__2__GHSR = (0x3ffU & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[0U]);
+    __Vfunc_gshare_hash__2__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__2__GHSR) 
+                                                  ^ 
+                                                  (__Vfunc_gshare_hash__2__branch_pc 
+                                                   >> 2U)));
+    vlSelf->__PVT__gshare_inst__DOT__update_pht_addr 
+        = __Vfunc_gshare_hash__2__Vfuncout;
     __Vfunc_if_branch_taken__4__biomd = vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT
         [__PVT__gshare_inst__DOT__instr1_pht_addr];
     __Vfunc_if_branch_taken__4__Vfuncout = (1U & ((IData)(__Vfunc_if_branch_taken__4__biomd) 
@@ -3950,86 +3992,6 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__if_stage__10(Vcommon_if_stag
     __Vfunc_if_branch_taken__3__Vfuncout = (1U & ((IData)(__Vfunc_if_branch_taken__3__biomd) 
                                                   >> 1U));
     vlSelf->__PVT__instr0_predict_taken = __Vfunc_if_branch_taken__3__Vfuncout;
-}
-
-VL_INLINE_OPT void Vcommon_if_stage___combo__TOP__if_stage__11(Vcommon_if_stage* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_if_stage___combo__TOP__if_stage__11\n"); );
-    // Init
-    SData/*9:0*/ __Vfunc_gshare_hash__2__Vfuncout;
-    SData/*9:0*/ __Vfunc_gshare_hash__2__GHSR;
-    IData/*31:0*/ __Vfunc_gshare_hash__2__branch_pc;
-    // Body
-    vlSelf->__PVT__btb_inst__DOT__update_BTB = (IData)(
-                                                       (0x1800U 
-                                                        == 
-                                                        (0x1800U 
-                                                         & vlSymsp->TOP.ex_branch_in[2U])));
-    __Vfunc_gshare_hash__2__branch_pc = ((vlSymsp->TOP.ex_branch_in[2U] 
-                                          << 0x15U) 
-                                         | (vlSymsp->TOP.ex_branch_in[1U] 
-                                            >> 0xbU));
-    __Vfunc_gshare_hash__2__GHSR = (0x3ffU & vlSymsp->TOP.ex_branch_in[0U]);
-    __Vfunc_gshare_hash__2__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__2__GHSR) 
-                                                  ^ 
-                                                  (__Vfunc_gshare_hash__2__branch_pc 
-                                                   >> 2U)));
-    vlSelf->__PVT__gshare_inst__DOT__update_pht_addr 
-        = __Vfunc_gshare_hash__2__Vfuncout;
-    if ((1U & vlSymsp->TOP.instr_resp[0U])) {
-        vlSelf->__PVT__instr1_btb_hit = (1U & (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
-                                               [(0x1ffU 
-                                                 & (((IData)(4U) 
-                                                     + vlSymsp->TOP__if_stage__inst_pc.pc) 
-                                                    >> 2U))] 
-                                               & ((((IData)(4U) 
-                                                    + vlSymsp->TOP__if_stage__inst_pc.pc) 
-                                                   >> 0xbU) 
-                                                  == 
-                                                  vlSelf->__PVT__btb_inst__DOT__btb_tag_inst__DOT__history_table
-                                                  [
-                                                  (0x1ffU 
-                                                   & (((IData)(4U) 
-                                                       + vlSymsp->TOP__if_stage__inst_pc.pc) 
-                                                      >> 2U))])));
-        vlSelf->__PVT__instr0_btb_hit = (1U & (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
-                                               [(0x1ffU 
-                                                 & (vlSymsp->TOP__if_stage__inst_pc.pc 
-                                                    >> 2U))] 
-                                               & ((vlSymsp->TOP__if_stage__inst_pc.pc 
-                                                   >> 0xbU) 
-                                                  == 
-                                                  vlSelf->__PVT__btb_inst__DOT__btb_tag_inst__DOT__history_table
-                                                  [
-                                                  (0x1ffU 
-                                                   & (vlSymsp->TOP__if_stage__inst_pc.pc 
-                                                      >> 2U))])));
-    } else {
-        vlSelf->__PVT__instr1_btb_hit = 0U;
-        vlSelf->__PVT__instr0_btb_hit = 0U;
-    }
-    vlSelf->instr1_if_id[0U] = (IData)((((QData)((IData)(vlSelf->__PVT__instr1_btb_target_addr)) 
-                                         << 0x20U) 
-                                        | (QData)((IData)(
-                                                          ((vlSymsp->TOP.instr_resp[1U] 
-                                                            << 0x1fU) 
-                                                           | (vlSymsp->TOP.instr_resp[0U] 
-                                                              >> 1U))))));
-    vlSelf->instr1_if_id[1U] = (IData)(((((QData)((IData)(vlSelf->__PVT__instr1_btb_target_addr)) 
-                                          << 0x20U) 
-                                         | (QData)((IData)(
-                                                           ((vlSymsp->TOP.instr_resp[1U] 
-                                                             << 0x1fU) 
-                                                            | (vlSymsp->TOP.instr_resp[0U] 
-                                                               >> 1U))))) 
-                                        >> 0x20U));
-    vlSelf->instr1_if_id[2U] = ((0xfffff000U & vlSelf->instr1_if_id[2U]) 
-                                | ((((IData)(vlSelf->__PVT__instr1_btb_hit) 
-                                     & (IData)(vlSelf->__PVT__instr1_predict_taken)) 
-                                    << 0xbU) | (((IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR) 
-                                                 << 1U) 
-                                                | (IData)(vlSelf->__PVT__instr1_btb_hit))));
     vlSelf->__PVT__PC_predict_taken = (((IData)(vlSelf->__PVT__instr0_btb_hit) 
                                         & (IData)(vlSelf->__PVT__instr0_predict_taken)) 
                                        | ((IData)(vlSelf->__PVT__instr1_btb_hit) 
@@ -4072,31 +4034,47 @@ VL_INLINE_OPT void Vcommon_if_stage___combo__TOP__if_stage__11(Vcommon_if_stage*
                                          & (IData)(vlSelf->__PVT__instr1_predict_taken))
                                          ? vlSelf->__PVT__instr1_btb_target_addr
                                          : 0U));
-    vlSelf->instr1_if_id[2U] = ((0xffffefffU & vlSelf->instr1_if_id[2U]) 
-                                | (0x1000U & ((vlSymsp->TOP.instr_resp[0U] 
-                                               & (~ 
-                                                  ((IData)(vlSelf->__PVT__instr0_btb_hit) 
-                                                   & (IData)(vlSelf->__PVT__instr0_predict_taken)))) 
-                                              << 0xcU)));
-    vlSelf->instr0_if_id[0U] = (IData)((((QData)((IData)(vlSelf->__PVT__instr0_btb_target_addr)) 
-                                         << 0x20U) 
-                                        | (QData)((IData)(
-                                                          ((vlSymsp->TOP.instr_resp[2U] 
-                                                            << 0x1fU) 
-                                                           | (vlSymsp->TOP.instr_resp[1U] 
-                                                              >> 1U))))));
-    vlSelf->instr0_if_id[1U] = (IData)(((((QData)((IData)(vlSelf->__PVT__instr0_btb_target_addr)) 
-                                          << 0x20U) 
-                                         | (QData)((IData)(
-                                                           ((vlSymsp->TOP.instr_resp[2U] 
-                                                             << 0x1fU) 
-                                                            | (vlSymsp->TOP.instr_resp[1U] 
-                                                               >> 1U))))) 
-                                        >> 0x20U));
-    vlSelf->instr0_if_id[2U] = ((0xfffff000U & vlSelf->instr0_if_id[2U]) 
-                                | ((((IData)(vlSelf->__PVT__instr0_btb_hit) 
-                                     & (IData)(vlSelf->__PVT__instr0_predict_taken)) 
-                                    << 0xbU) | (((IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR) 
-                                                 << 1U) 
-                                                | (IData)(vlSelf->__PVT__instr0_btb_hit))));
+    vlSelf->__PVT__instr1_if_id[2U] = ((0xffffefffU 
+                                        & vlSelf->__PVT__instr1_if_id[2U]) 
+                                       | (0x1000U & 
+                                          ((~ ((IData)(vlSelf->__PVT__instr0_btb_hit) 
+                                               & (IData)(vlSelf->__PVT__instr0_predict_taken))) 
+                                           << 0xcU)));
+}
+
+VL_INLINE_OPT void Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__11(Vcommon_if_stage* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___combo__TOP__pipeline__inst_if_stage__11\n"); );
+    // Body
+    vlSelf->__PVT__instr1_if_id[0U] = (IData)((((QData)((IData)(vlSelf->__PVT__instr1_btb_target_addr)) 
+                                                << 0x20U) 
+                                               | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data1))));
+    vlSelf->__PVT__instr1_if_id[1U] = (IData)(((((QData)((IData)(vlSelf->__PVT__instr1_btb_target_addr)) 
+                                                 << 0x20U) 
+                                                | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data1))) 
+                                               >> 0x20U));
+    vlSelf->__PVT__instr1_if_id[2U] = ((0xfffff000U 
+                                        & vlSelf->__PVT__instr1_if_id[2U]) 
+                                       | ((((IData)(vlSelf->__PVT__instr1_btb_hit) 
+                                            & (IData)(vlSelf->__PVT__instr1_predict_taken)) 
+                                           << 0xbU) 
+                                          | (((IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR) 
+                                              << 1U) 
+                                             | (IData)(vlSelf->__PVT__instr1_btb_hit))));
+    vlSelf->__PVT__instr0_if_id[0U] = (IData)((((QData)((IData)(vlSelf->__PVT__instr0_btb_target_addr)) 
+                                                << 0x20U) 
+                                               | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data0))));
+    vlSelf->__PVT__instr0_if_id[1U] = (IData)(((((QData)((IData)(vlSelf->__PVT__instr0_btb_target_addr)) 
+                                                 << 0x20U) 
+                                                | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data0))) 
+                                               >> 0x20U));
+    vlSelf->__PVT__instr0_if_id[2U] = ((0xfffff000U 
+                                        & vlSelf->__PVT__instr0_if_id[2U]) 
+                                       | ((((IData)(vlSelf->__PVT__instr0_btb_hit) 
+                                            & (IData)(vlSelf->__PVT__instr0_predict_taken)) 
+                                           << 0xbU) 
+                                          | (((IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR) 
+                                              << 1U) 
+                                             | (IData)(vlSelf->__PVT__instr0_btb_hit))));
 }

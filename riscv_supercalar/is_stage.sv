@@ -11,7 +11,9 @@ module is_stage(/*AUTOARG*/
    walk0_arf_id, walk1_arf_id, walk0_T, walk1_T, ex_slot0_valid,
    ex_slot1_valid, ex_slot2_valid, slot0_T, slot1_T, slot2_T,
    slot0_control, slot1_control, slot2_control, slot0_pc, slot1_pc,
-   slot2_pc, slot0_robid, slot1_robid, slot2_robid,
+   slot2_pc, slot0_robid, slot1_robid, slot2_robid, slot0_src1_id,
+   slot0_src2_id, slot1_src1_id, slot1_src2_id, slot2_src1_id,
+   slot2_src2_id,
    // Inputs
    clk, reset_n, ir_is_reg0, ir_is_reg1, ir_is_reg0_pc, ir_is_reg1_pc,
    ir_is_reg0_instr, ir_is_reg1_instr, flush_robid, flush_valid,
@@ -20,8 +22,7 @@ module is_stage(/*AUTOARG*/
    writeback2_valid, writeback2_need_to_wb, writeback2_prd,
    writeback3_valid, writeback3_need_to_wb, writeback3_prd,
    writeback0_robid, writeback1_robid, writeback2_robid,
-   writeback3_robid, writeback3_is_store, writeback3_data,
-   writeback3_addr, mul_slot_busy, mem_issue_stall
+   writeback3_robid, mul_slot_busy, mem_issue_stall
    );
 
 
@@ -93,10 +94,7 @@ module is_stage(/*AUTOARG*/
    input logic [ROB_WIDTH:0]   writeback0_robid;
    input logic [ROB_WIDTH:0]   writeback1_robid;
    input logic [ROB_WIDTH:0]   writeback2_robid;
-   input logic [ROB_WIDTH:0]   writeback3_robid;   
-   input logic 		       writeback3_is_store; // memint if the finished instr is store  
-   input logic [31:0] 	       writeback3_data; // the data to be writed backto mem
-   input logic [31:0] 	       writeback3_addr; // the addr to be writed backto mem  
+   input logic [ROB_WIDTH:0]   writeback3_robid;      
    input logic                 mul_slot_busy;
    output logic                ex_slot0_valid;
    output logic                ex_slot1_valid;
@@ -116,6 +114,14 @@ module is_stage(/*AUTOARG*/
 
 //from int_mem
    input 		       mem_issue_stall;
+
+//to phyreg
+   output logic [PRF_WIDTH-1:0]        slot0_src1_id;
+   output logic [PRF_WIDTH-1:0]        slot0_src2_id;
+   output logic [PRF_WIDTH-1:0]        slot1_src1_id;
+   output logic [PRF_WIDTH-1:0]        slot1_src2_id;
+   output logic [PRF_WIDTH-1:0]        slot2_src1_id;
+   output logic [PRF_WIDTH-1:0]        slot2_src2_id;    
    
      
    
@@ -150,18 +156,12 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 // End of automatics
 
    wire [1:0]		intisq_left;		// From inst_rob of rob.v
-   wire [1:0]		sq_left;		// From inst_rob of rob.v
+  // wire [1:0]		sq_left;		// From inst_rob of rob.v
    wire [1:0] 		memisq_left;		// From inst_rob of rob.v
    wire                 instr0_rs1_busy;
+   wire                 instr1_rs1_busy;
+   wire                 instr0_rs2_busy;
    wire                 instr1_rs2_busy;
-   wire                 instr0_rs1_busy;
-   wire                 instr1_rs2_busy;
-   wire [PRF_WIDTH-1:0] slot0_src1_id;
-   wire [PRF_WIDTH-1:0] slot0_src2_id;
-   wire [PRF_WIDTH-1:0] slot1_src1_id;
-   wire [PRF_WIDTH-1:0] slot1_src2_id;
-   wire [PRF_WIDTH-1:0] slot2_src1_id;
-   wire [PRF_WIDTH-1:0] slot2_src2_id;
 
 /*   dispatch AUTO_TEMPLATE(
 			  // Outputs

@@ -4,8 +4,8 @@ import common::*;
 
 module stall_flush_control (/*AUTOARG*/
    // Outputs
-   PC_stall, PC_flush, IF_stall, ID_stall, IR_stall, ID_flush,
-   IF_flush, IR_flush,
+   PC_stall, IF_stall, ID_stall, IR_stall, ID_flush, IF_flush,
+   IR_flush,
    // Inputs
    imem_miss, can_dispatch, flush_valid, rob_state
    );
@@ -13,7 +13,6 @@ module stall_flush_control (/*AUTOARG*/
 
    //From IF
    output   PC_stall;
-   output   PC_flush;
    output   IF_stall;
    output   ID_stall;
    output   IR_stall;
@@ -41,7 +40,6 @@ module stall_flush_control (/*AUTOARG*/
    assign IF_stall = ~can_dispatch || is_walk || is_rollback;
    assign ID_stall = ~can_dispatch || is_rollback || is_walk ;
    assign IR_stall = ~can_dispatch || is_walk || is_rollback;
-   assign PC_flush = flush_valid;
    assign IF_flush = flush_valid || imem_miss;
    assign ID_flush = flush_valid;
    assign IR_flush = flush_valid;

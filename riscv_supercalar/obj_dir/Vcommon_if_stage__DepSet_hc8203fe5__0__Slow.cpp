@@ -10,19 +10,22 @@
 VL_ATTR_COLD void Vcommon_if_stage___ctor_var_reset(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_if_stage___ctor_var_reset\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___ctor_var_reset\n"); );
     // Body
-    vlSelf->clk = VL_RAND_RESET_I(1);
-    vlSelf->reset_n = VL_RAND_RESET_I(1);
-    VL_RAND_RESET_W(65, vlSelf->instr_req);
-    VL_RAND_RESET_W(65, vlSelf->instr_resp);
-    VL_RAND_RESET_W(109, vlSelf->instr0_if_id);
-    VL_RAND_RESET_W(109, vlSelf->instr1_if_id);
-    VL_RAND_RESET_W(77, vlSelf->ex_branch_in);
-    vlSelf->PC_stall = VL_RAND_RESET_I(1);
-    vlSelf->PC_flush = VL_RAND_RESET_I(1);
-    vlSelf->IF_stall = VL_RAND_RESET_I(1);
-    vlSelf->imem_miss = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__clk = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__reset_n = VL_RAND_RESET_I(1);
+    VL_RAND_RESET_W(65, vlSelf->__PVT__instr_req);
+    vlSelf->__PVT__instr_resp_ready = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__imem_data_instr0 = VL_RAND_RESET_I(32);
+    vlSelf->__PVT__imem_data_instr1 = VL_RAND_RESET_I(32);
+    VL_RAND_RESET_W(109, vlSelf->__PVT__instr0_if_id);
+    VL_RAND_RESET_W(109, vlSelf->__PVT__instr1_if_id);
+    VL_RAND_RESET_W(77, vlSelf->__PVT__ex_branch_in);
+    vlSelf->__PVT__flush_valid = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__branch_target_pc = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__PC_stall = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__IF_stall = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__imem_miss = VL_RAND_RESET_I(1);
     vlSelf->__PVT__PC_predict_taken = VL_RAND_RESET_I(1);
     vlSelf->__PVT__PC_predict_pc = VL_RAND_RESET_I(32);
     vlSelf->__PVT__instr0_btb_target_addr = VL_RAND_RESET_I(32);
@@ -31,7 +34,6 @@ VL_ATTR_COLD void Vcommon_if_stage___ctor_var_reset(Vcommon_if_stage* vlSelf) {
     vlSelf->__PVT__instr1_btb_hit = VL_RAND_RESET_I(1);
     vlSelf->__PVT__instr0_predict_taken = VL_RAND_RESET_I(1);
     vlSelf->__PVT__instr1_predict_taken = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__imem_req = VL_RAND_RESET_I(1);
     vlSelf->__PVT__btb_inst__DOT__update_BTB = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<512; ++__Vi0) {
         vlSelf->__PVT__btb_inst__DOT__btb_entry_valids[__Vi0] = VL_RAND_RESET_I(1);

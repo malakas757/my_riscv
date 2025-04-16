@@ -11,18 +11,8 @@ Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , reset_n{vlSymsp->TOP.reset_n}
-    , branch_taken{vlSymsp->TOP.branch_taken}
-    , flush{vlSymsp->TOP.flush}
-    , update_GHSR{vlSymsp->TOP.update_GHSR}
-    , GHSR_restore{vlSymsp->TOP.GHSR_restore}
-    , left_operand{vlSymsp->TOP.left_operand}
-    , right_operand{vlSymsp->TOP.right_operand}
-    , pc{vlSymsp->TOP.pc}
-    , immediate_data{vlSymsp->TOP.immediate_data}
-    , j_next_pc{vlSymsp->TOP.j_next_pc}
-    , branch_target_pc{vlSymsp->TOP.branch_target_pc}
+    , if_instr{vlSymsp->TOP.if_instr}
     , control{vlSymsp->TOP.control}
-    , branch_predict{vlSymsp->TOP.branch_predict}
     , rootp{&(vlSymsp->TOP)}
 {
 }

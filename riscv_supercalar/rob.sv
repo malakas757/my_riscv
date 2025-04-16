@@ -98,8 +98,29 @@ module rob(/*AUTOARG*/
    rob_type              reg_rob[ROB_NUM-1:0];
 
    logic [ROB_WIDTH:0] 	 rob_head;//one more bit to judge age
+   logic [ROB_WIDTH:0] 	 rob_head_plus1;//one more bit to judge age
    logic [ROB_WIDTH:0] 	 rob_tail;//one more bit to judge age
-   logic [ROB_WIDTH:0] 	 walk_ptr;//used to recovery
+   logic [ROB_WIDTH:0] 	 rob_tail_plus1;//one more bit to judge age
+   logic [ROB_WIDTH:0] 	 walk_head;//used to recovery
+   logic [ROB_WIDTH:0] 	 walk_head_plus1;//used to recovery
+
+   logic [ROB_WIDTH-1:0] head_ptr;//use in arrray logic to avoid bug
+   logic [ROB_WIDTH-1:0] head_ptr_plus1;//use in arrray logic to avoid bug
+   logic [ROB_WIDTH-1:0] tail_ptr;//
+   logic [ROB_WIDTH-1:0] tail_ptr_plus1;//
+   logic [ROB_WIDTH-1:0] walk_ptr;//
+   logic [ROB_WIDTH-1:0] walk_ptr_plus1;//
+   
+   assign rob_head_plus1 = rob_head + 1;   
+   assign head_ptr       = rob_head[ROB_WIDTH-1:0];   
+   assign head_ptr_plus1 = rob_head_plus1[ROB_WIDTH-1:0];
+   assign rob_tail_plus1 = rob_tail + 1;   
+   assign tail_ptr       = rob_tail[ROB_WIDTH-1:0];   
+   assign tail_ptr_plus1 = rob_tail_plus1[ROB_WIDTH-1:0];
+   assign walk_head_plus1 = walk_head + 1;   
+   assign walk_ptr       = walk_head[ROB_WIDTH-1:0];   
+   assign walk_ptr_plus1 = walk_head_plus1[ROB_WIDTH-1:0];
+
 
   
    logic 		 is_idle;
@@ -108,6 +129,11 @@ module rob(/*AUTOARG*/
 
    logic           rollback_valid[ROB_NUM-1:0];
    logic [ROB_WIDTH:0] flush_robid_latch;  // latch the robid from exe stage
+
+   //for debug
+   logic [31:0]        retire0_pc;
+   logic [31:0]        retire1_pc;
+   
    
 
    
@@ -155,15 +181,21 @@ module rob(/*AUTOARG*/
       end
       else  begin
 	 if(instr0_valid) begin
-	    reg_rob[rob_head].valid <= 1'b1;
-	   // reg_rob[rob_head].robid <= rob_head;	    
+	    reg_rob[head_ptr].valid <= 1'b1;
+	   // reg_rob[head_ptr].robid <= rob_head;	    
 	    if(instr1_valid)
-	      reg_rob[rob_head+1].valid <= 1'b1;	    
-	     // reg_rob[rob_head+1].robid <= rob_head+1;	    
+	      reg_rob[head_ptr_plus1].valid <= 1'b1;	    
+	     // reg_rob[head_ptr_plus1].robid <= rob_head+1;	    
 	 end
 	 else if(instr1_valid) begin
-	    reg_rob[rob_head].valid <= 1'b1;
-	   // reg_rob[rob_head].rob_head <= rob_head;
+	    reg_rob[head_ptr].valid <= 1'b1;
+	   // reg_rob[head_ptr].rob_head <= rob_head;
+	 end
+	 if(retire_num == 1)
+	   reg_rob[tail_ptr].valid <= 1'b0;
+         if(retire_num == 2) begin
+	    reg_rob[tail_ptr].valid <= 1'b0;
+	    reg_rob[tail_ptr_plus1].valid <= 1'b0;
 	 end
       end // else: !if(~reset_n)
    end
@@ -188,8 +220,8 @@ module rob(/*AUTOARG*/
    logic 	     retire0_valid;
    logic 	     retire1_valid;
 
-   assign retire0_valid = ~flush_valid & is_idle & reg_rob[rob_tail].valid & reg_rob[rob_tail].complete;
-   assign retire1_valid = retire0_valid & reg_rob[rob_tail+1].valid & reg_rob[rob_tail+1].complete;
+   assign retire0_valid = ~flush_valid & is_idle & reg_rob[tail_ptr].valid & reg_rob[tail_ptr].complete;
+   assign retire1_valid = retire0_valid & reg_rob[tail_ptr_plus1].valid & reg_rob[tail_ptr_plus1].complete;
    
    
    always_ff@(posedge clk) begin
@@ -216,16 +248,19 @@ module rob(/*AUTOARG*/
 
    
 //retire logic
-   assign   retire0_is_wb   = reg_rob[rob_tail].is_wb;
-   assign   retire1_is_wb   = reg_rob[rob_tail+1].is_wb;
-   assign   retire0_arf_id  = reg_rob[rob_tail].arf_id ;
-   assign   retire1_arf_id  = reg_rob[rob_tail+1].arf_id ;
-   assign   retire0_fl_Told = reg_rob[rob_tail].T_old ;
-   assign   retire1_fl_Told = reg_rob[rob_tail+1].T_old  ;
-   assign   retire0_T       = reg_rob[rob_tail].T;
-   assign   retire1_T       = reg_rob[rob_tail+1].T;
+   assign   retire0_is_wb   = reg_rob[tail_ptr].is_wb;
+   assign   retire1_is_wb   = reg_rob[tail_ptr_plus1].is_wb;
+   assign   retire0_arf_id  = reg_rob[tail_ptr].arf_id ;
+   assign   retire1_arf_id  = reg_rob[tail_ptr_plus1].arf_id ;
+   assign   retire0_fl_Told = reg_rob[tail_ptr].T_old ;
+   assign   retire1_fl_Told = reg_rob[tail_ptr_plus1].T_old  ;
+   assign   retire0_T       = reg_rob[tail_ptr].T;
+   assign   retire1_T       = reg_rob[tail_ptr_plus1].T;
    assign   retire0_robid   = rob_tail;
    assign   retire1_robid   = rob_tail+1;
+   assign   retire0_pc   = reg_rob[tail_ptr].pc;
+   assign   retire1_pc   = reg_rob[tail_ptr_plus1].pc;
+   
 			
       
 
@@ -248,34 +283,34 @@ module rob(/*AUTOARG*/
       end
       else  begin
 	 if(instr0_valid) begin
-	    reg_rob[rob_head].T <= instr0_T;
-	    reg_rob[rob_head].T_old <= instr0_T_old;
-	    reg_rob[rob_head].is_wb <= instr0_is_wb;	   
-	    reg_rob[rob_head].arf_id <= instr0_arf_id;
+	    reg_rob[head_ptr].T <= instr0_T;
+	    reg_rob[head_ptr].T_old <= instr0_T_old;
+	    reg_rob[head_ptr].is_wb <= instr0_is_wb;	   
+	    reg_rob[head_ptr].arf_id <= instr0_arf_id;
 `ifdef debug
-	    reg_rob[rob_head].pc <= instr0_pc;
-	    reg_rob[rob_head].instruction <= instr0_instr;
+	    reg_rob[head_ptr].pc <= instr0_pc;
+	    reg_rob[head_ptr].instruction <= instr0_instr;
 `endif	    
 	   
-	    if(instr1_valid)
-	      reg_rob[rob_head+1].T <= instr1_T;
-	      reg_rob[rob_head+1].T_old <= instr1_T_old;
-	      reg_rob[rob_head+1].is_wb <= instr1_is_wb;	     
-	      reg_rob[rob_head+1].arf_id <= instr1_arf_id;
+	    if(instr1_valid) begin
+	      reg_rob[head_ptr_plus1].T <= instr1_T;
+	      reg_rob[head_ptr_plus1].T_old <= instr1_T_old;
+	      reg_rob[head_ptr_plus1].is_wb <= instr1_is_wb;	     
+	      reg_rob[head_ptr_plus1].arf_id <= instr1_arf_id;
 `ifdef debug
-	      reg_rob[rob_head+1].pc <= instr1_pc;
-	      reg_rob[rob_head+1].instruction <= instr1_instr;
+	      reg_rob[head_ptr_plus1].pc <= instr1_pc;
+	      reg_rob[head_ptr_plus1].instruction <= instr1_instr;
 `endif	    	    
-	   
+	    end
 	 end
 	 else if(instr1_valid) begin
-	      reg_rob[rob_head].T <= instr1_T;
-	      reg_rob[rob_head].T_old <= instr1_T_old;
-	      reg_rob[rob_head].is_wb <= instr1_is_wb;	   
-	      reg_rob[rob_head].arf_id <= instr1_arf_id;
+	      reg_rob[head_ptr].T <= instr1_T;
+	      reg_rob[head_ptr].T_old <= instr1_T_old;
+	      reg_rob[head_ptr].is_wb <= instr1_is_wb;	   
+	      reg_rob[head_ptr].arf_id <= instr1_arf_id;
 `ifdef debug
-	      reg_rob[rob_head].pc <= instr1_pc;
-	      reg_rob[rob_head].instruction <= instr1_instr;
+	      reg_rob[head_ptr].pc <= instr1_pc;
+	      reg_rob[head_ptr].instruction <= instr1_instr;
 `endif	    	   
 	 end
       end // else: !if(~reset_n)
@@ -313,10 +348,10 @@ module rob(/*AUTOARG*/
 	 end
 
          if(retire_num == 1)
-	   reg_rob[rob_tail].complete <= 1'b0;
+	   reg_rob[tail_ptr].complete <= 1'b0;
          if(retire_num == 2) begin
-	    reg_rob[rob_tail].complete <= 1'b0;
-	    reg_rob[rob_tail+1].complete <= 1'b0;
+	    reg_rob[tail_ptr].complete <= 1'b0;
+	    reg_rob[tail_ptr_plus1].complete <= 1'b0;
 	 end
       end
    end
@@ -366,7 +401,7 @@ module rob(/*AUTOARG*/
         rob_walk: begin
            if (flush_valid) begin
               next_state = rob_rollback;
-           end else if (reg_rob[walk_ptr+1].valid == 0 || reg_rob[walk_ptr+2].valid == 0) begin
+           end else if (reg_rob[walk_ptr_plus1].valid == 0 || reg_rob[walk_head[ROB_WIDTH-1:0]+2].valid == 0) begin
               next_state = rob_idle;
            end else begin
               next_state = rob_walk;
@@ -388,11 +423,11 @@ module rob(/*AUTOARG*/
       for(i=0; i<ROB_NUM;i=i+1) begin
 	 if(reg_rob[i].valid == 1) begin 
 	    if (rob_tail[ROB_WIDTH-1:0] > flush_robid_latch[ROB_WIDTH-1:0]) begin
-	       if(i < rob_tail && i > flush_robid_latch)
+	       if(i < rob_tail[ROB_WIDTH-1:0] && i > flush_robid_latch[ROB_WIDTH-1:0])
 		 rollback_valid[i] = 1'b1;	    
 	    end
 	    else begin
-	       if( i > flush_robid_latch || i < rob_tail)
+	       if( i > flush_robid_latch[ROB_WIDTH-1:0] || i < rob_tail[ROB_WIDTH-1:0])
 		 rollback_valid[i] = 1'b1;
 	    end
 	 end
@@ -402,23 +437,23 @@ module rob(/*AUTOARG*/
 
 
    assign walk0_valid = is_walk & reg_rob[walk_ptr].valid & reg_rob[walk_ptr].is_wb; //if the ptr at the instruction that is wb and valid instr, restore the rename module
-   assign walk1_valid = is_walk & reg_rob[walk_ptr+1].valid & reg_rob[walk_ptr+1].is_wb;
+   assign walk1_valid = is_walk & reg_rob[walk_ptr_plus1].valid & reg_rob[walk_ptr_plus1].is_wb;
    assign walk0_complete = reg_rob[walk_ptr].complete;
-   assign walk1_complete = reg_rob[walk_ptr+1].complete;
+   assign walk1_complete = reg_rob[walk_ptr_plus1].complete;
    assign walk0_arf_id = reg_rob[walk_ptr].arf_id;
-   assign walk1_arf_id = reg_rob[walk_ptr+1].arf_id;
+   assign walk1_arf_id = reg_rob[walk_ptr_plus1].arf_id;
    assign walk0_T = reg_rob[walk_ptr].T;
-   assign walk1_T = reg_rob[walk_ptr+1].T;
+   assign walk1_T = reg_rob[walk_ptr_plus1].T;
    
    always_ff@(posedge clk) begin
       if(~reset_n) begin
-	 walk_ptr <= '0;	 
+	 walk_head <= '0;	 
       end
       else if (is_rollback) begin
-	 walk_ptr <= rob_tail;
+	 walk_head <= rob_tail;
       end
       else if (is_walk) begin
-	 walk_ptr <= walk_ptr + 2;	 
+	 walk_head <= walk_head + 2;	 
       end 
 
    end

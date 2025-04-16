@@ -36,7 +36,7 @@ module lsu(
 
        // GET store data 
 
-	  case (control.funct3[1:0])
+	  case (control.funct3[2:0])
 	    F3_SB   : store_data = right_operand[7:0]  << (8 * mem_addr[1:0]) ;  // Extend LS Byte and send
 	    F3_SH   : store_data = right_operand[15:0] << (8 * mem_addr[1:0]) ;  // Extend LS Half-word and send
 	    F3_SW    : store_data = right_operand ;                                   // Send word

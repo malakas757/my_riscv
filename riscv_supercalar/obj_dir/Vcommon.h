@@ -26,18 +26,8 @@ class Vcommon VL_NOT_FINAL {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&reset_n,0,0);
-    VL_OUT8(&branch_taken,0,0);
-    VL_OUT8(&flush,0,0);
-    VL_OUT8(&update_GHSR,0,0);
-    VL_OUT16(&GHSR_restore,9,0);
-    VL_IN(&left_operand,31,0);
-    VL_IN(&right_operand,31,0);
-    VL_IN(&pc,31,0);
-    VL_IN(&immediate_data,31,0);
-    VL_OUT(&j_next_pc,31,0);
-    VL_OUT(&branch_target_pc,31,0);
-    VL_INW(&control,114,0,4);
-    VL_IN64(&branch_predict,43,0);
+    VL_INW(&if_instr,108,0,4);
+    VL_OUTW(&control,114,0,4);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

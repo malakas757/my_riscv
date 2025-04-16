@@ -3,7 +3,7 @@ import common::*;
 
 module int0_mul_alu(/*AUTOARG*/
    // Outputs
-   mul_is_busy, writeback0_valid, writeback0_need_to_wb,
+   mul_slot_busy, writeback0_valid, writeback0_need_to_wb,
    writeback0_prd, writeback0_robid, writeback0_data,
    writeback1_valid, writeback1_need_to_wb, writeback1_robid,
    writeback1_prd, writeback1_data,
@@ -16,7 +16,7 @@ module int0_mul_alu(/*AUTOARG*/
    input                       reset_n;
    input                       flush_valid;
    input [ROB_WIDTH:0] 	       flush_robid;
-   output 		       mul_is_busy;//always 1 because pipeline mul unit
+   output 		       mul_slot_busy;//always 1 because pipeline mul unit
    
    
 
@@ -51,9 +51,25 @@ module int0_mul_alu(/*AUTOARG*/
    logic [ROB_WIDTH:0] 		mul_out_robid;
    logic [PRF_WIDTH-1:0] 	mul_out_T;
 
+   //wb0 reg
+   logic 			wb0_reg_valid;
+   logic 			wb0_reg_need_to_wb;
+   logic [PRF_WIDTH-1:0] 	wb0_reg_prd;                     
+   logic [ROB_WIDTH:0] 		wb0_reg_robid;                     
+   logic [31:0] 		wb0_reg_data;
+   logic 			wb0_need_to_flush;
+
+   //wb1 reg
+   logic 			wb1_reg_valid;
+   logic 			wb1_reg_need_to_wb;
+   logic [PRF_WIDTH-1:0] 	wb1_reg_prd;                     
+   logic [ROB_WIDTH:0] 		wb1_reg_robid;                     
+   logic [31:0] 		wb1_reg_data;
+   logic 			wb1_need_to_flush;
+
+
+   logic [31:0] 		alu_result;
    
-
-
 
    
    always_comb begin: operand_selector
@@ -69,14 +85,40 @@ module int0_mul_alu(/*AUTOARG*/
 		.control(int0_control.alu_op),
 		.left_operand(left_operand), 
 		.right_operand(right_operand),
-		.result(writeback1_data)
+		.result(alu_result)
 		);
 
-   assign writeback1_need_to_wb = int0_control.reg_write;
-   assign writeback1_valid =  ~flush_valid & int0_valid & ~int0_control.is_mul;
-   assign writeback1_prd = int0_T;
-   assign writeback1_robid = int0_robid;
+   //wb1 reg
 
+
+
+   assign wb1_need_to_flush = (flush_valid & (wb1_reg_robid[ROB_WIDTH] ^ flush_robid[ROB_WIDTH] ^ (wb1_reg_robid[ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0])))?1:0;
+   assign writeback1_need_to_wb  = wb1_reg_need_to_wb;
+   assign writeback1_valid       = wb1_reg_valid & ~flush_valid;
+   assign writeback1_prd         = wb1_reg_prd;
+   assign writeback1_robid       = wb1_reg_robid;
+   assign writeback1_data        = wb1_reg_data;
+   
+   
+   always_ff@(posedge clk) begin
+      if(~reset_n | wb1_need_to_flush) begin
+	 wb1_reg_valid      <= 1'b0;
+	 wb1_reg_robid      <= '0;
+	 wb1_reg_prd        <= '0;
+	 wb1_reg_data       <= '0;
+	 wb1_reg_need_to_wb <= '0;
+      end
+      else if ( ~flush_valid ) begin
+	 wb1_reg_valid      <= int0_valid & ~int0_control.is_mul;
+	 wb1_reg_robid      <= int0_robid;
+	 wb1_reg_prd        <= int0_T;
+	 wb1_reg_data       <= alu_result;
+	 wb1_reg_need_to_wb <= int0_control.reg_write;	 
+      end	 
+   end // always_ff@ (posedge clk)
+
+
+   
    //for mul
    mult inst_mult(
 		  // Outputs
@@ -98,14 +140,35 @@ module int0_mul_alu(/*AUTOARG*/
 		  .prf_id		(int0_T),
 		  .flush_valid		(flush_valid));
    
-   assign writeback0_data = mul_out_data[31:0];
-   assign writeback0_valid = mul_done & mul_out_valid;
-   assign writeback0_prd = mul_out_T;
-   assign writeback0_robid = mul_out_robid;
-   assign writeback0_need_to_wb = 1'b1;//mul must be a reg write instr
-   assign mul_is_busy = 1'b0;
+
+
   
+   //wb0 reg
+   assign wb0_need_to_flush = (flush_valid & (wb0_reg_robid[ROB_WIDTH] ^ flush_robid[ROB_WIDTH] ^ (wb0_reg_robid[ROB_WIDTH-1:0] > flush_robid[ROB_WIDTH-1:0])))?1:0;
+   assign writeback0_need_to_wb  = wb0_reg_need_to_wb;
+   assign writeback0_valid       = wb0_reg_valid & ~flush_valid;
+   assign writeback0_prd         = wb0_reg_prd;
+   assign writeback0_robid       = wb0_reg_robid;
+   assign writeback0_data        = wb0_reg_data;
+   assign mul_slot_busy          = 1'b0;
    
+   
+   always_ff@(posedge clk) begin
+      if(~reset_n | wb0_need_to_flush) begin
+	 wb0_reg_valid      <= 1'b0;
+	 wb0_reg_robid      <= '0;
+	 wb0_reg_prd        <= '0;
+	 wb0_reg_data       <= '0;
+	 wb0_reg_need_to_wb <= '0;
+      end
+      else if ( ~flush_valid ) begin
+	 wb0_reg_valid      <= mul_done & mul_out_valid;
+	 wb0_reg_robid      <= mul_out_robid;
+	 wb0_reg_prd        <= mul_out_T;
+	 wb0_reg_data       <= mul_out_data[31:0];
+	 wb0_reg_need_to_wb <= 1'b1;	 
+      end	 
+   end // always_ff@ (posedge clk)
 
 
 endmodule

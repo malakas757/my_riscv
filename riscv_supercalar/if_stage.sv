@@ -8,8 +8,8 @@ module if_stage(
    // Outputs
    instr_req, instr0_if_id, instr1_if_id, imem_miss,
    // Inputs
-   clk, reset_n, instr_resp, ex_branch_in, PC_stall, PC_flush,
-   IF_stall
+   clk, reset_n, instr_resp_ready, imem_data_instr0, imem_data_instr1,
+   ex_branch_in, flush_valid, branch_target_pc, PC_stall, IF_stall
    );
 
     input  clk;
@@ -17,7 +17,9 @@ module if_stage(
 
     //From imemory   
     output instr_req_type   instr_req;
-    input  instr_resp_type  instr_resp;
+    input                   instr_resp_ready;
+    input [31:0] 	    imem_data_instr0;
+    input [31:0] 	    imem_data_instr1;
 
     // To ID stage
 
@@ -25,11 +27,13 @@ module if_stage(
     output if_id_type instr1_if_id;
 
    // From Ex Stage		
-    input  ex2if_type ex_branch_in;
+   input   ex2if_type ex_branch_in; //to update btb and GHSR
+   input   flush_valid; // to redirect
+   input   [31:0]   branch_target_pc; //to redirect
+   
 
    // From stall & flush unit
     input   PC_stall;
-    input   PC_flush;
     input   IF_stall;
    output   imem_miss; 
    
@@ -44,7 +48,6 @@ module if_stage(
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
    logic [GSHARE_GHSR_WIDTH-1:0] current_instr0_GHSR;// From gshare_inst of gshare.v
    logic [GSHARE_GHSR_WIDTH-1:0] current_instr1_GHSR;// From gshare_inst of gshare.v
-   logic [XLEN_WIDTH-1:0] pc;			// From inst_pc of pc_counter.v
    // End of automatics
        
 
@@ -61,6 +64,8 @@ module if_stage(
    logic 		  instr1_predict_taken;
    logic [ADDR_WIDTH-1:0] pcplus4;
    logic 		  imem_req;
+   wire [31:0] 		  pc;
+   
    ///////////////////////////////////////////
 
 
@@ -88,7 +93,7 @@ module if_stage(
 
    assign pcplus4 = pc + 4;
 
-   assign imem_miss = ~instr_resp.ready;
+   assign imem_miss = ~instr_resp_ready;
    assign instr_req.instr0 = pc;
    assign instr_req.instr1 = pcplus4;
    assign instr_req.valid  = imem_req;
@@ -115,14 +120,14 @@ module if_stage(
   
 
    always_comb begin
-      if (instr_resp.ready) begin 
+      if (instr_resp_ready) begin 
 	 instr0_if_id.instr_valid = 1'b1;
       end
       else begin
 	 instr0_if_id.instr_valid = 1'b0;
       end
       
-      if(instr_resp.ready && ~(instr0_btb_hit && instr0_predict_taken))begin
+      if(instr_resp_ready && ~(instr0_btb_hit && instr0_predict_taken))begin
 	 instr1_if_id.instr_valid = 1'b1;	   
       end
       else begin
@@ -141,8 +146,8 @@ module if_stage(
    assign instr0_if_id.predict.btb_addr       = instr0_btb_target_addr[31:0];
    assign instr1_if_id.predict.btb_addr       = instr1_btb_target_addr[31:0];
 
-   assign instr0_if_id.instruction            = instr_resp.instr0;
-   assign instr1_if_id.instruction            = instr_resp.instr1;
+   assign instr0_if_id.instruction            = imem_data_instr0;
+   assign instr1_if_id.instruction            = imem_data_instr1;
 
    ///////////////////////////////////////////////////////////////////////////////////
    
@@ -152,25 +157,20 @@ module if_stage(
    
 
 
-/*pc_counter AUTO_TEMPLATE(
-		   .stall		(PC_stall),
-		   .ex_branch_target_addr(ex_branch_in.target_addr),
-		   .ex_branch_flush	(PC_flush),
-		   .predict_pc		(PC_predict_pc),
-		   .predict_taken	(PC_predict_taken));*/   
+  
 
 pc_counter inst_pc(
-/*AUTOINST*/
+
 		   // Outputs
-		   .pc			(pc[XLEN_WIDTH-1:0]),
+		   .pc			(pc),
 		   // Inputs
 		   .clk			(clk),
 		   .reset_n		(reset_n),
-		   .stall		(PC_stall),		 // Templated
-		   .ex_branch_target_addr(ex_branch_in.target_addr), // Templated
-		   .ex_branch_flush	(PC_flush),		 // Templated
-		   .predict_pc		(PC_predict_pc),	 // Templated
-		   .predict_taken	(PC_predict_taken));	 // Templated
+		   .stall		(PC_stall),
+		   .ex_branch_target_addr(branch_target_pc),     // this is the latched one
+		   .ex_branch_flush	(flush_valid),		 // this is the latched one
+		   .predict_pc		(PC_predict_pc),
+		   .predict_taken	(PC_predict_taken));
 
 
    
@@ -184,8 +184,8 @@ pc_counter inst_pc(
 		.IF_instr1_pc		(pcplus4),
 		.branch_valid		(ex_branch_in.valid),
 		.branch_taken		(ex_branch_in.taken),
-  		.IF_instr0_valid	(instr_resp.ready),
-		.IF_instr1_valid	(instr_resp.ready),
+  		.IF_instr0_valid	(instr_resp_ready),
+		.IF_instr1_valid	(instr_resp_ready),
 		.branch_addr		(ex_branch_in.addr),
 		.branch_target_addr	(ex_branch_in.target_addr),
          
@@ -201,8 +201,8 @@ pc_counter inst_pc(
 		.reset_n		(reset_n),		 // Templated
 		.IF_instr0_pc		(pc),			 // Templated
 		.IF_instr1_pc		(pcplus4),		 // Templated
-		.IF_instr0_valid	(instr_resp.ready),	 // Templated
-		.IF_instr1_valid	(instr_resp.ready),	 // Templated
+		.IF_instr0_valid	(instr_resp_ready),	 // Templated
+		.IF_instr1_valid	(instr_resp_ready),	 // Templated
 		.branch_valid		(ex_branch_in.valid),	 // Templated
 		.branch_taken		(ex_branch_in.taken),	 // Templated
 		.branch_addr		(ex_branch_in.addr),	 // Templated
@@ -217,7 +217,7 @@ pc_counter inst_pc(
 		      .reset_n		(reset_n),
 		      .IF_instr0_pc	(pc),
 		      .IF_instr0_hit	(instr0_btb_hit),
-		      .IF_instr0_resp	(instr_resp.ready),
+		      .IF_instr0_resp	(instr_resp_ready),
  		      .IF_instr1_pc	(pcplus4),
 		      .IF_instr1_hit	(instr1_btb_hit), 
 		      .EXE_is_BJ	(ex_branch_in.valid),
@@ -239,7 +239,7 @@ pc_counter inst_pc(
 		      .IF_instr1_pc	(pcplus4),		 // Templated
 		      .IF_instr0_hit	(instr0_btb_hit),	 // Templated
 		      .IF_instr1_hit	(instr1_btb_hit),	 // Templated
-		      .IF_instr0_resp	(instr_resp.ready),	 // Templated
+		      .IF_instr0_resp	(instr_resp_ready),	 // Templated
 		      .EXE_is_BJ	(ex_branch_in.valid),	 // Templated
 		      .EXE_update_GHSR	(ex_branch_in.update_GHSR), // Templated
 		      .EXE_branch_taken	(ex_branch_in.taken),	 // Templated
