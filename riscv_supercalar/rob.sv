@@ -103,6 +103,7 @@ module rob(/*AUTOARG*/
    logic [ROB_WIDTH:0] 	 rob_tail_plus1;//one more bit to judge age
    logic [ROB_WIDTH:0] 	 walk_head;//used to recovery
    logic [ROB_WIDTH:0] 	 walk_head_plus1;//used to recovery
+   logic [ROB_WIDTH:0] 	 walk_head_plus2;//used to recovery
 
    logic [ROB_WIDTH-1:0] head_ptr;//use in arrray logic to avoid bug
    logic [ROB_WIDTH-1:0] head_ptr_plus1;//use in arrray logic to avoid bug
@@ -110,6 +111,7 @@ module rob(/*AUTOARG*/
    logic [ROB_WIDTH-1:0] tail_ptr_plus1;//
    logic [ROB_WIDTH-1:0] walk_ptr;//
    logic [ROB_WIDTH-1:0] walk_ptr_plus1;//
+   logic [ROB_WIDTH-1:0] walk_ptr_plus2;//
    
    assign rob_head_plus1 = rob_head + 1;   
    assign head_ptr       = rob_head[ROB_WIDTH-1:0];   
@@ -118,8 +120,10 @@ module rob(/*AUTOARG*/
    assign tail_ptr       = rob_tail[ROB_WIDTH-1:0];   
    assign tail_ptr_plus1 = rob_tail_plus1[ROB_WIDTH-1:0];
    assign walk_head_plus1 = walk_head + 1;   
+   assign walk_head_plus2 = walk_head + 2;   
    assign walk_ptr       = walk_head[ROB_WIDTH-1:0];   
    assign walk_ptr_plus1 = walk_head_plus1[ROB_WIDTH-1:0];
+   assign walk_ptr_plus2 = walk_head_plus2[ROB_WIDTH-1:0];
 
 
   
@@ -401,7 +405,7 @@ module rob(/*AUTOARG*/
         rob_walk: begin
            if (flush_valid) begin
               next_state = rob_rollback;
-           end else if (reg_rob[walk_ptr_plus1].valid == 0 || reg_rob[walk_head[ROB_WIDTH-1:0]+2].valid == 0) begin
+           end else if (~reg_rob[walk_ptr_plus1].valid | ~reg_rob[walk_ptr_plus2].valid) begin
               next_state = rob_idle;
            end else begin
               next_state = rob_walk;

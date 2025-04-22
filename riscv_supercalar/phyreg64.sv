@@ -7,7 +7,7 @@ import common::*;
 
 module phyreg64(/*AUTOARG*/
    // Outputs
-   IQ0_rs1_data, IQ0_rs2_data, IQ1_rs1_data, IQ1_rs2_data,
+   prf_debug, IQ0_rs1_data, IQ0_rs2_data, IQ1_rs1_data, IQ1_rs2_data,
    MEM_rs1_data, MEM_rs2_data,
    // Inputs
    clk, reset_n, IQ0_rs1_addr, IQ0_rs2_addr, IQ1_rs1_addr,
@@ -21,6 +21,7 @@ module phyreg64(/*AUTOARG*/
 
    input 			clk;
    input 			reset_n;
+   output logic [31:0] 		prf_debug[PRF_NUM-1:0];   
    //INT IQ
    input logic [PRF_WIDTH-1:0] 	IQ0_rs1_addr;
    input logic [PRF_WIDTH-1:0] 	IQ0_rs2_addr;
@@ -54,6 +55,10 @@ module phyreg64(/*AUTOARG*/
 
    
    logic [31:0] 		prf_file[PRF_NUM-1:0];
+
+
+   assign prf_debug = prf_file;
+   
 
    
 

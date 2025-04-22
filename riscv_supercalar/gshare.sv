@@ -8,13 +8,16 @@ module gshare(
    instr0_predict_taken, instr1_predict_taken, current_instr0_GHSR,
    current_instr1_GHSR,
    // Inputs
-   clk, reset_n, IF_instr0_pc, IF_instr1_pc, IF_instr0_hit,
-   IF_instr1_hit, IF_instr0_resp, EXE_is_BJ, EXE_update_GHSR,
-   EXE_branch_taken, EXE_branch_addr, EXE_GHSR_restore
+   clk, reset_n, flush_valid, IF_instr0_pc, IF_instr1_pc,
+   IF_instr0_hit, IF_instr1_hit, IF_instr0_resp, EXE_is_BJ,
+   EXE_update_GHSR, EXE_branch_taken, EXE_branch_addr,
+   EXE_GHSR_restore
    );
 
    input    clk;
    input    reset_n;
+   input    flush_valid;
+   
 
 
    //FETCH
@@ -41,6 +44,7 @@ module gshare(
 
    logic [1:0] 				GSHARE_PHT[GSHARE_PHT_SIZE-1:0];
    logic [GSHARE_GHSR_WIDTH-1:0] 	GHSR,GHSR_next;
+   logic [GSHARE_GHSR_WIDTH-1:0] 	GHSR_restore_next;
    logic 				spec_update_GHSR;
    logic [1:0]				instr0_bimod;
    logic [1:0]				instr1_bimod;
@@ -64,43 +68,61 @@ module gshare(
    end*/
 
    //use specualtive update for GHR
+   //!!! watch out if EXE update and speculative update at the same time !!!
    assign spec_update_GHSR = IF_instr0_resp && ( IF_instr0_hit || IF_instr1_hit ) ;
+   assign GHSR_restore_next = {EXE_GHSR_restore[GSHARE_GHSR_WIDTH-2:0],EXE_branch_taken};
    
    always_ff@(posedge clk) begin
       if(~reset_n) begin
 	 GHSR <= '0;
       end
-      else if (EXE_is_BJ && EXE_update_GHSR) begin
-	 GHSR <= {EXE_GHSR_restore[GSHARE_GHSR_WIDTH-2:0],EXE_branch_taken};	 
-      end
-      else if (spec_update_GHSR) begin
-	 GHSR <= GHSR_next;
-      end
       else begin
-	 GHSR <= GHSR; 
+	 GHSR <= GHSR_next; 
       end
    end
 
    always_comb begin
-     if (instr0_predict_taken && IF_instr0_hit)
-       GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-2:0] ,instr0_predict_taken};
-     else if (instr1_predict_taken && IF_instr1_hit && IF_instr0_hit)
-       GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-3:0] , 1'b0 ,instr1_predict_taken};
-     else if (instr1_predict_taken && IF_instr1_hit)
-       GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-2:0], instr1_predict_taken};
-     else if (IF_instr0_hit)
-       GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-2:0] , 1'b0};
-     else
-       GHSR_next = GHSR;
-  end
+      if(flush_valid) begin
+	 GHSR_next = GHSR_restore_next;
+      end // if (EXE_is_BJ && EXE_update_GHSR)
+      else if (spec_update_GHSR && EXE_is_BJ && EXE_update_GHSR) begin
+	 if (instr0_predict_taken && IF_instr0_hit)
+	   GHSR_next = {GHSR_restore_next[GSHARE_GHSR_WIDTH-2:0] ,instr0_predict_taken};
+	 else if (instr1_predict_taken && IF_instr1_hit && IF_instr0_hit)
+	   GHSR_next = {GHSR_restore_next[GSHARE_GHSR_WIDTH-3:0] , 1'b0 ,instr1_predict_taken};
+	 else if (instr1_predict_taken && IF_instr1_hit)
+	   GHSR_next = {GHSR_restore_next[GSHARE_GHSR_WIDTH-2:0], instr1_predict_taken};
+	 else if (IF_instr0_hit)
+	   GHSR_next = {GHSR_restore_next[GSHARE_GHSR_WIDTH-2:0] , 1'b0};
+	 else
+	   GHSR_next = GHSR_restore_next; 
+      end // if (spec_update_GHSR ) 
+      else if (spec_update_GHSR) begin
+	 if (instr0_predict_taken && IF_instr0_hit)
+	   GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-2:0] ,instr0_predict_taken};
+	 else if (instr1_predict_taken && IF_instr1_hit && IF_instr0_hit)
+	   GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-3:0] , 1'b0 ,instr1_predict_taken};
+	 else if (instr1_predict_taken && IF_instr1_hit)
+	   GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-2:0], instr1_predict_taken};
+	 else if (IF_instr0_hit)
+	   GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-2:0] , 1'b0};
+	 else
+	   GHSR_next = GHSR; 
+      end // if (spec_update_GHSR ) 
+      else if (EXE_is_BJ && EXE_update_GHSR) begin
+	   GHSR_next = GHSR_restore_next; 
+      end // 
+      else
+	GHSR_next = GHSR;      
+   end
 
 
   //PHT
 
   //PHT READ
-   assign instr0_pht_addr = gshare_hash(GHSR,IF_instr0_pc);
-   assign instr1_pht_addr = gshare_hash(GHSR,IF_instr1_pc);
-   assign update_pht_addr = gshare_hash(EXE_GHSR_restore,EXE_branch_addr);
+   assign instr0_pht_addr = gshare_hash(GHSR,IF_instr0_pc);//IF_instr0_pc[GSHARE_PHT_WIDTH+1:2];//
+   assign instr1_pht_addr = gshare_hash(GHSR,IF_instr1_pc);//IF_instr1_pc[GSHARE_PHT_WIDTH+1:2];//gshare_hash(GHSR,IF_instr1_pc);
+   assign update_pht_addr = gshare_hash(EXE_GHSR_restore,EXE_branch_addr);//EXE_branch_addr[GSHARE_PHT_WIDTH+1:2];//gshare_hash(EXE_GHSR_restore,EXE_branch_addr);
    
    assign instr0_bimod = GSHARE_PHT[instr0_pht_addr];
    assign instr1_bimod = GSHARE_PHT[instr1_pht_addr];

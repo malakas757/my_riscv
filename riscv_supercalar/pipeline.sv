@@ -4,11 +4,20 @@ import common::*;
 `define debug
 
 module pipeline(/*AUTOARG*/
+   // Outputs
+   ram_debug, prf_debug, RRAT_debug,
    // Inputs
-   clk, reset_n
+   clk, reset_n, imem_en, imem_data_in
    );
-   input clk;
-   input reset_n;
+   input               clk;
+   input               reset_n;
+   input               imem_en;
+   input [31:0]        imem_data_in;
+   output logic [31:0] ram_debug[256];
+   output logic [31:0] prf_debug[PRF_NUM-1:0];
+   output logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
+   
+   
 
 
 
@@ -224,8 +233,8 @@ module pipeline(/*AUTOARG*/
 			    .clk		(clk),
 			    .byte_address0	(instr0_if_id.pc),
 			    .byte_address1	(instr1_if_id.pc),
-			    .write_enable	('0),
-			    .write_data		('0));
+			    .write_enable	(imem_en),
+			    .write_data		(imem_data_in));
    
    
     /*if_stage AUTO_TEMPLATE(
@@ -247,7 +256,7 @@ module pipeline(/*AUTOARG*/
 			  .imem_data_instr1	(read_data1),	 // Templated
 			  .ex_branch_in		(ex_branch_in),
 			  .flush_valid		(flush_valid),
-			  .branch_target_pc	(branch_target_pc),
+			  .branch_target_pc	(branch_target_pc[31:0]),
 			  .PC_stall		(PC_stall),
 			  .IF_stall		(IF_stall));
 
@@ -384,6 +393,7 @@ module pipeline(/*AUTOARG*/
    
   /* ir_stage AUTO_TEMPLATE(
 		    // Outputs
+                    .RRAT_debug         (RRAT_debug),
 		    .fl_can_alloc	(),
 		    .T_0		(ir_is_reg0_next.T),
 		    .T_1		(ir_is_reg1_next.T),
@@ -413,7 +423,7 @@ module pipeline(/*AUTOARG*/
 		    .fl_walk_0		(walk0_valid),         //
 		    .fl_walk_1		(walk1_valid),        //
 		    .rat_walk_0_valid	(walk0_valid),       //
-		    .rat_walk_1_valid	(walk0_valid),       // 
+		    .rat_walk_1_valid	(walk1_valid),       // 
 		    .rat_walk_0_rd_id	(walk0_arf_id[ARF_WIDTH-1:0]),//
 		    .rat_walk_1_rd_id	(walk1_arf_id[ARF_WIDTH-1:0]),//
 		    .rat_walk_0_rd_prf	(walk0_T[PRF_WIDTH-1:0]),//
@@ -421,6 +431,7 @@ module pipeline(/*AUTOARG*/
    
    ir_stage inst_ir(/*AUTOINST*/
 		    // Outputs
+		    .RRAT_debug		(RRAT_debug),		 // Templated
 		    .fl_can_alloc	(),			 // Templated
 		    .T_0		(ir_is_reg0_next.T),	 // Templated
 		    .T_1		(ir_is_reg1_next.T),	 // Templated
@@ -452,7 +463,7 @@ module pipeline(/*AUTOARG*/
 		    .fl_walk_0		(walk0_valid),		 // Templated
 		    .fl_walk_1		(walk1_valid),		 // Templated
 		    .rat_walk_0_valid	(walk0_valid),		 // Templated
-		    .rat_walk_1_valid	(walk0_valid),		 // Templated
+		    .rat_walk_1_valid	(walk1_valid),		 // Templated
 		    .rat_walk_0_rd_id	(walk0_arf_id[ARF_WIDTH-1:0]), // Templated
 		    .rat_walk_1_rd_id	(walk1_arf_id[ARF_WIDTH-1:0]), // Templated
 		    .rat_walk_0_rd_prf	(walk0_T[PRF_WIDTH-1:0]), // Templated
@@ -656,6 +667,7 @@ module pipeline(/*AUTOARG*/
 			.IQ1_rs2_addr	(slot1_src2_id),
 			.MEM_rs1_addr	(slot2_src1_id),
 			.MEM_rs2_addr	(slot2_src2_id),
+			.prf_debug	(prf_debug),
     			.writeback0_need_to_wb(writeback0_need_to_wb & writeback0_valid),
 			.writeback1_need_to_wb(writeback1_need_to_wb & writeback1_valid),
 			.writeback2_need_to_wb(writeback2_need_to_wb & writeback2_valid),
@@ -663,6 +675,7 @@ module pipeline(/*AUTOARG*/
                           );*/
    phyreg64 inst_phyreg(/*AUTOINST*/
 			// Outputs
+			.prf_debug	(prf_debug),		 // Templated
 			.IQ0_rs1_data	(IQ0_rs1_data[31:0]),
 			.IQ0_rs2_data	(IQ0_rs2_data[31:0]),
 			.IQ1_rs1_data	(IQ1_rs1_data[31:0]),
@@ -891,6 +904,7 @@ module pipeline(/*AUTOARG*/
    data_memory inst_dmem(
 			 // Outputs
 			 .read_data		(dmem_read_data[31:0]),
+			 .ram_debug		(ram_debug),
 			 // Inputs
 			 .clk			(clk),
 			 .read_address		(mem_read_addr[9:0]),

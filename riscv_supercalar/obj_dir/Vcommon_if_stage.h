@@ -22,7 +22,6 @@ VL_MODULE(Vcommon_if_stage) {
         VL_IN8(__PVT__reset_n,0,0);
         VL_IN8(__PVT__instr_resp_ready,0,0);
         VL_IN8(__PVT__flush_valid,0,0);
-        VL_IN8(__PVT__branch_target_pc,0,0);
         VL_IN8(__PVT__PC_stall,0,0);
         VL_IN8(__PVT__IF_stall,0,0);
         VL_OUT8(__PVT__imem_miss,0,0);
@@ -32,6 +31,7 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __PVT__instr0_predict_taken;
         CData/*0:0*/ __PVT__instr1_predict_taken;
         CData/*0:0*/ __PVT__btb_inst__DOT__update_BTB;
+        CData/*0:0*/ __PVT__gshare_inst__DOT__spec_update_GHSR;
         CData/*0:0*/ __Vdlyvset__btb_inst__DOT__btb_entry_valids__v0;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v1;
         CData/*0:0*/ __Vdlyvset__btb_inst__DOT__btb_entry_valids__v1;
@@ -1631,6 +1631,7 @@ VL_MODULE(Vcommon_if_stage) {
         SData/*8:0*/ __Vdlyvdim0__btb_inst__DOT__btb_addr_inst__DOT__history_table__v0;
         VL_IN(__PVT__imem_data_instr0,31,0);
         VL_IN(__PVT__imem_data_instr1,31,0);
+        VL_IN(__PVT__branch_target_pc,31,0);
         IData/*31:0*/ __PVT__PC_predict_pc;
         IData/*31:0*/ __PVT__instr0_btb_target_addr;
         IData/*31:0*/ __PVT__instr1_btb_target_addr;

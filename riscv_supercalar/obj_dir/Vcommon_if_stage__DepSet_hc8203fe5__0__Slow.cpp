@@ -22,7 +22,7 @@ VL_ATTR_COLD void Vcommon_if_stage___ctor_var_reset(Vcommon_if_stage* vlSelf) {
     VL_RAND_RESET_W(109, vlSelf->__PVT__instr1_if_id);
     VL_RAND_RESET_W(77, vlSelf->__PVT__ex_branch_in);
     vlSelf->__PVT__flush_valid = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__branch_target_pc = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__branch_target_pc = VL_RAND_RESET_I(32);
     vlSelf->__PVT__PC_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__IF_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__imem_miss = VL_RAND_RESET_I(1);
@@ -49,6 +49,7 @@ VL_ATTR_COLD void Vcommon_if_stage___ctor_var_reset(Vcommon_if_stage* vlSelf) {
     }
     vlSelf->__PVT__gshare_inst__DOT__GHSR = VL_RAND_RESET_I(10);
     vlSelf->__PVT__gshare_inst__DOT__GHSR_next = VL_RAND_RESET_I(10);
+    vlSelf->__PVT__gshare_inst__DOT__spec_update_GHSR = VL_RAND_RESET_I(1);
     vlSelf->__PVT__gshare_inst__DOT__update_pht_addr = VL_RAND_RESET_I(10);
     vlSelf->__Vdlyvdim0__btb_inst__DOT__btb_entry_valids__v0 = 0;
     vlSelf->__Vdlyvset__btb_inst__DOT__btb_entry_valids__v0 = 0;

@@ -21,7 +21,9 @@ VL_ATTR_COLD void Vcommon___024root___eval_initial(Vcommon___024root* vlSelf) {
 
 VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__1(Vcommon_if_stage* vlSelf);
 VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* vlSelf);
+VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__3(Vcommon_pipeline* vlSelf);
 VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__2(Vcommon_if_stage* vlSelf);
+void Vcommon___024root___settle__TOP__1(Vcommon___024root* vlSelf);
 
 VL_ATTR_COLD void Vcommon___024root___eval_settle(Vcommon___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -30,5 +32,7 @@ VL_ATTR_COLD void Vcommon___024root___eval_settle(Vcommon___024root* vlSelf) {
     // Body
     Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__1((&vlSymsp->TOP__pipeline__inst_if_stage));
     Vcommon_pipeline___settle__TOP__pipeline__2((&vlSymsp->TOP__pipeline));
+    Vcommon_pipeline___settle__TOP__pipeline__3((&vlSymsp->TOP__pipeline));
     Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__2((&vlSymsp->TOP__pipeline__inst_if_stage));
+    Vcommon___024root___settle__TOP__1(vlSelf);
 }

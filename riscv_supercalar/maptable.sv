@@ -9,8 +9,8 @@ import common::*;
 
 module maptable(/*AUTOARG*/
    // Outputs
-   instr0_prf_rs1, instr0_prf_rs2, instr1_prf_rs1, instr1_prf_rs2,
-   T_0, T_1, T_old_0, T_old_1,
+   RRAT_debug, instr0_prf_rs1, instr0_prf_rs2, instr1_prf_rs1,
+   instr1_prf_rs2, T_0, T_1, T_old_0, T_old_1,
    // Inputs
    clk, reset_n, rename_0, rename_1, rd_valid_0, rd_valid_1,
    rob_state, walk_0_valid, walk_1_valid, walk_0_rd_id, walk_1_rd_id,
@@ -19,6 +19,7 @@ module maptable(/*AUTOARG*/
 
    input  clk;
    input  reset_n;
+   output logic [PRF_WIDTH-1:0] 	      RRAT_debug[ARF_NUM-1:0];
   
    
    //Input from dispatch and rob(retire)
@@ -67,6 +68,8 @@ module maptable(/*AUTOARG*/
                                      //RAT//
 
    //////////////////////////////////////////////////////////////////////////
+   assign RRAT_debug = RRAT;
+   
 
 
 //WRITE

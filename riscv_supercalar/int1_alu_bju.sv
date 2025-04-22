@@ -33,7 +33,7 @@ module int1_alu_bju(/*AUTOARG*/
    output logic [31:0] 		writeback2_data;  
 
    //output about bp
-   output  logic 		            ex2if_branch_valid;   // remeber comb with valid
+   output  logic 		            ex2if_branch_valid;   // remember comb with valid
    output  logic 			    ex2if_branch_taken;
    output  logic [31:0] 		    ex2if_branch_addr;//pc
    output  logic [31:0] 		    ex2if_branch_target_addr;//branch target pc,this used to update btb  
@@ -70,14 +70,14 @@ module int1_alu_bju(/*AUTOARG*/
 
    
    //latch the flush information
-  // logic                        branch_flush_latch;
-  // logic                        branch_taken_latch;
-  // logic                        branch_valid_latch;
-  // logic [31:0] 		branch_target_pc_latch;
-  // logic [ROB_WIDTH:0] 		branch_flush_robid_latch;
-  // logic [31:0] 		branch_pc_latch;//used to update btb
-  // logic 			branch_update_GHSR_latch; //
-  // logic [GSHARE_GHSR_WIDTH-1:0] GHSR_restore_latch ;
+   logic                        branch_flush_latch;
+   logic                        branch_taken_latch;
+   logic                        branch_valid_latch;
+   logic [31:0] 		branch_target_pc_latch;
+   logic [ROB_WIDTH:0] 		branch_flush_robid_latch;
+   logic [31:0] 		branch_pc_latch;//used to update btb
+   logic 			branch_update_GHSR_latch; //
+   logic [GSHARE_GHSR_WIDTH-1:0] GHSR_restore_latch ;
    
 
 
@@ -117,22 +117,22 @@ module int1_alu_bju(/*AUTOARG*/
 	   if (~reset_n | flush_valid) begin
 	      branch_flush      <= '0; 
 	      branch_flush_robid      <= '0; 
-	    //  branch_taken_latch      = '0; 
-	    //  branch_valid_latch      = '0; 
-	      branch_target_pc  <= '0;  	      
-	   //   branch_pc_latch  = '0;  	      
-	   //   branch_update_GHSR_latch       = '0; 	      
-	   //   GHSR_restore_latch       = '0; 	      
+	      branch_taken_latch     <= '0; 
+	      branch_valid_latch      <= '0; 
+	      branch_target_pc_latch  <= '0;  	      
+	      branch_pc_latch  <= '0;  	      
+	      branch_update_GHSR_latch      <= '0; 	      
+	      GHSR_restore_latch       <= '0; 	      
 	   end
 	   else begin
 	      branch_flush            <= int1_valid & bju_flush_result; 
 	      branch_flush_robid      <= int1_robid; 
-	   //   branch_taken_latch      = bju_branch_taken; 
-	   //  branch_valid_latch      = int1_valid & is_bj; 
-	      branch_target_pc        <= bju_branch_target_pc;  	      
-	   //   branch_pc_latch         = int1_pc;  	      
-	   //   branch_update_GHSR_latch = int1_valid & bju_branch_update_GHSR; 	     
-	   //   GHSR_restore_latch       = bju_GHSR_restore; 	      
+	      branch_taken_latch      <= bju_branch_taken; 
+	      branch_valid_latch      <= int1_valid & is_bj & ~flush_valid; 
+	      branch_target_pc_latch  <= bju_branch_target_pc;  	      
+	      branch_pc_latch          <= int1_pc;  	      
+	      branch_update_GHSR_latch <= int1_valid & bju_branch_update_GHSR & ~flush_valid; 	     
+	      GHSR_restore_latch       <= bju_GHSR_restore; 	      
 	   end // else: !if(~reset_n & need_to_flush)
 	end
 
@@ -147,6 +147,8 @@ module int1_alu_bju(/*AUTOARG*/
 		.GHSR_restore		(bju_GHSR_restore),
 		.update_GHSR		(bju_branch_update_GHSR),
 		// Inputs
+		.int1_valid             (int1_valid),//used to update checkpoint 
+		.flush_valid            (flush_valid),//used to update checkpoint 
 		.left_operand		(int1_rs1),
 		.right_operand		(int1_rs2),
 		.pc			(int1_pc),
@@ -157,13 +159,13 @@ module int1_alu_bju(/*AUTOARG*/
 		.branch_predict		(int1_control.predict));
 
 
-   assign  ex2if_branch_addr        = int1_pc;
-   assign  ex2if_branch_valid       = int1_valid & is_bj & ~flush_valid;   // remeber comb with valid
-   assign  ex2if_branch_taken       = bju_branch_taken; 
-   assign  ex2if_branch_target_addr = bju_branch_target_pc; // branch target pc,this used to update btb
-   assign  ex2if_branch_update_GHSR = int1_valid & bju_branch_update_GHSR & ~flush_valid; //
-   assign  ex2if_GHSR_restore       = bju_GHSR_restore;
- //  assign  branch_target_pc         = branch_target_pc_latch; // branch target pc
+   assign  ex2if_branch_addr        = branch_pc_latch;
+   assign  ex2if_branch_valid       = branch_valid_latch;   // remeber comb with valid
+   assign  ex2if_branch_taken       = branch_taken_latch; 
+   assign  ex2if_branch_target_addr = branch_target_pc_latch; // branch target pc,this used to update btb
+   assign  ex2if_branch_update_GHSR = branch_update_GHSR_latch; //
+   assign  ex2if_GHSR_restore       = GHSR_restore_latch;
+   assign  branch_target_pc         = branch_target_pc_latch; // branch target pc
  //  assign  branch_flush             = branch_flush_latch;     
 
 

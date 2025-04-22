@@ -8,14 +8,24 @@
 #include "verilated.h"
 
 class Vcommon__Syms;
+class Vcommon_pipeline;
+
 VL_MODULE(Vcommon___024root) {
   public:
+    // CELLS
+    Vcommon_pipeline* pipeline;
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(reset_n,0,0);
-    VL_INW(if_instr,108,0,4);
-    VL_OUTW(control,114,0,4);
+    VL_IN8(imem_en,0,0);
+    CData/*0:0*/ __Vclklast__TOP__clk;
+    VL_IN(imem_data_in,31,0);
+    IData/*31:0*/ __Vchglast__TOP__pipeline__read_data0;
+    IData/*31:0*/ __Vchglast__TOP__pipeline__read_data1;
+    VL_OUT(ram_debug[256],31,0);
+    VL_OUT(prf_debug[64],31,0);
+    VL_OUT8(RRAT_debug[32],5,0);
 
     // INTERNAL VARIABLES
     Vcommon__Syms* vlSymsp;  // Symbol table

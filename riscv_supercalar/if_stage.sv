@@ -215,6 +215,7 @@ pc_counter inst_pc(
 		      .current_instr1_GHSR(current_instr1_GHSR[GSHARE_GHSR_WIDTH-1:0]),
 		      .clk		(clk),
 		      .reset_n		(reset_n),
+		      .flush_valid	(flush_valid),
 		      .IF_instr0_pc	(pc),
 		      .IF_instr0_hit	(instr0_btb_hit),
 		      .IF_instr0_resp	(instr_resp_ready),
@@ -235,6 +236,7 @@ pc_counter inst_pc(
 		      // Inputs
 		      .clk		(clk),			 // Templated
 		      .reset_n		(reset_n),		 // Templated
+		      .flush_valid	(flush_valid),		 // Templated
 		      .IF_instr0_pc	(pc),			 // Templated
 		      .IF_instr1_pc	(pcplus4),		 // Templated
 		      .IF_instr0_hit	(instr0_btb_hit),	 // Templated

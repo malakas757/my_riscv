@@ -189,7 +189,7 @@ module int2_lsu(/*AUTOARG*/
 	 wb_reg_robid      <= reg_robid;
 	 wb_reg_prd        <= reg_T;
 	 wb_reg_data       <= load_data_cut;
-	 wb_reg_need_to_wb <= reg_is_store;	 
+	 wb_reg_need_to_wb <= ~reg_is_store;	 
       end	 
    end
    

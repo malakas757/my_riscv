@@ -21,23 +21,7 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__pipeline__inst_if_stage__4(V
     vlSelf->__Vdlyvset__btb_inst__DOT__btb_entry_valids__v1 = 0U;
     vlSelf->__Vdlyvset__btb_inst__DOT__btb_entry_valids__v513 = 0U;
     if (vlSymsp->TOP.reset_n) {
-        vlSelf->__PVT__gshare_inst__DOT__GHSR = (((
-                                                   vlSymsp->TOP__pipeline.__PVT__ex_branch_in[0U] 
-                                                   >> 0xaU) 
-                                                  & (vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
-                                                     >> 0xcU))
-                                                  ? 
-                                                 ((0x3feU 
-                                                   & (vlSymsp->TOP__pipeline.__PVT__ex_branch_in[0U] 
-                                                      << 1U)) 
-                                                  | (1U 
-                                                     & (vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
-                                                        >> 0xbU)))
-                                                  : 
-                                                 (((IData)(vlSelf->__PVT__instr0_btb_hit) 
-                                                   | (IData)(vlSelf->__PVT__instr1_btb_hit))
-                                                   ? (IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR_next)
-                                                   : (IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR)));
+        vlSelf->__PVT__gshare_inst__DOT__GHSR = vlSelf->__PVT__gshare_inst__DOT__GHSR_next;
         if (vlSelf->__PVT__btb_inst__DOT__update_BTB) {
             vlSelf->__Vdlyvval__btb_inst__DOT__btb_addr_inst__DOT__history_table__v0 
                 = (0x3fffffffU & ((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[1U] 

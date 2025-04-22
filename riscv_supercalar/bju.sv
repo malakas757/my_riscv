@@ -9,10 +9,11 @@ module bju(
    j_next_pc, branch_target_pc, branch_taken, flush, GHSR_restore,
    update_GHSR,
    // Inputs
-   left_operand, right_operand, pc, clk, reset_n, control,
-   immediate_data, branch_predict
+   int1_valid, flush_valid, left_operand, right_operand, pc, clk,
+   reset_n, control, immediate_data, branch_predict
    );
-   
+   input        int1_valid;   
+   input        flush_valid;   
    input [31:0] left_operand;   
    input [31:0] right_operand;
    input [31:0] pc;
@@ -45,7 +46,7 @@ module bju(
    logic [GSHARE_GHSR_WIDTH:0] GHSR_checkpoint       ;  //first bit is valid bit,used to restoreGHSR 
 
    assign pc_plus_4    = pc  + 32'(4) ;
-   assign is_bj        = control.is_branch || control.is_jump || control.is_jumpr ;
+   assign is_bj        = int1_valid & (control.is_branch || control.is_jump || control.is_jumpr) & ~flush_valid;
    assign j_next_pc    = pc_plus_4    ;
    assign pc_plus_imm  = pc  + immediate_data      ;
    assign rs1_plus_imm = left_operand + immediate_data      ;

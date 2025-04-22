@@ -6,8 +6,8 @@ import common::*;
 
 module ir_stage(/*AUTOARG*/
    // Outputs
-   fl_can_alloc, T_0, T_1, T_old_0, T_old_1, instr0_prf_rs1,
-   instr0_prf_rs2, instr1_prf_rs1, instr1_prf_rs2,
+   RRAT_debug, fl_can_alloc, T_0, T_1, T_old_0, T_old_1,
+   instr0_prf_rs1, instr0_prf_rs2, instr1_prf_rs1, instr1_prf_rs2,
    // Inputs
    clk, reset_n, dec_instr0, dec_instr1, ID_stall, fl_write_en_0,
    fl_write_en_1, fl_write_data_0, fl_write_data_1, retire_arf_id_0,
@@ -20,6 +20,7 @@ module ir_stage(/*AUTOARG*/
 
    input                 clk;
    input 		 reset_n;
+   output logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
    
 
    // From decode stage
@@ -160,7 +161,7 @@ module ir_stage(/*AUTOARG*/
    
    
  /*maptable AUTO_TEMPLATE(
-		   
+		    .RRAT_debug         (RRAT_debug),
                     .instr0_prf_rs1	(instr0_prf_rs1[PRF_WIDTH-1:0]),
 		    .instr0_prf_rs2	(instr0_prf_rs2[PRF_WIDTH-1:0]),
 		    .instr1_prf_rs1	(instr1_prf_rs1[PRF_WIDTH-1:0]),
@@ -184,6 +185,7 @@ module ir_stage(/*AUTOARG*/
    
    maptable inst_mt(/*AUTOINST*/
 		    // Outputs
+		    .RRAT_debug		(RRAT_debug),		 // Templated
 		    .instr0_prf_rs1	(instr0_prf_rs1[PRF_WIDTH-1:0]), // Templated
 		    .instr0_prf_rs2	(instr0_prf_rs2[PRF_WIDTH-1:0]), // Templated
 		    .instr1_prf_rs1	(instr1_prf_rs1[PRF_WIDTH-1:0]), // Templated

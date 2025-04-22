@@ -16,7 +16,7 @@ module int0_mul_alu(/*AUTOARG*/
    input                       reset_n;
    input                       flush_valid;
    input [ROB_WIDTH:0] 	       flush_robid;
-   output 		       mul_slot_busy;//always 1 because pipeline mul unit
+   output 		       mul_slot_busy;//always 0 because pipeline mul unit
    
    
 

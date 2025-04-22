@@ -7,17 +7,19 @@ module data_memory (
     input [9:0] write_address,
     input write_enable,         
     input [31:0] write_data, 
-    output logic [31:0] read_data
+    output logic [31:0] read_data,
+    output logic [31:0] ram_debug[256]
 );
 
-    logic [31:0] ram [256];
+    logic [31:0] ram [256] = '{default:0};
     logic [7:0] read_word_address;
     logic [7:0] write_word_address;
     
     
-    assign read_word_address  = read_address[9:2];
-    assign write_word_address = write_address[9:2];
-    
+   assign read_word_address  = read_address[9:2];
+   assign write_word_address = write_address[9:2];
+   assign ram_debug = ram;
+   
     
     always @(posedge clk) begin
         if (write_enable) begin
