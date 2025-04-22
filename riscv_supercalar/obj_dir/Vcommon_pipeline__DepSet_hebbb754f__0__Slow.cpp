@@ -980,7 +980,6 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->RRAT_debug[__Vi0] = VL_RAND_RESET_I(6);
     }
-    vlSelf->__PVT__ID_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__IF_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__IR_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__PC_stall = VL_RAND_RESET_I(1);
@@ -1014,12 +1013,6 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     VL_RAND_RESET_W(109, vlSelf->__PVT__if_id_reg0);
     VL_RAND_RESET_W(109, vlSelf->__PVT__if_id_reg1);
     VL_RAND_RESET_W(77, vlSelf->__PVT__ex_branch_in);
-    VL_RAND_RESET_W(115, vlSelf->__PVT__id_ir_reg0);
-    VL_RAND_RESET_W(115, vlSelf->__PVT__id_ir_reg1);
-    vlSelf->__PVT__id_ir_reg0_pc = VL_RAND_RESET_I(32);
-    vlSelf->__PVT__id_ir_reg0_instr = VL_RAND_RESET_I(32);
-    vlSelf->__PVT__id_ir_reg1_pc = VL_RAND_RESET_I(32);
-    vlSelf->__PVT__id_ir_reg1_instr = VL_RAND_RESET_I(32);
     VL_RAND_RESET_W(115, vlSelf->__PVT__dec_instr0);
     VL_RAND_RESET_W(115, vlSelf->__PVT__dec_instr1);
     VL_RAND_RESET_W(139, vlSelf->__PVT__ir_is_reg0);
@@ -1668,11 +1661,6 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     for (int __Vi0=0; __Vi0<256; ++__Vi0) {
         vlSelf->__PVT__inst_dmem__DOT__ram[__Vi0] = VL_RAND_RESET_I(32);
     }
-    VL_RAND_RESET_W(109, vlSelf->__Vdly__if_id_reg0);
-    vlSelf->__Vdly__ir_is_reg0_pc = VL_RAND_RESET_I(32);
-    vlSelf->__Vdly__ir_is_reg0_instr = VL_RAND_RESET_I(32);
-    vlSelf->__Vdly__ir_is_reg1_instr = VL_RAND_RESET_I(32);
-    vlSelf->__Vdly__ir_is_reg1_pc = VL_RAND_RESET_I(32);
     vlSelf->__Vdlyvdim0__inst_imem__DOT__ram__v0 = 0;
     vlSelf->__Vdlyvval__inst_imem__DOT__ram__v0 = VL_RAND_RESET_I(32);
     vlSelf->__Vdlyvset__inst_imem__DOT__ram__v0 = 0;

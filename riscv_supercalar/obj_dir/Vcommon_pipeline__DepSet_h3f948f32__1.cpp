@@ -83,7 +83,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__6(Vcommon_pipeline
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
     IData/*31:0*/ __Vilp;
     // Body
-    __Vilp = 0x1fU;
+    __Vilp = 0x4bU;
     while ((__Vilp <= 0xffU)) {
         vlSelf->__Vcellout__inst_dmem__ram_debug[__Vilp] 
             = vlSelf->__PVT__inst_dmem__DOT__ram[__Vilp];
@@ -313,6 +313,61 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__6(Vcommon_pipeline
                                    [7U])) | (~ (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_control
                                                 [7U][3U] 
                                                 >> 4U))));
+    vlSelf->__PVT__ir_is_reg1_next[0U] = vlSelf->__PVT__dec_instr1[0U];
+    vlSelf->__PVT__ir_is_reg1_next[1U] = vlSelf->__PVT__dec_instr1[1U];
+    vlSelf->__PVT__ir_is_reg1_next[2U] = vlSelf->__PVT__dec_instr1[2U];
+    vlSelf->__PVT__ir_is_reg1_next[3U] = ((0xfff80000U 
+                                           & vlSelf->__PVT__ir_is_reg1_next[3U]) 
+                                          | vlSelf->__PVT__dec_instr1[3U]);
+    vlSelf->__PVT__inst_ir__DOT__rename_1 = ((0x3fffULL 
+                                              & vlSelf->__PVT__inst_ir__DOT__rename_1) 
+                                             | ((QData)((IData)(
+                                                                ((0xf8000U 
+                                                                  & (vlSelf->__PVT__dec_instr1[3U] 
+                                                                     << 9U)) 
+                                                                 | ((0x7c00U 
+                                                                     & ((vlSelf->__PVT__dec_instr1[3U] 
+                                                                         << 0xbU) 
+                                                                        | (0x400U 
+                                                                           & (vlSelf->__PVT__dec_instr1[2U] 
+                                                                              >> 0x15U)))) 
+                                                                    | ((0x3e0U 
+                                                                        & (vlSelf->__PVT__dec_instr1[2U] 
+                                                                           >> 0x15U)) 
+                                                                       | (0x1fU 
+                                                                          & vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                                                          [
+                                                                          (0x3fU 
+                                                                           & ((IData)(1U) 
+                                                                              + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)))][2U])))))) 
+                                                << 0xeU));
+    vlSelf->__PVT__ir_is_reg0_next[0U] = vlSelf->__PVT__dec_instr0[0U];
+    vlSelf->__PVT__ir_is_reg0_next[1U] = vlSelf->__PVT__dec_instr0[1U];
+    vlSelf->__PVT__ir_is_reg0_next[2U] = vlSelf->__PVT__dec_instr0[2U];
+    vlSelf->__PVT__ir_is_reg0_next[3U] = ((0xfff80000U 
+                                           & vlSelf->__PVT__ir_is_reg0_next[3U]) 
+                                          | vlSelf->__PVT__dec_instr0[3U]);
+    vlSelf->__PVT__inst_ir__DOT__rename_0 = ((0x3fffULL 
+                                              & vlSelf->__PVT__inst_ir__DOT__rename_0) 
+                                             | ((QData)((IData)(
+                                                                ((0xf8000U 
+                                                                  & (vlSelf->__PVT__dec_instr0[3U] 
+                                                                     << 9U)) 
+                                                                 | ((0x7c00U 
+                                                                     & ((vlSelf->__PVT__dec_instr0[3U] 
+                                                                         << 0xbU) 
+                                                                        | (0x400U 
+                                                                           & (vlSelf->__PVT__dec_instr0[2U] 
+                                                                              >> 0x15U)))) 
+                                                                    | ((0x3e0U 
+                                                                        & (vlSelf->__PVT__dec_instr0[2U] 
+                                                                           >> 0x15U)) 
+                                                                       | (0x1fU 
+                                                                          & vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
+                                                                          [
+                                                                          (0x3fU 
+                                                                           & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))][2U])))))) 
+                                                << 0xeU));
     if (vlSelf->__Vdlyvset__inst_buffer__DOT__slot_reg_valid__v0) {
         vlSelf->__PVT__inst_buffer__DOT__slot_reg_valid[0U] = 0U;
     }
@@ -2905,6 +2960,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__7(Vcommon_pipeline
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_pipeline___sequent__TOP__pipeline__7\n"); );
     // Init
+    CData/*0:0*/ __PVT__ID_stall;
     CData/*0:0*/ __PVT__can_dispatch;
     CData/*5:0*/ __PVT__inst_ir__DOT__inst_fl__DOT__read_0;
     CData/*5:0*/ __PVT__inst_ir__DOT__inst_fl__DOT__read_1;
@@ -3941,9 +3997,9 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__7(Vcommon_pipeline
     vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob 
         = ((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) 
            & (IData)(__PVT__can_dispatch));
-    vlSelf->__PVT__ID_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
-                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
-                                     | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
+    __PVT__ID_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+                              | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                             | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
     vlSelf->__PVT__inst_buffer__DOT__slot_valid_in[1U] 
         = vlSelf->__PVT__ex_slot1_valid;
     vlSelf->__PVT__inst_buffer__DOT__slot_valid_in[0U] 
@@ -4127,25 +4183,25 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__7(Vcommon_pipeline
     vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__instr0_disp2bt_rd_en 
         = ((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob) 
            & (vlSelf->__PVT__ir_is_reg0[2U] >> 0x13U));
-    vlSelf->__PVT__inst_ir__DOT__fl_req_1 = ((((~ (IData)(vlSelf->__PVT__ID_stall)) 
-                                               & (vlSelf->__PVT__id_ir_reg1[2U] 
+    vlSelf->__PVT__inst_ir__DOT__fl_req_1 = ((((~ (IData)(__PVT__ID_stall)) 
+                                               & (vlSelf->__PVT__dec_instr1[2U] 
                                                   >> 0x13U)) 
                                               & (0U 
                                                  != 
                                                  (0x1fU 
-                                                  & (vlSelf->__PVT__id_ir_reg1[2U] 
+                                                  & (vlSelf->__PVT__dec_instr1[2U] 
                                                      >> 0x1aU)))) 
-                                             & (vlSelf->__PVT__id_ir_reg1[3U] 
+                                             & (vlSelf->__PVT__dec_instr1[3U] 
                                                 >> 0xbU));
-    vlSelf->__PVT__inst_ir__DOT__fl_req_0 = ((((~ (IData)(vlSelf->__PVT__ID_stall)) 
-                                               & (vlSelf->__PVT__id_ir_reg0[2U] 
+    vlSelf->__PVT__inst_ir__DOT__fl_req_0 = ((((~ (IData)(__PVT__ID_stall)) 
+                                               & (vlSelf->__PVT__dec_instr0[2U] 
                                                   >> 0x13U)) 
                                               & (0U 
                                                  != 
                                                  (0x1fU 
-                                                  & (vlSelf->__PVT__id_ir_reg0[2U] 
+                                                  & (vlSelf->__PVT__dec_instr0[2U] 
                                                      >> 0x1aU)))) 
-                                             & (vlSelf->__PVT__id_ir_reg0[3U] 
+                                             & (vlSelf->__PVT__dec_instr0[3U] 
                                                 >> 0xbU));
     vlSelf->__PVT__inst_buffer__DOT__slot_valid_in[2U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__deq_valid;

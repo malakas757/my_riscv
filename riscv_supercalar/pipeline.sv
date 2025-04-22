@@ -301,19 +301,20 @@ module pipeline(/*AUTOARG*/
 
   /////////////////////////////////////////////////////////////////////
 
-                              //ID STAGE//
+                              //ID & IR STAGE//
 
    ///////////////////////////////////////////////////////////////////
 
   control_type    id_ir_reg0;
   control_type    id_ir_reg1;
-//debug
+/*
 `ifdef debug
   logic [31:0]    id_ir_reg0_pc;
   instruction_type    id_ir_reg0_instr;
   logic [31:0]    id_ir_reg1_pc;
   instruction_type    id_ir_reg1_instr;
 `endif   
+*/
 //////////////////////////// 
   control_type    dec_instr0;
   control_type    dec_instr1;
@@ -330,12 +331,12 @@ module pipeline(/*AUTOARG*/
 		    .if_instr1		(if_id_reg1));
    
    
-      always_ff @(posedge clk) begin
+/*      always_ff @(posedge clk) begin
 
 
 	   if(ID_flush || ~reset_n) begin
 	      id_ir_reg0      <= '0;
-	      id_ir_reg1      <= '0;	     
+	      id_ir_reg1      <=g '0;	     
 `ifdef debug
 	      id_ir_reg0_instr   <= '0;	     
 	      id_ir_reg0_pc      <= '0;	     
@@ -364,23 +365,18 @@ module pipeline(/*AUTOARG*/
 	      id_ir_reg1_pc      <=  if_id_reg1.pc;
 `endif	      
 	   end
-   end
+   end*/
 
 
 
 
 
-  /////////////////////////////////////////////////////////////////////
-
-                    //IR STAGE(***RENAME stage)//
-
-   ///////////////////////////////////////////////////////////////////
 
    ir_is_type             ir_is_reg0,ir_is_reg0_next;
    ir_is_type             ir_is_reg1,ir_is_reg1_next;
 
-   assign                 ir_is_reg0_next.control = id_ir_reg0;
-   assign                 ir_is_reg1_next.control = id_ir_reg1;
+   assign                 ir_is_reg0_next.control = dec_instr0;
+   assign                 ir_is_reg1_next.control = dec_instr1;
    
 
 `ifdef debug
@@ -406,8 +402,8 @@ module pipeline(/*AUTOARG*/
                     // Inputs
 		    .clk		(clk),
 		    .reset_n		(reset_n),
-		    .dec_instr0		(id_ir_reg0),
-		    .dec_instr1		(id_ir_reg1),
+		    .dec_instr0		(dec_instr0),
+		    .dec_instr1		(dec_instr1),
 		    .fl_write_en_0	(retire0_valid & retire0_is_wb),//
 		    .fl_write_en_1	(retire1_valid & retire1_is_wb),//
 		    .fl_write_data_0	(retire0_fl_Told),//
@@ -444,8 +440,8 @@ module pipeline(/*AUTOARG*/
 		    // Inputs
 		    .clk		(clk),			 // Templated
 		    .reset_n		(reset_n),		 // Templated
-		    .dec_instr0		(id_ir_reg0),		 // Templated
-		    .dec_instr1		(id_ir_reg1),		 // Templated
+		    .dec_instr0		(dec_instr0),		 // Templated
+		    .dec_instr1		(dec_instr1),		 // Templated
 		    .ID_stall		(ID_stall),
 		    .fl_write_en_0	(retire0_valid & retire0_is_wb), // Templated
 		    .fl_write_en_1	(retire1_valid & retire1_is_wb), // Templated
@@ -498,10 +494,10 @@ module pipeline(/*AUTOARG*/
 	      ir_is_reg0       <= ir_is_reg0_next ;
 	      ir_is_reg1       <= ir_is_reg1_next ;
 `ifdef debug	      
-	      ir_is_reg0_instr   <=  id_ir_reg0_instr;	     
-	      ir_is_reg0_pc      <=  id_ir_reg0_pc;	     
-	      ir_is_reg1_instr   <=  id_ir_reg1_instr;	     
-	      ir_is_reg1_pc      <=  id_ir_reg1_pc;
+	      ir_is_reg0_instr   <=  if_id_reg0.instruction;	     
+	      ir_is_reg0_pc      <=  if_id_reg0.pc;	     
+	      ir_is_reg1_instr   <=  if_id_reg1.instruction;	     
+	      ir_is_reg1_pc      <=  if_id_reg1.pc;
 `endif	      
 	   end
    end
