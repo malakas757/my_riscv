@@ -1625,7 +1625,6 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1023;
         SData/*9:0*/ __PVT__gshare_inst__DOT__GHSR;
         SData/*9:0*/ __PVT__gshare_inst__DOT__GHSR_next;
-        SData/*9:0*/ __PVT__gshare_inst__DOT__update_pht_addr;
         SData/*8:0*/ __Vdlyvdim0__btb_inst__DOT__btb_entry_valids__v0;
         SData/*8:0*/ __Vdlyvdim0__btb_inst__DOT__btb_tag_inst__DOT__history_table__v0;
         SData/*8:0*/ __Vdlyvdim0__btb_inst__DOT__btb_addr_inst__DOT__history_table__v0;

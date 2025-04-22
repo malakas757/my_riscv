@@ -14,7 +14,12 @@ module ex_buffer(/*AUTOARG*/
    slot0_control, slot1_control, slot2_control, slot0_pc, slot1_pc,
    slot2_pc, slot0_robid, slot1_robid, slot2_robid, IQ0_rs1_data,
    IQ0_rs2_data, IQ1_rs1_data, IQ1_rs2_data, MEM_rs1_data,
-   MEM_rs2_data, mem_issue_stall
+   MEM_rs2_data, IQ0_rs1_addr, IQ0_rs2_addr, IQ1_rs1_addr,
+   IQ1_rs2_addr, MEM_rs1_addr, MEM_rs2_addr, mem_issue_stall,
+   writeback0_need_to_wb, writeback1_need_to_wb,
+   writeback2_need_to_wb, writeback3_need_to_wb, writeback0_prd,
+   writeback1_prd, writeback2_prd, writeback3_prd, writeback0_data,
+   writeback1_data, writeback2_data, writeback3_data
    );
 
    input                      clk;
@@ -49,6 +54,15 @@ module ex_buffer(/*AUTOARG*/
      //MEM data
    input logic [31:0] 		MEM_rs1_data;
    input logic [31:0] 		MEM_rs2_data;
+     //src id (used to by pass)
+   input logic [PRF_WIDTH-1:0] 	IQ0_rs1_addr;
+   input logic [PRF_WIDTH-1:0] 	IQ0_rs2_addr;
+   input logic [PRF_WIDTH-1:0] 	IQ1_rs1_addr;
+   input logic [PRF_WIDTH-1:0] 	IQ1_rs2_addr;
+      //src is (used to by pass)
+   input logic [PRF_WIDTH-1:0] 	MEM_rs1_addr;
+   input logic [PRF_WIDTH-1:0] 	MEM_rs2_addr; //for store
+   
 
    //To function unit
      //To int0 (alu and mul)
@@ -77,6 +91,20 @@ module ex_buffer(/*AUTOARG*/
    output logic [ROB_WIDTH:0] 	int2_robid; 
    //from lsu
    input                        mem_issue_stall;
+
+   //bypass from wb
+   input 			writeback0_need_to_wb;
+   input 			writeback1_need_to_wb;
+   input 			writeback2_need_to_wb;
+   input 			writeback3_need_to_wb;
+   input logic [PRF_WIDTH-1:0] 	writeback0_prd;
+   input logic [PRF_WIDTH-1:0] 	writeback1_prd;
+   input logic [PRF_WIDTH-1:0] 	writeback2_prd;
+   input logic [PRF_WIDTH-1:0] 	writeback3_prd;
+   input logic [31:0] 		writeback0_data;
+   input logic [31:0] 		writeback1_data;
+   input logic [31:0] 		writeback2_data;
+   input logic [31:0] 		writeback3_data;
    
 
 
@@ -86,7 +114,9 @@ module ex_buffer(/*AUTOARG*/
    logic 			slot_reg_valid[3];
    logic [31:0] 		slot_reg_pc[3]; 
    logic [31:0] 		slot_reg_rs1[3]; 
-   logic [31:0] 		slot_reg_rs2[3]; 
+   logic [31:0] 		slot_reg_rs2[3];
+   logic [PRF_WIDTH-1:0] 	slot_reg_rs1_addr[3];
+   logic [PRF_WIDTH-1:0] 	slot_reg_rs2_addr[3]; 
    logic [ROB_WIDTH:0] 		slot_reg_robid[3];
    logic [PRF_WIDTH-1:0] 	slot_reg_T[3];
    control_type                 slot_reg_control[3];
@@ -103,6 +133,8 @@ module ex_buffer(/*AUTOARG*/
    logic [PRF_WIDTH-1:0] 	slot_T_in[3];
    logic [31:0] 		slot_rs1_in[3];
    logic [31:0] 		slot_rs2_in[3];
+   logic [PRF_WIDTH-1:0] 	slot_rs1_addr_in[3];
+   logic [PRF_WIDTH-1:0] 	slot_rs2_addr_in[3];   
    control_type			slot_control_in[3];
 
    
@@ -141,6 +173,12 @@ module ex_buffer(/*AUTOARG*/
    assign slot_rs2_in[0] = IQ0_rs2_data;
    assign slot_rs2_in[1] = IQ1_rs2_data;
    assign slot_rs2_in[2] = MEM_rs2_data;
+   assign slot_rs1_addr_in[0] = IQ0_rs1_addr;
+   assign slot_rs1_addr_in[1] = IQ1_rs1_addr;
+   assign slot_rs1_addr_in[2] = MEM_rs1_addr;
+   assign slot_rs2_addr_in[0] = IQ0_rs2_addr;
+   assign slot_rs2_addr_in[1] = IQ1_rs2_addr;
+   assign slot_rs2_addr_in[2] = MEM_rs2_addr;   
    assign slot_control_in[0] = slot0_control;
    assign slot_control_in[1] = slot1_control;
    assign slot_control_in[2] = slot2_control;
@@ -171,6 +209,8 @@ module ex_buffer(/*AUTOARG*/
 	       slot_reg_control[i] <= slot_control_in[i];
 	       slot_reg_rs1[i] <= slot_rs1_in[i];
 	       slot_reg_rs2[i] <= slot_rs2_in[i];
+	       slot_reg_rs1_addr[i] <= slot_rs1_addr_in[i];
+	       slot_reg_rs2_addr[i] <= slot_rs2_addr_in[i];
 	       slot_reg_robid[i] <= slot_robid_in[i];	       
 	    end
 	  end	 
@@ -195,12 +235,99 @@ module ex_buffer(/*AUTOARG*/
    assign int0_control    = slot_reg_control[0];
    assign int1_control    = slot_reg_control[1];
    assign int2_control    = slot_reg_control[2];
-   assign int0_rs1    = slot_reg_rs1[0];
-   assign int1_rs1    = slot_reg_rs1[1];
+   assign int0_rs1        = bypass_network(slot_reg_rs1[0],
+					   slot_reg_rs1_addr[0],
+					   writeback0_need_to_wb, 
+					   writeback1_need_to_wb, 
+					   writeback2_need_to_wb, 
+					   writeback3_need_to_wb, 
+					   writeback0_prd,        
+					   writeback1_prd,        
+					   writeback2_prd,        
+					   writeback3_prd,        
+					   writeback0_data,       
+					   writeback1_data,       
+					   writeback2_data,       
+					   writeback3_data);
+   assign int1_rs1        = bypass_network(slot_reg_rs1[1],
+					   slot_reg_rs1_addr[1],
+					   writeback0_need_to_wb, 
+					   writeback1_need_to_wb, 
+					   writeback2_need_to_wb, 
+					   writeback3_need_to_wb, 
+					   writeback0_prd,        
+					   writeback1_prd,        
+					   writeback2_prd,        
+					   writeback3_prd,        
+					   writeback0_data,       
+					   writeback1_data,       
+					   writeback2_data,       
+					   writeback3_data);
+   
+   assign int0_rs2        = bypass_network(slot_reg_rs2[0],
+					   slot_reg_rs2_addr[0],
+					   writeback0_need_to_wb, 
+					   writeback1_need_to_wb, 
+					   writeback2_need_to_wb, 
+					   writeback3_need_to_wb, 
+					   writeback0_prd,        
+					   writeback1_prd,        
+					   writeback2_prd,        
+					   writeback3_prd,        
+					   writeback0_data,       
+					   writeback1_data,       
+					   writeback2_data,       
+					   writeback3_data);
+
+   assign int1_rs2        = bypass_network(slot_reg_rs2[1],
+					   slot_reg_rs2_addr[1],
+					   writeback0_need_to_wb, 
+					   writeback1_need_to_wb, 
+					   writeback2_need_to_wb, 
+					   writeback3_need_to_wb, 
+					   writeback0_prd,        
+					   writeback1_prd,        
+					   writeback2_prd,        
+					   writeback3_prd,        
+					   writeback0_data,       
+					   writeback1_data,       
+					   writeback2_data,       
+					   writeback3_data);           				       				      				       
+
    assign int2_rs1    = slot_reg_rs1[2];   
-   assign int0_rs2    = slot_reg_rs2[0];
-   assign int1_rs2    = slot_reg_rs2[1];
-   assign int2_rs2    = slot_reg_rs2[2];   
+   assign int2_rs2    = slot_reg_rs2[2]; 
+
+function logic[31:0] bypass_network(
+   input logic [31:0]		prf_data,	    
+   input logic [PRF_WIDTH-1:0]	rs_prd,	    
+   input 			wb0_need_to_wb,
+   input 			wb1_need_to_wb,
+   input 			wb2_need_to_wb,
+   input 			wb3_need_to_wb,
+   input logic [PRF_WIDTH-1:0] 	wb0_prd,
+   input logic [PRF_WIDTH-1:0] 	wb1_prd,
+   input logic [PRF_WIDTH-1:0] 	wb2_prd,
+   input logic [PRF_WIDTH-1:0] 	wb3_prd,
+   input logic [31:0] 		wb0_data,
+   input logic [31:0] 		wb1_data,
+   input logic [31:0] 		wb2_data,
+   input logic [31:0] 		wb3_data
+);
+    begin
+        if (rs_prd == 0)
+            bypass_network = 32'h00000000;
+        else if (rs_prd == wb0_prd && wb0_need_to_wb)
+            bypass_network = wb0_data;
+        else if (rs_prd == wb1_prd && wb1_need_to_wb)
+            bypass_network = wb1_data;
+        else if (rs_prd == wb2_prd && wb2_need_to_wb)
+            bypass_network = wb2_data;
+        else if (rs_prd == wb3_prd && wb3_need_to_wb)
+            bypass_network = wb3_data;
+	else
+            bypass_network = prf_data;
+    end
+endfunction  
 
 
 

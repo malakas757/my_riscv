@@ -50,7 +50,6 @@ VL_ATTR_COLD void Vcommon_if_stage___ctor_var_reset(Vcommon_if_stage* vlSelf) {
     vlSelf->__PVT__gshare_inst__DOT__GHSR = VL_RAND_RESET_I(10);
     vlSelf->__PVT__gshare_inst__DOT__GHSR_next = VL_RAND_RESET_I(10);
     vlSelf->__PVT__gshare_inst__DOT__spec_update_GHSR = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__gshare_inst__DOT__update_pht_addr = VL_RAND_RESET_I(10);
     vlSelf->__Vdlyvdim0__btb_inst__DOT__btb_entry_valids__v0 = 0;
     vlSelf->__Vdlyvset__btb_inst__DOT__btb_entry_valids__v0 = 0;
     vlSelf->__Vdlyvval__btb_inst__DOT__btb_entry_valids__v1 = VL_RAND_RESET_I(1);

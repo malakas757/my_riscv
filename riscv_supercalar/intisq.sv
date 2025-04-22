@@ -133,6 +133,13 @@ module intisq(/*AUTOARG*/
    logic                       old1_is_bju;
    logic                       old1_is_alu;     
    logic                       intisq_empty[INTISQ_NUM-1:0];     
+
+//back2back wake up
+   logic                       deq0_wakeup_valid;
+   logic                       deq1_wakeup_valid;
+   logic [PRF_WIDTH-1:0]       deq0_wakeup_T;
+   logic [PRF_WIDTH-1:0]       deq1_wakeup_T;
+   
    
    always_comb begin
       int i;
@@ -461,7 +468,15 @@ module intisq(/*AUTOARG*/
 
 
 
-// write back logic
+// wake up logic
+
+   // when issue a single cycle instr, wake up src state
+   assign deq0_wakeup_valid = ~slot0_control.is_mul & ex_slot0_valid & slot0_control.reg_write;
+   assign deq1_wakeup_valid = ~slot1_control.is_mul & ex_slot1_valid & slot1_control.reg_write;
+   assign deq0_wakeup_T     = slot0_T;
+   assign deq1_wakeup_T     = slot1_T;
+   
+ 
 
    
    always_ff@(posedge clk) begin
@@ -492,12 +507,16 @@ module intisq(/*AUTOARG*/
 	    if ((writeback0_need_to_wb & writeback0_valid & intisq_valid[i2] & intisq_src1_id[i2] == writeback0_prd) ||
 		(writeback1_need_to_wb & writeback1_valid & intisq_valid[i2] & intisq_src1_id[i2] == writeback1_prd) || 
 		(writeback2_need_to_wb & writeback2_valid & intisq_valid[i2] & intisq_src1_id[i2] == writeback2_prd) || 
-		(writeback3_need_to_wb & writeback3_valid & intisq_valid[i2] & intisq_src1_id[i2] == writeback3_prd))
+		(writeback3_need_to_wb & writeback3_valid & intisq_valid[i2] & intisq_src1_id[i2] == writeback3_prd) ||
+		(deq0_wakeup_valid     & intisq_valid[i2] & intisq_src1_id[i2] == deq0_wakeup_T)                     ||
+		(deq1_wakeup_valid     & intisq_valid[i2] & intisq_src1_id[i2] == deq1_wakeup_T)                     )
 	      intisq_src1_state[i2] <= 1'b0;
 	    if ((writeback0_need_to_wb & writeback0_valid & intisq_valid[i2] & intisq_src2_id[i2] == writeback0_prd) ||
 		(writeback1_need_to_wb & writeback1_valid & intisq_valid[i2] & intisq_src2_id[i2] == writeback1_prd) || 
 		(writeback2_need_to_wb & writeback2_valid & intisq_valid[i2] & intisq_src2_id[i2] == writeback2_prd) || 
-		(writeback3_need_to_wb & writeback3_valid & intisq_valid[i2] & intisq_src2_id[i2] == writeback3_prd))
+		(writeback3_need_to_wb & writeback3_valid & intisq_valid[i2] & intisq_src2_id[i2] == writeback3_prd) || 
+		(deq0_wakeup_valid     & intisq_valid[i2] & intisq_src2_id[i2] == deq0_wakeup_T)                     ||
+		(deq1_wakeup_valid     & intisq_valid[i2] & intisq_src2_id[i2] == deq1_wakeup_T))
 	      intisq_src2_state[i2] <= 1'b0;
 	    
 	 end

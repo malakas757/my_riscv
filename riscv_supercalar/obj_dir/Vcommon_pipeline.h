@@ -38,6 +38,10 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__retire1_is_wb;
         CData/*0:0*/ __PVT__retire1_valid;
         CData/*0:0*/ __PVT__retire_sq2mem_valid;
+        CData/*5:0*/ __PVT__slot0_T;
+        CData/*5:0*/ __PVT__slot1_T;
+        CData/*5:0*/ __PVT__slot2_src1_id;
+        CData/*5:0*/ __PVT__slot2_src2_id;
         CData/*1:0*/ __PVT__sq_left;
         CData/*5:0*/ __PVT__walk0_T;
         CData/*4:0*/ __PVT__walk0_arf_id;
@@ -51,7 +55,6 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__writeback3_valid;
         CData/*0:0*/ __Vcellinp__inst_ir__fl_write_en_1;
         CData/*0:0*/ __Vcellinp__inst_ir__fl_write_en_0;
-        CData/*0:0*/ __PVT__inst_ir__DOT__fl_can_alloc;
         CData/*0:0*/ __PVT__inst_ir__DOT__fl_req_0;
         CData/*0:0*/ __PVT__inst_ir__DOT__fl_req_1;
         CData/*5:0*/ __PVT__inst_ir__DOT__inst_fl__DOT__head;
@@ -79,11 +82,11 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_vec;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_vec;
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head;
+    };
+    struct {
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail;
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head;
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__flush_robid_latch;
-    };
-    struct {
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__retire_num;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__current_state;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__next_state;
@@ -93,6 +96,8 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid;
         CData/*2:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id;
         CData/*2:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_id;
+        CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_valid;
+        CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_valid;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec;
         CData/*2:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__slot1_entry_id;
         CData/*2:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__slot0_entry_id;
@@ -102,11 +107,15 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_mul;
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_bju;
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu;
+        CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__deq0_wakeup_valid;
+        CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__deq1_wakeup_valid;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_head;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail;
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_memisq__DOT__deq_valid;
         CData/*0:0*/ inst_buffer__DOT____Vlvbound_hcf70db14__1;
         CData/*5:0*/ inst_buffer__DOT____Vlvbound_h5df65fe2__0;
+        CData/*5:0*/ inst_buffer__DOT____Vlvbound_h6850f279__0;
+        CData/*5:0*/ inst_buffer__DOT____Vlvbound_h3d1dfe81__0;
         CData/*6:0*/ inst_buffer__DOT____Vlvbound_hfbfc84f6__0;
         CData/*0:0*/ __PVT__inst_int0__DOT__wb0_reg_valid;
         CData/*0:0*/ __PVT__inst_int0__DOT__wb0_reg_need_to_wb;
@@ -139,6 +148,8 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__done;
         CData/*0:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__need_to_flush;
         CData/*6:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_robid;
+    };
+    struct {
         CData/*5:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_prf_id;
         CData/*0:0*/ __PVT__inst_int1__DOT__bju_branch_taken;
         CData/*0:0*/ __PVT__inst_int1__DOT__wb_reg_valid;
@@ -148,12 +159,7 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__inst_int1__DOT__wb_need_to_flush;
         CData/*0:0*/ __PVT__inst_int1__DOT__branch_taken_latch;
         CData/*0:0*/ __PVT__inst_int1__DOT__branch_valid_latch;
-    };
-    struct {
         CData/*0:0*/ __PVT__inst_int1__DOT__branch_update_GHSR_latch;
-        CData/*0:0*/ __PVT__inst_int1__DOT__inst_bju__DOT__is_rs1_eq_rs2;
-        CData/*0:0*/ __PVT__inst_int1__DOT__inst_bju__DOT__is_rs1_lt_rs2;
-        CData/*0:0*/ __PVT__inst_int1__DOT__inst_bju__DOT__is_sign_rs1_lt_rs2;
         CData/*0:0*/ __PVT__inst_int1__DOT__inst_bju__DOT__is_bj;
         CData/*0:0*/ __PVT__inst_int1__DOT__inst_bju__DOT__is_branch_taken_diff;
         CData/*0:0*/ __PVT__inst_int2__DOT__reg_valid;
@@ -208,14 +214,14 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v25;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v26;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v27;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v28;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v29;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v30;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v31;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v32;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v33;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v34;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v35;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v36;
@@ -274,14 +280,14 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v424;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v425;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v426;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v427;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v428;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v429;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v430;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v431;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v432;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v433;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v434;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v435;
@@ -340,14 +346,14 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v6;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v7;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v8;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v9;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v10;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v11;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v12;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v13;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_T__v0;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_T__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_T__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_T__v3;
@@ -359,11 +365,8 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src1_id__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src1_id__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src1_id__v3;
-        CData/*2:0*/ __Vdlyvdim0__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v0;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v0;
-        CData/*2:0*/ __Vdlyvdim0__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v1;
-        CData/*2:0*/ __Vdlyvdim0__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v3;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid__v0;
@@ -409,11 +412,11 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_bt__DOT__reg_busy_table__v71;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v0;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v1;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v3;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v4;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v5;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v6;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v7;
@@ -430,11 +433,8 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src1_id__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src1_id__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src1_id__v3;
-        CData/*1:0*/ __Vdlyvdim0__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v0;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v0;
-        CData/*1:0*/ __Vdlyvdim0__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v1;
-        CData/*1:0*/ __Vdlyvdim0__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v3;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_robid__v0;
@@ -477,32 +477,38 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_valid__v5;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_valid__v5;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_valid__v6;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1__v0;
+        CData/*6:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_robid__v0;
     };
     struct {
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1__v1;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1__v2;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_pc__v0;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_pc__v1;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_pc__v2;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_control__v0;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_control__v1;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_control__v2;
-        CData/*6:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_robid__v0;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_robid__v0;
         CData/*6:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_robid__v1;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_robid__v1;
         CData/*6:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_robid__v2;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_robid__v2;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1__v0;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1__v1;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1__v2;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2__v0;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2__v1;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2__v2;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2_addr__v0;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2_addr__v1;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2_addr__v2;
         CData/*5:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_T__v0;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_T__v0;
         CData/*5:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_T__v1;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_T__v1;
         CData/*5:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_T__v2;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_T__v2;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2__v0;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2__v1;
-        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs2__v2;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1_addr__v0;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1_addr__v1;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_rs1_addr__v2;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_control__v0;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_control__v1;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_control__v2;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_pc__v0;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_pc__v1;
+        CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_pc__v2;
         CData/*0:0*/ __Vdly__flush_valid;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_valid__v0;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_valid__v1;
@@ -538,14 +544,14 @@ VL_MODULE(Vcommon_pipeline) {
         IData/*31:0*/ __PVT__ir_is_reg0_pc;
         IData/*31:0*/ __PVT__ir_is_reg0_instr;
         IData/*31:0*/ __PVT__ir_is_reg1_pc;
+    };
+    struct {
         IData/*31:0*/ __PVT__ir_is_reg1_instr;
         IData/*31:0*/ inst_buffer__DOT____Vlvbound_h1655a754__0;
         IData/*31:0*/ inst_buffer__DOT____Vlvbound_h5911c180__0;
         IData/*31:0*/ inst_buffer__DOT____Vlvbound_ha2614b0e__0;
         IData/*31:0*/ __PVT__inst_int0__DOT__wb0_reg_data;
         IData/*31:0*/ __PVT__inst_int0__DOT__wb1_reg_data;
-    };
-    struct {
         IData/*31:0*/ __PVT__inst_int0__DOT__alu_result;
         IData/*31:0*/ __PVT__inst_int1__DOT__bju_branch_target_pc;
         IData/*31:0*/ __PVT__inst_int1__DOT__alu_data;
@@ -558,18 +564,12 @@ VL_MODULE(Vcommon_pipeline) {
         IData/*31:0*/ __PVT__inst_int2__DOT__wb_reg_data;
         IData/*31:0*/ __PVT__inst_int2__DOT__load_data;
         IData/*31:0*/ __Vdlyvval__inst_imem__DOT__ram__v0;
-        IData/*31:0*/ __Vdlyvval__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v0;
-        IData/*31:0*/ __Vdlyvval__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v1;
-        IData/*31:0*/ __Vdlyvval__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v2;
-        IData/*31:0*/ __Vdlyvval__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v0;
-        IData/*31:0*/ __Vdlyvval__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v1;
-        IData/*31:0*/ __Vdlyvval__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v2;
-        IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_pc__v0;
-        IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_pc__v1;
-        IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_pc__v2;
         IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_rs2__v0;
         IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_rs2__v1;
         IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_rs2__v2;
+        IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_pc__v0;
+        IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_pc__v1;
+        IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_pc__v2;
         VlWide<4>/*108:0*/ __PVT__if_id_reg0;
         VlWide<4>/*108:0*/ __PVT__if_id_reg1;
         VlWide<3>/*76:0*/ __PVT__ex_branch_in;
@@ -738,12 +738,14 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<IData/*31:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_pc;
         VlUnpacked<IData/*31:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_rs1;
         VlUnpacked<IData/*31:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_rs2;
+        VlUnpacked<CData/*5:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_rs1_addr;
+        VlUnpacked<CData/*5:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_rs2_addr;
         VlUnpacked<CData/*6:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_robid;
         VlUnpacked<CData/*5:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_T;
-        VlUnpacked<VlWide<4>/*114:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_control;
-        VlUnpacked<CData/*0:0*/, 3> __PVT__inst_buffer__DOT__slot_need_to_flush;
     };
     struct {
+        VlUnpacked<VlWide<4>/*114:0*/, 3> __PVT__inst_buffer__DOT__slot_reg_control;
+        VlUnpacked<CData/*0:0*/, 3> __PVT__inst_buffer__DOT__slot_need_to_flush;
         VlUnpacked<CData/*0:0*/, 3> __PVT__inst_buffer__DOT__slot_need_to_stall;
         VlUnpacked<CData/*0:0*/, 3> __PVT__inst_buffer__DOT__slot_valid_in;
         VlUnpacked<IData/*31:0*/, 3> __PVT__inst_buffer__DOT__slot_pc_in;
@@ -751,6 +753,7 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<CData/*5:0*/, 3> __PVT__inst_buffer__DOT__slot_T_in;
         VlUnpacked<IData/*31:0*/, 3> __PVT__inst_buffer__DOT__slot_rs1_in;
         VlUnpacked<IData/*31:0*/, 3> __PVT__inst_buffer__DOT__slot_rs2_in;
+        VlUnpacked<CData/*5:0*/, 3> __PVT__inst_buffer__DOT__slot_rs2_addr_in;
         VlUnpacked<VlWide<4>/*114:0*/, 3> __PVT__inst_buffer__DOT__slot_control_in;
         VlUnpacked<CData/*6:0*/, 5> __PVT__inst_int0__DOT__inst_mult__DOT__internal_robid;
         VlUnpacked<CData/*5:0*/, 5> __PVT__inst_int0__DOT__inst_mult__DOT__internal_T;

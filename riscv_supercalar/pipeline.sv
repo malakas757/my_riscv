@@ -717,6 +717,16 @@ module pipeline(/*AUTOARG*/
 			 .IQ1_rs2_data		(IQ1_rs2_data[31:0]),
 			 .MEM_rs1_data		(MEM_rs1_data[31:0]),
 			 .MEM_rs2_data		(MEM_rs2_data[31:0]),
+    			 .IQ0_rs1_addr	(slot0_src1_id),
+			 .IQ0_rs2_addr	(slot0_src2_id),
+			 .IQ1_rs1_addr	(slot1_src1_id),
+			 .IQ1_rs2_addr	(slot1_src2_id),
+			 .MEM_rs1_addr	(slot2_src1_id),
+			 .MEM_rs2_addr	(slot2_src2_id),
+    			 .writeback0_need_to_wb(writeback0_need_to_wb & writeback0_valid),
+			 .writeback1_need_to_wb(writeback1_need_to_wb & writeback1_valid),
+			 .writeback2_need_to_wb(writeback2_need_to_wb & writeback2_valid),
+			 .writeback3_need_to_wb(writeback3_need_to_wb & writeback3_valid),    
 			 .mem_issue_stall	(mem_issue_stall));*/  
 
    ex_buffer inst_buffer(/*AUTOINST*/
@@ -768,7 +778,25 @@ module pipeline(/*AUTOARG*/
 			 .IQ1_rs2_data		(IQ1_rs2_data[31:0]), // Templated
 			 .MEM_rs1_data		(MEM_rs1_data[31:0]), // Templated
 			 .MEM_rs2_data		(MEM_rs2_data[31:0]), // Templated
-			 .mem_issue_stall	(mem_issue_stall)); // Templated
+			 .IQ0_rs1_addr		(slot0_src1_id), // Templated
+			 .IQ0_rs2_addr		(slot0_src2_id), // Templated
+			 .IQ1_rs1_addr		(slot1_src1_id), // Templated
+			 .IQ1_rs2_addr		(slot1_src2_id), // Templated
+			 .MEM_rs1_addr		(slot2_src1_id), // Templated
+			 .MEM_rs2_addr		(slot2_src2_id), // Templated
+			 .mem_issue_stall	(mem_issue_stall), // Templated
+			 .writeback0_need_to_wb	(writeback0_need_to_wb & writeback0_valid), // Templated
+			 .writeback1_need_to_wb	(writeback1_need_to_wb & writeback1_valid), // Templated
+			 .writeback2_need_to_wb	(writeback2_need_to_wb & writeback2_valid), // Templated
+			 .writeback3_need_to_wb	(writeback3_need_to_wb & writeback3_valid), // Templated
+			 .writeback0_prd	(writeback0_prd[PRF_WIDTH-1:0]),
+			 .writeback1_prd	(writeback1_prd[PRF_WIDTH-1:0]),
+			 .writeback2_prd	(writeback2_prd[PRF_WIDTH-1:0]),
+			 .writeback3_prd	(writeback3_prd[PRF_WIDTH-1:0]),
+			 .writeback0_data	(writeback0_data[31:0]),
+			 .writeback1_data	(writeback1_data[31:0]),
+			 .writeback2_data	(writeback2_data[31:0]),
+			 .writeback3_data	(writeback3_data[31:0]));
    
 
 
