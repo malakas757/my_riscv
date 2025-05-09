@@ -5,8 +5,9 @@ import common::*;
 module program_memory (
     input clk,
     input [XLEN_WIDTH-1:0] byte_address,
+    input [XLEN_WIDTH-1:0] write_address,
     input write_enable,         
-    input [XLEN_WIDTH-1:0] write_data, 
+    input [7:0] write_data, 
     output is_compress,
     output logic [XLEN_WIDTH-1:0] read_data
 );
@@ -22,11 +23,11 @@ module program_memory (
     initial begin
         $readmemh("instruction_mem.mem", ram);
     end
-    
+     
     
     always @(posedge clk) begin
         if (write_enable) begin
-            ram[byte_address] <= write_data;
+            ram[write_address[9:0]] <= write_data;
         end 
     end
     

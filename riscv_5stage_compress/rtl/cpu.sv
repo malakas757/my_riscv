@@ -5,14 +5,17 @@ import common::*;
 
 module cpu(/*AUTOARG*/
    // Outputs
-   debug_flush,debug_is_bj,
+   debug_flush, debug_is_bj,
    // Inputs
-   clk, reset_n
+   clk, reset_n, write_address, write_data, write_enable
    );
-   input clk;
-   input reset_n;
-   output debug_flush;
-   output debug_is_bj;
+   input          clk;
+   input          reset_n;
+   input [31:0]   write_address;
+   input [7:0] 	  write_data;
+   input  	  write_enable;
+   output 	  debug_flush;
+   output 	  debug_is_bj;
    
    
 
@@ -155,15 +158,13 @@ module cpu(/*AUTOARG*/
        
        end
 
-/*program_memory AUTO_TEMPLATE(
-         .read(imem_data),
-         
- )*/
+
     program_memory inst_mem(
         .clk(clk),        
         .byte_address(imem_req_addr),
-        .write_enable(program_mem_write_enable),
-        .write_data(program_mem_write_data),
+        .write_address(write_address),
+        .write_enable(write_enable),
+        .write_data(write_data),
         .is_compress(compressed),
         .read_data(imem_data)
     );
@@ -171,6 +172,7 @@ module cpu(/*AUTOARG*/
 /*fetch_stage AUTO_TEMPLATE(
          .PC(program_mem_address),
          .imem_resp(1'b1),
+         .is_compress(compressed),
          
  )*/
     fetch_stage inst_fetch_stage(
@@ -184,7 +186,7 @@ module cpu(/*AUTOARG*/
 				 // Inputs
 				 .clk			(clk),
 				 .reset_n		(reset_n),
-				 .is_compress(compressed),
+				 .is_compress		(compressed),	 // Templated
 				 .imem_data		(imem_data[XLEN_WIDTH-1:0]),
 				 .imem_resp		(1'b1),		 // Templated
 				 .PC_stall		(PC_stall),
@@ -237,7 +239,6 @@ module cpu(/*AUTOARG*/
 				  .reset_n		(reset_n),
 				  .instruction		(if_id_reg.instruction), // Templated
 				  .pc			(if_id_reg.pc),	 // Templated
-				  //.decompress_en(compressed),
 				  .write_en		(wb_write_back_en), // Templated
 				  .write_id		(wb_reg_rd_id),	 // Templated
 				  .write_data		(wb_result),	 // Templated
