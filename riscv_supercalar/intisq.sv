@@ -157,7 +157,7 @@ module intisq(/*AUTOARG*/
 					.out_alloc_valid_1(empty_id1_valid),
 					// Inputs
 					.in_id		(in_id),
-					.in_alloc_valid	(intisq_valid));*/
+					.in_alloc_valid	(intisq_empty));*/
    
    
    empty_entry_finder8 inst_emptyfinder(/*AUTOINST*/

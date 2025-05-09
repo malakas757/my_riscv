@@ -5,7 +5,8 @@ import common::*;
 
 module pipeline(/*AUTOARG*/
    // Outputs
-   ram_debug, prf_debug, RRAT_debug,
+   ram_debug, prf_debug, RRAT_debug, branch_times_debug,
+   flush_times_debug,
    // Inputs
    clk, reset_n, imem_en, imem_data_in
    );
@@ -16,6 +17,8 @@ module pipeline(/*AUTOARG*/
    output logic [31:0] ram_debug[256];
    output logic [31:0] prf_debug[PRF_NUM-1:0];
    output logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
+   output logic 		branch_times_debug;
+   output logic 		flush_times_debug;
    
    
 
@@ -44,11 +47,10 @@ module pipeline(/*AUTOARG*/
    wire			PC_stall;		// From inst_stall_flush of stall_flush_control.v
    logic [31:0]		branch_target_pc;	// From inst_int1 of int1_alu_bju.v
    wire			can_dispatch;		// From inst_is_stage of is_stage.v
-   logic [GSHARE_GHSR_WIDTH-1:0] ex2if_GHSR_restore;// From inst_int1 of int1_alu_bju.v
+   logic [GSHARE_GHSR_WIDTH-1:0] ex2if_GHSR_restore;// From inst_is_stage of is_stage.v
    logic [31:0]		ex2if_branch_addr;	// From inst_int1 of int1_alu_bju.v
    logic		ex2if_branch_taken;	// From inst_int1 of int1_alu_bju.v
    logic [31:0]		ex2if_branch_target_addr;// From inst_int1 of int1_alu_bju.v
-   logic		ex2if_branch_update_GHSR;// From inst_int1 of int1_alu_bju.v
    logic		ex2if_branch_valid;	// From inst_int1 of int1_alu_bju.v
    logic		ex_slot0_valid;		// From inst_is_stage of is_stage.v
    logic		ex_slot1_valid;		// From inst_is_stage of is_stage.v
@@ -91,6 +93,7 @@ module pipeline(/*AUTOARG*/
    wire [31:0]		mem_read_addr;		// From inst_int2 of int2_lsu.v
    wire			mem_read_req;		// From inst_int2 of int2_lsu.v
    wire			mul_slot_busy;		// From inst_int0 of int0_mul_alu.v
+   wire			need_update_GHSR;	// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	retire0_T;		// From inst_is_stage of is_stage.v
    wire [ARF_WIDTH-1:0]	retire0_arf_id;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	retire0_fl_Told;	// From inst_is_stage of is_stage.v
@@ -211,11 +214,13 @@ module pipeline(/*AUTOARG*/
 
    //*** ex_... is used to update BTB and GHSR !!!
    // flush_valid and branch_target_pc is used to redirect pc !!!
+   assign branch_times_debug = ex2if_branch_valid;
+   assign flush_times_debug = flush_valid;   
    assign ex_branch_in.valid = ex2if_branch_valid;
    assign ex_branch_in.taken = ex2if_branch_taken;
    assign ex_branch_in.addr = ex2if_branch_addr;
    assign ex_branch_in.target_addr = ex2if_branch_target_addr;
-   assign ex_branch_in.update_GHSR = ex2if_branch_update_GHSR;
+   assign ex_branch_in.update_GHSR = need_update_GHSR;
    assign ex_branch_in.GHSR_restore = ex2if_GHSR_restore;
    
    
@@ -620,6 +625,8 @@ module pipeline(/*AUTOARG*/
 			  .slot1_src2_id	(slot1_src2_id[PRF_WIDTH-1:0]),
 			  .slot2_src1_id	(slot2_src1_id[PRF_WIDTH-1:0]),
 			  .slot2_src2_id	(slot2_src2_id[PRF_WIDTH-1:0]),
+			  .need_update_GHSR	(need_update_GHSR),
+			  .ex2if_GHSR_restore	(ex2if_GHSR_restore[GSHARE_GHSR_WIDTH-1:0]),
 			  // Inputs
 			  .clk			(clk),		 // Templated
 			  .reset_n		(reset_n),	 // Templated
@@ -648,6 +655,7 @@ module pipeline(/*AUTOARG*/
 			  .writeback2_robid	(writeback2_robid[ROB_WIDTH:0]), // Templated
 			  .writeback3_robid	(writeback3_robid[ROB_WIDTH:0]), // Templated
 			  .mul_slot_busy	(mul_slot_busy), // Templated
+			  .ex2if_branch_valid	(ex2if_branch_valid),
 			  .mem_issue_stall	(mem_issue_stall));
 
     /////////////////////////////////////////////////////////////////////
@@ -843,8 +851,6 @@ module pipeline(/*AUTOARG*/
 			  .ex2if_branch_taken	(ex2if_branch_taken),
 			  .ex2if_branch_addr	(ex2if_branch_addr[31:0]),
 			  .ex2if_branch_target_addr(ex2if_branch_target_addr[31:0]),
-			  .ex2if_branch_update_GHSR(ex2if_branch_update_GHSR),
-			  .ex2if_GHSR_restore	(ex2if_GHSR_restore[GSHARE_GHSR_WIDTH-1:0]),
 			  .branch_target_pc	(branch_target_pc[31:0]),
 			  .branch_flush		(flush_valid),	 // Templated
 			  .branch_flush_robid	(flush_robid[ROB_WIDTH:0]), // Templated

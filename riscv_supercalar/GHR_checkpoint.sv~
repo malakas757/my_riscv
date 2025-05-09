@@ -1,0 +1,92 @@
+`timescale 1ns/1ps
+
+import common::*;
+
+module GHR_checkpoint(/*AUTOARG*/);
+
+   
+   input clk;
+   input reset_n;
+   output logic [1:0]          GHT_left;
+
+   // flush input 
+   input logic                 flush_valid;
+   input logic [ROB_WIDTH:0]   flush_robid;
+
+   //from dispatch
+   input 		         GHR_entry_req0;
+   input 		         GHR_entry_req1;
+   input [ROB_WIDTH:0] 		 GHR_req0_robid;
+   input [ROB_WIDTH:0] 		 GHR_req0_robid;
+   input [GSHARE_GHSR_WIDTH-1:0] GHR_req0_data;
+   input [GSHARE_GHSR_WIDTH-1:0] GHR_req1_data;
+   //to if stage
+   output                         need_update_GHSR;
+   output [GSHARE_GHSR_WIDTH-1:0] GHSR_data;
+
+
+   //entry define
+   logic                         GHSR_valid[GHT_NUM-1:0];
+   logic                         GHSR_empty[GHT_NUM-1:0];
+   logic [ROB_WIDTH:0] 	         GHSR_robid[GHT_NUM-1:0];
+   logic [GSHARE_GHSR_WIDTH-1:0] GHSR_data[GHT_NUM-1:0];
+
+   //empty finder
+
+   logic [INTISQ_WIDTH-1:0] 		       empty_id0;
+   logic 				       empty_id0_valid;
+   logic [INTISQ_WIDTH-1:0] 		       empty_id1;
+   logic 				       empty_id1_valid;
+   logic [INTISQ_WIDTH-1:0] 		       in_id[INTISQ_NUM-1:0];
+   
+
+   always_comb begin
+      int i;      
+      for(i=0;i<GHT_NUM;i=i+1)
+	GHSR_empty[i] = ~GHSR_valid[i];            
+   end
+
+   always_comb begin
+      int i;            
+      for(i=0; i<INTISQ_NUM; i=i+1) begin
+	 in_id[i] = i;	 
+	end
+   end
+
+   
+   assign GHT_left = empty_id0_valid + empty_id1_valid;
+   
+   /*empty_entry_finder8 AUTO_TEMPLATE(
+					// Outputs
+					.out_id_0	(empty_id0),
+					.out_id_1	(empty_id1),
+					.out_alloc_valid_0(empty_id0_valid),
+					.out_alloc_valid_1(empty_id1_valid),
+					// Inputs
+					.in_id		(in_id),
+					.in_alloc_valid	(intisq_valid));*/
+   
+   empty_entry_finder8 inst_emptyfinder(/*AUTOINST*/
+					// Outputs
+					.out_id_0	(empty_id0),	 // Templated
+					.out_id_1	(empty_id1),	 // Templated
+					.out_alloc_valid_0(empty_id0_valid), // Templated
+					.out_alloc_valid_1(empty_id1_valid), // Templated
+					// Inputs
+					.in_id		(in_id),	 // Templated
+					.in_alloc_valid	(GHSR_empty));	 // Templated
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+endmodule

@@ -18,20 +18,18 @@ VL_MODULE(Vcommon_if_stage) {
     // DESIGN SPECIFIC STATE
     // Anonymous structures to workaround compiler member-count bugs
     struct {
-        VL_IN8(__PVT__clk,0,0);
-        VL_IN8(__PVT__reset_n,0,0);
-        VL_IN8(__PVT__instr_resp_ready,0,0);
-        VL_IN8(__PVT__flush_valid,0,0);
-        VL_IN8(__PVT__PC_stall,0,0);
-        VL_IN8(__PVT__IF_stall,0,0);
-        VL_OUT8(__PVT__imem_miss,0,0);
+        VL_IN8(clk,0,0);
+        VL_IN8(reset_n,0,0);
+        VL_IN8(instr_resp_ready,0,0);
+        VL_IN8(flush_valid,0,0);
+        VL_IN8(PC_stall,0,0);
+        VL_IN8(IF_stall,0,0);
+        VL_OUT8(imem_miss,0,0);
         CData/*0:0*/ __PVT__PC_predict_taken;
-        CData/*0:0*/ __PVT__instr0_btb_hit;
-        CData/*0:0*/ __PVT__instr1_btb_hit;
         CData/*0:0*/ __PVT__instr0_predict_taken;
         CData/*0:0*/ __PVT__instr1_predict_taken;
+        CData/*0:0*/ __PVT__imem_req;
         CData/*0:0*/ __PVT__btb_inst__DOT__update_BTB;
-        CData/*0:0*/ __PVT__gshare_inst__DOT__spec_update_GHSR;
         CData/*0:0*/ __Vdlyvset__btb_inst__DOT__btb_entry_valids__v0;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v1;
         CData/*0:0*/ __Vdlyvset__btb_inst__DOT__btb_entry_valids__v1;
@@ -82,10 +80,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v46;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v47;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v48;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v49;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v50;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v51;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v52;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v53;
@@ -148,10 +146,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v110;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v111;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v112;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v113;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v114;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v115;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v116;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v117;
@@ -214,10 +212,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v174;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v175;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v176;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v177;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v178;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v179;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v180;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v181;
@@ -280,10 +278,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v238;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v239;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v240;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v241;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v242;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v243;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v244;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v245;
@@ -346,10 +344,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v302;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v303;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v304;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v305;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v306;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v307;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v308;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v309;
@@ -412,10 +410,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v366;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v367;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v368;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v369;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v370;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v371;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v372;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v373;
@@ -478,10 +476,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v430;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v431;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v432;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v433;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v434;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v435;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v436;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v437;
@@ -544,10 +542,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v494;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v495;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v496;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v497;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v498;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v499;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v500;
         CData/*0:0*/ __Vdlyvval__btb_inst__DOT__btb_entry_valids__v501;
@@ -610,10 +608,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v40;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v41;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v42;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v43;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v44;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v45;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v46;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v47;
@@ -676,10 +674,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v104;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v105;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v106;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v107;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v108;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v109;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v110;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v111;
@@ -742,10 +740,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v168;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v169;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v170;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v171;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v172;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v173;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v174;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v175;
@@ -808,10 +806,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v232;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v233;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v234;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v235;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v236;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v237;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v238;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v239;
@@ -874,10 +872,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v296;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v297;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v298;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v299;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v300;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v301;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v302;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v303;
@@ -940,10 +938,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v360;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v361;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v362;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v363;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v364;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v365;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v366;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v367;
@@ -1006,10 +1004,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v424;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v425;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v426;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v427;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v428;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v429;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v430;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v431;
@@ -1072,10 +1070,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v488;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v489;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v490;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v491;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v492;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v493;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v494;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v495;
@@ -1138,10 +1136,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v552;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v553;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v554;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v555;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v556;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v557;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v558;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v559;
@@ -1204,10 +1202,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v616;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v617;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v618;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v619;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v620;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v621;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v622;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v623;
@@ -1270,10 +1268,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v680;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v681;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v682;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v683;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v684;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v685;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v686;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v687;
@@ -1336,10 +1334,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v744;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v745;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v746;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v747;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v748;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v749;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v750;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v751;
@@ -1402,10 +1400,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v808;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v809;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v810;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v811;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v812;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v813;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v814;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v815;
@@ -1468,10 +1466,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v872;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v873;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v874;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v875;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v876;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v877;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v878;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v879;
@@ -1534,10 +1532,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v936;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v937;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v938;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v939;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v940;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v941;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v942;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v943;
@@ -1600,10 +1598,10 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1000;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1001;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1002;
-    };
-    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1003;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1004;
+    };
+    struct {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1005;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1006;
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1007;
@@ -1625,21 +1623,23 @@ VL_MODULE(Vcommon_if_stage) {
         CData/*1:0*/ __Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v1023;
         SData/*9:0*/ __PVT__gshare_inst__DOT__GHSR;
         SData/*9:0*/ __PVT__gshare_inst__DOT__GHSR_next;
+        SData/*9:0*/ __PVT__gshare_inst__DOT__GHSR_restore_next;
+        SData/*9:0*/ __PVT__gshare_inst__DOT__update_pht_addr;
         SData/*8:0*/ __Vdlyvdim0__btb_inst__DOT__btb_entry_valids__v0;
         SData/*8:0*/ __Vdlyvdim0__btb_inst__DOT__btb_tag_inst__DOT__history_table__v0;
         SData/*8:0*/ __Vdlyvdim0__btb_inst__DOT__btb_addr_inst__DOT__history_table__v0;
-        VL_IN(__PVT__imem_data_instr0,31,0);
-        VL_IN(__PVT__imem_data_instr1,31,0);
-        VL_IN(__PVT__branch_target_pc,31,0);
+        VL_IN(imem_data_instr0,31,0);
+        VL_IN(imem_data_instr1,31,0);
+        VL_IN(branch_target_pc,31,0);
         IData/*31:0*/ __PVT__PC_predict_pc;
         IData/*31:0*/ __PVT__instr0_btb_target_addr;
         IData/*31:0*/ __PVT__instr1_btb_target_addr;
         IData/*20:0*/ __Vdlyvval__btb_inst__DOT__btb_tag_inst__DOT__history_table__v0;
         IData/*29:0*/ __Vdlyvval__btb_inst__DOT__btb_addr_inst__DOT__history_table__v0;
-        VL_OUTW(__PVT__instr_req,64,0,3);
-        VL_OUTW(__PVT__instr0_if_id,108,0,4);
-        VL_OUTW(__PVT__instr1_if_id,108,0,4);
-        VL_INW(__PVT__ex_branch_in,76,0,3);
+        VL_OUTW(instr_req,64,0,3);
+        VL_OUTW(instr0_if_id,108,0,4);
+        VL_OUTW(instr1_if_id,108,0,4);
+        VL_INW(ex_branch_in,76,0,3);
         VlUnpacked<CData/*0:0*/, 512> __PVT__btb_inst__DOT__btb_entry_valids;
         VlUnpacked<IData/*20:0*/, 512> __PVT__btb_inst__DOT__btb_tag_inst__DOT__history_table;
         VlUnpacked<IData/*29:0*/, 512> __PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table;

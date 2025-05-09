@@ -59,13 +59,11 @@ module gshare(
    always_comb begin
       current_instr0_GHSR = GHSR; 
       current_instr1_GHSR = GHSR;
-   end
-  /* always_comb begin
       if (IF_instr0_hit && instr0_predict_taken == 0)
         current_instr1_GHSR = {GHSR[GSHARE_GHSR_WIDTH-2:0],1'b0};
       else
         current_instr1_GHSR = GHSR;
-   end*/
+   end
 
    //use specualtive update for GHR
    //!!! watch out if EXE update and speculative update at the same time !!!
@@ -85,7 +83,7 @@ module gshare(
       if(flush_valid) begin
 	 GHSR_next = GHSR_restore_next;
       end // if (EXE_is_BJ && EXE_update_GHSR)
-      else if (spec_update_GHSR && EXE_is_BJ && EXE_update_GHSR) begin
+   /*   else if (spec_update_GHSR && EXE_is_BJ && EXE_update_GHSR) begin
 	 if (instr0_predict_taken && IF_instr0_hit)
 	   GHSR_next = {GHSR_restore_next[GSHARE_GHSR_WIDTH-2:0] ,instr0_predict_taken};
 	 else if (instr1_predict_taken && IF_instr1_hit && IF_instr0_hit)
@@ -96,7 +94,7 @@ module gshare(
 	   GHSR_next = {GHSR_restore_next[GSHARE_GHSR_WIDTH-2:0] , 1'b0};
 	 else
 	   GHSR_next = GHSR_restore_next; 
-      end // if (spec_update_GHSR ) 
+      end // if (spec_update_GHSR )  */
       else if (spec_update_GHSR) begin
 	 if (instr0_predict_taken && IF_instr0_hit)
 	   GHSR_next = {GHSR[GSHARE_GHSR_WIDTH-2:0] ,instr0_predict_taken};
@@ -109,9 +107,6 @@ module gshare(
 	 else
 	   GHSR_next = GHSR; 
       end // if (spec_update_GHSR ) 
-      else if (EXE_is_BJ && EXE_update_GHSR) begin
-	   GHSR_next = GHSR_restore_next; 
-      end // 
       else
 	GHSR_next = GHSR;      
    end
@@ -120,9 +115,9 @@ module gshare(
   //PHT
 
   //PHT READ
-   assign instr0_pht_addr = IF_instr0_pc[GSHARE_PHT_WIDTH+1:2];//gshare_hash(GHSR,IF_instr0_pc);//IF_instr0_pc[GSHARE_PHT_WIDTH+1:2];//
-   assign instr1_pht_addr = IF_instr1_pc[GSHARE_PHT_WIDTH+1:2];//gshare_hash(GHSR,IF_instr1_pc);//IF_instr1_pc[GSHARE_PHT_WIDTH+1:2];
-   assign update_pht_addr = EXE_branch_addr[GSHARE_PHT_WIDTH+1:2];//EXE_branch_addr[GSHARE_PHT_WIDTH+1:2];//gshare_hash(EXE_GHSR_restore,EXE_branch_addr);
+   assign instr0_pht_addr = gshare_hash(current_instr0_GHSR,IF_instr0_pc);//gshare_hash(current_instr0_GHSR,IF_instr0_pc);//IF_instr0_pc[GSHARE_PHT_WIDTH+1:2];//
+   assign instr1_pht_addr = gshare_hash(current_instr1_GHSR,IF_instr1_pc);//IF_instr1_pc[GSHARE_PHT_WIDTH+1:2];//gshare_hash(current_instr1_GHSR,IF_instr1_pc);
+   assign update_pht_addr = gshare_hash(EXE_GHSR_restore,EXE_branch_addr);//EXE_branch_addr[GSHARE_PHT_WIDTH+1:2];//gshare_hash(EXE_GHSR_restore,EXE_branch_addr);
    
    assign instr0_bimod = GSHARE_PHT[instr0_pht_addr];
    assign instr1_bimod = GSHARE_PHT[instr1_pht_addr];

@@ -1,0 +1,67 @@
+`timescale 1ns/1ps
+
+import common::*;
+
+module sparse_read_buffer(/*AUTOARG*/);
+
+   input                clk;
+   input                rstn;
+   //write port
+   input                write_valid;
+   output               write_enable;
+   input [7:0]		write_data;
+   //read port
+   input                read_valid;
+   output               read_enable;
+   input [2:0]		read_ptr;
+   //read return port
+   output 		read_rtn_valid;
+   input 		read_rtn_enable;
+   output logic [7:0] 	read_rtn_data;
+   //state output
+   output logic [7:0] 	sparse_array_valid;
+   output logic [2:0] 	sparse_array_bottom_ptr;
+
+
+   logic [2:0] 		write_ptr;
+   logic [2:0] 		write_ptr_n;
+   logic                write_kickoff;
+
+   logic [7:0] 		sparse_array_valid_n;
+   logic [7:0] 		sparse_array[7:0];
+   logic [7:0] 		sparse_array_n[7:0];
+   
+   assign write_enable  = !(write_ptr == sparse_array_bottom_ptr); // buffer is full
+   assign write_kickoff = write_enable & write_valid;
+   
+   always_ff@(posedge clk) begin
+      if (!rstn)
+	write_ptr <= '0;
+      else if (write_kickoff)
+	write_ptr <= write_ptr_n;            
+   end
+   
+   assign write_ptr_n = write_ptr + 1;
+   
+   always_ff@(posedge clk) begin
+      if (!rstn) begin
+	sparse_array_valid <= '0;
+	sparse_array_valid <= '{default:'d0};
+      end
+      else if (write_kickoff) begin
+	sparse_array_valid <= sparse_array_valid_n;            
+	sparse_array       <= sparse_array_valid;
+      end
+   end   
+
+   always_comb begin
+      sparse_array_valid_n = sparse_array_valid;
+      sparse_array_n       = sparse_array;
+      sparse_array_valid_n[write_ptr] = 1;
+      sparse_array_n[write_ptr]       = write_data;            
+   end
+      
+      
+
+
+endmodule

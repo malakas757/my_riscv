@@ -6,8 +6,7 @@ import common::*;
 module bju(
     /*AUTOARG*/
    // Outputs
-   j_next_pc, branch_target_pc, branch_taken, flush, GHSR_restore,
-   update_GHSR,
+   j_next_pc, branch_target_pc, branch_taken, flush,
    // Inputs
    int1_valid, flush_valid, left_operand, right_operand, pc, clk,
    reset_n, control, immediate_data, branch_predict
@@ -28,8 +27,8 @@ module bju(
    output logic [31:0] branch_target_pc;// branch tagart pc
    output logic        branch_taken;// branch taken flag
    output logic        flush;// branch flush flag
-   output logic [GSHARE_GHSR_WIDTH-1:0]        GHSR_restore;// 
-   output logic        update_GHSR;//
+  // output logic [GSHARE_GHSR_WIDTH-1:0]        GHSR_restore;// 
+  // output logic        update_GHSR;//
 
    logic               is_rs1_eq_rs2;
    logic               is_rs1_lt_rs2;
@@ -43,7 +42,7 @@ module bju(
    logic 	       btb_addr_right                ;  //btb predict addr is correct?  
    logic 	       is_bj                         ;  // if the instr is branch and jump 
    logic 	       is_branch_taken_diff          ;  // if the predict direction is correct       
-   logic [GSHARE_GHSR_WIDTH:0] GHSR_checkpoint       ;  //first bit is valid bit,used to restoreGHSR 
+ //  logic [GSHARE_GHSR_WIDTH:0] GHSR_checkpoint       ;  //first bit is valid bit,used to restoreGHSR 
 
    assign pc_plus_4    = pc  + 32'(4) ;
    assign is_bj        = int1_valid & (control.is_branch || control.is_jump || control.is_jumpr) & ~flush_valid;
@@ -56,14 +55,14 @@ module bju(
    assign is_branch_taken_diff = branch_taken ^ branch_predict.taken     ;  // Compare current and computed status and flag if different 
   
    assign btb_addr_right       = (branch_predict.btb_addr == branch_target_pc) ;  
-   assign update_GHSR          = is_bj && (~branch_predict.btb_hit || is_branch_taken_diff) ; // not hit or hit with wrong direction need to update_GHSR 
+//   assign update_GHSR          = is_bj && (~branch_predict.btb_hit || is_branch_taken_diff) ; // not hit or hit with wrong direction need to update_GHSR 
    assign flush                = is_bj && (is_branch_taken_diff || (branch_predict.btb_hit && branch_predict.taken && ~btb_addr_right)) ;  // predict direction and addr both right then no need to flush
-   assign GHSR_restore         = GHSR_checkpoint[GSHARE_GHSR_WIDTH]? {GHSR_checkpoint[GSHARE_GHSR_WIDTH-1:0]} : {branch_predict.current_GHSR[GSHARE_GHSR_WIDTH-1:0]};  // if valid bit == 1 ,use checkpoint to restore ,otherwise use the input far from IF stage
+  // assign GHSR_restore         = branch_predict.current_GHSR[GSHARE_GHSR_WIDTH-1:0];  // if valid bit == 1 ,use checkpoint to restore ,otherwise use the input far from IF stage
 
 
 
 
-   always_ff@(posedge clk) begin
+/*   always_ff@(posedge clk) begin
       if (!reset_n) begin
 	 GHSR_checkpoint <= '0;
       end
@@ -77,7 +76,7 @@ module bju(
       else begin
         GHSR_checkpoint <= GHSR_checkpoint;      
       end
-   end
+   end */
    
 
     

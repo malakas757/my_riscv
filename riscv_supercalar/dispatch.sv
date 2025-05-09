@@ -12,13 +12,13 @@ module dispatch(/*AUTOARG*/
    instr0_src2, instr1_src1, instr1_src2, instr0_valid_intisq,
    instr1_valid_intisq, instr0_valid_memisq, instr1_valid_memisq,
    isq_robid_0, isq_robid_1, isq_src1_busy_0, isq_src2_busy_0,
-   isq_src1_busy_1, isq_src2_busy_1,
+   isq_src1_busy_1, isq_src2_busy_1, GHSR_entry_req0, GHSR_entry_req1,
    // Inputs
    instr0_pipe_reg, instr1_pipe_reg, instr0_pc_in, instr1_pc_in,
    instr0_instr_in, instr1_instr_in, rob_left, instr0_robid_in,
    instr1_robid_in, instr0_src1_busy_in, instr0_src2_busy_in,
    instr1_src1_busy_in, instr1_src2_busy_in, intisq_left, memisq_left,
-   flush_valid
+   GHT_left, flush_valid
    );
 
    output                    can_dispatch;
@@ -81,8 +81,10 @@ module dispatch(/*AUTOARG*/
    output 		     isq_src1_busy_1;
    output 		     isq_src2_busy_1;
   
-   
-
+//from/to GHR_checkpoint   
+   input logic [1:0]          GHT_left;
+   output 		      GHSR_entry_req0;
+   output 		      GHSR_entry_req1;
 
 
 
@@ -101,30 +103,44 @@ module dispatch(/*AUTOARG*/
 //dispatch logic: can alloc? 
 //if there is enough space for rob, isq, store queue,
 // if all module have enough space then also need to decide how many instr go to intisq and memisq.
-
+   logic 			 instr0_is_bj;
+   logic 			 instr1_is_bj;   
    logic 		     rob_can_alloc;
    logic 		     intisq_can_alloc;
    logic 		     memisq_can_alloc;
+   logic 		     GHR_can_alloc;
    logic 		     can_dispatch;
    logic [1:0] 		     mem_instr_num;
    logic [1:0] 		     int_instr_num;
+   logic [1:0] 		     bj_instr_num;
   // logic [1:0] 		     store_instr_num;
    logic [1:0] 		     mem_instr_vec;
    logic [1:0] 		     int_instr_vec;
+   logic [1:0] 		     bj_instr_vec;
    //logic [1:0] 		     store_instr_vec;
+
+
+   assign instr0_is_bj = instr0_pipe_reg.control.is_branch || instr0_pipe_reg.control.is_jump || instr0_pipe_reg.control.is_jumpr;
+   assign instr1_is_bj = instr1_pipe_reg.control.is_branch || instr1_pipe_reg.control.is_jump || instr1_pipe_reg.control.is_jumpr;
+   
  	
    always_comb begin
       mem_instr_vec = '0;
       int_instr_vec = '0;
+      bj_instr_vec = '0;
     //  store_instr_vec = '0;
       if (instr0_pipe_reg.control.is_valid && (instr0_pipe_reg.control.mem_read || instr0_pipe_reg.control.mem_write))
 	  mem_instr_vec[0] = 1'b1;
-      else if ( instr0_pipe_reg.control.is_valid)
+      else if ( instr0_pipe_reg.control.is_valid) begin
 	  int_instr_vec[0] = 1'b1;
+	  bj_instr_vec[0] = instr0_is_bj;
+      end
       if (instr1_pipe_reg.control.is_valid && (instr1_pipe_reg.control.mem_read || instr1_pipe_reg.control.mem_write))
 	  mem_instr_vec[1] = 1'b1;
-      else if ( instr1_pipe_reg.control.is_valid)
-	  int_instr_vec[1] = 1'b1;
+      else if ( instr1_pipe_reg.control.is_valid) begin
+	 int_instr_vec[1] = 1'b1;
+	 bj_instr_vec[1] = instr1_is_bj;
+      end
      /* if (instr0_pipe_reg.control.is_valid && ( instr0_pipe_reg.control.mem_write))
 	  store_instr_vec[0] = 1'b1;
       if (instr1_pipe_reg.control.is_valid && ( instr1_pipe_reg.control.mem_write))
@@ -133,18 +149,21 @@ module dispatch(/*AUTOARG*/
 
    assign int_instr_num = int_instr_vec[1] + int_instr_vec[0];
    assign mem_instr_num = mem_instr_vec[1] + mem_instr_vec[0];
+   assign bj_instr_num = bj_instr_vec[1] + bj_instr_vec[0];
   // assign store_instr_num = store_instr_vec[1] + store_instr_vec[0];
    
 
    assign rob_can_alloc = (rob_left >= (mem_instr_num + int_instr_num))?1 : 0 ;
    assign intisq_can_alloc = (intisq_left >= int_instr_num)?1 : 0 ;
    assign memisq_can_alloc = (memisq_left >= mem_instr_num)?1 : 0 ;
-   assign can_dispatch = rob_can_alloc & intisq_can_alloc & memisq_can_alloc & ~flush_valid;
+   assign GHR_can_alloc = (GHT_left >= bj_instr_num)?1 : 0 ;
+   assign can_dispatch = rob_can_alloc & intisq_can_alloc & memisq_can_alloc & GHR_can_alloc & ~flush_valid;
    assign instr0_valid_intisq = instr0_valid_rob & int_instr_vec[0];
    assign instr1_valid_intisq = instr1_valid_rob & int_instr_vec[1];
    assign instr0_valid_memisq = instr0_valid_rob & mem_instr_vec[0];
    assign instr1_valid_memisq = instr1_valid_rob & mem_instr_vec[1];
-
+   assign GHSR_entry_req0     = instr0_valid_rob & bj_instr_vec[0];
+   assign GHSR_entry_req1     = instr1_valid_rob & bj_instr_vec[1];
 
 
 // output to ROB logic

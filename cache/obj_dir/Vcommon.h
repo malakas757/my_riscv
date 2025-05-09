@@ -25,22 +25,35 @@ class Vcommon VL_NOT_FINAL {
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
-    VL_IN8(&reset_n,0,0);
-    VL_IN8(&flush_valid,0,0);
-    VL_IN8(&IF_instr0_hit,0,0);
-    VL_IN8(&IF_instr1_hit,0,0);
-    VL_IN8(&IF_instr0_resp,0,0);
-    VL_OUT8(&instr0_predict_taken,0,0);
-    VL_OUT8(&instr1_predict_taken,0,0);
-    VL_OUT8(&current_instr0_GHSR,4,0);
-    VL_OUT8(&current_instr1_GHSR,4,0);
-    VL_IN8(&EXE_is_BJ,0,0);
-    VL_IN8(&EXE_update_GHSR,0,0);
-    VL_IN8(&EXE_branch_taken,0,0);
-    VL_IN8(&EXE_GHSR_restore,4,0);
-    VL_IN(&IF_instr0_pc,31,0);
-    VL_IN(&IF_instr1_pc,31,0);
-    VL_IN(&EXE_branch_addr,31,0);
+    VL_IN8(&rstn,0,0);
+    VL_IN8(&mpc_channel0_valid,0,0);
+    VL_OUT8(&mpc_channel0_enable,0,0);
+    VL_IN8(&mpc_channel0_op,2,0);
+    VL_IN8(&mpc_channel1_valid,0,0);
+    VL_OUT8(&mpc_channel1_enable,0,0);
+    VL_IN8(&mpc_channel1_op,2,0);
+    VL_IN8(&mpc_channel2_valid,0,0);
+    VL_OUT8(&mpc_channel2_enable,0,0);
+    VL_IN8(&mpc_channel2_op,2,0);
+    VL_IN(&mpc_channel0_address,31,4);
+    VL_INW(&mpc_channel0_data,127,0,4);
+    VL_IN(&mpc_channel1_address,31,4);
+    VL_INW(&mpc_channel1_data,127,0,4);
+    VL_IN(&mpc_channel2_address,31,4);
+    VL_INW(&mpc_channel2_data,127,0,4);
+    VL_OUT8((&mpc_xbar_htu_valid)[4],0,0);
+    VL_IN8((&mpc_xbar_htu_enable)[4],0,0);
+    VL_OUT8((&mpc_xbar_htu_channel_id)[4],1,0);
+    VL_OUT8((&mpc_xbar_htu_op_code)[4],1,0);
+    VL_OUT((&mpc_xbar_htu_addr)[4],31,0);
+    VL_OUT8((&mpc_xbar_htu_set)[4],2,0);
+    VL_OUT8((&mpc_xbar_htu_wbuffer_id)[4],7,0);
+    VL_OUT8((&mpc_xbar_wbuf_req_valid)[4],0,0);
+    VL_IN8((&mpc_xbar_wbuf_req_enable)[4],0,0);
+    VL_OUT8((&mpc_xbar_wbuf_req_channel_id)[4],1,0);
+    VL_OUTW((&mpc_xbar_wbuf_req_data)[4],127,0,4);
+    VL_OUT8((&mpc_xbar_wbuf_req_wbuffer_id)[4],7,0);
+    VL_INW((&mpc_xbar_wbuf_rtn_free_id)[4],255,0,8);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

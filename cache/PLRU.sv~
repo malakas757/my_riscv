@@ -1,0 +1,102 @@
+`timescale 1ns/1ps
+
+
+
+
+module PLRU(/*AUTOARG*/
+   // Inputs
+   clk, rstn
+   );
+   input	          clk;
+   input	          rstn;
+   input [7:0] 		  cacheline_access_in;
+   
+   
+   logic [6:0] 		  PLRU_tree_reg;
+   logic [6:0] 		  PLRU_tree_reg_n;
+
+
+   assign PLRU_tree_reg_n = PLRU_tree_next(PLRU_tree_reg,cacheline_access_in);   
+   
+   always_ff@(posedge clk) begin
+      if (!rstn)
+	PLRU_tree_reg <= '0;
+      else
+	PLRU_tree_reg <= PLRU_tree_reg_n;            
+   end
+   
+
+function logic [6:0] PLRU_tree_next
+  (  input logic [6:0] PLRU_tree,
+     input logic [7:0] cacheline_access
+     );
+   //for point 6
+   if(|cacheline_access == 1'b0)
+     PLRU_tree_next[6] = PLRU_tree[6];     
+   else if (|cacheline_access[7:4])
+     PLRU_tree_next[6] = 1;
+   else
+     PLRU_tree_next[6] = '0;
+   
+   //for ponint 5 & point 4
+   if(|cacheline_access[7:4] == 1'b0)
+     PLRU_tree_next[5] = PLRU_tree[5];     
+   else if (|cacheline_access[7:6])
+     PLRU_tree_next[5] = 1;
+   else
+     PLRU_tree_next[5] = '0;  
+
+   if(|cacheline_access[3:0] == 1'b0)
+     PLRU_tree_next[4] = PLRU_tree[4];     
+   else if (|cacheline_access[3:2])
+     PLRU_tree_next[4] = 1;
+   else
+     PLRU_tree_next[4] = '0;
+
+
+   
+   //for ponint 0 & point 1  & ponint 2 & point 3
+   if(|cacheline_access[7:6] == 1'b0)
+     PLRU_tree_next[3] = PLRU_tree[3];     
+   else if (cacheline_access[7])
+     PLRU_tree_next[3] = 1;
+   else
+     PLRU_tree_next[3] = '0;  
+
+   if(|cacheline_access[5:4] == 1'b0)
+     PLRU_tree_next[2] = PLRU_tree[2];     
+   else if (cacheline_access[5])
+     PLRU_tree_next[2] = 1;
+   else
+     PLRU_tree_next[2] = '0;        
+
+
+   if(|cacheline_access[3:2] == 1'b0)
+     PLRU_tree_next[1] = PLRU_tree[1];     
+   else if (cacheline_access[3])
+     PLRU_tree_next[1] = 1;
+   else
+     PLRU_tree_next[1] = '0; 
+
+
+   if(|cacheline_access[1:0] == 1'b0)
+     PLRU_tree_next[0] = PLRU_tree[0];     
+   else if (cacheline_access[1])
+     PLRU_tree_next[0] = 1;
+   else
+     PLRU_tree_next[0] = '0;   
+      
+   endfunction      
+      
+      
+
+
+
+
+
+
+
+
+
+
+endmodule

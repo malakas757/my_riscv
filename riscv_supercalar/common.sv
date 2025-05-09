@@ -33,7 +33,10 @@ package common;
    localparam int INTISQ_NUM  = 8;
 
    localparam int MEMISQ_WIDTH  = 2;
-   localparam int MEMISQ_NUM  = 4;   
+   localparam int MEMISQ_NUM  = 4; 
+
+   localparam int GHT_WIDTH  = 3;//GHSR checkpoint table
+   localparam int GHT_NUM  = 8;//GHSR checkpoint table   
    
    
 

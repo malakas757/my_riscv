@@ -13,7 +13,7 @@ module is_stage(/*AUTOARG*/
    slot0_control, slot1_control, slot2_control, slot0_pc, slot1_pc,
    slot2_pc, slot0_robid, slot1_robid, slot2_robid, slot0_src1_id,
    slot0_src2_id, slot1_src1_id, slot1_src2_id, slot2_src1_id,
-   slot2_src2_id,
+   slot2_src2_id, need_update_GHSR, ex2if_GHSR_restore,
    // Inputs
    clk, reset_n, ir_is_reg0, ir_is_reg1, ir_is_reg0_pc, ir_is_reg1_pc,
    ir_is_reg0_instr, ir_is_reg1_instr, flush_robid, flush_valid,
@@ -22,7 +22,8 @@ module is_stage(/*AUTOARG*/
    writeback2_valid, writeback2_need_to_wb, writeback2_prd,
    writeback3_valid, writeback3_need_to_wb, writeback3_prd,
    writeback0_robid, writeback1_robid, writeback2_robid,
-   writeback3_robid, mul_slot_busy, mem_issue_stall
+   writeback3_robid, mul_slot_busy, ex2if_branch_valid,
+   mem_issue_stall
    );
 
 
@@ -111,6 +112,8 @@ module is_stage(/*AUTOARG*/
    output [ROB_WIDTH:0]        slot0_robid;
    output [ROB_WIDTH:0]        slot1_robid;
    output [ROB_WIDTH:0]        slot2_robid;
+   input 		       ex2if_branch_valid;
+   
 
 //from int_mem
    input 		       mem_issue_stall;
@@ -121,13 +124,19 @@ module is_stage(/*AUTOARG*/
    output logic [PRF_WIDTH-1:0]        slot1_src1_id;
    output logic [PRF_WIDTH-1:0]        slot1_src2_id;
    output logic [PRF_WIDTH-1:0]        slot2_src1_id;
-   output logic [PRF_WIDTH-1:0]        slot2_src2_id;    
+   output logic [PRF_WIDTH-1:0]        slot2_src2_id;  
+
+   //to if stage
+   output                               need_update_GHSR;
+   output logic [GSHARE_GHSR_WIDTH-1:0] ex2if_GHSR_restore;  
    
      
    
 
 /*AUTOWIRE*/
 // Beginning of automatic wires (for undeclared instantiated-module outputs)
+wire			GHSR_entry_req0;	// From inst_dispatch of dispatch.v
+wire			GHSR_entry_req1;	// From inst_dispatch of dispatch.v
 wire [PRF_WIDTH-1:0]	instr0_T;		// From inst_dispatch of dispatch.v
 wire [PRF_WIDTH-1:0]	instr0_T_old;		// From inst_dispatch of dispatch.v
 control_type		instr0_control;		// From inst_dispatch of dispatch.v
@@ -158,6 +167,7 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
    wire [1:0]		intisq_left;		// From inst_rob of rob.v
   // wire [1:0]		sq_left;		// From inst_rob of rob.v
    wire [1:0] 		memisq_left;		// From inst_rob of rob.v
+   wire [1:0] 		GHT_left;		// From inst_rob of rob.v
    wire                 instr0_rs1_busy;
    wire                 instr1_rs1_busy;
    wire                 instr0_rs2_busy;
@@ -215,6 +225,8 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 			  .isq_src2_busy_0	(isq_src2_busy_0),
 			  .isq_src1_busy_1	(isq_src1_busy_1),
 			  .isq_src2_busy_1	(isq_src2_busy_1),
+			  .GHSR_entry_req0	(GHSR_entry_req0),
+			  .GHSR_entry_req1	(GHSR_entry_req1),
 			  // Inputs
 			  .instr0_pipe_reg	(ir_is_reg0),	 // Templated
 			  .instr1_pipe_reg	(ir_is_reg1),	 // Templated
@@ -231,6 +243,7 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 			  .instr1_src2_busy_in	(instr1_rs2_busy), // Templated
 			  .intisq_left		(intisq_left[1:0]), // Templated
 			  .memisq_left		(memisq_left),	 // Templated
+			  .GHT_left		(GHT_left[1:0]),
 			  .flush_valid		(flush_valid));
 
    
@@ -497,6 +510,25 @@ wire [1:0]		rob_left;		// From inst_rob of rob.v
 		      .retire1_robid	(retire1_robid[ROB_WIDTH:0]),
 		      .flush_valid	(flush_valid),
 		      .flush_robid	(flush_robid[ROB_WIDTH:0]));  */
+
+   GHR_checkpoint inst_GHR_checkpoint(
+				      // Outputs
+				      .GHT_left		(GHT_left[1:0]),
+				      .need_update_GHSR	(need_update_GHSR),
+				      .ex2if_GHSR_restore(ex2if_GHSR_restore[GSHARE_GHSR_WIDTH-1:0]),
+				      // Inputs
+				      .clk		(clk),
+				      .reset_n		(reset_n),
+				      .flush_valid	(flush_valid),
+				      .branch_valid	(ex2if_branch_valid),
+				      .flush_robid	(flush_robid[ROB_WIDTH:0]),
+				      .GHSR_entry_req0	(GHSR_entry_req0),
+				      .GHSR_entry_req1	(GHSR_entry_req1),
+				      .GHSR_req0_robid	(isq_robid_0),
+				      .GHSR_req1_robid	(isq_robid_1),
+				      .GHSR_req0_data	(ir_is_reg0.control.predict.current_GHSR),
+				      .GHSR_req1_data	(ir_is_reg1.control.predict.current_GHSR));
+   
    
    
 endmodule

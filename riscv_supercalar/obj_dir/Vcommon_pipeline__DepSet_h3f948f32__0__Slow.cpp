@@ -13,12 +13,13 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_pipeline___settle__TOP__pipeline__2\n"); );
     // Init
-    CData/*0:0*/ __PVT__ID_stall;
-    CData/*0:0*/ __PVT__can_dispatch;
+    SData/*9:0*/ __PVT__ex2if_GHSR_restore;
     IData/*31:0*/ __PVT__int0_rs1;
     IData/*31:0*/ __PVT__int0_rs2;
     IData/*31:0*/ __PVT__int1_rs1;
     IData/*31:0*/ __PVT__int1_rs2;
+    CData/*5:0*/ __PVT__slot2_src1_id;
+    CData/*5:0*/ __PVT__slot2_src2_id;
     CData/*0:0*/ __Vcellinp__inst_buffer__writeback3_need_to_wb;
     CData/*0:0*/ __Vcellinp__inst_buffer__writeback2_need_to_wb;
     CData/*0:0*/ __Vcellinp__inst_buffer__writeback1_need_to_wb;
@@ -43,7 +44,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_0;
     CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1;
     CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_0;
-    CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1;
     CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0;
     CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_1;
     CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0;
@@ -71,19 +71,31 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     CData/*3:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l1__BRA__6__KET____DOT__l1_picker__out_big_age;
     CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l1__BRA__6__KET____DOT__l1_picker__out_small_id;
     CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l1__BRA__6__KET____DOT__l1_picker__out_big_id;
-    CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_valid;
-    CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_valid;
-    CData/*3:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_age;
-    CData/*3:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_age;
-    CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_id;
-    CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_id;
-    CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_valid;
-    CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_valid;
-    CData/*3:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_age;
-    CData/*3:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_age;
-    CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_id;
-    CData/*2:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_id;
     CData/*2:0*/ __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_empty_num;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_1;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_1;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_0;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_1;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_1;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_0;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_1;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_1;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_0;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_1;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_1;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_0;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_1;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_0;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_0;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1;
+    CData/*0:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_1;
+    CData/*2:0*/ inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0;
     IData/*31:0*/ __PVT__inst_int0__DOT__left_operand;
     IData/*31:0*/ __PVT__inst_int0__DOT__right_operand;
     IData/*31:0*/ __PVT__inst_int1__DOT__alu_left_operand;
@@ -98,8 +110,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__0__KET____DOT__picker__hit;
     CData/*1:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__2__KET____DOT__picker__hit_index;
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__2__KET____DOT__picker__hit;
-    CData/*1:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index;
-    CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
     IData/*31:0*/ __Vfunc_immediate_extension__0__Vfuncout;
     IData/*31:0*/ __Vfunc_immediate_extension__0__instruction;
     CData/*2:0*/ __Vfunc_immediate_extension__0__inst_encoding;
@@ -172,6 +182,14 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__id[1U] = 1U;
     vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__id[2U] = 2U;
     vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__id[3U] = 3U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[0U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[1U] = 1U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[2U] = 2U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[3U] = 3U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[4U] = 4U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[5U] = 5U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[6U] = 6U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id[7U] = 7U;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__in_id[0U] = 0U;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__in_id[1U] = 1U;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__in_id[2U] = 2U;
@@ -314,8 +332,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_mpliers[9U] 
         = (IData)((vlSelf->inst_int0__DOT__inst_mult__DOT____Vcellout__mstage__BRA__3__KET____DOT__ms__mplier_out 
                    >> 0x20U));
-    vlSelf->__PVT__slot2_src1_id = vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_src1_id
-        [vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail];
     vlSelf->__PVT__walk0_arf_id = (0x1fU & vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
                                    [(0x3fU & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head))][2U]);
     vlSelf->__PVT__walk1_arf_id = (0x1fU & vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
@@ -328,7 +344,9 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
                                        [(0x3fU & ((IData)(1U) 
                                                   + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head)))][2U] 
                                        >> 0xdU));
-    vlSelf->__PVT__slot2_src2_id = vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_id
+    __PVT__slot2_src1_id = vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_src1_id
+        [vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail];
+    __PVT__slot2_src2_id = vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_id
         [vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail];
     vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_entry_ready[0U] 
         = ((vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid
@@ -1668,6 +1686,24 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         = ((1U < (IData)(__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_empty_num))
             ? 2U : ((0U == (IData)(__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_empty_num))
                      ? 0U : 1U));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec = 0U;
+    if ((1U & (~ ((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) 
+                  & (IData)((0U != (0x300000U & vlSelf->__PVT__ir_is_reg0[2U]))))))) {
+        if ((0x800U & vlSelf->__PVT__ir_is_reg0[3U])) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec 
+                = ((2U & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec)) 
+                   | (IData)((0U != (0x38000U & vlSelf->__PVT__ir_is_reg0[2U]))));
+        }
+    }
+    if ((1U & (~ ((vlSelf->__PVT__ir_is_reg1[3U] >> 0xbU) 
+                  & (IData)((0U != (0x300000U & vlSelf->__PVT__ir_is_reg1[2U]))))))) {
+        if ((0x800U & vlSelf->__PVT__ir_is_reg1[3U])) {
+            vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec 
+                = ((1U & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec)) 
+                   | ((IData)((0U != (0x38000U & vlSelf->__PVT__ir_is_reg1[2U]))) 
+                      << 1U));
+        }
+    }
     vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_vec = 0U;
     if (((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) & 
          (0U != (0x300000U & vlSelf->__PVT__ir_is_reg0[2U])))) {
@@ -1797,6 +1833,30 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->inst_ir__DOT____Vcellout__inst_mt__RRAT_debug[0U] 
         = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
         [0U];
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[0U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [0U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[1U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [1U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[2U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [2U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[3U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [3U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[4U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [4U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[5U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [5U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[6U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [6U]));
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty[7U] 
+        = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+                 [7U]));
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty[0U] 
         = (1U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid
                  [0U]));
@@ -2970,6 +3030,70 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
                              [3U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
         vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__flush_valid_vector[3U] = 1U;
     }
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[7U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[6U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[5U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[4U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[3U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[2U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[1U] = 0U;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[0U] = 0U;
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [0U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [0U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [0U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[0U] = 1U;
+    }
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [1U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [1U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [1U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[1U] = 1U;
+    }
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [2U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [2U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [2U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[2U] = 1U;
+    }
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [3U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [3U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [3U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[3U] = 1U;
+    }
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [4U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [4U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [4U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[4U] = 1U;
+    }
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [5U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [5U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [5U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[5U] = 1U;
+    }
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [6U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [6U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [6U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[6U] = 1U;
+    }
+    if ((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [7U] & (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                   [7U] ^ (IData)(vlSelf->__PVT__flush_robid)) 
+                  >> 6U) ^ ((0x3fU & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+                             [7U]) > (0x3fU & (IData)(vlSelf->__PVT__flush_robid)))))) {
+        vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector[7U] = 1U;
+    }
     vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush 
         = (((IData)(vlSelf->__PVT__flush_valid) & (
                                                    (((IData)(vlSelf->__PVT__inst_int0__DOT__wb1_reg_robid) 
@@ -3142,33 +3266,66 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
            [1U][0U]);
     vlSelf->__PVT__int0_valid = (vlSelf->__PVT__inst_buffer__DOT__slot_reg_valid
                                  [0U] & (~ (IData)(vlSelf->__PVT__flush_valid)));
-    vlSelf->__PVT__ex_branch_in[0U] = (((IData)((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
-                                                  << 0x20U) 
-                                                 | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch)))) 
-                                        << 0xbU) | 
-                                       (((IData)(vlSelf->__PVT__inst_int1__DOT__branch_update_GHSR_latch) 
-                                         << 0xaU) | (IData)(vlSelf->__PVT__inst_int1__DOT__GHSR_restore_latch)));
-    vlSelf->__PVT__ex_branch_in[1U] = (((IData)((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
-                                                  << 0x20U) 
-                                                 | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch)))) 
-                                        >> 0x15U) | 
-                                       ((IData)(((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
-                                                   << 0x20U) 
-                                                  | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch))) 
-                                                 >> 0x20U)) 
-                                        << 0xbU));
-    vlSelf->__PVT__ex_branch_in[2U] = (((IData)(((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
-                                                   << 0x20U) 
-                                                  | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch))) 
-                                                 >> 0x20U)) 
-                                        >> 0x15U) | 
-                                       (((IData)(vlSelf->__PVT__inst_int1__DOT__branch_valid_latch) 
-                                         << 0xcU) | 
-                                        ((IData)(vlSelf->__PVT__inst_int1__DOT__branch_taken_latch) 
-                                         << 0xbU)));
     __PVT__inst_int2__DOT__need_to_alloc_sq = (((~ (IData)(vlSelf->__PVT__flush_valid)) 
                                                 & (IData)(vlSelf->__PVT__inst_int2__DOT__reg_is_store)) 
                                                & (IData)(vlSelf->__PVT__inst_int2__DOT__reg_valid));
+    __PVT__ex2if_GHSR_restore = 0U;
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [0U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [0U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [0U];
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [1U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [1U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [1U];
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [2U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [2U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [2U];
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [3U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [3U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [3U];
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [4U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [4U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [4U];
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [5U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [5U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [5U];
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [6U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [6U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [6U];
+    }
+    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid
+          [7U] == (IData)(vlSelf->__PVT__flush_robid)) 
+         & vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_valid
+         [7U])) {
+        __PVT__ex2if_GHSR_restore = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data
+            [7U];
+    }
     vlSelf->__PVT__retire0_valid = ((((~ (IData)(vlSelf->__PVT__flush_valid)) 
                                       & (0U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                                      & (vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__reg_rob
@@ -3221,6 +3378,54 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l1__BRA__2__KET____DOT__picker__index[1U] 
         = vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__id
         [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [7U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[2U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[3U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[4U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[5U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[6U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[7U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [7U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[2U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[3U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[4U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[5U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[6U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id[7U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id
+        [0U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_id[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__in_id
         [7U];
@@ -3317,14 +3522,16 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l1__BRA__6__KET____DOT__l1_picker__in_id[1U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__id
         [7U];
+    vlSelf->__PVT__inst_buffer__DOT__slot_rs1_addr_in[2U] 
+        = __PVT__slot2_src1_id;
     vlSelf->__PVT__inst_buffer__DOT__slot_rs1_in[2U] 
         = vlSelf->__PVT__inst_phyreg__DOT__prf_file
-        [vlSelf->__PVT__slot2_src1_id];
+        [__PVT__slot2_src1_id];
     vlSelf->__PVT__inst_buffer__DOT__slot_rs2_addr_in[2U] 
-        = vlSelf->__PVT__slot2_src2_id;
+        = __PVT__slot2_src2_id;
     vlSelf->__PVT__inst_buffer__DOT__slot_rs2_in[2U] 
         = vlSelf->__PVT__inst_phyreg__DOT__prf_file
-        [vlSelf->__PVT__slot2_src2_id];
+        [__PVT__slot2_src2_id];
     vlSelf->__PVT__ir_is_reg1_next[0U] = vlSelf->__PVT__dec_instr1[0U];
     vlSelf->__PVT__ir_is_reg1_next[1U] = vlSelf->__PVT__dec_instr1[1U];
     vlSelf->__PVT__ir_is_reg1_next[2U] = vlSelf->__PVT__dec_instr1[2U];
@@ -3478,6 +3685,30 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         [1U];
     vlSelf->__Vcellout__inst_ir__RRAT_debug[0U] = vlSelf->inst_ir__DOT____Vcellout__inst_mt__RRAT_debug
         [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [7U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[2U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[3U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[4U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[5U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[6U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[7U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_empty
+        [0U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_empty
         [7U];
@@ -3584,6 +3815,31 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
                [0U][2U] >> 0xcU) & (IData)(vlSelf->__PVT__int0_valid)));
     vlSelf->__PVT__mem_issue_stall = ((IData)(__PVT__inst_int2__DOT__need_to_alloc_sq) 
                                       & (0U == (IData)(vlSelf->__PVT__sq_left)));
+    vlSelf->__PVT__ex_branch_in[0U] = (((IData)((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
+                                                  << 0x20U) 
+                                                 | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch)))) 
+                                        << 0xbU) | 
+                                       ((((IData)(vlSelf->__PVT__inst_int1__DOT__branch_valid_latch) 
+                                          & (IData)(vlSelf->__PVT__flush_valid)) 
+                                         << 0xaU) | (IData)(__PVT__ex2if_GHSR_restore)));
+    vlSelf->__PVT__ex_branch_in[1U] = (((IData)((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
+                                                  << 0x20U) 
+                                                 | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch)))) 
+                                        >> 0x15U) | 
+                                       ((IData)(((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
+                                                   << 0x20U) 
+                                                  | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch))) 
+                                                 >> 0x20U)) 
+                                        << 0xbU));
+    vlSelf->__PVT__ex_branch_in[2U] = (((IData)(((((QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_pc_latch)) 
+                                                   << 0x20U) 
+                                                  | (QData)((IData)(vlSelf->__PVT__inst_int1__DOT__branch_target_pc_latch))) 
+                                                 >> 0x20U)) 
+                                        >> 0x15U) | 
+                                       (((IData)(vlSelf->__PVT__inst_int1__DOT__branch_valid_latch) 
+                                         << 0xcU) | 
+                                        ((IData)(vlSelf->__PVT__inst_int1__DOT__branch_taken_latch) 
+                                         << 0xbU)));
     vlSelf->__Vcellinp__inst_ir__fl_write_en_0 = ((IData)(vlSelf->__PVT__retire0_valid) 
                                                   & (IData)(vlSelf->__PVT__retire0_is_wb));
     vlSelf->__PVT__inst_ir__DOT__rename_0 = ((0x3ffffcfffULL 
@@ -3632,6 +3888,54 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
             [__Vilp];
         __Vilp = ((IData)(1U) + __Vilp);
     }
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [7U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id
+        [7U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id[0U] 
         = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_id
         [0U];
@@ -3744,6 +4048,30 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         [1U];
     vlSelf->RRAT_debug[0U] = vlSelf->__Vcellout__inst_ir__RRAT_debug
         [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [4U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [5U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [6U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
+        = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
+        [7U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid[0U] 
         = vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
         [0U];
@@ -4128,6 +4456,118 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
                                  ? __Vfunc_inst_buffer__DOT__bypass_network__3__wb3_data
                                  : __Vfunc_inst_buffer__DOT__bypass_network__3__prf_data)))));
     __PVT__int1_rs1 = __Vfunc_inst_buffer__DOT__bypass_network__3__Vfuncout;
+    if (vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid
+        [0U]) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+    } else {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+    }
+    if (vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid
+        [0U]) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+    } else {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__2__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+    }
+    if (vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid
+        [0U]) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+    } else {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__4__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+    }
+    if (vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid
+        [0U]) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+    } else {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid
+            [0U];
+    }
     if (vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__0__KET____DOT__l2_finder_2__in_alloc_valid
         [0U]) {
         inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_1 
@@ -4350,6 +4790,38 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         = (__PVT__int1_rs1 < __PVT__int1_rs2);
     __PVT__inst_int1__DOT__inst_bju__DOT__is_sign_rs1_lt_rs2 
         = VL_LTS_III(32, __PVT__int1_rs1, __PVT__int1_rs2);
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_alloc_valid_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_id_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__2__KET____DOT__l2_finder_2__out_alloc_valid_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1[2U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0[2U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_id_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0[2U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1[2U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__4__KET____DOT__l2_finder_2__out_alloc_valid_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1[3U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0[3U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_id_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0[3U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1[3U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__6__KET____DOT__l2_finder_2__out_alloc_valid_1;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l1_out_id_1[0U] 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l1_finder__BRA__0__KET____DOT__l2_finder_2__out_id_1;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l1_out_id_0[0U] 
@@ -4861,6 +5333,54 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
             = ((IData)(4U) + vlSelf->__PVT__inst_buffer__DOT__slot_reg_pc
                [1U]);
     }
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_1[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_1[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_1[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_1[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_1
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_0
+        [3U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1
+        [0U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1
+        [1U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1[0U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1
+        [2U];
+    vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1[1U] 
+        = vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_valid_1
+        [3U];
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_1[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l1_out_id_1
         [0U];
@@ -4969,10 +5489,122 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index[1U] 
         = vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l1_hit_index
         [1U];
-    vlSelf->__PVT__inst_int1__DOT__inst_bju__DOT__is_branch_taken_diff 
-        = (1U & ((IData)(vlSelf->__PVT__inst_int1__DOT__bju_branch_taken) 
-                 ^ (vlSelf->__PVT__inst_buffer__DOT__slot_reg_control
-                    [1U][2U] >> 0xbU)));
+    if ((vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+         [0U] & vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1
+         [0U])) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_1
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1
+            [0U];
+    } else if ((vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+                [1U] & vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1
+                [1U])) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_1
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1
+            [1U];
+    } else if (vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+               [0U]) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [1U];
+    } else {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [0U];
+    }
+    if ((vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+         [0U] & vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1
+         [0U])) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_1
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1
+            [0U];
+    } else if ((vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+                [1U] & vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1
+                [1U])) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_1
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1
+            [1U];
+    } else if (vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+               [0U]) {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [1U];
+    } else {
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0
+            [0U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_id_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [1U];
+        inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+            = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
+            [0U];
+    }
     if ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0
          [0U] & vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1
          [0U])) {
@@ -5043,7 +5675,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
             [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+        vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1
             [0U];
     } else if ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
@@ -5058,7 +5690,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
             [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+        vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_1
             [1U];
     } else if (vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
@@ -5072,7 +5704,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
             [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+        vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
             [1U];
     } else {
@@ -5085,7 +5717,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
             [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
+        vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
             [0U];
     }
@@ -5170,20 +5802,36 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
                                       [1U])) & vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
                 [0U]) | (~ vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
                          [1U])))) {
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit 
+        vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit 
             = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
             [0U];
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index 
+        vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index 
             = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
             [0U];
     } else {
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit 
+        vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit 
             = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
             [1U];
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index 
+        vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index 
             = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
             [1U];
     }
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_id_1[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_id_0[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_valid_0[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_valid_1[0U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_alloc_valid_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_id_1[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_1;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_id_0[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_valid_0[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0;
+    vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l2_out_valid_1[1U] 
+        = inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_id_1[0U] 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__0__KET____DOT__l2_finder_4__out_id_1;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_id_0[0U] 
@@ -5198,543 +5846,4 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_id_0;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_0[1U] 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_1[1U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__small_cmp[0U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_valid
-            [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_age
-           [0U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__small_cmp[1U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_valid
-            [1U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_age
-           [1U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__small_cmp[0U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_valid
-            [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_age
-           [0U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__small_cmp[1U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_valid
-            [1U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_age
-           [1U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp[0U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-           [0U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp[1U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [1U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-           [1U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp[0U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-           [0U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp[1U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [1U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-           [1U]);
-    vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit[0U] 
-        = inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
-    vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index[0U] 
-        = inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index;
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_1[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_id_1
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_1[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_id_1
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_id_0
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_id_0
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_0
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_0
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_1[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_1
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_1[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_1
-        [1U];
-    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-          [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-          [1U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__small_cmp
-                   [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-                   [1U]))) {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_valid
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [0U];
-    } else if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-                 [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-                 [1U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-                          [1U] > vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__small_cmp
-                          [0U]))) {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [0U];
-    } else if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-                 [1U] > vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-                 [0U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__big_cmp
-                          [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__small_cmp
-                          [1U]))) {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [1U];
-    } else {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_valid
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_big_valid
-            [1U];
-    }
-    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-          [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-          [1U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__small_cmp
-                   [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-                   [1U]))) {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_valid
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [0U];
-    } else if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-                 [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-                 [1U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-                          [1U] > vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__small_cmp
-                          [0U]))) {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [0U];
-    } else if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-                 [1U] > vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-                 [0U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__big_cmp
-                          [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__DOT__small_cmp
-                          [1U]))) {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_id
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [0U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [1U];
-    } else {
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_id
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_age 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_age
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_small_valid
-            [1U];
-        inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__in_big_valid
-            [1U];
-    }
-    vlSelf->__PVT__inst_int2__DOT__load_data = (vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit
-                                                [0U]
-                                                 ? 
-                                                vlSelf->__PVT__inst_sq__DOT__sq_reg_data
-                                                [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
-                                                [0U]]
-                                                 : 
-                                                vlSelf->__PVT__inst_dmem__DOT__ram
-                                                [(0xffU 
-                                                  & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
-                                                     >> 2U))]);
-    if ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-         [0U] & vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_1
-         [0U])) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_1
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_1
-            [0U];
-    } else if ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-                [1U] & vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_1
-                [1U])) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_1
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_1
-            [1U];
-    } else if (vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-               [0U]) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-            [1U];
-    } else {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_id_0
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
-            [0U];
-    }
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_id[0U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_id;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_id[0U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_id;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_age[0U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_age;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_age[0U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_age;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_valid[0U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_small_valid;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_valid[0U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__out_big_valid;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_id[1U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_id;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_id[1U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_id;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_age[1U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_age;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_age[1U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_age;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_valid[1U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_small_valid;
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_valid[1U] 
-        = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l2__BRA__2__KET____DOT__l2_picker__out_big_valid;
-    if ((0x1fU >= (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
-                            << 3U)))) {
-        vlSelf->__PVT__inst_int2__DOT__load_byte = 
-            (0xffU & (vlSelf->__PVT__inst_int2__DOT__load_data 
-                      >> (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
-                                   << 3U))));
-        vlSelf->__PVT__inst_int2__DOT__load_hword = 
-            (0xffffU & (vlSelf->__PVT__inst_int2__DOT__load_data 
-                        >> (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
-                                     << 3U))));
-    } else {
-        vlSelf->__PVT__inst_int2__DOT__load_byte = 0U;
-        vlSelf->__PVT__inst_int2__DOT__load_hword = 0U;
-    }
-    __PVT__can_dispatch = (1U & ((((((((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                         ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                        >> 6U) & ((0x3fU 
-                                                   & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head)) 
-                                                  == 
-                                                  (0x3fU 
-                                                   & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                       ? 0U : (((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                                  ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                                 >> 6U) 
-                                                & (((IData)(1U) 
-                                                    + 
-                                                    (0x3fU 
-                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head))) 
-                                                   == 
-                                                   (0x3fU 
-                                                    & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                                ? 1U
-                                                : 2U)) 
-                                     >= (3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
-                                               + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
-                                     ? 1U : 0U) & (
-                                                   ((3U 
-                                                     & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
-                                                        + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
-                                                    >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))
-                                                    ? 1U
-                                                    : 0U)) 
-                                  & (((IData)(vlSelf->__PVT__inst_is_stage__DOT__memisq_left) 
-                                      >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
-                                      ? 1U : 0U)) & 
-                                 (~ (IData)(vlSelf->__PVT__flush_valid))));
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_id[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_id
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_id[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_id
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_id[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_id
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_id[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_id
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_age[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_age
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_age[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_age
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_age[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_age
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_age[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_age
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_valid[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_valid
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_valid[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_valid
-        [1U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid[0U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_valid
-        [0U];
-    vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid[1U] 
-        = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_valid
-        [1U];
-    vlSelf->__PVT__PC_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
-                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
-                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__IF_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
-                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
-                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__IR_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
-                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
-                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_rob 
-        = ((vlSelf->__PVT__ir_is_reg1[3U] >> 0xbU) 
-           & (IData)(__PVT__can_dispatch));
-    vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob 
-        = ((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) 
-           & (IData)(__PVT__can_dispatch));
-    __PVT__ID_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
-                              | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
-                             | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp[0U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_valid
-            [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_age
-           [0U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp[1U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_valid
-            [1U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_age
-           [1U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp[0U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_age
-           [0U]);
-    vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp[1U] 
-        = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [1U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_age
-           [1U]);
-    vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_memisq 
-        = ((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_rob) 
-           & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_vec) 
-              >> 1U));
-    vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_intisq 
-        = ((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_rob) 
-           & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_vec) 
-              >> 1U));
-    vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_memisq 
-        = ((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob) 
-           & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_vec));
-    vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_intisq 
-        = ((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob) 
-           & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_vec));
-    vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__instr0_disp2bt_rd_en 
-        = ((IData)(vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob) 
-           & (vlSelf->__PVT__ir_is_reg0[2U] >> 0x13U));
-    vlSelf->__PVT__inst_ir__DOT__fl_req_1 = ((((~ (IData)(__PVT__ID_stall)) 
-                                               & (vlSelf->__PVT__dec_instr1[2U] 
-                                                  >> 0x13U)) 
-                                              & (0U 
-                                                 != 
-                                                 (0x1fU 
-                                                  & (vlSelf->__PVT__dec_instr1[2U] 
-                                                     >> 0x1aU)))) 
-                                             & (vlSelf->__PVT__dec_instr1[3U] 
-                                                >> 0xbU));
-    vlSelf->__PVT__inst_ir__DOT__fl_req_0 = ((((~ (IData)(__PVT__ID_stall)) 
-                                               & (vlSelf->__PVT__dec_instr0[2U] 
-                                                  >> 0x13U)) 
-                                              & (0U 
-                                                 != 
-                                                 (0x1fU 
-                                                  & (vlSelf->__PVT__dec_instr0[2U] 
-                                                     >> 0x1aU)))) 
-                                             & (vlSelf->__PVT__dec_instr0[3U] 
-                                                >> 0xbU));
-    if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-          [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-          [1U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp
-                   [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-                   [1U]))) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_valid
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_id
-            [0U];
-    } else if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-                 [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-                 [1U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-                          [1U] > vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp
-                          [0U]))) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_id
-            [0U];
-    } else if (((vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-                 [1U] > vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-                 [0U]) & (vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__big_cmp
-                          [0U] >= vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp
-                          [1U]))) {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [0U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_id
-            [1U];
-    } else {
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_valid 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_valid
-            [1U];
-        vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__old0_id 
-            = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_id
-            [1U];
-    }
 }
