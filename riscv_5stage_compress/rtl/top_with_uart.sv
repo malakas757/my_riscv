@@ -1,6 +1,8 @@
 `timescale 1ns/1ns
 
 module top_with_uart(/*AUTOARG*/
+   // Outputs
+   debug_reg, led,
    // Inputs
    clk, rstn, io_rx
    );
@@ -8,6 +10,8 @@ module top_with_uart(/*AUTOARG*/
    input         clk;
    input         rstn;
    input  	 io_rx;
+   output logic [31:0] debug_reg[0:REGISTER_FILE_SIZE-1];
+   output logic [7:0]  led;
    
 
    logic 	 io_data_valid;
@@ -30,6 +34,7 @@ module top_with_uart(/*AUTOARG*/
 		 // Outputs
 		 .debug_flush		(debug_flush),
 		 .debug_is_bj		(debug_is_bj),
+		 .debug_reg             (debug_reg),
 		 // Inputs
 		 .clk			(clk),
 		 .reset_n		(rstn),
@@ -47,7 +52,14 @@ module top_with_uart(/*AUTOARG*/
 
 
       
-
+   /*debug UART*/
+   //latch the first byte
+   always_ff@(posedge clk) begin
+     if (!rstn)
+       led <= '0;
+     else if (io_data_valid)
+       led <= io_data_packet;
+   end
 
 
 endmodule 

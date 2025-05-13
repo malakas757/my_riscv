@@ -8,32 +8,21 @@
 #include "verilated.h"
 
 class Vcommon__Syms;
+class Vcommon_top_with_uart;
+
 VL_MODULE(Vcommon___024root) {
   public:
+    // CELLS
+    Vcommon_top_with_uart* top_with_uart;
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
-    VL_IN8(reset_n,0,0);
-    VL_IN8(flush_valid,0,0);
-    VL_IN8(IF_instr0_hit,0,0);
-    VL_IN8(IF_instr1_hit,0,0);
-    VL_IN8(IF_instr0_resp,0,0);
-    VL_OUT8(instr0_predict_taken,0,0);
-    VL_OUT8(instr1_predict_taken,0,0);
-    VL_OUT8(current_instr0_GHSR,4,0);
-    VL_OUT8(current_instr1_GHSR,4,0);
-    VL_IN8(EXE_is_BJ,0,0);
-    VL_IN8(EXE_update_GHSR,0,0);
-    VL_IN8(EXE_branch_taken,0,0);
-    VL_IN8(EXE_GHSR_restore,4,0);
-    CData/*4:0*/ gshare__DOT__GHSR;
-    CData/*4:0*/ gshare__DOT__GHSR_next;
-    CData/*4:0*/ gshare__DOT__GHSR_restore_next;
+    VL_IN8(rstn,0,0);
+    VL_IN8(io_rx,0,0);
+    VL_OUT8(led,7,0);
     CData/*0:0*/ __Vclklast__TOP__clk;
-    VL_IN(IF_instr0_pc,31,0);
-    VL_IN(IF_instr1_pc,31,0);
-    VL_IN(EXE_branch_addr,31,0);
-    VlUnpacked<CData/*1:0*/, 32> gshare__DOT__GSHARE_PHT;
+    IData/*31:0*/ __Vchglast__TOP__top_with_uart__inst_cpu__read_data0;
+    IData/*31:0*/ __Vchglast__TOP__top_with_uart__inst_cpu__read_data1;
 
     // INTERNAL VARIABLES
     Vcommon__Syms* vlSymsp;  // Symbol table

@@ -10,17 +10,21 @@ module register_file(
     input [4:0] write_id,
     input [31:0] write_data,
     output logic [31:0] read1_data,
-    output logic [31:0] read2_data
+    output logic [31:0] read2_data,
+    output logic [31:0] debug_reg[0:REGISTER_FILE_SIZE-1]
 );
 
     parameter REGISTER_FILE_SIZE = 32;
     
     logic [31:0] registers [0:REGISTER_FILE_SIZE-1] = '{default:0};
+   
+   assign debug_reg  =  registers;
+ 
     
     
     always_ff @(posedge clk) begin
         if (!reset_n) begin
-            registers = '{default:0};
+            registers <= '{default:0};
         end 
         else if (write_en) begin
 	   if (~|write_id) begin	      

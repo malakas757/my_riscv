@@ -7,10 +7,10 @@
 
 #include "Vcommon_pipeline.h"
 
-VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline* vlSelf) {
+VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__3(Vcommon_pipeline* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_pipeline___sequent__TOP__pipeline__4\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__3\n"); );
     // Init
     VlWide<4>/*108:0*/ __Vdly__if_id_reg0;
     VlWide<4>/*108:0*/ __Vdly__if_id_reg1;
@@ -25,6 +25,8 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline
     vlSelf->__Vdlyvset__inst_imem__DOT__ram__v0 = 0U;
     vlSelf->__Vdly__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail;
+    vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RRAT__v0 = 0U;
+    vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RRAT__v32 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v0 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v1 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v2 = 0U;
@@ -47,6 +49,8 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline
     __Vdly__if_id_reg0[3U] = vlSelf->__PVT__if_id_reg0[3U];
     vlSelf->__Vdly__inst_is_stage__DOT__inst_rob__DOT__walk_head 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head;
+    vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RAT__v0 = 0U;
+    vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RAT__v32 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_robid__v0 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_robid__v1 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_robid__v2 = 0U;
@@ -112,6 +116,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline
     vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v6 = 0U;
     vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v7 = 0U;
     vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v8 = 0U;
+    vlSelf->__Vdlyvset__inst_dmem__DOT__ram__v0 = 0U;
     vlSelf->__Vdly__inst_sq__DOT__sq_tail = vlSelf->__PVT__inst_sq__DOT__sq_tail;
     __Vdly__ir_is_reg1[0U] = vlSelf->__PVT__ir_is_reg1[0U];
     __Vdly__ir_is_reg1[1U] = vlSelf->__PVT__ir_is_reg1[1U];
@@ -155,6 +160,11 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v1 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v2 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v3 = 0U;
+    vlSelf->__Vdlyvset__inst_phyreg__DOT__prf_file__v0 = 0U;
+    vlSelf->__Vdlyvset__inst_phyreg__DOT__prf_file__v64 = 0U;
+    vlSelf->__Vdlyvset__inst_phyreg__DOT__prf_file__v65 = 0U;
+    vlSelf->__Vdlyvset__inst_phyreg__DOT__prf_file__v66 = 0U;
+    vlSelf->__Vdlyvset__inst_phyreg__DOT__prf_file__v67 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_state__v0 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_state__v1 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_state__v2 = 0U;
@@ -258,19 +268,4 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v57 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v58 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v59 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v60 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v61 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v62 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v63 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v64 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v65 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v66 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v67 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v68 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v70 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v410 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v411 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v412 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v413 = 0U;
-    vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v414 = 0U;
 }

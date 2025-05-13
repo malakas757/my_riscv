@@ -4,7 +4,8 @@ package common;
    localparam int XLEN_WIDTH = 32;
    localparam [31:0] INSTRUCTION_NOP = 32'h00000013;
    localparam [31:0] PC_INIT         = 32'h00000000;
-   
+
+   localparam REGISTER_FILE_SIZE = 32;
 
    localparam [2:0] F3_ADDX  = 3'b000 ;
    localparam [2:0] F3_SUB   = 3'b000 ;

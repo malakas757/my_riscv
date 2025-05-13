@@ -18,11 +18,11 @@ VL_MODULE(Vcommon_pipeline) {
     // DESIGN SPECIFIC STATE
     // Anonymous structures to workaround compiler member-count bugs
     struct {
-        VL_IN8(clk,0,0);
-        VL_IN8(reset_n,0,0);
-        VL_IN8(imem_en,0,0);
-        VL_OUT8(branch_times_debug,0,0);
-        VL_OUT8(flush_times_debug,0,0);
+        VL_IN8(__PVT__clk,0,0);
+        VL_IN8(__PVT__reset_n,0,0);
+        VL_IN8(__PVT__imem_en,0,0);
+        VL_OUT8(__PVT__branch_times_debug,0,0);
+        VL_OUT8(__PVT__flush_times_debug,0,0);
         CData/*0:0*/ __PVT__IF_stall;
         CData/*0:0*/ __PVT__IR_stall;
         CData/*0:0*/ __PVT__PC_stall;
@@ -84,11 +84,11 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec;
     };
     struct {
+        CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__retire_num;
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head;
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail;
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head;
         CData/*6:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__flush_robid_latch;
-        CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__retire_num;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__current_state;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_rob__DOT__next_state;
         CData/*2:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0;
@@ -108,7 +108,6 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu;
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__deq0_wakeup_valid;
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__deq1_wakeup_valid;
-        CData/*0:0*/ inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_head;
         CData/*1:0*/ __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail;
         CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_memisq__DOT__deq_valid;
@@ -148,9 +147,9 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__need_to_flush;
         CData/*6:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__reg_robid;
         CData/*5:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__reg_prf_id;
+        CData/*0:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_valid;
     };
     struct {
-        CData/*0:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_valid;
         CData/*0:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__done;
         CData/*0:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__need_to_flush;
         CData/*6:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_robid;
@@ -178,13 +177,15 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*7:0*/ __PVT__inst_int2__DOT__load_byte;
         CData/*1:0*/ __PVT__inst_sq__DOT__sq_head;
         CData/*1:0*/ __PVT__inst_sq__DOT__sq_tail;
-        CData/*1:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index;
-        CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
         CData/*0:0*/ __Vdlyvset__inst_imem__DOT__ram__v0;
         CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_fl__DOT__fl__v0;
         CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_fl__DOT__fl__v1;
         CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_fl__DOT__fl__v2;
         CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_fl__DOT__fl__v3;
+        CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_mt__DOT__RAT__v0;
+        CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_mt__DOT__RAT__v32;
+        CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_mt__DOT__RRAT__v0;
+        CData/*0:0*/ __Vdlyvset__inst_ir__DOT__inst_mt__DOT__RRAT__v32;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v0;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v2;
@@ -213,9 +214,9 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v25;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v26;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v27;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v28;
     };
     struct {
+        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v28;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v29;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v30;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v31;
@@ -247,22 +248,7 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v57;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v58;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v59;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v60;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v61;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v62;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v63;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v64;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v65;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v66;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v67;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v68;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v70;
         CData/*6:0*/ __Vdly__inst_is_stage__DOT__inst_rob__DOT__rob_tail;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v410;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v411;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v412;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v413;
-        CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_rob__DOT__reg_rob__v414;
         CData/*6:0*/ __Vdly__inst_is_stage__DOT__inst_rob__DOT__walk_head;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_T__v0;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_T__v1;
@@ -280,8 +266,6 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v3;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid__v0;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_robid__v2;
@@ -296,6 +280,8 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_bt__DOT__reg_busy_table__v70;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_bt__DOT__reg_busy_table__v71;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v0;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v3;
@@ -346,8 +332,6 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_state__v6;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_state__v7;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid__v0;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid__v3;
@@ -355,8 +339,15 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v1;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v2;
         CData/*0:0*/ __Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v3;
+        CData/*0:0*/ __Vdlyvset__inst_phyreg__DOT__prf_file__v0;
+        CData/*0:0*/ __Vdlyvset__inst_phyreg__DOT__prf_file__v64;
+        CData/*0:0*/ __Vdlyvset__inst_phyreg__DOT__prf_file__v65;
+        CData/*0:0*/ __Vdlyvset__inst_phyreg__DOT__prf_file__v66;
+        CData/*0:0*/ __Vdlyvset__inst_phyreg__DOT__prf_file__v67;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_valid__v0;
         CData/*0:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_valid__v1;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_valid__v1;
         CData/*0:0*/ __Vdlyvset__inst_buffer__DOT__slot_reg_valid__v2;
         CData/*0:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_valid__v3;
@@ -412,8 +403,6 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*1:0*/ __Vdly__inst_sq__DOT__sq_tail;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v0;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v1;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v2;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v3;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v4;
@@ -421,8 +410,12 @@ VL_MODULE(Vcommon_pipeline) {
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v6;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v7;
         CData/*0:0*/ __Vdlyvset__inst_sq__DOT__sq_reg_ready__v8;
+        CData/*0:0*/ __Vdlyvset__inst_dmem__DOT__ram__v0;
         SData/*15:0*/ __PVT__inst_int2__DOT__load_hword;
-        VL_IN(imem_data_in,31,0);
+    };
+    struct {
+        VL_IN(__PVT__imem_data_in,31,0);
+        VL_IN(__PVT__write_address,31,0);
         IData/*31:0*/ __PVT__read_data0;
         IData/*31:0*/ __PVT__read_data1;
         IData/*31:0*/ __PVT__ir_is_reg0_pc;
@@ -445,6 +438,7 @@ VL_MODULE(Vcommon_pipeline) {
         IData/*31:0*/ __PVT__inst_int2__DOT__reg_store_data;
         IData/*31:0*/ __PVT__inst_int2__DOT__wb_reg_data;
         IData/*31:0*/ __PVT__inst_int2__DOT__load_data;
+        IData/*31:0*/ __Vfunc_immediate_extension__0__Vfuncout;
         IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_rs2__v0;
         IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_rs2__v1;
         IData/*31:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_rs2__v2;
@@ -478,23 +472,19 @@ VL_MODULE(Vcommon_pipeline) {
         QData/*63:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__0__KET____DOT__ms__DOT__partial_prod;
         QData/*63:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__prod_in_reg;
         QData/*63:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__partial_prod;
-    };
-    struct {
         QData/*63:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__prod_in_reg;
         QData/*63:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__partial_prod;
         QData/*63:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__prod_in_reg;
         QData/*63:0*/ __PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__partial_prod;
         VlWide<4>/*114:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_control__v0;
         VlWide<4>/*114:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_control__v1;
+    };
+    struct {
         VlWide<4>/*114:0*/ __Vdlyvval__inst_buffer__DOT__slot_reg_control__v2;
-        VL_OUT(ram_debug[256],31,0);
-        VL_OUT(prf_debug[64],31,0);
-        VL_OUT8(RRAT_debug[32],5,0);
-        VlUnpacked<CData/*5:0*/, 32> __Vcellout__inst_ir__RRAT_debug;
-        VlUnpacked<IData/*31:0*/, 64> __Vcellout__inst_phyreg__prf_debug;
-        VlUnpacked<IData/*31:0*/, 256> __Vcellout__inst_dmem__ram_debug;
+        VL_OUT(__PVT__ram_debug[256],31,0);
+        VL_OUT(__PVT__prf_debug[64],31,0);
+        VL_OUT8(__PVT__RRAT_debug[32],5,0);
         VlUnpacked<IData/*31:0*/, 256> __PVT__inst_imem__DOT__ram;
-        VlUnpacked<CData/*5:0*/, 32> inst_ir__DOT____Vcellout__inst_mt__RRAT_debug;
         VlUnpacked<CData/*5:0*/, 32> __PVT__inst_ir__DOT__inst_fl__DOT__fl;
         VlUnpacked<CData/*5:0*/, 32> __PVT__inst_ir__DOT__inst_mt__DOT__RAT;
         VlUnpacked<CData/*5:0*/, 32> __PVT__inst_ir__DOT__inst_mt__DOT__RAT_NEXT;
@@ -544,8 +534,6 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<CData/*0:0*/, 2> inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid;
         VlUnpacked<CData/*2:0*/, 2> inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_id;
         VlUnpacked<CData/*0:0*/, 2> inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_1;
-    };
-    struct {
         VlUnpacked<CData/*0:0*/, 2> inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_alloc_valid_0;
         VlUnpacked<CData/*2:0*/, 2> inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_1;
         VlUnpacked<CData/*2:0*/, 2> inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__0__KET____DOT__l2_finder_4__in_id_0;
@@ -556,6 +544,8 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<CData/*2:0*/, 8> __PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__id;
         VlUnpacked<CData/*3:0*/, 4> __PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_big_age;
         VlUnpacked<CData/*2:0*/, 4> __PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_big_id;
+    };
+    struct {
         VlUnpacked<CData/*0:0*/, 4> __PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_big_valid;
         VlUnpacked<CData/*3:0*/, 4> __PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_small_age;
         VlUnpacked<CData/*2:0*/, 4> __PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_small_id;
@@ -610,8 +600,6 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<CData/*5:0*/, 4> __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_id;
         VlUnpacked<CData/*5:0*/, 4> __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_T;
         VlUnpacked<IData/*31:0*/, 4> __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc;
-    };
-    struct {
         VlUnpacked<CData/*6:0*/, 4> __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_robid;
         VlUnpacked<VlWide<4>/*114:0*/, 4> __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_control;
         VlUnpacked<CData/*0:0*/, 4> __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_entry_ready;
@@ -622,6 +610,8 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<SData/*9:0*/, 8> __PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data;
         VlUnpacked<CData/*2:0*/, 8> __PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__in_id;
         VlUnpacked<CData/*0:0*/, 8> inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid;
+    };
+    struct {
         VlUnpacked<CData/*2:0*/, 8> inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_id;
         VlUnpacked<CData/*0:0*/, 8> __PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__flush_valid_vector;
         VlUnpacked<CData/*2:0*/, 4> __PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT__l1_out_id_0;
@@ -676,8 +666,6 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<CData/*6:0*/, 5> __PVT__inst_int0__DOT__inst_mult__DOT__internal_robid;
         VlUnpacked<CData/*5:0*/, 5> __PVT__inst_int0__DOT__inst_mult__DOT__internal_T;
         VlUnpacked<CData/*6:0*/, 4> __PVT__inst_sq__DOT__sq_reg_robid;
-    };
-    struct {
         VlUnpacked<IData/*31:0*/, 4> __PVT__inst_sq__DOT__sq_reg_data;
         VlUnpacked<IData/*31:0*/, 4> __PVT__inst_sq__DOT__sq_reg_addr;
         VlUnpacked<CData/*0:0*/, 4> __PVT__inst_sq__DOT__sq_reg_valid;
@@ -688,6 +676,8 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<CData/*0:0*/, 2> __PVT__inst_sq__DOT__inst_load_picker__DOT__l1_hit;
         VlUnpacked<CData/*1:0*/, 2> __PVT__inst_sq__DOT__inst_load_picker__DOT__l1_hit_index;
         VlUnpacked<CData/*0:0*/, 1> __PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit;
+    };
+    struct {
         VlUnpacked<CData/*1:0*/, 1> __PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index;
         VlUnpacked<CData/*1:0*/, 2> inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l1__BRA__0__KET____DOT__picker__index;
         VlUnpacked<CData/*0:0*/, 2> inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l1__BRA__0__KET____DOT__picker__match;

@@ -9,7 +9,7 @@ module data_memory (
     output logic [31:0] read_data
 );
 
-    logic [31:0] ram [256];
+       (* DONT_TOUCH= "TRUE" *)logic [31:0] ram [256];
     logic [7:0] word_address;
     
     

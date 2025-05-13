@@ -7,10 +7,10 @@
 
 #include "Vcommon_if_stage.h"
 
-VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__if_stage__9(Vcommon_if_stage* vlSelf) {
+VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__inst_if_stage__9(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_if_stage___sequent__TOP__if_stage__9\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+          Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__inst_if_stage__9\n"); );
     // Body
     vlSelf->__PVT__gshare_inst__DOT__GSHARE_PHT[0x1c5U] 
         = vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v453;

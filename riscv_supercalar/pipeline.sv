@@ -8,12 +8,13 @@ module pipeline(/*AUTOARG*/
    ram_debug, prf_debug, RRAT_debug, branch_times_debug,
    flush_times_debug,
    // Inputs
-   clk, reset_n, imem_en, imem_data_in
+   clk, reset_n, imem_en, imem_data_in, write_address
    );
    input               clk;
    input               reset_n;
    input               imem_en;
    input [31:0]        imem_data_in;
+   input [31:0]        write_address;   
    output logic [31:0] ram_debug[256];
    output logic [31:0] prf_debug[PRF_NUM-1:0];
    output logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
@@ -239,6 +240,7 @@ module pipeline(/*AUTOARG*/
 			    .byte_address0	(instr0_if_id.pc),
 			    .byte_address1	(instr1_if_id.pc),
 			    .write_enable	(imem_en),
+			    .write_address      (write_address),
 			    .write_data		(imem_data_in));
    
    

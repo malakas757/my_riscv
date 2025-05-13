@@ -105,10 +105,8 @@ module xbar_core(/*AUTOARG*/
    logic [1:0] 		  ch1_bank_map;
    logic [1:0] 		  ch2_bank_map;
 
-   logic                  can_send_to_bank0;
-   logic                  can_send_to_bank1;
-   logic                  can_send_to_bank2;
-   logic                  can_send_to_bank3;
+
+   logic                  can_send_to_bank[3:0];
 
    logic                  htu_already_kickoff[3:0];
    logic                  htu_kickoff[3:0];
@@ -116,7 +114,6 @@ module xbar_core(/*AUTOARG*/
    logic                  n_wbuf_already_kickoff[3:0];
    logic                  wbuf_already_kickoff[3:0];
    logic                  wbuf_kickoff[3:0];
-   logic                  downstream_enale[3:0];
    logic                  upstream_bank_valid[3:0];
    logic                  upstream_bank_enable[3:0];
    logic                  upstream_bank_kickoff[3:0];
@@ -218,30 +215,30 @@ module xbar_core(/*AUTOARG*/
       n_ch2_rptr = ch2_rptr;
       n_ch2_used_entry = ch2_used_entry;      
       if(upstream_ch0_kickoff)begin //
-	   n_ch0_used_entry = ch0_used_entry + 1 ;
-	 if(ch0_wptr == 'd5)
+	   n_ch0_used_entry = n_ch0_used_entry + 1 ;
+	 if(ch0_wptr == 'd4)
 	   n_ch0_wptr = 'd0;
 	 else
 	   n_ch0_wptr = ch0_wptr + 'd1;
       end
       if((ch0_used_entry!='d0) && (ch0_last_entry_already_pop))begin //
-	   n_ch0_used_entry = ch0_used_entry - 1;
-	 if(ch0_rptr == 'd5)
+	   n_ch0_used_entry = n_ch0_used_entry - 1;
+	 if(ch0_rptr == 'd4)
 	   n_ch0_rptr = 'd0;
 	 else
 	   n_ch0_rptr = ch0_rptr + 'd1;
       end
       
       if(upstream_ch1_kickoff)begin //
-	   n_ch1_used_entry = ch1_used_entry + 1 ;
-	 if(ch1_wptr == 'd5)
+	   n_ch1_used_entry = n_ch1_used_entry + 1 ;
+	 if(ch1_wptr == 'd4)
 	   n_ch1_wptr = 'd0;
 	 else
 	   n_ch1_wptr = ch1_wptr + 'd1;
       end
       if((ch1_used_entry!='d0) && (ch1_last_entry_already_pop))begin //
-	   n_ch1_used_entry = ch1_used_entry - 1;
-	 if(ch1_rptr == 'd5)
+	   n_ch1_used_entry = n_ch1_used_entry - 1;
+	 if(ch1_rptr == 'd4)
 	   n_ch1_rptr = 'd0;
 	 else
 	   n_ch1_rptr = ch1_rptr + 'd1;
@@ -249,15 +246,15 @@ module xbar_core(/*AUTOARG*/
 
       
       if(upstream_ch2_kickoff)begin //
-	   n_ch2_used_entry = ch2_used_entry + 1 ;
-	 if(ch2_wptr == 'd5)
+	   n_ch2_used_entry = n_ch2_used_entry + 1 ;
+	 if(ch2_wptr == 'd4)
 	   n_ch2_wptr = 'd0;
 	 else
 	   n_ch2_wptr = ch2_wptr + 'd1;
       end
       if((ch2_used_entry!='d0) && (ch2_last_entry_already_pop))begin //
-	   n_ch2_used_entry = ch2_used_entry - 1;
-	 if(ch2_rptr == 'd5)
+	   n_ch2_used_entry = n_ch2_used_entry - 1;
+	 if(ch2_rptr == 'd4)
 	   n_ch2_rptr = 'd0;
 	 else
 	   n_ch2_rptr = ch2_rptr + 'd1;
@@ -308,7 +305,7 @@ module xbar_core(/*AUTOARG*/
       n_cbe_array_valid = cbe_array_valid;
       for (i = 0; i < 3; i++) begin
 	 for (j = 0; j < 4; j++) begin
-	    for (k = 0; k < 4; k++) begin
+	    for (k = 0; k < 5; k++) begin
 	       n_cbe_array_valid[i][j][k] = cbe_array_valid[i][j][k] & ~cbe_array_invalidate[i][j][k];
 	    end
 	 end
@@ -373,9 +370,10 @@ module xbar_core(/*AUTOARG*/
    assign cbe_sel_current_channel_have_entry_want_send_to_bank[2][3] = |cbe_array_valid[2][3][4:0];
     */
    always_comb begin
-      for (int i=0; i<3; i=i+1)
+      for (int i=0; i<3; i=i+1) begin
 	for (int j=0; j<4; j=j+1)
-	  cbe_sel_current_channel_have_entry_want_send_to_bank[i][j] = cbe_array_valid[i][j][0] | cbe_array_valid[i][j][1] |cbe_array_valid[i][j][2] | cbe_array_valid[i][j][3];      	  
+	  cbe_sel_current_channel_have_entry_want_send_to_bank[i][j] = cbe_array_valid[i][j][0] | cbe_array_valid[i][j][1] |cbe_array_valid[i][j][2] | cbe_array_valid[i][j][3]| cbe_array_valid[i][j][4];  
+      end
    end
 
 	 
@@ -446,25 +444,35 @@ module xbar_core(/*AUTOARG*/
    
    
    always_comb begin
-      entry_selected = '{default:'d0};
+      entry_selected   = '{default:'d0};
+   //   can_send_to_bank = '{default:'d0};
       for (int m = 0; m < 4; m++) begin
 	 case(channel_selected[m])
-	 2'd0:
-	   entry_selected[m]   = cbe_sel_current_channel_entryid_want_send_to_bank[0][m];
-	 2'd1:
-	   entry_selected[m]   = cbe_sel_current_channel_entryid_want_send_to_bank[1][m];	 
-	 2'd2:
-	   entry_selected[m]   = cbe_sel_current_channel_entryid_want_send_to_bank[2][m];
+	 2'd0: begin
+	    entry_selected[m]   = cbe_sel_current_channel_entryid_want_send_to_bank[0][m];
+//	    can_send_to_bank[m] = cbe_array_valid[0][m][entry_selected[m]]; 
+	 end
+	 2'd1:begin
+	    entry_selected[m]   = cbe_sel_current_channel_entryid_want_send_to_bank[1][m];
+//	    can_send_to_bank[m] = cbe_array_valid[1][m][entry_selected[m]]; 
+	 end
+	 2'd2:begin
+	    entry_selected[m]   = cbe_sel_current_channel_entryid_want_send_to_bank[2][m];
+//	    can_send_to_bank[m] = cbe_array_valid[2][m][entry_selected[m]]; 
+	 end
+	 default: begin
+	    entry_selected   = '{default:'d0};
+//	    can_send_to_bank = '{default:'d0};
+	 end
 	 endcase
 	 end   
    end
 
    
-   assign can_send_to_bank0 = cbe_array_valid[channel_selected[0]][0][entry_selected[0]];
-   assign can_send_to_bank1 = cbe_array_valid[channel_selected[1]][1][entry_selected[1]];
-   assign can_send_to_bank2 = cbe_array_valid[channel_selected[2]][2][entry_selected[2]];
-   assign can_send_to_bank3 = cbe_array_valid[channel_selected[3]][3][entry_selected[3]];
-
+   assign can_send_to_bank[0] = cbe_array_valid[channel_selected[0]][0][entry_selected[0]];
+   assign can_send_to_bank[1] = cbe_array_valid[channel_selected[1]][1][entry_selected[1]];
+   assign can_send_to_bank[2] = cbe_array_valid[channel_selected[2]][2][entry_selected[2]];
+   assign can_send_to_bank[3] = cbe_array_valid[channel_selected[3]][3][entry_selected[3]];
 
    //**************** now find the entry id and channel id for each bank i
    //**************** channel id  : n_cbe_sel_current_bank_channel_num_want_send[i]
@@ -497,10 +505,10 @@ module xbar_core(/*AUTOARG*/
    end
 
 
-   assign upstream_bank_valid[0] = can_send_to_bank0;
-   assign upstream_bank_valid[1] = can_send_to_bank1;
-   assign upstream_bank_valid[2] = can_send_to_bank2;
-   assign upstream_bank_valid[3] = can_send_to_bank3;
+   assign upstream_bank_valid[0] = can_send_to_bank[0];
+   assign upstream_bank_valid[1] = can_send_to_bank[1];
+   assign upstream_bank_valid[2] = can_send_to_bank[2];
+   assign upstream_bank_valid[3] = can_send_to_bank[3];
    assign upstream_bank_enable[0] = !(mpc_xbar_htu_valid[0] & !mpc_xbar_htu_enable[0]) & !(mpc_xbar_wbuf_req_valid[0] & !mpc_xbar_wbuf_req_enable[0]);
    assign upstream_bank_enable[1] = !(mpc_xbar_htu_valid[1] & !mpc_xbar_htu_enable[1]) & !(mpc_xbar_wbuf_req_valid[1] & !mpc_xbar_wbuf_req_enable[1]);
    assign upstream_bank_enable[2] = !(mpc_xbar_htu_valid[2] & !mpc_xbar_htu_enable[2]) & !(mpc_xbar_wbuf_req_valid[2] & !mpc_xbar_wbuf_req_enable[2]);
@@ -517,6 +525,7 @@ module xbar_core(/*AUTOARG*/
    
    
    always_comb begin //downstream_kickoff
+      
 
       for(int i=0;i<4;i=i+1) begin
 	 mpc_xbar_htu_valid[i] = upstream_bank_valid[i] & !htu_already_kickoff[i];
@@ -612,7 +621,7 @@ module f_bottom(/*AUTOARG*/
 
    logic [7:0] 	valid_arrry_aftet_shift;
 
-   assign     valid_arrry_aftet_shift = (valid_array>>bottom_ptr) | valid_array>>(8-bottom_ptr);
+   assign     valid_arrry_aftet_shift = (valid_array>>bottom_ptr) | valid_array<<(8-bottom_ptr);
       always_comb begin
 	 if (valid_arrry_aftet_shift[0])
 	   find_round_robin = bottom_ptr;
@@ -631,7 +640,7 @@ module f_bottom(/*AUTOARG*/
 	 else if (valid_arrry_aftet_shift[7])
 	   find_round_robin = bottom_ptr+7;
 	 else
-	   find_round_robin = 3'd7;
+	   find_round_robin = 3'd0;
       end
   
 endmodule
@@ -648,7 +657,7 @@ module f_round_robin(/*AUTOARG*/
 
    logic [7:0] 	valid_arrry_aftet_shift;
 
-   assign     valid_arrry_aftet_shift = (valid_array>>bottom_ptr) | valid_array>>(8-bottom_ptr);
+   assign     valid_arrry_aftet_shift = (valid_array>>bottom_ptr) | valid_array<<(8-bottom_ptr);
       always_comb begin
 	 if (valid_arrry_aftet_shift[1])
 	   find_round_robin = bottom_ptr+1;
@@ -667,7 +676,7 @@ module f_round_robin(/*AUTOARG*/
 	 else if (valid_arrry_aftet_shift[0])
 	   find_round_robin = bottom_ptr;
 	 else
-	   find_round_robin = 3'd7;
+	   find_round_robin = 3'd0;
       end
   
 endmodule

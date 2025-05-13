@@ -86,6 +86,12 @@ module rob(/*AUTOARG*/
    output [ARF_WIDTH-1:0] 		walk1_arf_id;
    output [PRF_WIDTH-1:0] 		walk0_T;
    output [PRF_WIDTH-1:0] 		walk1_T;
+
+
+   
+   logic [1:0] 				retire_num;
+   logic 				retire0_valid;
+   logic 				retire1_valid;
    
     
    
@@ -220,9 +226,7 @@ module rob(/*AUTOARG*/
 
 
 // tail logic
-   logic[1:0]        retire_num;
-   logic 	     retire0_valid;
-   logic 	     retire1_valid;
+
 
    assign retire0_valid = ~flush_valid & is_idle & reg_rob[tail_ptr].valid & reg_rob[tail_ptr].complete;
    assign retire1_valid = retire0_valid & reg_rob[tail_ptr_plus1].valid & reg_rob[tail_ptr_plus1].complete;

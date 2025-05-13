@@ -13,7 +13,7 @@ module program_memory (
 );
 
    //logic [31:0] ram [256];
-    logic [7:0] ram [1024];
+       (* DONT_TOUCH= "TRUE" *)logic [7:0] ram [1024];
     logic [7:0] word_address;
     
     

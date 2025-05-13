@@ -8,6 +8,7 @@ module program_memory (
     input [XLEN_WIDTH-1:0] byte_address1,
     input write_enable,         
     input [XLEN_WIDTH-1:0] write_data, 
+    input [XLEN_WIDTH-1:0] write_address, 
     output logic [XLEN_WIDTH-1:0] read_data0,
     output logic [XLEN_WIDTH-1:0] read_data1
 );
@@ -28,7 +29,7 @@ module program_memory (
     
     always @(posedge clk) begin
         if (write_enable) begin
-            ram[word_address0] <= write_data;
+            ram[write_address[9:2]] <= write_data;
         end 
     end
     

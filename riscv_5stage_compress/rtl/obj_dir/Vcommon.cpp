@@ -12,6 +12,8 @@ Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     , clk{vlSymsp->TOP.clk}
     , rstn{vlSymsp->TOP.rstn}
     , io_rx{vlSymsp->TOP.io_rx}
+    , led{vlSymsp->TOP.led}
+    , debug_reg{vlSymsp->TOP.debug_reg}
     , rootp{&(vlSymsp->TOP)}
 {
 }
