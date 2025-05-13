@@ -4989,69 +4989,85 @@ VL_INLINE_OPT void Vcommon___024root___sequent__TOP__8(Vcommon___024root* vlSelf
                 : ((vlSelf->top_with_uart__DOT__inst_cpu__DOT__id_ex_reg[5U] 
                     << 0x16U) | (vlSelf->top_with_uart__DOT__inst_cpu__DOT__id_ex_reg[4U] 
                                  >> 0xaU))));
-    vlSelf->debug_reg[0U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0U];
-    vlSelf->debug_reg[1U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[1U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [1U];
-    vlSelf->debug_reg[2U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[2U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [2U];
-    vlSelf->debug_reg[3U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[3U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [3U];
-    vlSelf->debug_reg[4U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[4U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [4U];
-    vlSelf->debug_reg[5U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[5U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [5U];
-    vlSelf->debug_reg[6U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[6U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [6U];
-    vlSelf->debug_reg[7U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[7U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [7U];
-    vlSelf->debug_reg[8U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[8U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [8U];
-    vlSelf->debug_reg[9U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[9U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [9U];
-    vlSelf->debug_reg[0xaU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xaU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xaU];
-    vlSelf->debug_reg[0xbU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xbU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xbU];
-    vlSelf->debug_reg[0xcU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xcU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xcU];
-    vlSelf->debug_reg[0xdU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xdU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xdU];
-    vlSelf->debug_reg[0xeU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xeU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xeU];
-    vlSelf->debug_reg[0xfU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xfU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xfU];
-    vlSelf->debug_reg[0x10U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x10U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x10U];
-    vlSelf->debug_reg[0x11U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x11U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x11U];
-    vlSelf->debug_reg[0x12U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x12U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x12U];
-    vlSelf->debug_reg[0x13U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x13U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x13U];
-    vlSelf->debug_reg[0x14U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x14U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x14U];
-    vlSelf->debug_reg[0x15U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x15U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x15U];
-    vlSelf->debug_reg[0x16U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x16U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x16U];
-    vlSelf->debug_reg[0x17U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x17U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x17U];
-    vlSelf->debug_reg[0x18U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x18U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x18U];
-    vlSelf->debug_reg[0x19U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x19U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x19U];
-    vlSelf->debug_reg[0x1aU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1aU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1aU];
-    vlSelf->debug_reg[0x1bU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1bU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1bU];
-    vlSelf->debug_reg[0x1cU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1cU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1cU];
-    vlSelf->debug_reg[0x1dU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1dU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1dU];
-    vlSelf->debug_reg[0x1eU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1eU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1eU];
-    vlSelf->debug_reg[0x1fU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1fU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1fU];
     vlSelf->top_with_uart__DOT__inst_cpu__DOT__inst_fetch_stage__DOT__gshare_inst__DOT__GHSR_next 
         = (((IData)(vlSelf->top_with_uart__DOT__inst_cpu__DOT__inst_fetch_stage__DOT__instr0_predict_taken) 
@@ -5102,6 +5118,8 @@ VL_INLINE_OPT void Vcommon___024root___sequent__TOP__8(Vcommon___024root* vlSelf
            < top_with_uart__DOT__inst_cpu__DOT__inst_execute_stage__DOT__rs2_after_fwd);
     top_with_uart__DOT__inst_cpu__DOT__inst_execute_stage__DOT__inst_bju__DOT__is_sign_rs1_lt_rs2 
         = VL_LTS_III(32, top_with_uart__DOT__inst_cpu__DOT__inst_execute_stage__DOT__rs1_after_fwd, top_with_uart__DOT__inst_cpu__DOT__inst_execute_stage__DOT__rs2_after_fwd);
+    vlSelf->x2 = vlSelf->top_with_uart__DOT__debug_reg
+        [2U];
     vlSelf->top_with_uart__DOT__inst_cpu__DOT__inst_decode_stage__DOT__rf_read_data1 
         = ((0U == (0x1fU & (vlSelf->top_with_uart__DOT__inst_cpu__DOT__inst_decode_stage__DOT__instruction_sel 
                             >> 0xfU))) ? 0U : (((0x1fU 

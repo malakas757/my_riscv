@@ -1627,69 +1627,85 @@ VL_ATTR_COLD void Vcommon___024root___settle__TOP__9(Vcommon___024root* vlSelf) 
                                << 0x16U) | (vlSelf->top_with_uart__DOT__inst_cpu__DOT__id_ex_reg[5U] 
                                             >> 0xaU)));
     }
-    vlSelf->debug_reg[0U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0U];
-    vlSelf->debug_reg[1U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[1U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [1U];
-    vlSelf->debug_reg[2U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[2U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [2U];
-    vlSelf->debug_reg[3U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[3U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [3U];
-    vlSelf->debug_reg[4U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[4U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [4U];
-    vlSelf->debug_reg[5U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[5U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [5U];
-    vlSelf->debug_reg[6U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[6U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [6U];
-    vlSelf->debug_reg[7U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[7U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [7U];
-    vlSelf->debug_reg[8U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[8U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [8U];
-    vlSelf->debug_reg[9U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[9U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [9U];
-    vlSelf->debug_reg[0xaU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xaU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xaU];
-    vlSelf->debug_reg[0xbU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xbU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xbU];
-    vlSelf->debug_reg[0xcU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xcU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xcU];
-    vlSelf->debug_reg[0xdU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xdU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xdU];
-    vlSelf->debug_reg[0xeU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xeU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xeU];
-    vlSelf->debug_reg[0xfU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0xfU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0xfU];
-    vlSelf->debug_reg[0x10U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x10U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x10U];
-    vlSelf->debug_reg[0x11U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x11U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x11U];
-    vlSelf->debug_reg[0x12U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x12U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x12U];
-    vlSelf->debug_reg[0x13U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x13U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x13U];
-    vlSelf->debug_reg[0x14U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x14U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x14U];
-    vlSelf->debug_reg[0x15U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x15U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x15U];
-    vlSelf->debug_reg[0x16U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x16U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x16U];
-    vlSelf->debug_reg[0x17U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x17U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x17U];
-    vlSelf->debug_reg[0x18U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x18U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x18U];
-    vlSelf->debug_reg[0x19U] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x19U] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x19U];
-    vlSelf->debug_reg[0x1aU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1aU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1aU];
-    vlSelf->debug_reg[0x1bU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1bU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1bU];
-    vlSelf->debug_reg[0x1cU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1cU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1cU];
-    vlSelf->debug_reg[0x1dU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1dU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1dU];
-    vlSelf->debug_reg[0x1eU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1eU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1eU];
-    vlSelf->debug_reg[0x1fU] = vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
+    vlSelf->top_with_uart__DOT__debug_reg[0x1fU] = 
+        vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg
         [0x1fU];
     vlSelf->top_with_uart__DOT__inst_cpu__DOT__execute_alu_data 
         = ((IData)((0U != (0xc000U & vlSelf->top_with_uart__DOT__inst_cpu__DOT__id_ex_reg[1U])))
@@ -1706,6 +1722,8 @@ VL_ATTR_COLD void Vcommon___024root___settle__TOP__9(Vcommon___024root* vlSelf) 
         = (1U & ((IData)(vlSelf->top_with_uart__DOT__inst_cpu__DOT__inst_execute_stage__DOT__branch_taken) 
                  ^ (vlSelf->top_with_uart__DOT__inst_cpu__DOT__id_ex_reg[1U] 
                     >> 0xbU)));
+    vlSelf->x2 = vlSelf->top_with_uart__DOT__debug_reg
+        [2U];
     top_with_uart__DOT__inst_cpu__DOT__branch_flush 
         = ((IData)(vlSelf->top_with_uart__DOT__inst_cpu__DOT__inst_execute_stage__DOT__inst_bju__DOT__is_bj) 
            & ((IData)(vlSelf->top_with_uart__DOT__inst_cpu__DOT__inst_execute_stage__DOT__inst_bju__DOT__is_branch_taken_diff) 
@@ -1775,12 +1793,13 @@ VL_ATTR_COLD void Vcommon___024root___ctor_var_reset(Vcommon___024root* vlSelf) 
     vlSelf->clk = VL_RAND_RESET_I(1);
     vlSelf->rstn = VL_RAND_RESET_I(1);
     vlSelf->io_rx = VL_RAND_RESET_I(1);
-    for (int __Vi0=0; __Vi0<32; ++__Vi0) {
-        vlSelf->debug_reg[__Vi0] = VL_RAND_RESET_I(32);
-    }
     vlSelf->led = VL_RAND_RESET_I(8);
+    vlSelf->x2 = VL_RAND_RESET_I(32);
     vlSelf->top_with_uart__DOT__io_data_valid = VL_RAND_RESET_I(1);
     vlSelf->top_with_uart__DOT__write_address = VL_RAND_RESET_I(10);
+    for (int __Vi0=0; __Vi0<32; ++__Vi0) {
+        vlSelf->top_with_uart__DOT__debug_reg[__Vi0] = VL_RAND_RESET_I(32);
+    }
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top_with_uart__DOT____Vcellout__inst_cpu__debug_reg[__Vi0] = VL_RAND_RESET_I(32);
     }

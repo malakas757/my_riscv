@@ -1618,6 +1618,7 @@ VL_MODULE(Vcommon___024root) {
         SData/*8:0*/ __Vdlyvdim0__top_with_uart__DOT__inst_cpu__DOT__inst_fetch_stage__DOT__btb_inst__DOT__btb_entry_valids__v0;
         SData/*8:0*/ __Vdlyvdim0__top_with_uart__DOT__inst_cpu__DOT__inst_fetch_stage__DOT__btb_inst__DOT__btb_tag_inst__DOT__history_table__v0;
         SData/*8:0*/ __Vdlyvdim0__top_with_uart__DOT__inst_cpu__DOT__inst_fetch_stage__DOT__btb_inst__DOT__btb_addr_inst__DOT__history_table__v0;
+        VL_OUT(x2,31,0);
         IData/*31:0*/ top_with_uart__DOT__inst_uart__DOT__uart_state;
         IData/*31:0*/ top_with_uart__DOT__inst_uart__DOT__uart_state_next;
         IData/*31:0*/ top_with_uart__DOT__inst_uart__DOT__uart_counter_reg;
@@ -1649,7 +1650,7 @@ VL_MODULE(Vcommon___024root) {
         VlWide<4>/*98:0*/ top_with_uart__DOT__inst_cpu__DOT__ex_mem_reg;
         VlWide<4>/*98:0*/ top_with_uart__DOT__inst_cpu__DOT__mem_wb_reg;
         VlWide<4>/*107:0*/ __Vdly__top_with_uart__DOT__inst_cpu__DOT__if_id_reg;
-        VL_OUT(debug_reg[32],31,0);
+        VlUnpacked<IData/*31:0*/, 32> top_with_uart__DOT__debug_reg;
         VlUnpacked<IData/*31:0*/, 32> top_with_uart__DOT____Vcellout__inst_cpu__debug_reg;
         VlUnpacked<IData/*31:0*/, 32> top_with_uart__DOT__inst_cpu__DOT____Vcellout__inst_decode_stage__debug_reg;
         VlUnpacked<CData/*7:0*/, 1024> top_with_uart__DOT__inst_cpu__DOT__inst_mem__DOT__ram;
