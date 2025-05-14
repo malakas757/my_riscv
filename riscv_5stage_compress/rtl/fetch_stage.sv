@@ -170,6 +170,22 @@ module fetch_stage( /*AUTOARG*/
 		      .EXE_branch_addr	(ex2if_branch_addr),	 // Templated
 		      .EXE_GHSR_restore	(ex2if_GHSR_restore));	 // Templated
    
-
+    
+    
+    //instruction_type instruction_sel;
+    logic [31:0] dec_instruction;
+    logic [15:0] compress_instr;
+    
+    assign instruction= is_compress ? dec_instruction:imem_data;
+    assign compress_instr= is_compress ? imem_data[15:0]:16'b0;
+    
+    
+    
+    decompress inst_decompress(
+			      .enable(is_compress),
+			      .instruction	(compress_instr),
+			      //output
+			      .dec_instruction(dec_instruction)
+            );
    
 endmodule

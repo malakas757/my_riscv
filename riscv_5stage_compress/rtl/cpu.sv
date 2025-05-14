@@ -5,7 +5,7 @@ import common::*;
 
 module cpu(/*AUTOARG*/
    // Outputs
-   debug_flush, debug_is_bj, debug_reg,
+   debug_flush, debug_is_bj,
    // Inputs
    clk, reset_n, write_address, write_data, write_enable
    );
@@ -16,7 +16,6 @@ module cpu(/*AUTOARG*/
    input  	  write_enable;
    output 	  debug_flush;
    output 	  debug_is_bj;
-   output logic [31:0] debug_reg[0:REGISTER_FILE_SIZE-1];
    
    
 
@@ -71,6 +70,8 @@ module cpu(/*AUTOARG*/
     id_ex_type id_ex_reg;
     ex_mem_type ex_mem_reg;
     mem_wb_type mem_wb_reg;
+    
+    instruction_type if_id_instruction;
 
    branch_predict_type  branch_predict;
    
@@ -110,7 +111,7 @@ module cpu(/*AUTOARG*/
 	   else begin
               if_id_reg.pc <= imem_addr;
               if_id_reg.branch_predict <= branch_predict;	      
-              if_id_reg.instruction <= imem_data;
+              if_id_reg.instruction <= if_id_instruction;
 	      end
 
 	   if(id_ex_flush | !reset_n) begin
@@ -183,7 +184,7 @@ module cpu(/*AUTOARG*/
 				 .imem_req_addr		(imem_req_addr[31:0]),
 				 .imem_addr		(imem_addr[31:0]),
 				 .branch_predict	(branch_predict),
-				 .instruction		(instruction),
+				 .instruction		(if_id_instruction),
 				 // Inputs
 				 .clk			(clk),
 				 .reset_n		(reset_n),
@@ -226,7 +227,7 @@ module cpu(/*AUTOARG*/
         .control_signals(decode_control),
         .branch_in(if_id_reg.branch_predict),
     )*/
-   decode_stage inst_decode_stage(/*AUTOINST*/
+   decode_stage inst_decode_stage(
 				  // Outputs
 				  .branch_out		(branch_out),
 				  .reg_rd_id		(decode_reg_rd_id), // Templated
@@ -235,7 +236,7 @@ module cpu(/*AUTOARG*/
 				  .read_data2		(decode_data2),	 // Templated
 				  .immediate_data	(decode_immediate_data), // Templated
 				  .control_signals	(decode_control), // Templated
-				  .debug_reg		(debug_reg/*[31:0].[0:REGISTER_FILE_SIZE-1]*/),
+
 				  // Inputs
 				  .clk			(clk),
 				  .reset_n		(reset_n),

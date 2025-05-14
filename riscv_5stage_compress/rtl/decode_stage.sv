@@ -6,16 +6,16 @@ import common::*;
 module decode_stage(/*AUTOARG*/
    // Outputs
    branch_out, reg_rd_id, pc_out, read_data1, read_data2,
-   immediate_data, control_signals, debug_reg,
+   immediate_data, control_signals,
    // Inputs
-   clk, reset_n, instruction, pc, write_en, write_id, write_data,
+   clk, reset_n, instruction, pc,  write_en, write_id, write_data,
    branch_in
    );
 
 
     input clk;
     input reset_n;
-    input [31:0] instruction;    
+    input  instruction_type instruction;    
     input logic [31:0] pc;
     input logic write_en;
     input logic [4:0] write_id;
@@ -28,9 +28,7 @@ module decode_stage(/*AUTOARG*/
     output logic [31:0] read_data2;
     output logic [31:0] immediate_data;
     output control_type control_signals;
-    output logic [31:0] debug_reg[0:REGISTER_FILE_SIZE-1];
-   
-   
+ 
 
     logic [31:0] rf_read_data1;
     logic [31:0] rf_read_data2;
@@ -38,7 +36,7 @@ module decode_stage(/*AUTOARG*/
     control_type control;
         
         
-    logic decompress_en;
+   /* logic decompress_en;
     instruction_type instruction_sel;
     logic [31:0] dec_instruction;
     logic [15:0] compress_instr;
@@ -54,20 +52,18 @@ module decode_stage(/*AUTOARG*/
 			      .instruction	(compress_instr),
 			      //output
 			      .dec_instruction(dec_instruction)
-            );
+            );*/
 
     register_file rf_inst(
         .clk(clk),
         .reset_n(reset_n),
         .write_en(write_en),
-        .read1_id(instruction_sel.rs1),
-        .read2_id(instruction_sel.rs2),
+        .read1_id(instruction.rs1),
+        .read2_id(instruction.rs2),
         .write_id(write_id),
         .write_data(write_data),
         .read1_data(rf_read_data1),
-        .read2_data(rf_read_data2), 
-        .debug_reg(debug_reg) 
-			  
+        .read2_data(rf_read_data2)        
     );
     
    /* control inst_control(
@@ -83,10 +79,10 @@ module decode_stage(/*AUTOARG*/
 
     
    
-    assign reg_rd_id = instruction_sel.rd;
+    assign reg_rd_id = instruction.rd;
     assign read_data1 = rf_read_data1;
     assign read_data2 = rf_read_data2;
-    assign immediate_data = immediate_extension(instruction_sel, control.encoding);
+    assign immediate_data = immediate_extension(instruction, control.encoding);
     assign control_signals = control;
     assign pc_out = pc;
     assign branch_out = branch_in;
