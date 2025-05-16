@@ -20,7 +20,7 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__ins
     vlSelf->__Vdlyvset__btb_inst__DOT__btb_entry_valids__v0 = 0U;
     vlSelf->__Vdlyvset__btb_inst__DOT__btb_entry_valids__v1 = 0U;
     vlSelf->__Vdlyvset__btb_inst__DOT__btb_entry_valids__v513 = 0U;
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if (vlSelf->__PVT__btb_inst__DOT__update_BTB) {
             vlSelf->__Vdlyvval__btb_inst__DOT__btb_addr_inst__DOT__history_table__v0 
                 = (0x3fffffffU & ((vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[1U] 
@@ -2789,7 +2789,7 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__ins
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+          Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__inst_if_stage__5\n"); );
     // Body
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v59 
             = (((vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[2U] 
                  >> 0xcU) & (0x3bU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))

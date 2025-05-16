@@ -19,9 +19,12 @@ VL_ATTR_COLD void Vcommon___024root___ctor_var_reset(Vcommon___024root* vlSelf) 
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcommon___024root___ctor_var_reset\n"); );
     // Body
     vlSelf->clk = VL_RAND_RESET_I(1);
-    vlSelf->rstn = VL_RAND_RESET_I(1);
+    vlSelf->rstn_cpu = VL_RAND_RESET_I(1);
+    vlSelf->rstn_uart = VL_RAND_RESET_I(1);
     vlSelf->io_rx = VL_RAND_RESET_I(1);
     vlSelf->led = VL_RAND_RESET_I(8);
+    vlSelf->branch_times_debug = VL_RAND_RESET_I(1);
+    vlSelf->flush_times_debug = VL_RAND_RESET_I(1);
     vlSelf->__Vchglast__TOP__top_with_uart__inst_cpu__read_data0 = VL_RAND_RESET_I(32);
     vlSelf->__Vchglast__TOP__top_with_uart__inst_cpu__read_data1 = VL_RAND_RESET_I(32);
 }

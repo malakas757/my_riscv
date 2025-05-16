@@ -15,7 +15,7 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__ins
     // Init
     IData/*31:0*/ __Vilp;
     // Body
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v929 
             = (((vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[2U] 
                  >> 0xcU) & (0x3a1U == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))
@@ -3905,11 +3905,6 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__ins
     CData/*0:0*/ __Vfunc_if_branch_taken__4__Vfuncout;
     CData/*1:0*/ __Vfunc_if_branch_taken__4__biomd;
     // Body
-    vlSelf->__PVT__instr0_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr0_if_id[2U]) 
-                                       | (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
-                                          << 0xdU));
-    vlSelf->__PVT__instr0_if_id[3U] = (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
-                                       >> 0x13U);
     vlSelf->__PVT__instr1_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr1_if_id[2U]) 
                                        | (((IData)(4U) 
                                            + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
@@ -3917,17 +3912,16 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__ins
     vlSelf->__PVT__instr1_if_id[3U] = (((IData)(4U) 
                                         + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
                                        >> 0x13U);
+    vlSelf->__PVT__instr0_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr0_if_id[2U]) 
+                                       | (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
+                                          << 0xdU));
+    vlSelf->__PVT__instr0_if_id[3U] = (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
+                                       >> 0x13U);
     vlSelf->__PVT__instr1_btb_target_addr = ((3U & vlSelf->__PVT__instr1_btb_target_addr) 
                                              | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
                                                 [(0x1ffU 
                                                   & (((IData)(4U) 
                                                       + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
-                                                     >> 2U))] 
-                                                << 2U));
-    vlSelf->__PVT__instr0_btb_target_addr = ((3U & vlSelf->__PVT__instr0_btb_target_addr) 
-                                             | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
-                                                [(0x1ffU 
-                                                  & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
                                                      >> 2U))] 
                                                 << 2U));
     vlSelf->__PVT__instr1_btb_hit = (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
@@ -3942,6 +3936,12 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__ins
                                           (((IData)(4U) 
                                             + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
                                            >> 2U))]));
+    vlSelf->__PVT__instr0_btb_target_addr = ((3U & vlSelf->__PVT__instr0_btb_target_addr) 
+                                             | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
+                                                [(0x1ffU 
+                                                  & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
+                                                     >> 2U))] 
+                                                << 2U));
     vlSelf->__PVT__instr0_btb_hit = (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
                                      [(0x1ffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
                                                  >> 2U))] 

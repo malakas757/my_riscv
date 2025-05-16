@@ -13,7 +13,6 @@ VL_ATTR_COLD void Vcommon_pipeline___initial__TOP__top_with_uart__inst_cpu__1(Vc
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_pipeline___initial__TOP__top_with_uart__inst_cpu__1\n"); );
     // Init
     VlWide<5>/*159:0*/ __Vtemp_h7315c05b__0;
-    IData/*31:0*/ __Vilp;
     // Body
     __Vtemp_h7315c05b__0[0U] = 0x2e6d656dU;
     __Vtemp_h7315c05b__0[1U] = 0x5f6d656dU;
@@ -23,11 +22,22 @@ VL_ATTR_COLD void Vcommon_pipeline___initial__TOP__top_with_uart__inst_cpu__1(Vc
     VL_READMEM_N(true, 32, 256, 0, VL_CVT_PACK_STR_NW(5, __Vtemp_h7315c05b__0)
                  ,  &(vlSelf->__PVT__inst_imem__DOT__ram)
                  , 0, ~0ULL);
-    __Vilp = 0U;
-    while ((__Vilp <= 0xffU)) {
-        vlSelf->__PVT__inst_dmem__DOT__ram[__Vilp] = 0U;
-        __Vilp = ((IData)(1U) + __Vilp);
-    }
+    vlSelf->__PVT__inst_dmem__DOT__ram[0U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[1U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[2U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[3U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[4U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[5U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[6U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[7U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[8U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[9U] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[0xaU] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[0xbU] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[0xcU] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[0xdU] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[0xeU] = 0U;
+    vlSelf->__PVT__inst_dmem__DOT__ram[0xfU] = 0U;
 }
 
 VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
@@ -40,7 +50,7 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     vlSelf->__PVT__imem_en = VL_RAND_RESET_I(1);
     vlSelf->__PVT__imem_data_in = VL_RAND_RESET_I(32);
     vlSelf->__PVT__write_address = VL_RAND_RESET_I(32);
-    for (int __Vi0=0; __Vi0<256; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<16; ++__Vi0) {
         vlSelf->__PVT__ram_debug[__Vi0] = VL_RAND_RESET_I(32);
     }
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {
@@ -51,9 +61,12 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     }
     vlSelf->__PVT__branch_times_debug = VL_RAND_RESET_I(1);
     vlSelf->__PVT__flush_times_debug = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__IF_flush = VL_RAND_RESET_I(1);
     vlSelf->__PVT__IF_stall = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__IR_flush = VL_RAND_RESET_I(1);
     vlSelf->__PVT__IR_stall = VL_RAND_RESET_I(1);
     vlSelf->__PVT__PC_stall = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__can_dispatch = VL_RAND_RESET_I(1);
     vlSelf->__PVT__ex_slot0_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT__ex_slot1_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT__flush_robid = VL_RAND_RESET_I(7);
@@ -840,10 +853,9 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     for (int __Vi0=0; __Vi0<2; ++__Vi0) {
         vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match[__Vi0] = VL_RAND_RESET_I(1);
     }
-    for (int __Vi0=0; __Vi0<256; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<16; ++__Vi0) {
         vlSelf->__PVT__inst_dmem__DOT__ram[__Vi0] = VL_RAND_RESET_I(32);
     }
-    vlSelf->__Vfunc_immediate_extension__0__Vfuncout = VL_RAND_RESET_I(32);
     vlSelf->__Vdlyvset__inst_imem__DOT__ram__v0 = 0;
     vlSelf->__Vdlyvset__inst_ir__DOT__inst_fl__DOT__fl__v0 = 0;
     vlSelf->__Vdlyvset__inst_ir__DOT__inst_fl__DOT__fl__v1 = 0;

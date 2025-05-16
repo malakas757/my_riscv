@@ -14,7 +14,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vco
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2\n"); );
     // Init
     CData/*0:0*/ __PVT__ID_stall;
-    CData/*0:0*/ __PVT__can_dispatch;
     SData/*9:0*/ __PVT__ex2if_GHSR_restore;
     IData/*31:0*/ __PVT__int0_rs1;
     IData/*31:0*/ __PVT__int0_rs2;
@@ -140,6 +139,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vco
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__2__KET____DOT__picker__hit;
     CData/*1:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index;
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
+    IData/*31:0*/ __Vfunc_immediate_extension__0__Vfuncout;
     IData/*31:0*/ __Vfunc_immediate_extension__0__instruction;
     CData/*2:0*/ __Vfunc_immediate_extension__0__inst_encoding;
     IData/*31:0*/ __Vfunc_immediate_extension__1__Vfuncout;
@@ -1596,49 +1596,80 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vco
     __Vfunc_immediate_extension__0__inst_encoding = 
         (7U & (vlSelf->__PVT__dec_instr0[3U] >> 0xcU));
     __Vfunc_immediate_extension__0__instruction = vlSelf->__PVT__if_id_reg0[0U];
-    vlSelf->__Vfunc_immediate_extension__0__Vfuncout 
-        = ((4U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-            ? ((2U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                ? 0U : ((1U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                         ? (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                         >> 0x1fU))) 
-                             << 0x15U) | ((0x100000U 
-                                           & (__Vfunc_immediate_extension__0__instruction 
-                                              >> 0xbU)) 
-                                          | ((0xff000U 
-                                              & __Vfunc_immediate_extension__0__instruction) 
-                                             | ((0x800U 
-                                                 & (__Vfunc_immediate_extension__0__instruction 
-                                                    >> 9U)) 
-                                                | (0x7feU 
-                                                   & (__Vfunc_immediate_extension__0__instruction 
-                                                      >> 0x14U))))))
-                         : (0xfffff000U & __Vfunc_immediate_extension__0__instruction)))
-            : ((2U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                ? ((1U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                    ? (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                    >> 0x1fU))) << 0xdU) 
-                       | ((0x1000U & (__Vfunc_immediate_extension__0__instruction 
-                                      >> 0x13U)) | 
-                          ((0x800U & (__Vfunc_immediate_extension__0__instruction 
-                                      << 4U)) | ((0x7e0U 
-                                                  & (__Vfunc_immediate_extension__0__instruction 
-                                                     >> 0x14U)) 
-                                                 | (0x1eU 
-                                                    & (__Vfunc_immediate_extension__0__instruction 
-                                                       >> 7U))))))
-                    : (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                    >> 0x1fU))) << 0xcU) 
-                       | ((0xfe0U & (__Vfunc_immediate_extension__0__instruction 
-                                     >> 0x14U)) | (0x1fU 
-                                                   & (__Vfunc_immediate_extension__0__instruction 
-                                                      >> 7U)))))
-                : ((1U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                    ? (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                    >> 0x1fU))) << 0xcU) 
-                       | (__Vfunc_immediate_extension__0__instruction 
-                          >> 0x14U)) : 0U)));
-    vlSelf->__PVT__dec_instr0[0U] = vlSelf->__Vfunc_immediate_extension__0__Vfuncout;
+    __Vfunc_immediate_extension__0__Vfuncout = ((4U 
+                                                 & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                 ? 
+                                                ((2U 
+                                                  & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                  ? 0U
+                                                  : 
+                                                 ((1U 
+                                                   & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                   ? 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0x15U) 
+                                                   | ((0x100000U 
+                                                       & (__Vfunc_immediate_extension__0__instruction 
+                                                          >> 0xbU)) 
+                                                      | ((0xff000U 
+                                                          & __Vfunc_immediate_extension__0__instruction) 
+                                                         | ((0x800U 
+                                                             & (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 9U)) 
+                                                            | (0x7feU 
+                                                               & (__Vfunc_immediate_extension__0__instruction 
+                                                                  >> 0x14U))))))
+                                                   : 
+                                                  (0xfffff000U 
+                                                   & __Vfunc_immediate_extension__0__instruction)))
+                                                 : 
+                                                ((2U 
+                                                  & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                  ? 
+                                                 ((1U 
+                                                   & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                   ? 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0xdU) 
+                                                   | ((0x1000U 
+                                                       & (__Vfunc_immediate_extension__0__instruction 
+                                                          >> 0x13U)) 
+                                                      | ((0x800U 
+                                                          & (__Vfunc_immediate_extension__0__instruction 
+                                                             << 4U)) 
+                                                         | ((0x7e0U 
+                                                             & (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x14U)) 
+                                                            | (0x1eU 
+                                                               & (__Vfunc_immediate_extension__0__instruction 
+                                                                  >> 7U))))))
+                                                   : 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0xcU) 
+                                                   | ((0xfe0U 
+                                                       & (__Vfunc_immediate_extension__0__instruction 
+                                                          >> 0x14U)) 
+                                                      | (0x1fU 
+                                                         & (__Vfunc_immediate_extension__0__instruction 
+                                                            >> 7U)))))
+                                                  : 
+                                                 ((1U 
+                                                   & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                   ? 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0xcU) 
+                                                   | (__Vfunc_immediate_extension__0__instruction 
+                                                      >> 0x14U))
+                                                   : 0U)));
+    vlSelf->__PVT__dec_instr0[0U] = __Vfunc_immediate_extension__0__Vfuncout;
     if ((0U == (0x1fU & (vlSelf->__PVT__dec_instr0[2U] 
                          >> 0x1aU)))) {
         vlSelf->__PVT__dec_instr0[2U] = (0xfff7ffffU 
@@ -3240,6 +3271,12 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vco
     vlSelf->__PVT__read_data0 = vlSelf->__PVT__inst_imem__DOT__ram
         [(0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
                    >> 0xfU))];
+    vlSelf->__PVT__IF_flush = ((IData)(vlSelf->__PVT__flush_valid) 
+                               | (1U == (0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                  >> 0xfU))));
+    vlSelf->__PVT__IR_flush = ((IData)(vlSelf->__PVT__flush_valid) 
+                               | (1U == (0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                  >> 0xfU))));
     vlSelf->__PVT__read_data1 = vlSelf->__PVT__inst_imem__DOT__ram
         [(0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[2U] 
                    >> 0xfU))];
@@ -5845,7 +5882,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vco
                                                 [0U]]
                                                  : 
                                                 vlSelf->__PVT__inst_dmem__DOT__ram
-                                                [(0xffU 
+                                                [(0xfU 
                                                   & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
                                                      >> 2U))]);
     if ((vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
@@ -6002,44 +6039,54 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vco
         vlSelf->__PVT__inst_int2__DOT__load_byte = 0U;
         vlSelf->__PVT__inst_int2__DOT__load_hword = 0U;
     }
-    __PVT__can_dispatch = (1U & (((((((((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                          ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                         >> 6U) & (
-                                                   (0x3fU 
+    vlSelf->__PVT__can_dispatch = (1U & (((((((((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
+                                                  ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                                 >> 6U) 
+                                                & ((0x3fU 
                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head)) 
                                                    == 
                                                    (0x3fU 
                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                        ? 0U : (((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                                   ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                                  >> 6U) 
-                                                 & (((IData)(1U) 
+                                                ? 0U
+                                                : (
+                                                   ((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
+                                                      ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                                     >> 6U) 
+                                                    & (((IData)(1U) 
+                                                        + 
+                                                        (0x3fU 
+                                                         & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head))) 
+                                                       == 
+                                                       (0x3fU 
+                                                        & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
+                                                    ? 1U
+                                                    : 2U)) 
+                                              >= (3U 
+                                                  & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
+                                                     + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
+                                              ? 1U : 0U) 
+                                            & (((3U 
+                                                 & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
+                                                    + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
+                                                >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))
+                                                ? 1U
+                                                : 0U)) 
+                                           & (((IData)(vlSelf->__PVT__inst_is_stage__DOT__memisq_left) 
+                                               >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
+                                               ? 1U
+                                               : 0U)) 
+                                          & (((3U & 
+                                               ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id0_valid) 
+                                                + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id1_valid))) 
+                                              >= (3U 
+                                                  & ((1U 
+                                                      & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec) 
+                                                         >> 1U)) 
                                                      + 
-                                                     (0x3fU 
-                                                      & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head))) 
-                                                    == 
-                                                    (0x3fU 
-                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                                 ? 1U
-                                                 : 2U)) 
-                                      >= (3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
-                                                + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
-                                      ? 1U : 0U) & 
-                                    (((3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
-                                             + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
-                                      >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))
-                                      ? 1U : 0U)) & 
-                                   (((IData)(vlSelf->__PVT__inst_is_stage__DOT__memisq_left) 
-                                     >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
-                                     ? 1U : 0U)) & 
-                                  (((3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id0_valid) 
-                                           + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id1_valid))) 
-                                    >= (3U & ((1U & 
-                                               ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec) 
-                                                >> 1U)) 
-                                              + (1U 
-                                                 & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec)))))
-                                    ? 1U : 0U)) & (~ (IData)(vlSelf->__PVT__flush_valid))));
+                                                     (1U 
+                                                      & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec)))))
+                                              ? 1U : 0U)) 
+                                         & (~ (IData)(vlSelf->__PVT__flush_valid))));
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_id[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_small_id
         [0U];
@@ -6076,22 +6123,25 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vco
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_big_valid[1U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l2_big_valid
         [1U];
-    vlSelf->__PVT__PC_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+    vlSelf->__PVT__IF_stall = (1U & (((~ (IData)(vlSelf->__PVT__can_dispatch)) 
                                       | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__IF_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+    vlSelf->__PVT__IR_stall = (1U & (((~ (IData)(vlSelf->__PVT__can_dispatch)) 
                                       | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__IR_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
-                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
-                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
+    vlSelf->__PVT__PC_stall = (1U & ((((~ (IData)(vlSelf->__PVT__can_dispatch)) 
+                                       | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                     | (1U == (0xffU 
+                                               & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                  >> 0xfU)))));
     vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_rob 
         = ((vlSelf->__PVT__ir_is_reg1[3U] >> 0xbU) 
-           & (IData)(__PVT__can_dispatch));
+           & (IData)(vlSelf->__PVT__can_dispatch));
     vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob 
         = ((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) 
-           & (IData)(__PVT__can_dispatch));
-    __PVT__ID_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+           & (IData)(vlSelf->__PVT__can_dispatch));
+    __PVT__ID_stall = (1U & (((~ (IData)(vlSelf->__PVT__can_dispatch)) 
                               | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                              | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l3_picker__DOT__small_cmp[0U] 

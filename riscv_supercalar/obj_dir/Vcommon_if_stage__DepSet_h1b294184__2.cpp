@@ -13,7 +13,7 @@ VL_INLINE_OPT void Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__ins
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+          Vcommon_if_stage___sequent__TOP__top_with_uart__inst_cpu__inst_if_stage__7\n"); );
     // Body
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         vlSelf->__Vdlyvval__gshare_inst__DOT__GSHARE_PHT__v639 
             = (((vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[2U] 
                  >> 0xcU) & (0x27fU == (IData)(vlSelf->__PVT__gshare_inst__DOT__update_pht_addr)))

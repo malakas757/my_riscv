@@ -13,6 +13,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4\n"); );
     // Init
+    IData/*31:0*/ __Vfunc_immediate_extension__0__Vfuncout;
     IData/*31:0*/ __Vfunc_immediate_extension__0__instruction;
     CData/*2:0*/ __Vfunc_immediate_extension__0__inst_encoding;
     IData/*31:0*/ __Vfunc_immediate_extension__1__Vfuncout;
@@ -993,7 +994,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
     CData/*6:0*/ __Vdlyvval__inst_sq__DOT__sq_reg_robid__v0;
     CData/*1:0*/ __Vdlyvdim0__inst_sq__DOT__sq_reg_data__v0;
     IData/*31:0*/ __Vdlyvval__inst_sq__DOT__sq_reg_data__v0;
-    CData/*7:0*/ __Vdlyvdim0__inst_dmem__DOT__ram__v0;
+    CData/*3:0*/ __Vdlyvdim0__inst_dmem__DOT__ram__v0;
     IData/*31:0*/ __Vdlyvval__inst_dmem__DOT__ram__v0;
     IData/*31:0*/ __Vilp;
     // Body
@@ -1136,6 +1137,23 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
     __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v11 = 0U;
     __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v12 = 0U;
     __Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_valid__v13 = 0U;
+    if (vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__word_valid) {
+        __Vdlyvval__inst_imem__DOT__ram__v0 = ((vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
+                                                [3U] 
+                                                << 0x18U) 
+                                               | ((vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
+                                                   [2U] 
+                                                   << 0x10U) 
+                                                  | ((vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
+                                                      [1U] 
+                                                      << 8U) 
+                                                     | vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
+                                                     [0U])));
+        vlSelf->__Vdlyvset__inst_imem__DOT__ram__v0 = 1U;
+        __Vdlyvdim0__inst_imem__DOT__ram__v0 = (0xffU 
+                                                & ((IData)(vlSymsp->TOP__top_with_uart.__PVT__write_address) 
+                                                   >> 2U));
+    }
     if ((8U & (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_dones))) {
         vlSelf->inst_int0__DOT__inst_mult__DOT____Vcellout__mstage__BRA__3__KET____DOT__ms__mcand_out 
             = (0xffffffffffff0000ULL & (((QData)((IData)(
@@ -1260,24 +1278,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
                * (((QData)((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_mcands[1U])) 
                    << 0x20U) | (QData)((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_mcands[0U]))))
             : vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__0__KET____DOT__ms__DOT__partial_prod);
-    if (vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__word_valid) {
-        __Vdlyvval__inst_imem__DOT__ram__v0 = ((vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
-                                                [3U] 
-                                                << 0x18U) 
-                                               | ((vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
-                                                   [2U] 
-                                                   << 0x10U) 
-                                                  | ((vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
-                                                      [1U] 
-                                                      << 8U) 
-                                                     | vlSymsp->TOP__top_with_uart.__PVT__inst_uart__DOT__byte_reg
-                                                     [0U])));
-        vlSelf->__Vdlyvset__inst_imem__DOT__ram__v0 = 1U;
-        __Vdlyvdim0__inst_imem__DOT__ram__v0 = (0xffU 
-                                                & ((IData)(vlSymsp->TOP__top_with_uart.__PVT__write_address) 
-                                                   >> 2U));
-    }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if (vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__deq_valid) {
             vlSelf->__Vdly__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail 
                 = (3U & ((IData)(1U) + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail)));
@@ -1419,6 +1420,61 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
             __Vdlyvdim0__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v2 
                 = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0;
         }
+    } else {
+        vlSelf->__Vdly__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail = 0U;
+        vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RRAT__v32 = 1U;
+        vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v3 = 1U;
+        vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v3 = 1U;
+    }
+    if ((1U & ((IData)(vlSelf->__PVT__IR_flush) | (~ (IData)(vlSymsp->TOP.rstn_cpu))))) {
+        __Vdly__ir_is_reg1_instr = 0U;
+        __Vdly__ir_is_reg1_pc = 0U;
+        __Vdly__ir_is_reg0_instr = 0U;
+        __Vdly__ir_is_reg0_pc = 0U;
+    } else if (vlSelf->__PVT__IR_stall) {
+        __Vdly__ir_is_reg1_instr = vlSelf->__PVT__ir_is_reg1_instr;
+        __Vdly__ir_is_reg1_pc = vlSelf->__PVT__ir_is_reg1_pc;
+        __Vdly__ir_is_reg0_instr = vlSelf->__PVT__ir_is_reg0_instr;
+        __Vdly__ir_is_reg0_pc = vlSelf->__PVT__ir_is_reg0_pc;
+    } else {
+        __Vdly__ir_is_reg1_instr = vlSelf->__PVT__if_id_reg1[0U];
+        __Vdly__ir_is_reg1_pc = ((vlSelf->__PVT__if_id_reg1[3U] 
+                                  << 0x13U) | (vlSelf->__PVT__if_id_reg1[2U] 
+                                               >> 0xdU));
+        __Vdly__ir_is_reg0_instr = vlSelf->__PVT__if_id_reg0[0U];
+        __Vdly__ir_is_reg0_pc = ((vlSelf->__PVT__if_id_reg0[3U] 
+                                  << 0x13U) | (vlSelf->__PVT__if_id_reg0[2U] 
+                                               >> 0xdU));
+    }
+    if ((1U & ((IData)(vlSelf->__PVT__IF_flush) | (~ (IData)(vlSymsp->TOP.rstn_cpu))))) {
+        __Vdly__if_id_reg1[0U] = 0x13U;
+        __Vdly__if_id_reg1[1U] = 0U;
+        __Vdly__if_id_reg1[2U] = 0U;
+        __Vdly__if_id_reg1[3U] = 0U;
+        __Vdly__if_id_reg0[0U] = 0x13U;
+        __Vdly__if_id_reg0[1U] = 0U;
+        __Vdly__if_id_reg0[2U] = 0U;
+        __Vdly__if_id_reg0[3U] = 0U;
+    } else if (vlSelf->__PVT__IF_stall) {
+        __Vdly__if_id_reg1[0U] = vlSelf->__PVT__if_id_reg1[0U];
+        __Vdly__if_id_reg1[1U] = vlSelf->__PVT__if_id_reg1[1U];
+        __Vdly__if_id_reg1[2U] = vlSelf->__PVT__if_id_reg1[2U];
+        __Vdly__if_id_reg1[3U] = vlSelf->__PVT__if_id_reg1[3U];
+        __Vdly__if_id_reg0[0U] = vlSelf->__PVT__if_id_reg0[0U];
+        __Vdly__if_id_reg0[1U] = vlSelf->__PVT__if_id_reg0[1U];
+        __Vdly__if_id_reg0[2U] = vlSelf->__PVT__if_id_reg0[2U];
+        __Vdly__if_id_reg0[3U] = vlSelf->__PVT__if_id_reg0[3U];
+    } else {
+        __Vdly__if_id_reg1[0U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[0U];
+        __Vdly__if_id_reg1[1U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[1U];
+        __Vdly__if_id_reg1[2U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[2U];
+        __Vdly__if_id_reg1[3U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[3U];
+        __Vdly__if_id_reg0[0U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[0U];
+        __Vdly__if_id_reg0[1U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[1U];
+        __Vdly__if_id_reg0[2U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U];
+        __Vdly__if_id_reg0[3U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[3U];
+    }
+    if (vlSymsp->TOP.rstn_cpu) {
         if ((1U & (~ (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__need_to_flush)))) {
             if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
                 vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_prf_id 
@@ -1530,10 +1586,6 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
             }
         }
     } else {
-        vlSelf->__Vdly__inst_is_stage__DOT__inst_memisq__DOT__memisq_tail = 0U;
-        vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RRAT__v32 = 1U;
-        vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_pc__v3 = 1U;
-        vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_pc__v3 = 1U;
         vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_prf_id = 0U;
         vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__reg_prf_id = 0U;
         vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__reg_prf_id = 0U;
@@ -1551,34 +1603,13 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
         vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__reg_robid = 0U;
         vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__0__KET____DOT__ms__DOT__reg_robid = 0U;
     }
-    if ((1U & ((IData)(vlSelf->__PVT__flush_valid) 
-               | (~ (IData)(vlSymsp->TOP.rstn))))) {
-        __Vdly__ir_is_reg1_instr = 0U;
-        __Vdly__ir_is_reg1_pc = 0U;
-        __Vdly__ir_is_reg0_instr = 0U;
-        __Vdly__ir_is_reg0_pc = 0U;
-    } else if (vlSelf->__PVT__IR_stall) {
-        __Vdly__ir_is_reg1_instr = vlSelf->__PVT__ir_is_reg1_instr;
-        __Vdly__ir_is_reg1_pc = vlSelf->__PVT__ir_is_reg1_pc;
-        __Vdly__ir_is_reg0_instr = vlSelf->__PVT__ir_is_reg0_instr;
-        __Vdly__ir_is_reg0_pc = vlSelf->__PVT__ir_is_reg0_pc;
-    } else {
-        __Vdly__ir_is_reg1_instr = vlSelf->__PVT__if_id_reg1[0U];
-        __Vdly__ir_is_reg1_pc = ((vlSelf->__PVT__if_id_reg1[3U] 
-                                  << 0x13U) | (vlSelf->__PVT__if_id_reg1[2U] 
-                                               >> 0xdU));
-        __Vdly__ir_is_reg0_instr = vlSelf->__PVT__if_id_reg0[0U];
-        __Vdly__ir_is_reg0_pc = ((vlSelf->__PVT__if_id_reg0[3U] 
-                                  << 0x13U) | (vlSelf->__PVT__if_id_reg0[2U] 
-                                               >> 0xdU));
-    }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_valid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_valid 
             = vlSelf->__PVT__int1_valid;
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_valid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_valid 
@@ -1586,7 +1617,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
                       & (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_valid)) 
                      >> 4U));
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_valid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_valid 
@@ -1594,65 +1625,35 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
                (~ (vlSelf->__PVT__inst_buffer__DOT__slot_reg_control
                    [0U][2U] >> 0xcU)));
     }
-    vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head 
-        = ((IData)(vlSymsp->TOP.rstn) ? ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))
-                                          ? ((0x20U 
-                                              & ((~ 
-                                                  ((IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail) 
-                                                   >> 5U)) 
-                                                 << 5U)) 
-                                             | (0x1fU 
-                                                & (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail)))
-                                          : (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head_next))
-            : 0x20U);
-    if ((1U & ((IData)(vlSelf->__PVT__flush_valid) 
-               | (~ (IData)(vlSymsp->TOP.rstn))))) {
-        __Vdly__if_id_reg1[0U] = 0x13U;
-        __Vdly__if_id_reg1[1U] = 0U;
-        __Vdly__if_id_reg1[2U] = 0U;
-        __Vdly__if_id_reg1[3U] = 0U;
-        __Vdly__if_id_reg0[0U] = 0x13U;
-        __Vdly__if_id_reg0[1U] = 0U;
-        __Vdly__if_id_reg0[2U] = 0U;
-        __Vdly__if_id_reg0[3U] = 0U;
-    } else if (vlSelf->__PVT__IF_stall) {
-        __Vdly__if_id_reg1[0U] = vlSelf->__PVT__if_id_reg1[0U];
-        __Vdly__if_id_reg1[1U] = vlSelf->__PVT__if_id_reg1[1U];
-        __Vdly__if_id_reg1[2U] = vlSelf->__PVT__if_id_reg1[2U];
-        __Vdly__if_id_reg1[3U] = vlSelf->__PVT__if_id_reg1[3U];
-        __Vdly__if_id_reg0[0U] = vlSelf->__PVT__if_id_reg0[0U];
-        __Vdly__if_id_reg0[1U] = vlSelf->__PVT__if_id_reg0[1U];
-        __Vdly__if_id_reg0[2U] = vlSelf->__PVT__if_id_reg0[2U];
-        __Vdly__if_id_reg0[3U] = vlSelf->__PVT__if_id_reg0[3U];
-    } else {
-        __Vdly__if_id_reg1[0U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[0U];
-        __Vdly__if_id_reg1[1U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[1U];
-        __Vdly__if_id_reg1[2U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[2U];
-        __Vdly__if_id_reg1[3U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[3U];
-        __Vdly__if_id_reg0[0U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[0U];
-        __Vdly__if_id_reg0[1U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[1U];
-        __Vdly__if_id_reg0[2U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U];
-        __Vdly__if_id_reg0[3U] = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[3U];
-    }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) {
+            vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head 
+                = ((0x20U & ((~ ((IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail) 
+                                 >> 5U)) << 5U)) | 
+                   (0x1fU & (IData)(vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail)));
             vlSelf->__Vdly__inst_is_stage__DOT__inst_rob__DOT__walk_head 
                 = vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail;
-        } else if ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) {
-            vlSelf->__Vdly__inst_is_stage__DOT__inst_rob__DOT__walk_head 
-                = (0x7fU & ((IData)(2U) + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head)));
+        } else {
+            vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head 
+                = vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head_next;
+            if ((2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) {
+                vlSelf->__Vdly__inst_is_stage__DOT__inst_rob__DOT__walk_head 
+                    = (0x7fU & ((IData)(2U) + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head)));
+            }
         }
     } else {
+        vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head = 0x20U;
         vlSelf->__Vdly__inst_is_stage__DOT__inst_rob__DOT__walk_head = 0U;
     }
-    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
+    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn_cpu)) 
+                | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
                | (IData)(vlSelf->__PVT__mem_issue_stall)))) {
         vlSelf->__PVT__inst_int2__DOT__wb_reg_valid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int2__DOT__wb_reg_valid 
             = vlSelf->__PVT__inst_int2__DOT__reg_valid;
     }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) {
             __Vdlyvval__inst_ir__DOT__inst_mt__DOT__RAT__v0 
                 = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
@@ -2177,7 +2178,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
             = vlSelf->inst_buffer__DOT____Vlvbound_h5911c180__0;
         vlSelf->__Vdlyvset__inst_buffer__DOT__slot_reg_rs1__v2 = 1U;
     }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if (vlSelf->__PVT__lsuint2sq_instr0_valid) {
             __Vdlyvval__inst_sq__DOT__sq_reg_robid__v0 
                 = vlSelf->__PVT__inst_int2__DOT__reg_robid;
@@ -2324,12 +2325,12 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
         __Vdlyvval__inst_dmem__DOT__ram__v0 = vlSelf->__PVT__inst_sq__DOT__sq_reg_data
             [vlSelf->__PVT__inst_sq__DOT__sq_tail];
         vlSelf->__Vdlyvset__inst_dmem__DOT__ram__v0 = 1U;
-        __Vdlyvdim0__inst_dmem__DOT__ram__v0 = (0xffU 
+        __Vdlyvdim0__inst_dmem__DOT__ram__v0 = (0xfU 
                                                 & (vlSelf->__PVT__inst_sq__DOT__sq_reg_addr
                                                    [vlSelf->__PVT__inst_sq__DOT__sq_tail] 
                                                    >> 2U));
     }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_ready
              [vlSelf->__PVT__inst_sq__DOT__sq_tail] 
              & vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
@@ -2340,8 +2341,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
     } else {
         vlSelf->__Vdly__inst_sq__DOT__sq_tail = 0U;
     }
-    if ((1U & ((IData)(vlSelf->__PVT__flush_valid) 
-               | (~ (IData)(vlSymsp->TOP.rstn))))) {
+    if ((1U & ((IData)(vlSelf->__PVT__IR_flush) | (~ (IData)(vlSymsp->TOP.rstn_cpu))))) {
         __Vdly__ir_is_reg1[0U] = 0U;
         __Vdly__ir_is_reg1[1U] = 0U;
         __Vdly__ir_is_reg1[2U] = 0U;
@@ -2375,7 +2375,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
         __Vdly__ir_is_reg0[3U] = vlSelf->__PVT__ir_is_reg0_next[3U];
         __Vdly__ir_is_reg0[4U] = vlSelf->__PVT__ir_is_reg0_next[4U];
     }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if (vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_memisq) {
             __Vdlyvval__inst_is_stage__DOT__inst_memisq__DOT__memisq_T__v0 
                 = (0x3fU & (vlSelf->__PVT__ir_is_reg0[4U] 
@@ -2576,7 +2576,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src2_id__v3 = 1U;
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v3 = 1U;
     }
-    if ((1U & (~ (IData)(vlSymsp->TOP.rstn)))) {
+    if ((1U & (~ (IData)(vlSymsp->TOP.rstn_cpu)))) {
         vlSelf->__Vdlyvset__inst_phyreg__DOT__prf_file__v0 = 1U;
     }
     if ((((IData)(vlSelf->__PVT__inst_int0__DOT__wb0_reg_need_to_wb) 
@@ -2615,7 +2615,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
         __Vdlyvdim0__inst_phyreg__DOT__prf_file__v67 
             = vlSelf->__PVT__inst_int2__DOT__wb_reg_prd;
     }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if (vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_memisq) {
             __Vdlyvval__inst_is_stage__DOT__inst_memisq__DOT__memisq_src2_state__v0 
                 = vlSelf->__PVT__inst_is_stage__DOT__instr0_rs2_busy;
@@ -2875,8 +2875,8 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_src1_state__v7 = 1U;
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid__v8 = 1U;
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (1U 
-                                                 == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | 
+               (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))))) {
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_bt__DOT__reg_busy_table__v0 = 1U;
     } else {
         if (vlSelf->inst_is_stage__DOT____Vcellinp__inst_bt__instr0_disp2bt_rd_en) {
@@ -2929,7 +2929,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
                 = vlSelf->__PVT__inst_int2__DOT__wb_reg_prd;
         }
     }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         if (vlSelf->__PVT__lsuint2sq_instr0_valid) {
             __Vdlyvval__inst_sq__DOT__sq_reg_addr__v0 
                 = vlSelf->__PVT__inst_int2__DOT__reg_mem_addr;
@@ -9019,20 +9019,6 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
     vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_mpliers[3U] 
         = (IData)((vlSelf->inst_int0__DOT__inst_mult__DOT____Vcellout__mstage__BRA__0__KET____DOT__ms__mplier_out 
                    >> 0x20U));
-    vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_valid 
-        = ((1U & (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_valid)) 
-           | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_valid) 
-               << 4U) | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__reg_valid) 
-                          << 3U) | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__reg_valid) 
-                                     << 2U) | ((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__0__KET____DOT__ms__DOT__reg_valid) 
-                                               << 1U)))));
-    vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_dones 
-        = ((1U & (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_dones)) 
-           | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__done) 
-               << 4U) | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__done) 
-                          << 3U) | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__done) 
-                                     << 2U) | ((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__0__KET____DOT__ms__DOT__done) 
-                                               << 1U)))));
     vlSelf->__PVT__dec_instr1[0U] = 0U;
     vlSelf->__PVT__dec_instr1[1U] = 0U;
     vlSelf->__PVT__dec_instr1[2U] = 0U;
@@ -10154,46 +10140,94 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__4(V
     __Vfunc_immediate_extension__0__inst_encoding = 
         (7U & (vlSelf->__PVT__dec_instr0[3U] >> 0xcU));
     __Vfunc_immediate_extension__0__instruction = vlSelf->__PVT__if_id_reg0[0U];
-    vlSelf->__Vfunc_immediate_extension__0__Vfuncout 
-        = ((4U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-            ? ((2U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                ? 0U : ((1U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                         ? (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                         >> 0x1fU))) 
-                             << 0x15U) | ((0x100000U 
-                                           & (__Vfunc_immediate_extension__0__instruction 
-                                              >> 0xbU)) 
-                                          | ((0xff000U 
-                                              & __Vfunc_immediate_extension__0__instruction) 
-                                             | ((0x800U 
-                                                 & (__Vfunc_immediate_extension__0__instruction 
-                                                    >> 9U)) 
-                                                | (0x7feU 
-                                                   & (__Vfunc_immediate_extension__0__instruction 
-                                                      >> 0x14U))))))
-                         : (0xfffff000U & __Vfunc_immediate_extension__0__instruction)))
-            : ((2U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                ? ((1U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                    ? (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                    >> 0x1fU))) << 0xdU) 
-                       | ((0x1000U & (__Vfunc_immediate_extension__0__instruction 
-                                      >> 0x13U)) | 
-                          ((0x800U & (__Vfunc_immediate_extension__0__instruction 
-                                      << 4U)) | ((0x7e0U 
-                                                  & (__Vfunc_immediate_extension__0__instruction 
-                                                     >> 0x14U)) 
-                                                 | (0x1eU 
-                                                    & (__Vfunc_immediate_extension__0__instruction 
-                                                       >> 7U))))))
-                    : (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                    >> 0x1fU))) << 0xcU) 
-                       | ((0xfe0U & (__Vfunc_immediate_extension__0__instruction 
-                                     >> 0x14U)) | (0x1fU 
-                                                   & (__Vfunc_immediate_extension__0__instruction 
-                                                      >> 7U)))))
-                : ((1U & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
-                    ? (((- (IData)((__Vfunc_immediate_extension__0__instruction 
-                                    >> 0x1fU))) << 0xcU) 
-                       | (__Vfunc_immediate_extension__0__instruction 
-                          >> 0x14U)) : 0U)));
+    __Vfunc_immediate_extension__0__Vfuncout = ((4U 
+                                                 & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                 ? 
+                                                ((2U 
+                                                  & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                  ? 0U
+                                                  : 
+                                                 ((1U 
+                                                   & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                   ? 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0x15U) 
+                                                   | ((0x100000U 
+                                                       & (__Vfunc_immediate_extension__0__instruction 
+                                                          >> 0xbU)) 
+                                                      | ((0xff000U 
+                                                          & __Vfunc_immediate_extension__0__instruction) 
+                                                         | ((0x800U 
+                                                             & (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 9U)) 
+                                                            | (0x7feU 
+                                                               & (__Vfunc_immediate_extension__0__instruction 
+                                                                  >> 0x14U))))))
+                                                   : 
+                                                  (0xfffff000U 
+                                                   & __Vfunc_immediate_extension__0__instruction)))
+                                                 : 
+                                                ((2U 
+                                                  & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                  ? 
+                                                 ((1U 
+                                                   & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                   ? 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0xdU) 
+                                                   | ((0x1000U 
+                                                       & (__Vfunc_immediate_extension__0__instruction 
+                                                          >> 0x13U)) 
+                                                      | ((0x800U 
+                                                          & (__Vfunc_immediate_extension__0__instruction 
+                                                             << 4U)) 
+                                                         | ((0x7e0U 
+                                                             & (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x14U)) 
+                                                            | (0x1eU 
+                                                               & (__Vfunc_immediate_extension__0__instruction 
+                                                                  >> 7U))))))
+                                                   : 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0xcU) 
+                                                   | ((0xfe0U 
+                                                       & (__Vfunc_immediate_extension__0__instruction 
+                                                          >> 0x14U)) 
+                                                      | (0x1fU 
+                                                         & (__Vfunc_immediate_extension__0__instruction 
+                                                            >> 7U)))))
+                                                  : 
+                                                 ((1U 
+                                                   & (IData)(__Vfunc_immediate_extension__0__inst_encoding))
+                                                   ? 
+                                                  (((- (IData)(
+                                                               (__Vfunc_immediate_extension__0__instruction 
+                                                                >> 0x1fU))) 
+                                                    << 0xcU) 
+                                                   | (__Vfunc_immediate_extension__0__instruction 
+                                                      >> 0x14U))
+                                                   : 0U)));
+    vlSelf->__PVT__dec_instr0[0U] = __Vfunc_immediate_extension__0__Vfuncout;
+    if ((0U == (0x1fU & (vlSelf->__PVT__dec_instr0[2U] 
+                         >> 0x1aU)))) {
+        vlSelf->__PVT__dec_instr0[2U] = (0xfff7ffffU 
+                                         & vlSelf->__PVT__dec_instr0[2U]);
+    }
+    vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_valid 
+        = ((1U & (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_valid)) 
+           | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__reg_valid) 
+               << 4U) | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__reg_valid) 
+                          << 3U) | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__reg_valid) 
+                                     << 2U) | ((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__0__KET____DOT__ms__DOT__reg_valid) 
+                                               << 1U)))));
+    vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_dones 
+        = ((0xfU & (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_dones)) 
+           | ((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__3__KET____DOT__ms__DOT__done) 
+              << 4U));
 }

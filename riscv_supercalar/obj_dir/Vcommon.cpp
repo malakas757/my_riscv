@@ -11,9 +11,12 @@
 Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
-    , rstn{vlSymsp->TOP.rstn}
+    , rstn_cpu{vlSymsp->TOP.rstn_cpu}
+    , rstn_uart{vlSymsp->TOP.rstn_uart}
     , io_rx{vlSymsp->TOP.io_rx}
     , led{vlSymsp->TOP.led}
+    , branch_times_debug{vlSymsp->TOP.branch_times_debug}
+    , flush_times_debug{vlSymsp->TOP.flush_times_debug}
     , top_with_uart{vlSymsp->TOP.top_with_uart}
     , rootp{&(vlSymsp->TOP)}
 {

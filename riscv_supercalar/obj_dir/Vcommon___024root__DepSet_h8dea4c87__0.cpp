@@ -25,8 +25,10 @@ void Vcommon___024root___eval_debug_assertions(Vcommon___024root* vlSelf) {
     // Body
     if (VL_UNLIKELY((vlSelf->clk & 0xfeU))) {
         Verilated::overWidthError("clk");}
-    if (VL_UNLIKELY((vlSelf->rstn & 0xfeU))) {
-        Verilated::overWidthError("rstn");}
+    if (VL_UNLIKELY((vlSelf->rstn_cpu & 0xfeU))) {
+        Verilated::overWidthError("rstn_cpu");}
+    if (VL_UNLIKELY((vlSelf->rstn_uart & 0xfeU))) {
+        Verilated::overWidthError("rstn_uart");}
     if (VL_UNLIKELY((vlSelf->io_rx & 0xfeU))) {
         Verilated::overWidthError("io_rx");}
 }

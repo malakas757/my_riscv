@@ -15,7 +15,7 @@ module pipeline(/*AUTOARG*/
    input               imem_en;
    input [31:0]        imem_data_in;
    input [31:0]        write_address;   
-   output logic [31:0] ram_debug[256];
+   output logic [31:0] ram_debug[DATA_RAM_DEPTH];
    output logic [31:0] prf_debug[PRF_NUM-1:0];
    output logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
    output logic 		branch_times_debug;
@@ -166,6 +166,8 @@ module pipeline(/*AUTOARG*/
    wire                 imem_miss;
    wire [31:0] 		read_data0;
    wire [31:0] 		read_data1;
+   wire [31:0] 		pc_is_read;
+   
       
    wire 		instr_resp_ready;
    
@@ -179,6 +181,9 @@ module pipeline(/*AUTOARG*/
                               //Stall Flush control//
 
    ///////////////////////////////////////////////////////////////////
+
+   assign pc_is_read = instr0_if_id.pc;
+   
 
    
 
@@ -198,7 +203,8 @@ module pipeline(/*AUTOARG*/
 					.imem_miss	(imem_miss),
 					.can_dispatch	(can_dispatch),
 					.flush_valid	(flush_valid),
-					.rob_state	(rob_state[1:0]));
+					.rob_state	(rob_state[1:0]),
+					.pc_is_read	(pc_is_read[31:0]));
    
 
 

@@ -17,9 +17,12 @@ VL_MODULE(Vcommon___024root) {
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
-    VL_IN8(rstn,0,0);
+    VL_IN8(rstn_cpu,0,0);
+    VL_IN8(rstn_uart,0,0);
     VL_IN8(io_rx,0,0);
     VL_OUT8(led,7,0);
+    VL_OUT8(branch_times_debug,0,0);
+    VL_OUT8(flush_times_debug,0,0);
     CData/*0:0*/ __Vclklast__TOP__clk;
     IData/*31:0*/ __Vchglast__TOP__top_with_uart__inst_cpu__read_data0;
     IData/*31:0*/ __Vchglast__TOP__top_with_uart__inst_cpu__read_data1;

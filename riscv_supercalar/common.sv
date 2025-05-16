@@ -7,6 +7,10 @@ package common;
    localparam [31:0] INSTRUCTION_NOP = 32'h00000013;
    localparam [31:0] PC_INIT         = 32'h00000000;
 
+
+   // data_ram_depth
+   localparam int  DATA_RAM_DEPTH = 16;
+
    //ROB state
    localparam [1:0]  rob_idle = 2'b00;
    localparam [1:0]  rob_rollback = 2'b01;

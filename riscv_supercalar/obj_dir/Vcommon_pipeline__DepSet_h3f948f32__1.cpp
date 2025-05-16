@@ -111,13 +111,13 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
     IData/*31:0*/ __Vilp;
     // Body
-    vlSelf->__PVT__dec_instr0[0U] = vlSelf->__Vfunc_immediate_extension__0__Vfuncout;
-    if ((0U == (0x1fU & (vlSelf->__PVT__dec_instr0[2U] 
-                         >> 0x1aU)))) {
-        vlSelf->__PVT__dec_instr0[2U] = (0xfff7ffffU 
-                                         & vlSelf->__PVT__dec_instr0[2U]);
-    }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
+    vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_dones 
+        = ((0x11U & (IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_dones)) 
+           | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__2__KET____DOT__ms__DOT__done) 
+               << 3U) | (((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__1__KET____DOT__ms__DOT__done) 
+                          << 2U) | ((IData)(vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__mstage__BRA__0__KET____DOT__ms__DOT__done) 
+                                    << 1U))));
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
         vlSelf->__PVT__inst_int2__DOT__reg_valid = 0U;
         vlSelf->__PVT__inst_int2__DOT__reg_store_data = 0U;
     } else if ((1U & ((~ (IData)(vlSelf->__PVT__flush_valid)) 
@@ -147,7 +147,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
                                : 0U) : vlSelf->__PVT__inst_buffer__DOT__slot_reg_rs2
                           [2U]));
     }
-    if (vlSymsp->TOP.rstn) {
+    if (vlSymsp->TOP.rstn_cpu) {
         vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail 
             = vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail_next;
         vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__flush_robid_latch 
@@ -156,19 +156,19 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
         vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__tail = 0U;
         vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__flush_robid_latch = 0U;
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_data = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_data 
             = vlSelf->__PVT__inst_int0__DOT__alu_result;
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_data = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_data 
             = vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_products[8U];
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_data = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_data 
@@ -179,7 +179,8 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
                 ? ((IData)(4U) + vlSelf->__PVT__inst_buffer__DOT__slot_reg_pc
                    [1U]) : vlSelf->__PVT__inst_int1__DOT__alu_data);
     }
-    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
+    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn_cpu)) 
+                | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
                | (IData)(vlSelf->__PVT__mem_issue_stall)))) {
         vlSelf->__PVT__inst_int2__DOT__wb_reg_data = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
@@ -318,7 +319,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
         = ((1U < (IData)(__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_empty_num))
             ? 2U : ((0U == (IData)(__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_empty_num))
                      ? 0U : 1U));
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
         vlSelf->__PVT__inst_int2__DOT__reg_mem_addr = 0U;
     } else if ((1U & ((~ (IData)(vlSelf->__PVT__flush_valid)) 
                       & (~ (IData)(vlSelf->__PVT__mem_issue_stall))))) {
@@ -368,30 +369,31 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
         vlSelf->__PVT__inst_sq__DOT__sq_head = 0U;
     }
     vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state 
-        = ((IData)(vlSymsp->TOP.rstn) ? (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__next_state)
+        = ((IData)(vlSymsp->TOP.rstn_cpu) ? (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__next_state)
             : 0U);
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_robid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_robid 
             = vlSelf->__PVT__inst_buffer__DOT__slot_reg_robid
             [0U];
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_robid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_robid 
             = vlSelf->__PVT__inst_buffer__DOT__slot_reg_robid
             [1U];
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_robid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_robid 
             = vlSelf->__PVT__inst_int0__DOT__inst_mult__DOT__internal_robid
             [4U];
     }
-    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
+    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn_cpu)) 
+                | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
                | (IData)(vlSelf->__PVT__mem_issue_stall)))) {
         vlSelf->__PVT__inst_int2__DOT__wb_reg_robid = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
@@ -536,21 +538,21 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
                 = (2U | (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_vec));
         }
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_prd = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_prd 
             = vlSelf->__PVT__inst_buffer__DOT__slot_reg_T
             [0U];
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_prd = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_prd = 
             vlSelf->__PVT__inst_buffer__DOT__slot_reg_T
             [1U];
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb0_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_prd = 0U;
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_need_to_wb = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
@@ -559,21 +561,22 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
             [4U];
         vlSelf->__PVT__inst_int0__DOT__wb0_reg_need_to_wb = 1U;
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int0__DOT__wb1_need_to_flush)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_need_to_wb = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int0__DOT__wb1_reg_need_to_wb 
             = (1U & (vlSelf->__PVT__inst_buffer__DOT__slot_reg_control
                      [0U][2U] >> 0x13U));
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int1__DOT__wb_need_to_flush)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_need_to_wb = 0U;
     } else if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__PVT__inst_int1__DOT__wb_reg_need_to_wb 
             = (1U & (vlSelf->__PVT__inst_buffer__DOT__slot_reg_control
                      [1U][2U] >> 0x13U));
     }
-    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
+    if ((1U & (((~ (IData)(vlSymsp->TOP.rstn_cpu)) 
+                | (IData)(vlSelf->__PVT__inst_int2__DOT__wb_need_to_flush)) 
                | (IData)(vlSelf->__PVT__mem_issue_stall)))) {
         vlSelf->__PVT__inst_int2__DOT__wb_reg_prd = 0U;
         vlSelf->__PVT__inst_int2__DOT__wb_reg_need_to_wb = 0U;
@@ -1788,7 +1791,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
             }
         }
     }
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
         vlSelf->__PVT__inst_int2__DOT__reg_funct3 = 0U;
     } else if ((1U & ((~ (IData)(vlSelf->__PVT__flush_valid)) 
                       & (~ (IData)(vlSelf->__PVT__mem_issue_stall))))) {
@@ -1840,7 +1843,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
                                    [(0x3fU & ((IData)(1U) 
                                               + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__walk_head)))][2U] 
                                    >> 5U));
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
         vlSelf->__PVT__inst_int2__DOT__reg_robid = 0U;
     } else if ((1U & ((~ (IData)(vlSelf->__PVT__flush_valid)) 
                       & (~ (IData)(vlSelf->__PVT__mem_issue_stall))))) {
@@ -1896,7 +1899,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
     vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT__inst_emptyfinder__DOT____Vcellinp__l1_finder__BRA__6__KET____DOT__l2_finder_2__in_alloc_valid[1U] 
         = vlSelf->inst_is_stage__DOT__inst_GHR_checkpoint__DOT____Vcellinp__inst_emptyfinder__in_alloc_valid
         [7U];
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__inst_int2__DOT__need_to_flush)))) {
         vlSelf->__PVT__inst_int2__DOT__reg_T = 0U;
         vlSelf->__PVT__inst_int2__DOT__reg_is_store = 0U;
     } else if ((1U & ((~ (IData)(vlSelf->__PVT__flush_valid)) 
@@ -3457,7 +3460,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__5(V
                                                 [0U]]
                                                  : 
                                                 vlSelf->__PVT__inst_dmem__DOT__ram
-                                                [(0xffU 
+                                                [(0xfU 
                                                   & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
                                                      >> 2U))]);
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__l3_picker__in_small_id[0U] 
@@ -3648,7 +3651,6 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__6(V
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__6\n"); );
     // Init
     CData/*0:0*/ __PVT__ID_stall;
-    CData/*0:0*/ __PVT__can_dispatch;
     SData/*9:0*/ __PVT__ex2if_GHSR_restore;
     IData/*31:0*/ __PVT__int0_rs1;
     IData/*31:0*/ __PVT__int0_rs2;
@@ -3739,7 +3741,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__6(V
     IData/*31:0*/ __Vfunc_inst_buffer__DOT__bypass_network__5__wb2_data;
     IData/*31:0*/ __Vfunc_inst_buffer__DOT__bypass_network__5__wb3_data;
     // Body
-    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn)) | (IData)(vlSelf->__PVT__flush_valid)))) {
+    if ((1U & ((~ (IData)(vlSymsp->TOP.rstn_cpu)) | (IData)(vlSelf->__PVT__flush_valid)))) {
         vlSelf->__Vdly__flush_valid = 0U;
         vlSelf->__PVT__flush_robid = 0U;
         vlSelf->__PVT__inst_int1__DOT__branch_taken_latch = 0U;
@@ -4245,44 +4247,54 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__6(V
                                        & (~ (IData)(vlSelf->__PVT__flush_valid)));
     vlSelf->__PVT__writeback3_valid = ((IData)(vlSelf->__PVT__inst_int2__DOT__wb_reg_valid) 
                                        & (~ (IData)(vlSelf->__PVT__flush_valid)));
-    __PVT__can_dispatch = (1U & (((((((((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                          ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                         >> 6U) & (
-                                                   (0x3fU 
+    vlSelf->__PVT__can_dispatch = (1U & (((((((((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
+                                                  ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                                 >> 6U) 
+                                                & ((0x3fU 
                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head)) 
                                                    == 
                                                    (0x3fU 
                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                        ? 0U : (((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
-                                                   ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
-                                                  >> 6U) 
-                                                 & (((IData)(1U) 
+                                                ? 0U
+                                                : (
+                                                   ((((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head) 
+                                                      ^ (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail)) 
+                                                     >> 6U) 
+                                                    & (((IData)(1U) 
+                                                        + 
+                                                        (0x3fU 
+                                                         & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head))) 
+                                                       == 
+                                                       (0x3fU 
+                                                        & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
+                                                    ? 1U
+                                                    : 2U)) 
+                                              >= (3U 
+                                                  & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
+                                                     + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
+                                              ? 1U : 0U) 
+                                            & (((3U 
+                                                 & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
+                                                    + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
+                                                >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))
+                                                ? 1U
+                                                : 0U)) 
+                                           & (((IData)(vlSelf->__PVT__inst_is_stage__DOT__memisq_left) 
+                                               >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
+                                               ? 1U
+                                               : 0U)) 
+                                          & (((3U & 
+                                               ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id0_valid) 
+                                                + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id1_valid))) 
+                                              >= (3U 
+                                                  & ((1U 
+                                                      & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec) 
+                                                         >> 1U)) 
                                                      + 
-                                                     (0x3fU 
-                                                      & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_head))) 
-                                                    == 
-                                                    (0x3fU 
-                                                     & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))
-                                                 ? 1U
-                                                 : 2U)) 
-                                      >= (3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num) 
-                                                + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))))
-                                      ? 1U : 0U) & 
-                                    (((3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0_valid) 
-                                             + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id1_valid))) 
-                                      >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__int_instr_num))
-                                      ? 1U : 0U)) & 
-                                   (((IData)(vlSelf->__PVT__inst_is_stage__DOT__memisq_left) 
-                                     >= (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_num))
-                                     ? 1U : 0U)) & 
-                                  (((3U & ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id0_valid) 
-                                           + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__empty_id1_valid))) 
-                                    >= (3U & ((1U & 
-                                               ((IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec) 
-                                                >> 1U)) 
-                                              + (1U 
-                                                 & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec)))))
-                                    ? 1U : 0U)) & (~ (IData)(vlSelf->__PVT__flush_valid))));
+                                                     (1U 
+                                                      & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec)))))
+                                              ? 1U : 0U)) 
+                                         & (~ (IData)(vlSelf->__PVT__flush_valid))));
     vlSelf->__PVT__ex_slot1_valid = 0U;
     if ((1U & (~ (IData)(vlSelf->__PVT__flush_valid)))) {
         if ((3U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__ready_vec))) {
@@ -4548,22 +4560,19 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__top_with_uart__inst_cpu__6(V
     __Vcellinp__inst_buffer__writeback3_need_to_wb 
         = ((IData)(vlSelf->__PVT__inst_int2__DOT__wb_reg_need_to_wb) 
            & (IData)(vlSelf->__PVT__writeback3_valid));
-    vlSelf->__PVT__PC_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+    vlSelf->__PVT__IF_stall = (1U & (((~ (IData)(vlSelf->__PVT__can_dispatch)) 
                                       | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__IF_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
-                                      | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
-                                     | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
-    vlSelf->__PVT__IR_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+    vlSelf->__PVT__IR_stall = (1U & (((~ (IData)(vlSelf->__PVT__can_dispatch)) 
                                       | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
     vlSelf->__PVT__inst_is_stage__DOT__instr1_valid_rob 
         = ((vlSelf->__PVT__ir_is_reg1[3U] >> 0xbU) 
-           & (IData)(__PVT__can_dispatch));
+           & (IData)(vlSelf->__PVT__can_dispatch));
     vlSelf->__PVT__inst_is_stage__DOT__instr0_valid_rob 
         = ((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) 
-           & (IData)(__PVT__can_dispatch));
-    __PVT__ID_stall = (1U & (((~ (IData)(__PVT__can_dispatch)) 
+           & (IData)(vlSelf->__PVT__can_dispatch));
+    __PVT__ID_stall = (1U & (((~ (IData)(vlSelf->__PVT__can_dispatch)) 
                               | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                              | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
     vlSelf->__PVT__inst_buffer__DOT__slot_valid_in[1U] 
@@ -6106,6 +6115,18 @@ VL_INLINE_OPT void Vcommon_pipeline___combo__TOP__top_with_uart__inst_cpu__7(Vco
     vlSelf->__PVT__read_data0 = vlSelf->__PVT__inst_imem__DOT__ram
         [(0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
                    >> 0xfU))];
+    vlSelf->__PVT__IF_flush = ((IData)(vlSelf->__PVT__flush_valid) 
+                               | (1U == (0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                  >> 0xfU))));
+    vlSelf->__PVT__IR_flush = ((IData)(vlSelf->__PVT__flush_valid) 
+                               | (1U == (0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                  >> 0xfU))));
+    vlSelf->__PVT__PC_stall = (1U & ((((~ (IData)(vlSelf->__PVT__can_dispatch)) 
+                                       | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                      | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
+                                     | (1U == (0xffU 
+                                               & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr0_if_id[2U] 
+                                                  >> 0xfU)))));
     vlSelf->__PVT__read_data1 = vlSelf->__PVT__inst_imem__DOT__ram
         [(0xffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage.__PVT__instr1_if_id[2U] 
                    >> 0xfU))];

@@ -8,6 +8,16 @@
 #include "Vcommon__Syms.h"
 #include "Vcommon___024root.h"
 
+VL_ATTR_COLD void Vcommon___024root___settle__TOP__1(Vcommon___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vcommon___024root___settle__TOP__1\n"); );
+    // Body
+    vlSelf->led = vlSymsp->TOP__top_with_uart.led;
+    vlSelf->flush_times_debug = vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__flush_valid;
+    vlSelf->branch_times_debug = vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__inst_int1__DOT__branch_valid_latch;
+}
+
 VL_ATTR_COLD void Vcommon_pipeline___initial__TOP__top_with_uart__inst_cpu__1(Vcommon_pipeline* vlSelf);
 
 VL_ATTR_COLD void Vcommon___024root___eval_initial(Vcommon___024root* vlSelf) {
@@ -21,7 +31,6 @@ VL_ATTR_COLD void Vcommon___024root___eval_initial(Vcommon___024root* vlSelf) {
 
 VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_if_stage__1(Vcommon_if_stage* vlSelf);
 VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__top_with_uart__inst_cpu__2(Vcommon_pipeline* vlSelf);
-void Vcommon___024root___settle__TOP__1(Vcommon___024root* vlSelf);
 VL_ATTR_COLD void Vcommon_top_with_uart___settle__TOP__top_with_uart__1(Vcommon_top_with_uart* vlSelf);
 VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_if_stage__2(Vcommon_if_stage* vlSelf);
 
