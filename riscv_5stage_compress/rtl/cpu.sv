@@ -341,9 +341,16 @@ module cpu(/*AUTOARG*/
 	 if_id_flush = 1'b1;
 	 id_ex_flush = 1'b1;
 	 PC_flush = 1'b1;	 
-	 end
-
       end
+      else if ( if_id_reg.pc[9:2] == 8'b11111111) begin // read all program
+	 if_id_stall = '1;
+	 id_ex_stall = '1;
+	 ex_mem_stall = '1;
+	 mem_wb_flush = '1;
+	 
+      end
+
+   end
 
    
     assign wb_reg_rd_id = mem_wb_reg.reg_rd_id;

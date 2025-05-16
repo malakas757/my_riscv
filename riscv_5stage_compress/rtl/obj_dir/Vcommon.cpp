@@ -10,10 +10,13 @@
 Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
-    , rstn{vlSymsp->TOP.rstn}
-    , io_rx{vlSymsp->TOP.io_rx}
-    , led{vlSymsp->TOP.led}
-    , x2{vlSymsp->TOP.x2}
+    , reset_n{vlSymsp->TOP.reset_n}
+    , write_data{vlSymsp->TOP.write_data}
+    , write_enable{vlSymsp->TOP.write_enable}
+    , debug_flush{vlSymsp->TOP.debug_flush}
+    , debug_is_bj{vlSymsp->TOP.debug_is_bj}
+    , write_address{vlSymsp->TOP.write_address}
+    , debug_reg{vlSymsp->TOP.debug_reg}
     , rootp{&(vlSymsp->TOP)}
 {
 }

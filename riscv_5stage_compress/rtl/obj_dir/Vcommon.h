@@ -25,10 +25,13 @@ class Vcommon VL_NOT_FINAL {
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
-    VL_IN8(&rstn,0,0);
-    VL_IN8(&io_rx,0,0);
-    VL_OUT8(&led,7,0);
-    VL_OUT(&x2,31,0);
+    VL_IN8(&reset_n,0,0);
+    VL_IN8(&write_data,7,0);
+    VL_IN8(&write_enable,0,0);
+    VL_OUT8(&debug_flush,0,0);
+    VL_OUT8(&debug_is_bj,0,0);
+    VL_IN(&write_address,31,0);
+    VL_OUT((&debug_reg)[32],31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
