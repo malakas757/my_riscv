@@ -146,8 +146,8 @@ module int1_alu_bju(/*AUTOARG*/
 		// Inputs
 		.int1_valid             (int1_valid),//used to update checkpoint 
 		.flush_valid            (flush_valid),//used to update checkpoint 
-		.left_operand		(int1_rs1),
-		.right_operand		(int1_rs2),
+		.left_operand		(alu_left_operand),
+		.right_operand		(alu_right_operand),
 		.pc			(int1_pc),
 		.clk			(clk),
 		.reset_n		(reset_n),

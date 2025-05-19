@@ -81,11 +81,45 @@ module phyreg64(/*AUTOARG*/
 
    end
   
-   assign IQ0_rs1_data = prf_file[IQ0_rs1_addr];
-   assign IQ0_rs2_data = prf_file[IQ0_rs2_addr];
-   assign IQ1_rs1_data = prf_file[IQ1_rs1_addr];
-   assign IQ1_rs2_data = prf_file[IQ1_rs2_addr];
-   assign MEM_rs1_data = prf_file[MEM_rs1_addr];
-   assign MEM_rs2_data = prf_file[MEM_rs2_addr];
+
+
+   //forward cdb data to read
+
+   always_comb begin
+      IQ0_rs1_data = prf_file[IQ0_rs1_addr];
+      IQ0_rs2_data = prf_file[IQ0_rs2_addr];
+      IQ1_rs1_data = prf_file[IQ1_rs1_addr];
+      IQ1_rs2_data = prf_file[IQ1_rs2_addr];
+      MEM_rs1_data = prf_file[MEM_rs1_addr];
+      MEM_rs2_data = prf_file[MEM_rs2_addr];
+      if (writeback0_need_to_wb && writeback0_prd != 0 && writeback0_prd == IQ0_rs1_addr)
+	IQ0_rs1_data = writeback0_data;
+      else if (writeback1_need_to_wb && writeback1_prd != 0 && writeback1_prd == IQ0_rs1_addr)
+	IQ0_rs1_data = writeback1_data;
+      else if (writeback2_need_to_wb && writeback2_prd != 0 && writeback2_prd == IQ0_rs1_addr)
+	IQ0_rs1_data = writeback2_data;
+
+      if (writeback0_need_to_wb && writeback0_prd != 0 && writeback0_prd == IQ0_rs2_addr)
+	IQ0_rs2_data = writeback0_data;
+      else if (writeback1_need_to_wb && writeback1_prd != 0 && writeback1_prd == IQ0_rs2_addr)
+	IQ0_rs2_data = writeback1_data;
+      else if (writeback2_need_to_wb && writeback2_prd != 0 && writeback2_prd == IQ0_rs2_addr)
+	IQ0_rs2_data = writeback2_data;
+
+      if (writeback0_need_to_wb && writeback0_prd != 0 && writeback0_prd == IQ1_rs1_addr)
+	IQ1_rs1_data = writeback0_data;
+      else if (writeback1_need_to_wb && writeback1_prd != 0 && writeback1_prd == IQ1_rs1_addr)
+	IQ1_rs1_data = writeback1_data;
+      else if (writeback2_need_to_wb && writeback2_prd != 0 && writeback2_prd == IQ1_rs1_addr)
+	IQ1_rs1_data = writeback2_data;
+
+      
+      if (writeback0_need_to_wb && writeback0_prd != 0 && writeback0_prd == IQ1_rs2_addr)
+	IQ1_rs2_data = writeback0_data;
+      else if (writeback1_need_to_wb && writeback1_prd != 0 && writeback1_prd == IQ1_rs2_addr)
+	IQ1_rs2_data = writeback1_data;
+      else if (writeback2_need_to_wb && writeback2_prd != 0 && writeback2_prd == IQ1_rs2_addr)
+	IQ1_rs2_data = writeback2_data;  
+   end
 
 endmodule

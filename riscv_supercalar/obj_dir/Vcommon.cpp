@@ -3,7 +3,6 @@
 
 #include "Vcommon.h"
 #include "Vcommon__Syms.h"
-#include "verilated_dpi.h"
 
 //============================================================
 // Constructors
@@ -11,13 +10,32 @@
 Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
-    , rstn_cpu{vlSymsp->TOP.rstn_cpu}
-    , rstn_uart{vlSymsp->TOP.rstn_uart}
-    , io_rx{vlSymsp->TOP.io_rx}
-    , led{vlSymsp->TOP.led}
-    , branch_times_debug{vlSymsp->TOP.branch_times_debug}
-    , flush_times_debug{vlSymsp->TOP.flush_times_debug}
-    , top_with_uart{vlSymsp->TOP.top_with_uart}
+    , reset_n{vlSymsp->TOP.reset_n}
+    , IQ0_rs1_addr{vlSymsp->TOP.IQ0_rs1_addr}
+    , IQ0_rs2_addr{vlSymsp->TOP.IQ0_rs2_addr}
+    , IQ1_rs1_addr{vlSymsp->TOP.IQ1_rs1_addr}
+    , IQ1_rs2_addr{vlSymsp->TOP.IQ1_rs2_addr}
+    , MEM_rs1_addr{vlSymsp->TOP.MEM_rs1_addr}
+    , MEM_rs2_addr{vlSymsp->TOP.MEM_rs2_addr}
+    , writeback0_need_to_wb{vlSymsp->TOP.writeback0_need_to_wb}
+    , writeback1_need_to_wb{vlSymsp->TOP.writeback1_need_to_wb}
+    , writeback2_need_to_wb{vlSymsp->TOP.writeback2_need_to_wb}
+    , writeback3_need_to_wb{vlSymsp->TOP.writeback3_need_to_wb}
+    , writeback0_prd{vlSymsp->TOP.writeback0_prd}
+    , writeback1_prd{vlSymsp->TOP.writeback1_prd}
+    , writeback2_prd{vlSymsp->TOP.writeback2_prd}
+    , writeback3_prd{vlSymsp->TOP.writeback3_prd}
+    , IQ0_rs1_data{vlSymsp->TOP.IQ0_rs1_data}
+    , IQ0_rs2_data{vlSymsp->TOP.IQ0_rs2_data}
+    , IQ1_rs1_data{vlSymsp->TOP.IQ1_rs1_data}
+    , IQ1_rs2_data{vlSymsp->TOP.IQ1_rs2_data}
+    , MEM_rs1_data{vlSymsp->TOP.MEM_rs1_data}
+    , MEM_rs2_data{vlSymsp->TOP.MEM_rs2_data}
+    , writeback0_data{vlSymsp->TOP.writeback0_data}
+    , writeback1_data{vlSymsp->TOP.writeback1_data}
+    , writeback2_data{vlSymsp->TOP.writeback2_data}
+    , writeback3_data{vlSymsp->TOP.writeback3_data}
+    , prf_debug{vlSymsp->TOP.prf_debug}
     , rootp{&(vlSymsp->TOP)}
 {
 }
@@ -40,7 +58,6 @@ Vcommon::~Vcommon() {
 void Vcommon___024root___eval_initial(Vcommon___024root* vlSelf);
 void Vcommon___024root___eval_settle(Vcommon___024root* vlSelf);
 void Vcommon___024root___eval(Vcommon___024root* vlSelf);
-QData Vcommon___024root___change_request(Vcommon___024root* vlSelf);
 #ifdef VL_DEBUG
 void Vcommon___024root___eval_debug_assertions(Vcommon___024root* vlSelf);
 #endif  // VL_DEBUG
@@ -50,26 +67,11 @@ static void _eval_initial_loop(Vcommon__Syms* __restrict vlSymsp) {
     vlSymsp->__Vm_didInit = true;
     Vcommon___024root___eval_initial(&(vlSymsp->TOP));
     // Evaluate till stable
-    int __VclockLoop = 0;
-    QData __Vchange = 1;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Initial loop\n"););
         Vcommon___024root___eval_settle(&(vlSymsp->TOP));
         Vcommon___024root___eval(&(vlSymsp->TOP));
-        if (VL_UNLIKELY(++__VclockLoop > 100)) {
-            // About to fail, so enable debug to see what's not settling.
-            // Note you must run make with OPT=-DVL_DEBUG for debug prints.
-            int __Vsaved_debug = Verilated::debug();
-            Verilated::debug(1);
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-            Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/top_uart.sv", 5, "",
-                "Verilated model didn't DC converge\n"
-                "- See https://verilator.org/warn/DIDNOTCONVERGE");
-        } else {
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-        }
-    } while (VL_UNLIKELY(__Vchange));
+    } while (0);
 }
 
 void Vcommon::eval_step() {
@@ -81,25 +83,10 @@ void Vcommon::eval_step() {
     // Initialize
     if (VL_UNLIKELY(!vlSymsp->__Vm_didInit)) _eval_initial_loop(vlSymsp);
     // Evaluate till stable
-    int __VclockLoop = 0;
-    QData __Vchange = 1;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Clock loop\n"););
         Vcommon___024root___eval(&(vlSymsp->TOP));
-        if (VL_UNLIKELY(++__VclockLoop > 100)) {
-            // About to fail, so enable debug to see what's not settling.
-            // Note you must run make with OPT=-DVL_DEBUG for debug prints.
-            int __Vsaved_debug = Verilated::debug();
-            Verilated::debug(1);
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-            Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/top_uart.sv", 5, "",
-                "Verilated model didn't converge\n"
-                "- See https://verilator.org/warn/DIDNOTCONVERGE");
-        } else {
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-        }
-    } while (VL_UNLIKELY(__Vchange));
+    } while (0);
     // Evaluate cleanup
 }
 

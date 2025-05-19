@@ -305,7 +305,7 @@ module intisq(/*AUTOARG*/
       int i;
       
       for (i=0;i<INTISQ_NUM;i=i+1)
-	 intisq_entry_ready[i] = intisq_valid[i] & ((intisq_control[i].rs1_valid & !intisq_src1_state[i]) || !intisq_control[i].rs1_valid) &  ((intisq_control[i].rs2_valid & !intisq_src2_state[i]) || !intisq_control[i].rs2_valid); 	 	      
+	 intisq_entry_ready[i] = intisq_valid[i] & ((intisq_control[i].rs1_valid & !intisq_src1_state[i]) || !intisq_control[i].rs1_valid) &  ((intisq_control[i].rs2_valid & !intisq_src2_state[i]) || !intisq_control[i].rs2_valid) & ~(intisq_control[i].is_mul & mul_slot_busy); 	 	      
    end
 
    //reverse order to adapt to Picker
