@@ -12,7 +12,7 @@ module data_memory (
     input write_enable,         
     input [31:0] write_data, 
     output logic [31:0] read_data,
-    output logic [7:0] ram_debug[DATA_RAM_DEPTH]
+    output logic [31:0] ram_debug[DATA_RAM_DEPTH/4]
 );
 
    logic [7:0] 	ram [DATA_RAM_DEPTH] = '{default:0};
@@ -27,7 +27,19 @@ module data_memory (
    assign write_word_address = write_address[$clog2(DATA_RAM_DEPTH)-1:2];
    assign write_hword_address = write_address[$clog2(DATA_RAM_DEPTH)-1:1];
    assign write_byte_address = write_address[$clog2(DATA_RAM_DEPTH)-1:0];
-   assign ram_debug = ram;
+  /*for debug*/
+
+   always_comb begin
+
+      for(int i =0; i<(DATA_RAM_DEPTH/4); i=i+1) begin
+	ram_debug[i][7:0]  = ram[4*i];
+	ram_debug[i][15:8] = ram[4*i+1];
+	ram_debug[i][23:16] = ram[4*i+2];
+	ram_debug[i][31:24] = ram[4*i+3];
+      end
+
+
+   end
    
     
     always @(posedge clk) begin

@@ -13,7 +13,8 @@ module int2_lsu(/*AUTOARG*/
    // Inputs
    clk, reset_n, flush_valid, flush_robid, int2_valid, int2_pc,
    int2_control, int2_rs1, int2_rs2, int2_T, int2_robid, sq_fwd_data,
-   sq_fwd_valid, sq_left, mem_data_valid, mem_data_resp
+   sq_fwd_valid, sq_fwd_byte_vector, sq_left, mem_data_valid,
+   mem_data_resp
    );
    input                       clk;
    input                       reset_n;
@@ -40,6 +41,7 @@ module int2_lsu(/*AUTOARG*/
       //fwd
    input  logic [31:0] 		sq_fwd_data;
    input  logic  		sq_fwd_valid;
+   input  logic [3:0] 		sq_fwd_byte_vector;
    output logic [31:0] 		load_addr;
      // write to store queue
    input logic [1:0] 		sq_left;
@@ -90,6 +92,7 @@ module int2_lsu(/*AUTOARG*/
    logic [7:0] 			load_byte        ;  // Load byte
    logic [15:0] 		load_hword       ;  // Load half-word
    logic [31:0] 		load_word        ;  // Load word
+   logic [31:0] 		bit_valid;// 1 means which the bits is valid from mem, 0 means bits is valid from sq fwd
  
    
    lsu inst_agu(
@@ -159,10 +162,15 @@ module int2_lsu(/*AUTOARG*/
 
 
 
+   assign bit_valid = {{8{sq_fwd_byte_vector[3]}},{8{sq_fwd_byte_vector[2]}},{8{sq_fwd_byte_vector[1]}},{8{sq_fwd_byte_vector[0]}}};
+   
+   assign load_data = (sq_fwd_data & bit_valid) | (mem_data_resp & ~bit_valid);
+  
 
+   
 
    assign load_addr    = reg_mem_addr;   
-   assign load_data    = sq_fwd_valid? sq_fwd_data : mem_data_resp;
+  // assign load_data    = sq_fwd_valid? sq_fwd_data : mem_data_resp;
    assign load_byte    = load_data >> (8 * reg_mem_addr[1:0]) ;
    assign load_hword   = load_data >> (8 * reg_mem_addr[1:0]) ;
    assign load_word    = load_data ;

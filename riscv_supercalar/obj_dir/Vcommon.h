@@ -9,12 +9,9 @@
 #define VERILATED_VCOMMON_H_  // guard
 
 #include "verilated.h"
-#include "svdpi.h"
 
 class Vcommon__Syms;
 class Vcommon___024root;
-class Vcommon_pipeline;
-
 
 // This class is the main interface to the Verilated model
 class Vcommon VL_NOT_FINAL {
@@ -29,19 +26,25 @@ class Vcommon VL_NOT_FINAL {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&reset_n,0,0);
-    VL_IN8(&imem_en,0,0);
-    VL_OUT8(&branch_times_debug,0,0);
-    VL_OUT8(&flush_times_debug,0,0);
-    VL_IN(&imem_data_in,31,0);
-    VL_IN(&write_address,31,0);
-    VL_OUT8((&ram_debug)[64],7,0);
-    VL_OUT((&prf_debug)[64],31,0);
-    VL_OUT8((&RRAT_debug)[32],5,0);
+    VL_IN8(&flush_valid,0,0);
+    VL_IN8(&IF_instr0_hit,0,0);
+    VL_IN8(&IF_instr1_hit,0,0);
+    VL_IN8(&IF_instr0_resp,0,0);
+    VL_OUT8(&instr0_predict_taken,0,0);
+    VL_OUT8(&instr1_predict_taken,0,0);
+    VL_IN8(&EXE_is_BJ,0,0);
+    VL_IN8(&EXE_update_GHSR,0,0);
+    VL_IN8(&EXE_branch_taken,0,0);
+    VL_OUT16(&current_instr0_GHSR,9,0);
+    VL_OUT16(&current_instr1_GHSR,9,0);
+    VL_IN16(&EXE_GHSR_restore,9,0);
+    VL_IN(&IF_instr0_pc,31,0);
+    VL_IN(&IF_instr1_pc,31,0);
+    VL_IN(&EXE_branch_addr,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
-    Vcommon_pipeline* const pipeline;
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.

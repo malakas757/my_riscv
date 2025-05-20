@@ -6,7 +6,7 @@ module storequeue(/*AUTOARG*/
    // Outputs
    sq_left, retire_sq2mem_data, retire_sq2mem_addr,
    retire_sq2mem_func3, retire_sq2mem_valid, sq_fwd_data,
-   sq_fwd_valid,
+   sq_fwd_valid, sq_fwd_byte_vector,
    // Inputs
    clk, reset_n, lsuint2sq_instr0_valid, lsuint2sq_instr0_robid,
    lsuint2sq_instr0_pc, lsuint2sq_wb_data, lsuint2sq_wb_addr,
@@ -54,6 +54,7 @@ module storequeue(/*AUTOARG*/
    input [31:0] 		 load_addr;
    output [31:0] 		 sq_fwd_data;
    output 			 sq_fwd_valid;
+   output logic [3:0] 		 sq_fwd_byte_vector;//because sq instr might be SH and SB, so only some bytes are valid
  
                          
 ////////////////////
@@ -239,6 +240,32 @@ module storequeue(/*AUTOARG*/
    
    
    assign sq_fwd_data = sq_reg_data[sq_fwd_id];
+   
+   always_comb begin
+      sq_fwd_byte_vector = '0;
+      if(sq_fwd_valid) begin  
+	 case (sq_reg_func3[sq_fwd_id])
+	   F3_SB:begin
+	      sq_fwd_byte_vector = (sq_reg_addr[sq_fwd_id][1:0]==2'b00)? 4'b0001:
+				   (sq_reg_addr[sq_fwd_id][1:0]==2'b01)? 4'b0010:
+				   (sq_reg_addr[sq_fwd_id][1:0]==2'b10)? 4'b0100:4'b1000;	   	
+	   end
+	   
+	   F3_SH:begin
+	      sq_fwd_byte_vector = (sq_reg_addr[sq_fwd_id][1]==1'b0)? 4'b0011:4'b1100;
+	   end
+	   
+	   F3_SW:begin
+	      sq_fwd_byte_vector = 4'b1111;
+	   end
+
+	   default: sq_fwd_byte_vector = 4'b1111;
+	   
+	 endcase // case (sq_reg_func3[sq_fwd_id])
+      end
+
+
+   end
  
 
 endmodule

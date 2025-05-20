@@ -57,6 +57,30 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__3(Vcommon_pipeline* 
     CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_bju;
     CData/*0:0*/ __PVT__inst_is_stage__DOT__inst_intisq__DOT__old1_is_alu;
     // Body
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[8U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [8U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[7U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [7U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[6U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [6U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[5U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [5U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[4U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [4U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[3U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [3U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[2U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [2U];
+    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[1U] 
+        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
+        [1U];
     vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[0U] 
         = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
         [0U];
@@ -1812,9 +1836,6 @@ VL_ATTR_COLD void Vcommon_pipeline___ctor_var_reset(Vcommon_pipeline* vlSelf) {
     }
     for (int __Vi0=0; __Vi0<2; ++__Vi0) {
         vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l1_hit_index[__Vi0] = VL_RAND_RESET_I(2);
-    }
-    for (int __Vi0=0; __Vi0<1; ++__Vi0) {
-        vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit[__Vi0] = VL_RAND_RESET_I(1);
     }
     for (int __Vi0=0; __Vi0<1; ++__Vi0) {
         vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index[__Vi0] = VL_RAND_RESET_I(2);

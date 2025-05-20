@@ -15,7 +15,7 @@ module pipeline(/*AUTOARG*/
    input               imem_en;
    input [31:0]        imem_data_in;
    input [31:0]        write_address;   
-   output logic [7:0] ram_debug[DATA_RAM_DEPTH];
+   output logic [31:0] ram_debug[DATA_RAM_DEPTH/4];
    output logic [31:0] prf_debug[PRF_NUM-1:0];
    output logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
    output logic 		branch_times_debug;
@@ -131,6 +131,7 @@ module pipeline(/*AUTOARG*/
    wire [ROB_WIDTH:0]	slot2_robid;		// From inst_is_stage of is_stage.v
    logic [PRF_WIDTH-1:0] slot2_src1_id;		// From inst_is_stage of is_stage.v
    logic [PRF_WIDTH-1:0] slot2_src2_id;		// From inst_is_stage of is_stage.v
+   logic [3:0]		sq_fwd_byte_vector;	// From inst_sq of storequeue.v
    wire [31:0]		sq_fwd_data;		// From inst_sq of storequeue.v
    wire			sq_fwd_valid;		// From inst_sq of storequeue.v
    logic [1:0]		sq_left;		// From inst_sq of storequeue.v
@@ -914,6 +915,7 @@ module pipeline(/*AUTOARG*/
 			 .int2_robid		(int2_robid[ROB_WIDTH:0]),
 			 .sq_fwd_data		(sq_fwd_data[31:0]),
 			 .sq_fwd_valid		(sq_fwd_valid),
+			 .sq_fwd_byte_vector	(sq_fwd_byte_vector[3:0]),
 			 .sq_left		(sq_left[1:0]),
 			 .mem_data_valid	(1'b1),		 // Templated
 			 .mem_data_resp		(dmem_read_data)); // Templated
@@ -927,6 +929,7 @@ module pipeline(/*AUTOARG*/
 		      .retire_sq2mem_valid(retire_sq2mem_valid),
 		      .sq_fwd_data	(sq_fwd_data[31:0]),
 		      .sq_fwd_valid	(sq_fwd_valid),
+		      .sq_fwd_byte_vector(sq_fwd_byte_vector[3:0]),
 		      // Inputs
 		      .clk		(clk),
 		      .reset_n		(reset_n),

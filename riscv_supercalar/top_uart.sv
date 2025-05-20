@@ -26,7 +26,7 @@ module top_with_uart(/*AUTOARG*/
    logic [9:0] 	 write_address;
    logic [31:0]  io_word_packet;
 
-   (* MARK_DEBUG = "ture" *) logic [31:0] ram_debug[DATA_RAM_DEPTH];
+   (* MARK_DEBUG = "ture" *) logic [31:0] ram_debug[DATA_RAM_DEPTH/4];
    logic [31:0] prf_debug[PRF_NUM-1:0];
    logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
 

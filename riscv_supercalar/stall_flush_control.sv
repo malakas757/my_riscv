@@ -39,7 +39,7 @@ module stall_flush_control (/*AUTOARG*/
    assign is_idle     = (rob_state == rob_idle);
    assign is_rollback = (rob_state == rob_rollback);
    assign is_walk     = (rob_state == rob_walk);
-   assign pc_run_out  = (pc_is_read[9:2] == 8'b1);
+   assign pc_run_out  = (pc_is_read[9:3] == {7{1'b1}});
    
    
    // IF_stage

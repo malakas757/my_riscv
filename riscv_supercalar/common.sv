@@ -9,7 +9,7 @@ package common;
 
 
    // data_ram_depth
-   localparam int  DATA_RAM_DEPTH = 64;
+   localparam int  DATA_RAM_DEPTH = 128;
 
    //ROB state
    localparam [1:0]  rob_idle = 2'b00;

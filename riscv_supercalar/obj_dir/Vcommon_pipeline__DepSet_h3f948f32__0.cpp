@@ -1697,13 +1697,6 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__5(Vcommon_pipeline
                                             + (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__rob_tail))))))) {
             vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v7 = 1U;
         }
-        if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_ready
-             [vlSelf->__PVT__inst_sq__DOT__sq_tail] 
-             & vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
-             [vlSelf->__PVT__inst_sq__DOT__sq_tail])) {
-            vlSelf->__Vdly__inst_sq__DOT__sq_tail = 
-                (3U & ((IData)(1U) + (IData)(vlSelf->__PVT__inst_sq__DOT__sq_tail)));
-        }
     } else {
         vlSelf->__PVT__inst_ir__DOT__inst_fl__DOT__head = 0x20U;
         vlSelf->__Vdly__inst_is_stage__DOT__inst_rob__DOT__walk_head = 0U;
@@ -1712,7 +1705,6 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__5(Vcommon_pipeline
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_robid__v3 = 1U;
         vlSelf->__Vdlyvset__inst_ir__DOT__inst_fl__DOT__fl__v3 = 1U;
         vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v8 = 1U;
-        vlSelf->__Vdly__inst_sq__DOT__sq_tail = 0U;
     }
     if ((1U & ((IData)(vlSelf->__PVT__IR_flush) | (~ (IData)(vlSymsp->TOP.reset_n))))) {
         __Vdly__ir_is_reg1[0U] = 0U;
@@ -1939,6 +1931,13 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__5(Vcommon_pipeline
             __Vdlyvdim0__inst_is_stage__DOT__inst_intisq__DOT__intisq_src2_id__v2 
                 = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__empty_id0;
         }
+        if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_ready
+             [vlSelf->__PVT__inst_sq__DOT__sq_tail] 
+             & vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
+             [vlSelf->__PVT__inst_sq__DOT__sq_tail])) {
+            vlSelf->__Vdly__inst_sq__DOT__sq_tail = 
+                (3U & ((IData)(1U) + (IData)(vlSelf->__PVT__inst_sq__DOT__sq_tail)));
+        }
         if ((1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) {
             __Vdlyvval__inst_ir__DOT__inst_mt__DOT__RAT__v0 
                 = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
@@ -2145,6 +2144,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__5(Vcommon_pipeline
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_GHR_checkpoint__DOT__GHSR_data__v3 = 1U;
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src1_id__v3 = 1U;
         vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src2_id__v3 = 1U;
+        vlSelf->__Vdly__inst_sq__DOT__sq_tail = 0U;
         vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RAT__v32 = 1U;
     }
     if (vlSelf->__PVT__retire_sq2mem_valid) {

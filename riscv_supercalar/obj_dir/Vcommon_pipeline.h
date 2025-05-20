@@ -566,7 +566,6 @@ VL_MODULE(Vcommon_pipeline) {
         VlUnpacked<CData/*1:0*/, 4> __PVT__inst_sq__DOT__inst_load_picker__DOT__id;
         VlUnpacked<CData/*0:0*/, 2> __PVT__inst_sq__DOT__inst_load_picker__DOT__l1_hit;
         VlUnpacked<CData/*1:0*/, 2> __PVT__inst_sq__DOT__inst_load_picker__DOT__l1_hit_index;
-        VlUnpacked<CData/*0:0*/, 1> __PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit;
         VlUnpacked<CData/*1:0*/, 1> __PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index;
         VlUnpacked<CData/*1:0*/, 2> inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l1__BRA__0__KET____DOT__picker__index;
         VlUnpacked<CData/*0:0*/, 2> inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l1__BRA__0__KET____DOT__picker__match;

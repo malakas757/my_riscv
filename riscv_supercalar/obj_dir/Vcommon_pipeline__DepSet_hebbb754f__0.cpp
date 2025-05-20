@@ -71,7 +71,6 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline
     vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v6 = 0U;
     vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v7 = 0U;
     vlSelf->__Vdlyvset__inst_sq__DOT__sq_reg_ready__v8 = 0U;
-    vlSelf->__Vdly__inst_sq__DOT__sq_tail = vlSelf->__PVT__inst_sq__DOT__sq_tail;
     __Vdly__ir_is_reg1[0U] = vlSelf->__PVT__ir_is_reg1[0U];
     __Vdly__ir_is_reg1[1U] = vlSelf->__PVT__ir_is_reg1[1U];
     __Vdly__ir_is_reg1[2U] = vlSelf->__PVT__ir_is_reg1[2U];
@@ -114,6 +113,7 @@ VL_INLINE_OPT void Vcommon_pipeline___sequent__TOP__pipeline__4(Vcommon_pipeline
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src2_id__v1 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src2_id__v2 = 0U;
     vlSelf->__Vdlyvset__inst_is_stage__DOT__inst_intisq__DOT__intisq_src2_id__v3 = 0U;
+    vlSelf->__Vdly__inst_sq__DOT__sq_tail = vlSelf->__PVT__inst_sq__DOT__sq_tail;
     vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RAT__v0 = 0U;
     vlSelf->__Vdlyvset__inst_ir__DOT__inst_mt__DOT__RAT__v32 = 0U;
 }

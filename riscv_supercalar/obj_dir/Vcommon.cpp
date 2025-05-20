@@ -3,7 +3,6 @@
 
 #include "Vcommon.h"
 #include "Vcommon__Syms.h"
-#include "verilated_dpi.h"
 
 //============================================================
 // Constructors
@@ -12,15 +11,21 @@ Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vcommon__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , reset_n{vlSymsp->TOP.reset_n}
-    , imem_en{vlSymsp->TOP.imem_en}
-    , branch_times_debug{vlSymsp->TOP.branch_times_debug}
-    , flush_times_debug{vlSymsp->TOP.flush_times_debug}
-    , imem_data_in{vlSymsp->TOP.imem_data_in}
-    , write_address{vlSymsp->TOP.write_address}
-    , ram_debug{vlSymsp->TOP.ram_debug}
-    , prf_debug{vlSymsp->TOP.prf_debug}
-    , RRAT_debug{vlSymsp->TOP.RRAT_debug}
-    , pipeline{vlSymsp->TOP.pipeline}
+    , flush_valid{vlSymsp->TOP.flush_valid}
+    , IF_instr0_hit{vlSymsp->TOP.IF_instr0_hit}
+    , IF_instr1_hit{vlSymsp->TOP.IF_instr1_hit}
+    , IF_instr0_resp{vlSymsp->TOP.IF_instr0_resp}
+    , instr0_predict_taken{vlSymsp->TOP.instr0_predict_taken}
+    , instr1_predict_taken{vlSymsp->TOP.instr1_predict_taken}
+    , EXE_is_BJ{vlSymsp->TOP.EXE_is_BJ}
+    , EXE_update_GHSR{vlSymsp->TOP.EXE_update_GHSR}
+    , EXE_branch_taken{vlSymsp->TOP.EXE_branch_taken}
+    , current_instr0_GHSR{vlSymsp->TOP.current_instr0_GHSR}
+    , current_instr1_GHSR{vlSymsp->TOP.current_instr1_GHSR}
+    , EXE_GHSR_restore{vlSymsp->TOP.EXE_GHSR_restore}
+    , IF_instr0_pc{vlSymsp->TOP.IF_instr0_pc}
+    , IF_instr1_pc{vlSymsp->TOP.IF_instr1_pc}
+    , EXE_branch_addr{vlSymsp->TOP.EXE_branch_addr}
     , rootp{&(vlSymsp->TOP)}
 {
 }
@@ -43,7 +48,6 @@ Vcommon::~Vcommon() {
 void Vcommon___024root___eval_initial(Vcommon___024root* vlSelf);
 void Vcommon___024root___eval_settle(Vcommon___024root* vlSelf);
 void Vcommon___024root___eval(Vcommon___024root* vlSelf);
-QData Vcommon___024root___change_request(Vcommon___024root* vlSelf);
 #ifdef VL_DEBUG
 void Vcommon___024root___eval_debug_assertions(Vcommon___024root* vlSelf);
 #endif  // VL_DEBUG
@@ -53,26 +57,11 @@ static void _eval_initial_loop(Vcommon__Syms* __restrict vlSymsp) {
     vlSymsp->__Vm_didInit = true;
     Vcommon___024root___eval_initial(&(vlSymsp->TOP));
     // Evaluate till stable
-    int __VclockLoop = 0;
-    QData __Vchange = 1;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Initial loop\n"););
         Vcommon___024root___eval_settle(&(vlSymsp->TOP));
         Vcommon___024root___eval(&(vlSymsp->TOP));
-        if (VL_UNLIKELY(++__VclockLoop > 100)) {
-            // About to fail, so enable debug to see what's not settling.
-            // Note you must run make with OPT=-DVL_DEBUG for debug prints.
-            int __Vsaved_debug = Verilated::debug();
-            Verilated::debug(1);
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-            Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/pipeline.sv", 6, "",
-                "Verilated model didn't DC converge\n"
-                "- See https://verilator.org/warn/DIDNOTCONVERGE");
-        } else {
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-        }
-    } while (VL_UNLIKELY(__Vchange));
+    } while (0);
 }
 
 void Vcommon::eval_step() {
@@ -84,25 +73,10 @@ void Vcommon::eval_step() {
     // Initialize
     if (VL_UNLIKELY(!vlSymsp->__Vm_didInit)) _eval_initial_loop(vlSymsp);
     // Evaluate till stable
-    int __VclockLoop = 0;
-    QData __Vchange = 1;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Clock loop\n"););
         Vcommon___024root___eval(&(vlSymsp->TOP));
-        if (VL_UNLIKELY(++__VclockLoop > 100)) {
-            // About to fail, so enable debug to see what's not settling.
-            // Note you must run make with OPT=-DVL_DEBUG for debug prints.
-            int __Vsaved_debug = Verilated::debug();
-            Verilated::debug(1);
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-            Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/riscv_supercalar/pipeline.sv", 6, "",
-                "Verilated model didn't converge\n"
-                "- See https://verilator.org/warn/DIDNOTCONVERGE");
-        } else {
-            __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
-        }
-    } while (VL_UNLIKELY(__Vchange));
+    } while (0);
     // Evaluate cleanup
 }
 

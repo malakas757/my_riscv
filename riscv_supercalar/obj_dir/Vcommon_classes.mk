@@ -26,38 +26,19 @@ VM_TRACE_FST_WRITER_THREAD = 0
 # Generated module classes, fast-path, compile with highest optimization
 VM_CLASSES_FAST += \
 	Vcommon \
-	Vcommon___024root__DepSet_h41e3567a__0 \
 	Vcommon___024root__DepSet_h8dea4c87__0 \
-	Vcommon_pipeline__DepSet_h3f948f32__0 \
-	Vcommon_pipeline__DepSet_h3f948f32__1 \
-	Vcommon_pipeline__DepSet_hebbb754f__0 \
-	Vcommon_if_stage__DepSet_h1b294184__0 \
-	Vcommon_if_stage__DepSet_h1b294184__1 \
-	Vcommon_if_stage__DepSet_h1b294184__2 \
-	Vcommon_if_stage__DepSet_h1b294184__3 \
-	Vcommon_if_stage__DepSet_hc8203fe5__0 \
-	Vcommon_pc_counter__DepSet_h308fcb3f__0 \
+	Vcommon___024root__DepSet_h8dea4c87__1 \
+	Vcommon___024root__DepSet_h8dea4c87__2 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
-	Vcommon__ConstPool_0 \
 	Vcommon___024root__Slow \
-	Vcommon___024root__DepSet_h41e3567a__0__Slow \
 	Vcommon___024root__DepSet_h8dea4c87__0__Slow \
-	Vcommon_pipeline__Slow \
-	Vcommon_pipeline__DepSet_h3f948f32__0__Slow \
-	Vcommon_pipeline__DepSet_hebbb754f__0__Slow \
 	Vcommon___024unit__Slow \
 	Vcommon___024unit__DepSet_h4cb4e5cd__0__Slow \
-	Vcommon_if_stage__Slow \
-	Vcommon_if_stage__DepSet_h1b294184__0__Slow \
-	Vcommon_if_stage__DepSet_hc8203fe5__0__Slow \
-	Vcommon_pc_counter__Slow \
-	Vcommon_pc_counter__DepSet_hdec6b94a__0__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \
-	Vcommon__Dpi \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
@@ -66,7 +47,6 @@ VM_SUPPORT_SLOW += \
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \
 	verilated \
-	verilated_dpi \
 
 # Global classes, need linked once per executable, non-fast-path, compile with low/medium optimization
 VM_GLOBAL_SLOW += \

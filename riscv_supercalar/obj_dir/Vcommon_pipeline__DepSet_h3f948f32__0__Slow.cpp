@@ -23,6 +23,7 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     IData/*31:0*/ __PVT__int1_rs2;
     CData/*5:0*/ __PVT__slot2_src1_id;
     CData/*5:0*/ __PVT__slot2_src2_id;
+    CData/*3:0*/ __PVT__sq_fwd_byte_vector;
     CData/*0:0*/ __Vcellinp__inst_buffer__writeback3_need_to_wb;
     CData/*0:0*/ __Vcellinp__inst_buffer__writeback2_need_to_wb;
     CData/*0:0*/ __Vcellinp__inst_buffer__writeback1_need_to_wb;
@@ -122,13 +123,13 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     CData/*0:0*/ __PVT__inst_int1__DOT__inst_bju__DOT__is_sign_rs1_lt_rs2;
     IData/*31:0*/ __PVT__inst_int1__DOT__inst_bju__DOT__pc_plus_imm;
     CData/*0:0*/ __PVT__inst_int2__DOT__need_to_alloc_sq;
+    IData/*31:0*/ __PVT__inst_int2__DOT__bit_valid;
     CData/*2:0*/ __PVT__inst_sq__DOT__sq_empty_num;
     CData/*1:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__0__KET____DOT__picker__hit_index;
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__0__KET____DOT__picker__hit;
     CData/*1:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__2__KET____DOT__picker__hit_index;
     CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l1__BRA__2__KET____DOT__picker__hit;
     CData/*1:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index;
-    CData/*0:0*/ inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
     IData/*31:0*/ __Vfunc_immediate_extension__0__Vfuncout;
     IData/*31:0*/ __Vfunc_immediate_extension__0__instruction;
     CData/*2:0*/ __Vfunc_immediate_extension__0__inst_encoding;
@@ -1720,27 +1721,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         vlSelf->__PVT__dec_instr0[2U] = (0xfff7ffffU 
                                          & vlSelf->__PVT__dec_instr0[2U]);
     }
-    vlSelf->__PVT__inst_sq__DOT__sq_head = vlSelf->__PVT__inst_sq__DOT__sq_tail;
-    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[0U] 
-         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
-            [1U]))) {
-        vlSelf->__PVT__inst_sq__DOT__sq_head = 1U;
-    }
-    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[1U] 
-         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
-            [2U]))) {
-        vlSelf->__PVT__inst_sq__DOT__sq_head = 2U;
-    }
-    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[2U] 
-         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
-            [3U]))) {
-        vlSelf->__PVT__inst_sq__DOT__sq_head = 3U;
-    }
-    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[3U] 
-         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
-            [0U]))) {
-        vlSelf->__PVT__inst_sq__DOT__sq_head = 0U;
-    }
     __PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_empty_num 
         = (7U & (~ vlSelf->__PVT__inst_is_stage__DOT__inst_memisq__DOT__memisq_valid
                  [0U]));
@@ -1777,6 +1757,27 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
                    | ((IData)((0U != (0x38000U & vlSelf->__PVT__ir_is_reg1[2U]))) 
                       << 1U));
         }
+    }
+    vlSelf->__PVT__inst_sq__DOT__sq_head = vlSelf->__PVT__inst_sq__DOT__sq_tail;
+    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[0U] 
+         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
+            [1U]))) {
+        vlSelf->__PVT__inst_sq__DOT__sq_head = 1U;
+    }
+    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[1U] 
+         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
+            [2U]))) {
+        vlSelf->__PVT__inst_sq__DOT__sq_head = 2U;
+    }
+    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[2U] 
+         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
+            [3U]))) {
+        vlSelf->__PVT__inst_sq__DOT__sq_head = 3U;
+    }
+    if ((vlSelf->__PVT__inst_sq__DOT__sq_reg_valid[3U] 
+         & (~ vlSelf->__PVT__inst_sq__DOT__sq_reg_valid
+            [0U]))) {
+        vlSelf->__PVT__inst_sq__DOT__sq_head = 0U;
     }
     vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__mem_instr_vec = 0U;
     if (((vlSelf->__PVT__ir_is_reg0[3U] >> 0xbU) & 
@@ -5571,29 +5572,18 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l2_finder__BRA__2__KET____DOT__l2_finder_4__in_alloc_valid_0
             [0U];
     }
-    if ((1U & ((((((IData)(vlSelf->__PVT__inst_sq__DOT__sq_head) 
-                   > vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
-                   [0U]) ^ ((IData)(vlSelf->__PVT__inst_sq__DOT__sq_head) 
-                            > vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
-                            [1U])) ^ (vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
-                                      [0U] > vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
-                                      [1U])) & vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
-                [0U]) | (~ vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
-                         [1U])))) {
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit 
-            = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
-            [0U];
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index 
-            = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
-            [0U];
-    } else {
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit 
-            = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
-            [1U];
-        inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index 
-            = vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
-            [1U];
-    }
+    inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index 
+        = ((1U & ((((((IData)(vlSelf->__PVT__inst_sq__DOT__sq_head) 
+                      > vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
+                      [0U]) ^ ((IData)(vlSelf->__PVT__inst_sq__DOT__sq_head) 
+                               > vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
+                               [1U])) ^ (vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
+                                         [0U] > vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
+                                         [1U])) & vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
+                   [0U]) | (~ vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__match
+                            [1U]))) ? vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
+           [0U] : vlSelf->inst_sq__DOT__inst_load_picker__DOT____Vcellinp__gen_matcher_l2__BRA__0__KET____DOT__picker__index
+           [1U]);
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT____Vcellinp__inst_oldest_picker__in_valid[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__intisq_entry_ready_order_reverse
         [7U];
@@ -5650,8 +5640,6 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_0;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_1[1U] 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellout__l2_finder__BRA__2__KET____DOT__l2_finder_4__out_alloc_valid_1;
-    vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit[0U] 
-        = inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit;
     vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index[0U] 
         = inst_sq__DOT__inst_load_picker__DOT____Vcellout__gen_matcher_l2__BRA__0__KET____DOT__picker__hit_index;
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l1__BRA__0__KET____DOT__l1_picker__in_valid[0U] 
@@ -5726,35 +5714,36 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_1[1U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT__l2_out_valid_1
         [1U];
-    vlSelf->__PVT__inst_int2__DOT__load_data = (vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit
-                                                [0U]
-                                                 ? 
-                                                vlSelf->__PVT__inst_sq__DOT__sq_reg_data
+    __PVT__sq_fwd_byte_vector = ((0U == vlSelf->__PVT__inst_sq__DOT__sq_reg_func3
+                                  [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
+                                  [0U]]) ? ((0U == 
+                                             (3U & 
+                                              vlSelf->__PVT__inst_sq__DOT__sq_reg_addr
+                                              [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
+                                              [0U]]))
+                                             ? 1U : 
+                                            ((1U == 
+                                              (3U & 
+                                               vlSelf->__PVT__inst_sq__DOT__sq_reg_addr
+                                               [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
+                                               [0U]]))
+                                              ? 2U : 
+                                             ((2U == 
+                                               (3U 
+                                                & vlSelf->__PVT__inst_sq__DOT__sq_reg_addr
                                                 [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
-                                                [0U]]
-                                                 : 
-                                                ((vlSelf->__PVT__inst_dmem__DOT__ram
-                                                  [
-                                                  (3U 
-                                                   | (0x3cU 
-                                                      & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr))] 
-                                                  << 0x18U) 
-                                                 | ((vlSelf->__PVT__inst_dmem__DOT__ram
-                                                     [
-                                                     (2U 
-                                                      | (0x3cU 
-                                                         & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr))] 
-                                                     << 0x10U) 
-                                                    | ((vlSelf->__PVT__inst_dmem__DOT__ram
-                                                        [
-                                                        (1U 
-                                                         | (0x3cU 
-                                                            & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr))] 
-                                                        << 8U) 
-                                                       | vlSelf->__PVT__inst_dmem__DOT__ram
-                                                       [
-                                                       (0x3cU 
-                                                        & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr)]))));
+                                                [0U]]))
+                                               ? 4U
+                                               : 8U)))
+                                  : ((1U == vlSelf->__PVT__inst_sq__DOT__sq_reg_func3
+                                      [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
+                                      [0U]]) ? ((2U 
+                                                 & vlSelf->__PVT__inst_sq__DOT__sq_reg_addr
+                                                 [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
+                                                 [0U]])
+                                                 ? 0xcU
+                                                 : 3U)
+                                      : 0xfU));
     if ((((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l1__BRA__0__KET____DOT__l1_picker__in_age
            [1U] >= vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l1__BRA__0__KET____DOT__l1_picker__in_age
            [0U]) | (~ vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l1__BRA__0__KET____DOT__l1_picker__in_valid
@@ -6043,20 +6032,27 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
             = vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_emptyfinder__DOT____Vcellinp__l3_finder_4__in_alloc_valid_0
             [0U];
     }
-    if ((0x1fU >= (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
-                            << 3U)))) {
-        vlSelf->__PVT__inst_int2__DOT__load_byte = 
-            (0xffU & (vlSelf->__PVT__inst_int2__DOT__load_data 
-                      >> (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
-                                   << 3U))));
-        vlSelf->__PVT__inst_int2__DOT__load_hword = 
-            (0xffffU & (vlSelf->__PVT__inst_int2__DOT__load_data 
-                        >> (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
-                                     << 3U))));
-    } else {
-        vlSelf->__PVT__inst_int2__DOT__load_byte = 0U;
-        vlSelf->__PVT__inst_int2__DOT__load_hword = 0U;
-    }
+    __PVT__inst_int2__DOT__bit_valid = (((- (IData)(
+                                                    (1U 
+                                                     & ((IData)(__PVT__sq_fwd_byte_vector) 
+                                                        >> 3U)))) 
+                                         << 0x18U) 
+                                        | ((0xff0000U 
+                                            & ((- (IData)(
+                                                          (1U 
+                                                           & ((IData)(__PVT__sq_fwd_byte_vector) 
+                                                              >> 2U)))) 
+                                               << 0x10U)) 
+                                           | ((0xff00U 
+                                               & ((- (IData)(
+                                                             (1U 
+                                                              & ((IData)(__PVT__sq_fwd_byte_vector) 
+                                                                 >> 1U)))) 
+                                                  << 8U)) 
+                                              | (0xffU 
+                                                 & (- (IData)(
+                                                              (1U 
+                                                               & (IData)(__PVT__sq_fwd_byte_vector))))))));
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_small_id[0U] 
         = inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellout__gen_Picker_l1__BRA__0__KET____DOT__l1_picker__out_small_id;
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_big_id[0U] 
@@ -6153,6 +6149,33 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
                                                       & (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_dispatch__DOT__bj_instr_vec)))))
                                               ? 1U : 0U)) 
                                          & (~ (IData)(vlSelf->__PVT__flush_valid))));
+    vlSelf->__PVT__inst_int2__DOT__load_data = ((vlSelf->__PVT__inst_sq__DOT__sq_reg_data
+                                                 [vlSelf->__PVT__inst_sq__DOT__inst_load_picker__DOT__l2_hit_index
+                                                 [0U]] 
+                                                 & __PVT__inst_int2__DOT__bit_valid) 
+                                                | (((vlSelf->__PVT__inst_dmem__DOT__ram
+                                                     [
+                                                     (3U 
+                                                      | (0x3cU 
+                                                         & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr))] 
+                                                     << 0x18U) 
+                                                    | ((vlSelf->__PVT__inst_dmem__DOT__ram
+                                                        [
+                                                        (2U 
+                                                         | (0x3cU 
+                                                            & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr))] 
+                                                        << 0x10U) 
+                                                       | ((vlSelf->__PVT__inst_dmem__DOT__ram
+                                                           [
+                                                           (1U 
+                                                            | (0x3cU 
+                                                               & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr))] 
+                                                           << 8U) 
+                                                          | vlSelf->__PVT__inst_dmem__DOT__ram
+                                                          [
+                                                          (0x3cU 
+                                                           & vlSelf->__PVT__inst_int2__DOT__reg_mem_addr)]))) 
+                                                   & (~ __PVT__inst_int2__DOT__bit_valid)));
     vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_id[0U] 
         = vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__l1_small_id
         [0U];
@@ -6246,6 +6269,20 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     __PVT__ID_stall = (1U & (((~ (IData)(vlSelf->__PVT__can_dispatch)) 
                               | (1U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))) 
                              | (2U == (IData)(vlSelf->__PVT__inst_is_stage__DOT__inst_rob__DOT__current_state))));
+    if ((0x1fU >= (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
+                            << 3U)))) {
+        vlSelf->__PVT__inst_int2__DOT__load_byte = 
+            (0xffU & (vlSelf->__PVT__inst_int2__DOT__load_data 
+                      >> (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
+                                   << 3U))));
+        vlSelf->__PVT__inst_int2__DOT__load_hword = 
+            (0xffffU & (vlSelf->__PVT__inst_int2__DOT__load_data 
+                        >> (0x18U & (vlSelf->__PVT__inst_int2__DOT__reg_mem_addr 
+                                     << 3U))));
+    } else {
+        vlSelf->__PVT__inst_int2__DOT__load_byte = 0U;
+        vlSelf->__PVT__inst_int2__DOT__load_hword = 0U;
+    }
     vlSelf->__PVT__inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__DOT__small_cmp[0U] 
         = ((vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_valid
             [0U] << 4U) | vlSelf->inst_is_stage__DOT__inst_intisq__DOT__inst_oldest_picker__DOT____Vcellinp__gen_Picker_l2__BRA__0__KET____DOT__l2_picker__in_small_age
@@ -6821,28 +6858,4 @@ VL_ATTR_COLD void Vcommon_pipeline___settle__TOP__pipeline__2(Vcommon_pipeline* 
     vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[9U] 
         = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
         [9U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[8U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [8U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[7U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [7U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[6U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [6U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[5U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [5U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[4U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [4U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[3U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [3U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[2U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [2U];
-    vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT_NEXT[1U] 
-        = vlSelf->__PVT__inst_ir__DOT__inst_mt__DOT__RRAT
-        [1U];
 }
