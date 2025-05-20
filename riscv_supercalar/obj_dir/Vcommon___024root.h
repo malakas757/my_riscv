@@ -8,39 +8,27 @@
 #include "verilated.h"
 
 class Vcommon__Syms;
+class Vcommon_pipeline;
+
 VL_MODULE(Vcommon___024root) {
   public:
+    // CELLS
+    Vcommon_pipeline* pipeline;
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(reset_n,0,0);
-    VL_IN8(IQ0_rs1_addr,5,0);
-    VL_IN8(IQ0_rs2_addr,5,0);
-    VL_IN8(IQ1_rs1_addr,5,0);
-    VL_IN8(IQ1_rs2_addr,5,0);
-    VL_IN8(MEM_rs1_addr,5,0);
-    VL_IN8(MEM_rs2_addr,5,0);
-    VL_IN8(writeback0_need_to_wb,0,0);
-    VL_IN8(writeback1_need_to_wb,0,0);
-    VL_IN8(writeback2_need_to_wb,0,0);
-    VL_IN8(writeback3_need_to_wb,0,0);
-    VL_IN8(writeback0_prd,5,0);
-    VL_IN8(writeback1_prd,5,0);
-    VL_IN8(writeback2_prd,5,0);
-    VL_IN8(writeback3_prd,5,0);
+    VL_IN8(imem_en,0,0);
+    VL_OUT8(branch_times_debug,0,0);
+    VL_OUT8(flush_times_debug,0,0);
     CData/*0:0*/ __Vclklast__TOP__clk;
-    VL_OUT(IQ0_rs1_data,31,0);
-    VL_OUT(IQ0_rs2_data,31,0);
-    VL_OUT(IQ1_rs1_data,31,0);
-    VL_OUT(IQ1_rs2_data,31,0);
-    VL_OUT(MEM_rs1_data,31,0);
-    VL_OUT(MEM_rs2_data,31,0);
-    VL_IN(writeback0_data,31,0);
-    VL_IN(writeback1_data,31,0);
-    VL_IN(writeback2_data,31,0);
-    VL_IN(writeback3_data,31,0);
+    VL_IN(imem_data_in,31,0);
+    VL_IN(write_address,31,0);
+    IData/*31:0*/ __Vchglast__TOP__pipeline__read_data0;
+    IData/*31:0*/ __Vchglast__TOP__pipeline__read_data1;
+    VL_OUT8(ram_debug[64],7,0);
     VL_OUT(prf_debug[64],31,0);
-    VlUnpacked<IData/*31:0*/, 64> phyreg64__DOT__prf_file;
+    VL_OUT8(RRAT_debug[32],5,0);
 
     // INTERNAL VARIABLES
     Vcommon__Syms* vlSymsp;  // Symbol table

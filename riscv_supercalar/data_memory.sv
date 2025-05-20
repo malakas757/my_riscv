@@ -8,29 +8,51 @@ module data_memory (
     input clk,
     input [9:0] read_address,
     input [9:0] write_address,
+    input [2:0] store_func3,
     input write_enable,         
     input [31:0] write_data, 
     output logic [31:0] read_data,
-    output logic [31:0] ram_debug[DATA_RAM_DEPTH]
+    output logic [7:0] ram_debug[DATA_RAM_DEPTH]
 );
 
-   (* MARK_DEBUG = "ture" *) logic [31:0] ram [DATA_RAM_DEPTH] = '{default:0};
-    logic [$clog2(DATA_RAM_DEPTH)-1:0] read_word_address;
-    logic [$clog2(DATA_RAM_DEPTH)-1:0] write_word_address;
+   logic [7:0] 	ram [DATA_RAM_DEPTH] = '{default:0};
+   logic [$clog2(DATA_RAM_DEPTH)-1:2] read_word_address;
+   logic [$clog2(DATA_RAM_DEPTH)-1:2] write_word_address;
+   logic [$clog2(DATA_RAM_DEPTH)-1:1] write_hword_address;
+   logic [$clog2(DATA_RAM_DEPTH)-1:0] write_byte_address;
     
-    
-   assign read_word_address  = read_address[$clog2(DATA_RAM_DEPTH)+1:2];
-   assign write_word_address = write_address[$clog2(DATA_RAM_DEPTH)+1:2];
+
+  
+   assign read_word_address  = read_address[$clog2(DATA_RAM_DEPTH)-1:2];
+   assign write_word_address = write_address[$clog2(DATA_RAM_DEPTH)-1:2];
+   assign write_hword_address = write_address[$clog2(DATA_RAM_DEPTH)-1:1];
+   assign write_byte_address = write_address[$clog2(DATA_RAM_DEPTH)-1:0];
    assign ram_debug = ram;
    
     
     always @(posedge clk) begin
         if (write_enable) begin
-            ram[write_word_address] <= write_data;
+	   case (store_func3) 
+	     F3_SB:begin
+		ram[write_byte_address] <= (write_address[1:0] == 2'b00)? write_data[7:0]:
+				      (write_address[1:0] == 2'b01)? write_data[15:8]:
+				      (write_address[1:0] == 2'b10)? write_data[23:16]:write_data[31:24];				
+	     end	     
+	     F3_SH:begin
+		ram[{write_hword_address,1'b0}] <= (write_address[1] == 1'b0)? write_data[7:0]:write_data[23:16];
+		ram[{write_hword_address,1'b1}] <= (write_address[1] == 1'b0)? write_data[15:8]:write_data[31:24];				     			  	       
+	     end	     
+	     F3_SW: begin
+	       {ram[{write_word_address,2'b11}],ram[{write_word_address,2'b10}],ram[{write_word_address,2'b01}],ram[{write_word_address,2'b00}]} <= write_data;
+	     end
+	     default: begin
+	       {ram[{write_word_address,2'b11}],ram[{write_word_address,2'b10}],ram[{write_word_address,2'b01}],ram[{write_word_address,2'b00}]} <= write_data;
+	     end
+	   endcase
         end 
     end
 
     
-    assign read_data = ram[read_word_address];
+    assign read_data = {ram[{read_word_address,2'b11}],ram[{read_word_address,2'b10}],ram[{read_word_address,2'b01}],ram[{read_word_address,2'b00}]};
     
 endmodule

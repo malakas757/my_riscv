@@ -5,12 +5,13 @@ import common::*;
 module storequeue(/*AUTOARG*/
    // Outputs
    sq_left, retire_sq2mem_data, retire_sq2mem_addr,
-   retire_sq2mem_valid, sq_fwd_data, sq_fwd_valid,
+   retire_sq2mem_func3, retire_sq2mem_valid, sq_fwd_data,
+   sq_fwd_valid,
    // Inputs
    clk, reset_n, lsuint2sq_instr0_valid, lsuint2sq_instr0_robid,
-   lsuint2sq_instr0_pc, lsuint2sq_wb_data, lsuint2sq_wb_addr, retire0_valid,
-   retire1_valid, retire0_robid, retire1_robid, flush_valid,
-   flush_robid, load_addr
+   lsuint2sq_instr0_pc, lsuint2sq_wb_data, lsuint2sq_wb_addr,
+   lsuint2sq_wb_func3, retire0_valid, retire1_valid, retire0_robid,
+   retire1_robid, flush_valid, flush_robid, load_addr
    );
    input                  clk;
    input                  reset_n;
@@ -28,6 +29,7 @@ module storequeue(/*AUTOARG*/
 //   input [ROB_WIDTH:0] 		 lsuint2sq_instr1_pc;
    input [31:0] 		 lsuint2sq_wb_data;
    input [31:0] 		 lsuint2sq_wb_addr;
+   input [2:0] 			 lsuint2sq_wb_func3;
 
    
    
@@ -39,6 +41,7 @@ module storequeue(/*AUTOARG*/
    input [ROB_WIDTH:0] 		 retire1_robid;
    output logic [31:0] 		 retire_sq2mem_data;
    output logic [31:0] 		 retire_sq2mem_addr;
+   output logic [2:0] 		 retire_sq2mem_func3;
    output 			 retire_sq2mem_valid;
      
       
@@ -61,6 +64,7 @@ module storequeue(/*AUTOARG*/
    logic [31:0] 		 sq_reg_pc[SQ_NUM-1:0];
    logic [31:0] 		 sq_reg_data[SQ_NUM-1:0];
    logic [31:0] 		 sq_reg_addr[SQ_NUM-1:0];
+   logic [2:0] 			 sq_reg_func3[SQ_NUM-1:0];
    logic 			 sq_reg_valid[SQ_NUM-1:0];
    logic 			 sq_reg_ready[SQ_NUM-1:0];
 
@@ -111,6 +115,7 @@ module storequeue(/*AUTOARG*/
 	   sq_reg_pc[i] <= '0;
 	   sq_reg_addr[i] <= '0;
 	   sq_reg_data[i] <= '0;
+	   sq_reg_func3[i] <= '0;
 	end      
       else begin     
 	 if (lsuint2sq_instr0_valid) begin
@@ -118,6 +123,7 @@ module storequeue(/*AUTOARG*/
 	    sq_reg_pc[sq_head] <= lsuint2sq_instr0_pc;
 	    sq_reg_addr[sq_head] <= lsuint2sq_wb_addr;
 	    sq_reg_data[sq_head] <= lsuint2sq_wb_data;	 
+	    sq_reg_func3[sq_head] <= lsuint2sq_wb_func3;	 
      
 	  /*  if (lsuint2sq_instr1_valid) begin
 	       sq_reg_robid[sq_head+1] <= lsuint2sq_instr1_robid;
@@ -184,6 +190,7 @@ module storequeue(/*AUTOARG*/
    end
    // output to mem
    assign retire_sq2mem_data  = sq_reg_data[sq_tail];    
+   assign retire_sq2mem_func3  = sq_reg_func3[sq_tail];    
    assign retire_sq2mem_addr  = sq_reg_addr[sq_tail]; 
    assign retire_sq2mem_valid = sq_reg_valid[sq_tail] & sq_reg_ready[sq_tail];  
 
@@ -216,7 +223,7 @@ module storequeue(/*AUTOARG*/
 	    load_addr_hit[i] = '0;
       end
       for (i=0;i<SQ_NUM;i=i+1) begin	 
-	    if (load_addr == sq_reg_addr[i] & sq_reg_valid[i])
+	    if (load_addr[31:2] == sq_reg_addr[i][31:2] & sq_reg_valid[i])
 	      load_addr_hit[i] = 1;	 
       end
    end

@@ -8,8 +8,8 @@ module int2_lsu(/*AUTOARG*/
    mem_issue_stall, writeback3_valid, writeback3_need_to_wb,
    writeback3_prd, writeback3_robid, writeback3_data, load_addr,
    lsuint2sq_instr0_valid, lsuint2sq_instr0_robid, lsuint2sq_wb_data,
-   lsuint2sq_wb_addr, lsuint2sq_instr0_pc, mem_read_req,
-   mem_read_addr,
+   lsuint2sq_wb_addr, lsuint2sq_wb_func3, lsuint2sq_instr0_pc,
+   mem_read_req, mem_read_addr,
    // Inputs
    clk, reset_n, flush_valid, flush_robid, int2_valid, int2_pc,
    int2_control, int2_rs1, int2_rs2, int2_T, int2_robid, sq_fwd_data,
@@ -47,6 +47,7 @@ module int2_lsu(/*AUTOARG*/
    output [ROB_WIDTH:0] 	lsuint2sq_instr0_robid;
    output [31:0] 		lsuint2sq_wb_data;
    output [31:0] 		lsuint2sq_wb_addr;
+   output [2:0] 		lsuint2sq_wb_func3;
    //debug
    output [31:0] 		lsuint2sq_instr0_pc;
 
@@ -135,6 +136,7 @@ module int2_lsu(/*AUTOARG*/
    assign   lsuint2sq_instr0_robid = reg_robid;
    assign   lsuint2sq_wb_addr         = reg_mem_addr;
    assign   lsuint2sq_wb_data         = reg_store_data;
+   assign   lsuint2sq_wb_func3        = reg_funct3;
 
 
    //stall logic
