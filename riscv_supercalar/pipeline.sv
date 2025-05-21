@@ -15,7 +15,7 @@ module pipeline(/*AUTOARG*/
    input               imem_en;
    input [31:0]        imem_data_in;
    input [31:0]        write_address;   
-   output logic [31:0] ram_debug[256];
+   output logic [31:0] ram_debug[DATA_RAM_DEPTH/4];
    output logic [31:0] prf_debug[PRF_NUM-1:0];
    output logic [PRF_WIDTH-1:0] RRAT_debug[ARF_NUM-1:0];
    output logic 		branch_times_debug;
@@ -90,6 +90,7 @@ module pipeline(/*AUTOARG*/
    wire			lsuint2sq_instr0_valid;	// From inst_int2 of int2_lsu.v
    wire [31:0]		lsuint2sq_wb_addr;	// From inst_int2 of int2_lsu.v
    wire [31:0]		lsuint2sq_wb_data;	// From inst_int2 of int2_lsu.v
+   wire [2:0]		lsuint2sq_wb_func3;	// From inst_int2 of int2_lsu.v
    wire			mem_issue_stall;	// From inst_int2 of int2_lsu.v
    wire [31:0]		mem_read_addr;		// From inst_int2 of int2_lsu.v
    wire			mem_read_req;		// From inst_int2 of int2_lsu.v
@@ -109,6 +110,7 @@ module pipeline(/*AUTOARG*/
    wire			retire1_valid;		// From inst_is_stage of is_stage.v
    logic [31:0]		retire_sq2mem_addr;	// From inst_sq of storequeue.v
    logic [31:0]		retire_sq2mem_data;	// From inst_sq of storequeue.v
+   logic [2:0]		retire_sq2mem_func3;	// From inst_sq of storequeue.v
    wire			retire_sq2mem_valid;	// From inst_sq of storequeue.v
    wire [1:0]		rob_state;		// From inst_is_stage of is_stage.v
    wire [PRF_WIDTH-1:0]	slot0_T;		// From inst_is_stage of is_stage.v
@@ -129,6 +131,7 @@ module pipeline(/*AUTOARG*/
    wire [ROB_WIDTH:0]	slot2_robid;		// From inst_is_stage of is_stage.v
    logic [PRF_WIDTH-1:0] slot2_src1_id;		// From inst_is_stage of is_stage.v
    logic [PRF_WIDTH-1:0] slot2_src2_id;		// From inst_is_stage of is_stage.v
+   logic [3:0]		sq_fwd_byte_vector;	// From inst_sq of storequeue.v
    wire [31:0]		sq_fwd_data;		// From inst_sq of storequeue.v
    wire			sq_fwd_valid;		// From inst_sq of storequeue.v
    logic [1:0]		sq_left;		// From inst_sq of storequeue.v
@@ -166,6 +169,8 @@ module pipeline(/*AUTOARG*/
    wire                 imem_miss;
    wire [31:0] 		read_data0;
    wire [31:0] 		read_data1;
+   wire [31:0] 		pc_is_read;
+   
       
    wire 		instr_resp_ready;
    
@@ -179,6 +184,9 @@ module pipeline(/*AUTOARG*/
                               //Stall Flush control//
 
    ///////////////////////////////////////////////////////////////////
+
+   assign pc_is_read = instr0_if_id.pc;
+   
 
    
 
@@ -198,7 +206,8 @@ module pipeline(/*AUTOARG*/
 					.imem_miss	(imem_miss),
 					.can_dispatch	(can_dispatch),
 					.flush_valid	(flush_valid),
-					.rob_state	(rob_state[1:0]));
+					.rob_state	(rob_state[1:0]),
+					.pc_is_read	(pc_is_read[31:0]));
    
 
 
@@ -888,6 +897,7 @@ module pipeline(/*AUTOARG*/
 			 .lsuint2sq_instr0_robid(lsuint2sq_instr0_robid[ROB_WIDTH:0]),
 			 .lsuint2sq_wb_data	(lsuint2sq_wb_data[31:0]),
 			 .lsuint2sq_wb_addr	(lsuint2sq_wb_addr[31:0]),
+			 .lsuint2sq_wb_func3	(lsuint2sq_wb_func3[2:0]),
 			 .lsuint2sq_instr0_pc	(lsuint2sq_instr0_pc[31:0]),
 			 .mem_read_req		(mem_read_req),
 			 .mem_read_addr		(mem_read_addr[31:0]),
@@ -905,6 +915,7 @@ module pipeline(/*AUTOARG*/
 			 .int2_robid		(int2_robid[ROB_WIDTH:0]),
 			 .sq_fwd_data		(sq_fwd_data[31:0]),
 			 .sq_fwd_valid		(sq_fwd_valid),
+			 .sq_fwd_byte_vector	(sq_fwd_byte_vector[3:0]),
 			 .sq_left		(sq_left[1:0]),
 			 .mem_data_valid	(1'b1),		 // Templated
 			 .mem_data_resp		(dmem_read_data)); // Templated
@@ -914,9 +925,11 @@ module pipeline(/*AUTOARG*/
 		      .sq_left		(sq_left[1:0]),
 		      .retire_sq2mem_data(retire_sq2mem_data[31:0]),
 		      .retire_sq2mem_addr(retire_sq2mem_addr[31:0]),
+		      .retire_sq2mem_func3(retire_sq2mem_func3[2:0]),
 		      .retire_sq2mem_valid(retire_sq2mem_valid),
 		      .sq_fwd_data	(sq_fwd_data[31:0]),
 		      .sq_fwd_valid	(sq_fwd_valid),
+		      .sq_fwd_byte_vector(sq_fwd_byte_vector[3:0]),
 		      // Inputs
 		      .clk		(clk),
 		      .reset_n		(reset_n),
@@ -925,6 +938,7 @@ module pipeline(/*AUTOARG*/
 		      .lsuint2sq_instr0_pc(lsuint2sq_instr0_pc[31:0]),
 		      .lsuint2sq_wb_data(lsuint2sq_wb_data[31:0]),
 		      .lsuint2sq_wb_addr(lsuint2sq_wb_addr[31:0]),
+		      .lsuint2sq_wb_func3(lsuint2sq_wb_func3[2:0]),
 		      .retire0_valid	(retire0_valid),
 		      .retire1_valid	(retire1_valid),
 		      .retire0_robid	(retire0_robid[ROB_WIDTH:0]),
@@ -940,6 +954,7 @@ module pipeline(/*AUTOARG*/
 			 // Inputs
 			 .clk			(clk),
 			 .read_address		(mem_read_addr[9:0]),
+			 .store_func3		(retire_sq2mem_func3),
 			 .write_address		(retire_sq2mem_addr[9:0]),
 			 .write_enable		(retire_sq2mem_valid),
 			 .write_data		(retire_sq2mem_data[31:0]));

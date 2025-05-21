@@ -21,20 +21,20 @@ VL_ATTR_COLD void Vcommon_top_with_uart___settle__TOP__top_with_uart__1(Vcommon_
         if ((1U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
             vlSelf->__PVT__inst_uart__DOT__uart_counter_next 
                 = ((IData)(1U) + vlSelf->__PVT__inst_uart__DOT__uart_counter_reg);
-            if ((0x2bU == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+            if ((0x1b2U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
                 vlSelf->__PVT__inst_uart__DOT__uart_counter_next = 0U;
             }
         } else if ((2U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
             vlSelf->__PVT__inst_uart__DOT__uart_counter_next 
                 = ((IData)(1U) + vlSelf->__PVT__inst_uart__DOT__uart_counter_reg);
-            if ((0x56U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+            if ((0x364U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
                 vlSelf->__PVT__inst_uart__DOT__uart_counter_next = 0U;
             }
         } else if ((3U != vlSelf->__PVT__inst_uart__DOT__uart_state)) {
             if ((4U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
                 vlSelf->__PVT__inst_uart__DOT__uart_counter_next 
                     = ((IData)(1U) + vlSelf->__PVT__inst_uart__DOT__uart_counter_reg);
-                if ((0x56U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+                if ((0x364U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
                     vlSelf->__PVT__inst_uart__DOT__uart_counter_next = 0U;
                 }
             }
@@ -56,7 +56,7 @@ VL_ATTR_COLD void Vcommon_top_with_uart___settle__TOP__top_with_uart__1(Vcommon_
                     vlSelf->__PVT__inst_uart__DOT__data_bit_count_next 
                         = vlSelf->__PVT__inst_uart__DOT__data_bit_count_reg;
                     if ((4U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
-                        if ((0x56U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+                        if ((0x364U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
                             vlSelf->__PVT__inst_uart__DOT__data_bit_count_next = 0U;
                         }
                     }
@@ -82,11 +82,11 @@ VL_ATTR_COLD void Vcommon_top_with_uart___settle__TOP__top_with_uart__1(Vcommon_
             vlSelf->__PVT__inst_uart__DOT__uart_state_next = 1U;
         }
     } else if ((1U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
-        if ((0x2bU == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+        if ((0x1b2U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
             vlSelf->__PVT__inst_uart__DOT__uart_state_next = 2U;
         }
     } else if ((2U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
-        if ((0x56U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+        if ((0x364U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
             vlSelf->__PVT__inst_uart__DOT__uart_state_next = 3U;
         }
     } else if ((3U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
@@ -94,7 +94,7 @@ VL_ATTR_COLD void Vcommon_top_with_uart___settle__TOP__top_with_uart__1(Vcommon_
             = ((7U == vlSelf->__PVT__inst_uart__DOT__data_bit_count_reg)
                 ? 4U : 2U);
     } else if ((4U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
-        if ((0x56U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+        if ((0x364U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
             vlSelf->__PVT__inst_uart__DOT__uart_state_next = 0U;
         }
     }
@@ -104,7 +104,7 @@ VL_ATTR_COLD void Vcommon_top_with_uart___settle__TOP__top_with_uart__1(Vcommon_
             if ((2U != vlSelf->__PVT__inst_uart__DOT__uart_state)) {
                 if ((3U != vlSelf->__PVT__inst_uart__DOT__uart_state)) {
                     if ((4U == vlSelf->__PVT__inst_uart__DOT__uart_state)) {
-                        if ((0x56U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
+                        if ((0x364U == vlSelf->__PVT__inst_uart__DOT__uart_counter_reg)) {
                             vlSelf->__PVT__inst_uart__DOT__data_valid_next = 1U;
                         }
                     }

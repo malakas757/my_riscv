@@ -8,10 +8,10 @@
 #include "Vcommon__Syms.h"
 #include "Vcommon_if_stage.h"
 
-VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_if_stage__1(Vcommon_if_stage* vlSelf) {
+VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__1(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+          Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_if_stage__1\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__1\n"); );
     // Init
     SData/*9:0*/ __PVT__gshare_inst__DOT__instr0_pht_addr;
     SData/*9:0*/ __PVT__gshare_inst__DOT__instr1_pht_addr;
@@ -26,58 +26,58 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_
     CData/*0:0*/ __Vfunc_if_branch_taken__4__Vfuncout;
     CData/*1:0*/ __Vfunc_if_branch_taken__4__biomd;
     // Body
-    vlSelf->__PVT__instr0_btb_target_addr = (0xfffffffcU 
-                                             & vlSelf->__PVT__instr0_btb_target_addr);
     vlSelf->__PVT__instr1_btb_target_addr = (0xfffffffcU 
                                              & vlSelf->__PVT__instr1_btb_target_addr);
+    vlSelf->__PVT__instr0_btb_target_addr = (0xfffffffcU 
+                                             & vlSelf->__PVT__instr0_btb_target_addr);
     vlSelf->__PVT__instr0_if_id[2U] = (0x1000U | vlSelf->__PVT__instr0_if_id[2U]);
-    vlSelf->__PVT__instr0_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr0_if_id[2U]) 
-                                       | (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
-                                          << 0xdU));
-    vlSelf->__PVT__instr0_if_id[3U] = (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
-                                       >> 0x13U);
     vlSelf->__PVT__instr1_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr1_if_id[2U]) 
                                        | (((IData)(4U) 
-                                           + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
+                                           + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
                                           << 0xdU));
     vlSelf->__PVT__instr1_if_id[3U] = (((IData)(4U) 
-                                        + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
+                                        + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
+                                       >> 0x13U);
+    vlSelf->__PVT__instr0_if_id[2U] = ((0x1fffU & vlSelf->__PVT__instr0_if_id[2U]) 
+                                       | (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
+                                          << 0xdU));
+    vlSelf->__PVT__instr0_if_id[3U] = (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
                                        >> 0x13U);
     vlSelf->__PVT__instr1_btb_target_addr = ((3U & vlSelf->__PVT__instr1_btb_target_addr) 
                                              | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
                                                 [(0x1ffU 
                                                   & (((IData)(4U) 
-                                                      + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
-                                                     >> 2U))] 
-                                                << 2U));
-    vlSelf->__PVT__instr0_btb_target_addr = ((3U & vlSelf->__PVT__instr0_btb_target_addr) 
-                                             | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
-                                                [(0x1ffU 
-                                                  & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
+                                                      + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
                                                      >> 2U))] 
                                                 << 2U));
     vlSelf->__PVT__instr1_btb_hit = (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
                                      [(0x1ffU & (((IData)(4U) 
-                                                  + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
+                                                  + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
                                                  >> 2U))] 
                                      & ((((IData)(4U) 
-                                          + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
+                                          + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
                                          >> 0xbU) == 
                                         vlSelf->__PVT__btb_inst__DOT__btb_tag_inst__DOT__history_table
                                         [(0x1ffU & 
                                           (((IData)(4U) 
-                                            + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc) 
+                                            + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc) 
                                            >> 2U))]));
+    vlSelf->__PVT__instr0_btb_target_addr = ((3U & vlSelf->__PVT__instr0_btb_target_addr) 
+                                             | (vlSelf->__PVT__btb_inst__DOT__btb_addr_inst__DOT__history_table
+                                                [(0x1ffU 
+                                                  & (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
+                                                     >> 2U))] 
+                                                << 2U));
     vlSelf->__PVT__instr0_btb_hit = (vlSelf->__PVT__btb_inst__DOT__btb_entry_valids
-                                     [(0x1ffU & (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
+                                     [(0x1ffU & (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
                                                  >> 2U))] 
-                                     & ((vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
+                                     & ((vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
                                          >> 0xbU) == 
                                         vlSelf->__PVT__btb_inst__DOT__btb_tag_inst__DOT__history_table
                                         [(0x1ffU & 
-                                          (vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc 
+                                          (vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc 
                                            >> 2U))]));
-    __Vfunc_gshare_hash__0__branch_pc = vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc;
+    __Vfunc_gshare_hash__0__branch_pc = vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc;
     __Vfunc_gshare_hash__0__GHSR = vlSelf->__PVT__gshare_inst__DOT__GHSR;
     __Vfunc_gshare_hash__0__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__0__GHSR) 
                                                   ^ 
@@ -97,10 +97,10 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_
                                            << 0xcU)));
     vlSelf->__PVT__instr0_if_id[0U] = (IData)((((QData)((IData)(vlSelf->__PVT__instr0_btb_target_addr)) 
                                                 << 0x20U) 
-                                               | (QData)((IData)(vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__read_data0))));
+                                               | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data0))));
     vlSelf->__PVT__instr0_if_id[1U] = (IData)(((((QData)((IData)(vlSelf->__PVT__instr0_btb_target_addr)) 
                                                  << 0x20U) 
-                                                | (QData)((IData)(vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__read_data0))) 
+                                                | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data0))) 
                                                >> 0x20U));
     vlSelf->__PVT__instr0_if_id[2U] = ((0xfffff000U 
                                         & vlSelf->__PVT__instr0_if_id[2U]) 
@@ -117,7 +117,7 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_
                                                  << 1U))
                                            : (IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR));
     __Vfunc_gshare_hash__1__branch_pc = ((IData)(4U) 
-                                         + vlSymsp->TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc.pc);
+                                         + vlSymsp->TOP__pipeline__inst_if_stage__inst_pc.pc);
     __Vfunc_gshare_hash__1__GHSR = vlSelf->__PVT__current_instr1_GHSR;
     __Vfunc_gshare_hash__1__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__1__GHSR) 
                                                   ^ 
@@ -142,10 +142,10 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_
                                          : 0U));
     vlSelf->__PVT__instr1_if_id[0U] = (IData)((((QData)((IData)(vlSelf->__PVT__instr1_btb_target_addr)) 
                                                 << 0x20U) 
-                                               | (QData)((IData)(vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__read_data1))));
+                                               | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data1))));
     vlSelf->__PVT__instr1_if_id[1U] = (IData)(((((QData)((IData)(vlSelf->__PVT__instr1_btb_target_addr)) 
                                                  << 0x20U) 
-                                                | (QData)((IData)(vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__read_data1))) 
+                                                | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__read_data1))) 
                                                >> 0x20U));
     vlSelf->__PVT__instr1_if_id[2U] = ((0xfffff000U 
                                         & vlSelf->__PVT__instr1_if_id[2U]) 
@@ -157,10 +157,10 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_
                                              | (IData)(vlSelf->__PVT__instr1_btb_hit))));
 }
 
-VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_if_stage__2(Vcommon_if_stage* vlSelf) {
+VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__2(Vcommon_if_stage* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+          Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_if_stage__2\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vcommon_if_stage___settle__TOP__pipeline__inst_if_stage__2\n"); );
     // Init
     SData/*9:0*/ __Vfunc_gshare_hash__2__Vfuncout;
     SData/*9:0*/ __Vfunc_gshare_hash__2__GHSR;
@@ -170,14 +170,14 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_
                                                        (0x1800U 
                                                         == 
                                                         (0x1800U 
-                                                         & vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[2U])));
-    vlSelf->__PVT__gshare_inst__DOT__GHSR_next = ((IData)(vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__flush_valid)
+                                                         & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U])));
+    vlSelf->__PVT__gshare_inst__DOT__GHSR_next = ((IData)(vlSymsp->TOP__pipeline.__PVT__flush_valid)
                                                    ? 
                                                   ((0x3feU 
-                                                    & (vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[0U] 
+                                                    & (vlSymsp->TOP__pipeline.__PVT__ex_branch_in[0U] 
                                                        << 1U)) 
                                                    | (1U 
-                                                      & (vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[2U] 
+                                                      & (vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
                                                          >> 0xbU)))
                                                    : 
                                                   (((IData)(vlSelf->__PVT__instr0_btb_hit) 
@@ -215,11 +215,11 @@ VL_ATTR_COLD void Vcommon_if_stage___settle__TOP__top_with_uart__inst_cpu__inst_
                                                            << 1U))
                                                         : (IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR)))))
                                                     : (IData)(vlSelf->__PVT__gshare_inst__DOT__GHSR)));
-    __Vfunc_gshare_hash__2__branch_pc = ((vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[2U] 
+    __Vfunc_gshare_hash__2__branch_pc = ((vlSymsp->TOP__pipeline.__PVT__ex_branch_in[2U] 
                                           << 0x15U) 
-                                         | (vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[1U] 
+                                         | (vlSymsp->TOP__pipeline.__PVT__ex_branch_in[1U] 
                                             >> 0xbU));
-    __Vfunc_gshare_hash__2__GHSR = (0x3ffU & vlSymsp->TOP__top_with_uart__inst_cpu.__PVT__ex_branch_in[0U]);
+    __Vfunc_gshare_hash__2__GHSR = (0x3ffU & vlSymsp->TOP__pipeline.__PVT__ex_branch_in[0U]);
     __Vfunc_gshare_hash__2__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__2__GHSR) 
                                                   ^ 
                                                   (__Vfunc_gshare_hash__2__branch_pc 

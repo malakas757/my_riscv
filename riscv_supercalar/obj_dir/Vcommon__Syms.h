@@ -15,13 +15,7 @@
 
 // INCLUDE MODULE CLASSES
 #include "Vcommon___024root.h"
-#include "Vcommon_top_with_uart.h"
 #include "Vcommon___024unit.h"
-#include "Vcommon_pipeline.h"
-#include "Vcommon_if_stage.h"
-#include "Vcommon_pc_counter.h"
-
-// DPI TYPES for DPI Export callbacks (Internal use)
 
 // SYMS CLASS (contains all model state)
 class Vcommon__Syms final : public VerilatedSyms {
@@ -32,13 +26,6 @@ class Vcommon__Syms final : public VerilatedSyms {
 
     // MODULE INSTANCE STATE
     Vcommon___024root              TOP;
-    Vcommon_top_with_uart          TOP__top_with_uart;
-    Vcommon_pipeline               TOP__top_with_uart__inst_cpu;
-    Vcommon_if_stage               TOP__top_with_uart__inst_cpu__inst_if_stage;
-    Vcommon_pc_counter             TOP__top_with_uart__inst_cpu__inst_if_stage__inst_pc;
-
-    // SCOPE NAMES
-    VerilatedScope __Vscope_top_with_uart__inst_cpu__inst_if_stage__inst_pc;
 
     // CONSTRUCTORS
     Vcommon__Syms(VerilatedContext* contextp, const char* namep, Vcommon* modelp);

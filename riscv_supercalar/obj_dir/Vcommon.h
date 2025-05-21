@@ -9,12 +9,9 @@
 #define VERILATED_VCOMMON_H_  // guard
 
 #include "verilated.h"
-#include "svdpi.h"
 
 class Vcommon__Syms;
 class Vcommon___024root;
-class Vcommon_top_with_uart;
-
 
 // This class is the main interface to the Verilated model
 class Vcommon VL_NOT_FINAL {
@@ -28,14 +25,26 @@ class Vcommon VL_NOT_FINAL {
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
-    VL_IN8(&rstn,0,0);
-    VL_IN8(&io_rx,0,0);
-    VL_OUT8(&led,7,0);
+    VL_IN8(&reset_n,0,0);
+    VL_IN8(&flush_valid,0,0);
+    VL_IN8(&IF_instr0_hit,0,0);
+    VL_IN8(&IF_instr1_hit,0,0);
+    VL_IN8(&IF_instr0_resp,0,0);
+    VL_OUT8(&instr0_predict_taken,0,0);
+    VL_OUT8(&instr1_predict_taken,0,0);
+    VL_IN8(&EXE_is_BJ,0,0);
+    VL_IN8(&EXE_update_GHSR,0,0);
+    VL_IN8(&EXE_branch_taken,0,0);
+    VL_OUT16(&current_instr0_GHSR,9,0);
+    VL_OUT16(&current_instr1_GHSR,9,0);
+    VL_IN16(&EXE_GHSR_restore,9,0);
+    VL_IN(&IF_instr0_pc,31,0);
+    VL_IN(&IF_instr1_pc,31,0);
+    VL_IN(&EXE_branch_addr,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
-    Vcommon_top_with_uart* const top_with_uart;
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.

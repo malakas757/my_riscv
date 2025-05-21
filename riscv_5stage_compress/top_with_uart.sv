@@ -6,12 +6,21 @@ module top_with_uart(/*AUTOARG*/
    // Outputs
    led,debug_is_bj,debug_flush,
    // Inputs
+<<<<<<< HEAD
    clk, rstn_cpu,rstn_uart, io_rx
    );
 
    input         clk;
    input         rstn_cpu;
    input         rstn_uart;
+=======
+   clk, rstn_cpu, rstn_uart, io_rx
+   );
+
+   input         clk;
+   input         rstn_uart;
+   input         rstn_cpu;
+>>>>>>> f360bb9bf55a7655fe008f863849175c1613fa08
    input  	 io_rx;
    output logic [7:0]  led;
    output logic 	 debug_is_bj;
@@ -57,13 +66,16 @@ module top_with_uart(/*AUTOARG*/
 
       /*debug UART*/
    //latch the first byte
+   
    always_ff@(posedge clk) begin
      if (!rstn_uart)
        led <= '0;
      else if (io_data_valid)
        led <= io_data_packet;
    end
-      
+   
+
+   
 
 
 

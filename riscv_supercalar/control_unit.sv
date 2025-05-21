@@ -236,6 +236,24 @@ localparam logic [6:0] AUIPC_INSTRUCTION = 7'b0010111;
         control.alu_op = ALU_SRA;
     end
 
+       // ============== R-type (M) ==============
+
+    else if ({instruction.funct7, instruction.funct3, instruction.opcode} == MUL_INSTRUCTION) begin
+        control.alu_op = ALU_MUL; 
+    end
+    else if ({instruction.funct7, instruction.funct3, instruction.opcode} == DIV_INSTRUCTION) begin
+        control.alu_op = ALU_DIV;
+    end
+    else if ({instruction.funct7, instruction.funct3, instruction.opcode} == DIVU_INSTRUCTION) begin
+        control.alu_op = ALU_DIVU;
+    end
+    else if ({instruction.funct7, instruction.funct3, instruction.opcode} == REM_INSTRUCTION) begin
+        control.alu_op = ALU_REM;
+    end
+    else if ({instruction.funct7, instruction.funct3, instruction.opcode} == REMU_INSTRUCTION) begin
+        control.alu_op = ALU_REMU;
+    end       
+
     // ============== I-type (普通算术逻辑，10 bits) ==============
     else if ({instruction.funct3, instruction.opcode} == ADDI_INSTRUCTION) begin
         control.alu_op = ALU_ADD;

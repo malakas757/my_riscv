@@ -17,9 +17,12 @@ VL_MODULE(Vcommon_top_with_uart) {
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
-    VL_IN8(rstn,0,0);
+    VL_IN8(rstn_cpu,0,0);
+    VL_IN8(rstn_uart,0,0);
     VL_IN8(io_rx,0,0);
     VL_OUT8(led,7,0);
+    VL_OUT8(branch_times_debug,0,0);
+    VL_OUT8(flush_times_debug,0,0);
     CData/*0:0*/ __PVT__io_data_valid;
     CData/*7:0*/ __PVT__inst_uart__DOT__data_packet_reg;
     CData/*7:0*/ __PVT__inst_uart__DOT__data_packet_next;
@@ -28,7 +31,14 @@ VL_MODULE(Vcommon_top_with_uart) {
     CData/*0:0*/ __PVT__inst_uart__DOT__word_valid_next;
     CData/*1:0*/ __PVT__inst_uart__DOT__byte_counter;
     CData/*1:0*/ __PVT__inst_uart__DOT__byte_counter_next;
+    CData/*7:0*/ __Vdlyvval__inst_uart__DOT__byte_reg__v0;
+    CData/*0:0*/ __Vdlyvset__inst_uart__DOT__byte_reg__v0;
+    CData/*7:0*/ __Vdlyvval__inst_uart__DOT__byte_reg__v1;
+    CData/*7:0*/ __Vdlyvval__inst_uart__DOT__byte_reg__v2;
+    CData/*7:0*/ __Vdlyvval__inst_uart__DOT__byte_reg__v3;
+    CData/*0:0*/ __Vdlyvset__inst_uart__DOT__byte_reg__v4;
     SData/*9:0*/ __PVT__write_address;
+    SData/*9:0*/ __Vdly__write_address;
     IData/*31:0*/ __PVT__io_data_packet;
     IData/*31:0*/ __PVT__inst_uart__DOT__uart_state;
     IData/*31:0*/ __PVT__inst_uart__DOT__uart_state_next;

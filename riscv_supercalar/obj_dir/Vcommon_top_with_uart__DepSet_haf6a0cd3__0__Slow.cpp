@@ -13,9 +13,12 @@ VL_ATTR_COLD void Vcommon_top_with_uart___ctor_var_reset(Vcommon_top_with_uart* 
     VL_DEBUG_IF(VL_DBG_MSGF("+      Vcommon_top_with_uart___ctor_var_reset\n"); );
     // Body
     vlSelf->clk = VL_RAND_RESET_I(1);
-    vlSelf->rstn = VL_RAND_RESET_I(1);
+    vlSelf->rstn_cpu = VL_RAND_RESET_I(1);
+    vlSelf->rstn_uart = VL_RAND_RESET_I(1);
     vlSelf->io_rx = VL_RAND_RESET_I(1);
     vlSelf->led = VL_RAND_RESET_I(8);
+    vlSelf->branch_times_debug = VL_RAND_RESET_I(1);
+    vlSelf->flush_times_debug = VL_RAND_RESET_I(1);
     vlSelf->__PVT__io_data_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT__io_data_packet = VL_RAND_RESET_I(32);
     vlSelf->__PVT__write_address = VL_RAND_RESET_I(10);
@@ -38,4 +41,11 @@ VL_ATTR_COLD void Vcommon_top_with_uart___ctor_var_reset(Vcommon_top_with_uart* 
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
         vlSelf->__PVT__inst_uart__DOT__byte_reg_next[__Vi0] = VL_RAND_RESET_I(8);
     }
+    vlSelf->__Vdly__write_address = VL_RAND_RESET_I(10);
+    vlSelf->__Vdlyvval__inst_uart__DOT__byte_reg__v0 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__inst_uart__DOT__byte_reg__v0 = 0;
+    vlSelf->__Vdlyvval__inst_uart__DOT__byte_reg__v1 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvval__inst_uart__DOT__byte_reg__v2 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvval__inst_uart__DOT__byte_reg__v3 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__inst_uart__DOT__byte_reg__v4 = 0;
 }

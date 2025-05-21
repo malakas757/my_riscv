@@ -115,9 +115,9 @@ module gshare(
   //PHT
 
   //PHT READ
-   assign instr0_pht_addr = gshare_hash(current_instr0_GHSR,IF_instr0_pc);//gshare_hash(current_instr0_GHSR,IF_instr0_pc);//IF_instr0_pc[GSHARE_PHT_WIDTH+1:2];//
-   assign instr1_pht_addr = gshare_hash(current_instr1_GHSR,IF_instr1_pc);//IF_instr1_pc[GSHARE_PHT_WIDTH+1:2];//gshare_hash(current_instr1_GHSR,IF_instr1_pc);
-   assign update_pht_addr = gshare_hash(EXE_GHSR_restore,EXE_branch_addr);//EXE_branch_addr[GSHARE_PHT_WIDTH+1:2];//gshare_hash(EXE_GHSR_restore,EXE_branch_addr);
+   assign instr0_pht_addr = IF_instr0_pc[GSHARE_PHT_WIDTH+1:2];//gshare_hash(current_instr0_GHSR,IF_instr0_pc);//IF_instr0_pc[GSHARE_PHT_WIDTH+1:2];//
+   assign instr1_pht_addr = IF_instr1_pc[GSHARE_PHT_WIDTH+1:2];//IF_instr1_pc[GSHARE_PHT_WIDTH+1:2];//gshare_hash(current_instr1_GHSR,IF_instr1_pc);
+   assign update_pht_addr = EXE_branch_addr[GSHARE_PHT_WIDTH+1:2];//EXE_branch_addr[GSHARE_PHT_WIDTH+1:2];//gshare_hash(EXE_GHSR_restore,EXE_branch_addr);
    
    assign instr0_bimod = GSHARE_PHT[instr0_pht_addr];
    assign instr1_bimod = GSHARE_PHT[instr1_pht_addr];

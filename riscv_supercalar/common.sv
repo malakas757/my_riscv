@@ -7,6 +7,10 @@ package common;
    localparam [31:0] INSTRUCTION_NOP = 32'h00000013;
    localparam [31:0] PC_INIT         = 32'h00000000;
 
+
+   // data_ram_depth
+   localparam int  DATA_RAM_DEPTH = 128;
+
    //ROB state
    localparam [1:0]  rob_idle = 2'b00;
    localparam [1:0]  rob_rollback = 2'b01;
@@ -88,9 +92,13 @@ package common;
         ALU_SLL  = 4'b0010 , 
         ALU_SRL  = 4'b1010 , 
         ALU_SRA  = 4'b1011 , 
-        ALU_PASS = 4'b1111 
+        ALU_MUL  = 4'b0011 , 
+        ALU_DIV  = 4'b0101 , 
+        ALU_DIVU = 4'b0111 , 
+        ALU_REM  = 4'b1001 , 
+        ALU_REMU = 4'b1101 ,
+        ALU_PASS = 4'b1111
     } alu_op_type;
-   
     
     typedef enum logic [2:0]
     {

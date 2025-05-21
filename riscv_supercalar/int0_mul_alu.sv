@@ -16,7 +16,7 @@ module int0_mul_alu(/*AUTOARG*/
    input                       reset_n;
    input                       flush_valid;
    input [ROB_WIDTH:0] 	       flush_robid;
-   output 		       mul_slot_busy;//always 0 because pipeline mul unit
+   output 		       mul_slot_busy;//
    
    
 
@@ -45,8 +45,7 @@ module int0_mul_alu(/*AUTOARG*/
 
    logic [31:0] 		left_operand;
    logic [31:0] 		right_operand;
-   logic [63:0] 		mul_out_data;
-   logic 			mul_done;
+   logic [31:0] 		mul_out_data;
    logic 			mul_out_valid;
    logic [ROB_WIDTH:0] 		mul_out_robid;
    logic [PRF_WIDTH-1:0] 	mul_out_T;
@@ -119,8 +118,29 @@ module int0_mul_alu(/*AUTOARG*/
 
 
    
-   //for mul
-   mult inst_mult(
+   //for mul/div
+   mul_div inst_mul_div(
+			// Outputs
+			.result		(mul_out_data),
+			.busy		(mul_slot_busy),
+			.out_valid	(mul_out_valid),
+			.out_rob_id	(mul_out_robid),
+			.out_prf_id	(mul_out_T),
+			// Inputs
+			.clk		(clk),
+			.reset_n	(reset_n),
+			.start		(int0_control.is_mul & int0_valid),
+			.left_operand	(left_operand[31:0]),
+			.right_operand	(right_operand[31:0]),
+			.rob_id		(int0_robid),
+			.flush_robid	(flush_robid[ROB_WIDTH:0]),
+			.prf_id		(int0_T),
+			.flush_valid	(flush_valid),
+			.operation	(int0_control.alu_op));
+   
+   
+/*   
+   mul_div inst_mul_dv(
 		  // Outputs
 		  .product		(mul_out_data),
 		  .done			(mul_done),
@@ -140,7 +160,7 @@ module int0_mul_alu(/*AUTOARG*/
 		  .prf_id		(int0_T),
 		  .flush_valid		(flush_valid));
    
-
+*/
 
   
    //wb0 reg
@@ -150,7 +170,7 @@ module int0_mul_alu(/*AUTOARG*/
    assign writeback0_prd         = wb0_reg_prd;
    assign writeback0_robid       = wb0_reg_robid;
    assign writeback0_data        = wb0_reg_data;
-   assign mul_slot_busy          = 1'b0;
+
    
    
    always_ff@(posedge clk) begin
@@ -162,7 +182,7 @@ module int0_mul_alu(/*AUTOARG*/
 	 wb0_reg_need_to_wb <= '0;
       end
       else if ( ~flush_valid ) begin
-	 wb0_reg_valid      <= mul_done & mul_out_valid;
+	 wb0_reg_valid      <= mul_out_valid;
 	 wb0_reg_robid      <= mul_out_robid;
 	 wb0_reg_prd        <= mul_out_T;
 	 wb0_reg_data       <= mul_out_data[31:0];
