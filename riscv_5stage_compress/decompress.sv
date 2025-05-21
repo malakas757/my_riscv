@@ -72,7 +72,7 @@ module decompress(
                       dec_instruction = {12'b0, instruction[11:7], 3'b000, 5'b00000, 7'b1100111}; //C_JR    ?
                   end
                   else begin
-                      if(instruction[12]) //?
+                      if(instruction[12]==1'b0) //?
                       dec_instruction = {7'b0000000, instruction[6:2], 5'b00000, 3'b000, instruction[11:7], 7'b0110011};// C_MV
                       else
                       dec_instruction = {7'b0000000, instruction[6:2], instruction[11:7], 3'b000, instruction[11:7], 7'b0110011};//C_ADD

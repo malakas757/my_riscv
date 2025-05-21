@@ -6,11 +6,12 @@ module top_with_uart(/*AUTOARG*/
    // Outputs
    led,debug_is_bj,debug_flush,
    // Inputs
-   clk, rstn, io_rx
+   clk, rstn_cpu,rstn_uart, io_rx
    );
 
    input         clk;
-   input         rstn;
+   input         rstn_cpu;
+   input         rstn_uart;
    input  	 io_rx;
    output logic [7:0]  led;
    output logic 	 debug_is_bj;
@@ -30,7 +31,7 @@ module top_with_uart(/*AUTOARG*/
 		  .io_data_packet	(io_data_packet[7:0]),
 		  // Inputs
 		  .clk			(clk),
-		  .reset_n		(rstn),
+		  .reset_n		(rstn_uart),
 		  .io_rx		(io_rx));
 
    cpu  inst_cpu(
@@ -40,13 +41,13 @@ module top_with_uart(/*AUTOARG*/
 		 .debug_reg             (debug_reg),
 		 // Inputs
 		 .clk			(clk),
-		 .reset_n		(rstn),
+		 .reset_n		(rstn_cpu),
 		 .write_address		({22'd0,write_address[9:0]}),
 		 .write_data		(io_data_packet[7:0]),
 		 .write_enable		(io_data_valid));
    
    always_ff@(posedge clk) begin
-      if(!rstn) begin
+      if(!rstn_uart) begin
 	 write_address <= '0;
       end
       else if (io_data_valid)
@@ -57,7 +58,7 @@ module top_with_uart(/*AUTOARG*/
       /*debug UART*/
    //latch the first byte
    always_ff@(posedge clk) begin
-     if (!rstn)
+     if (!rstn_uart)
        led <= '0;
      else if (io_data_valid)
        led <= io_data_packet;

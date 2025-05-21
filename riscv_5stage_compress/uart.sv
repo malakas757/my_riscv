@@ -9,8 +9,8 @@ module uart(
     output logic [7:0] io_data_packet 
 );
 
-    parameter BAUD = 115200;
-    localparam FREQUENCY_IN_HZ = 10_000_000;
+    parameter BAUD = 57600;
+    localparam FREQUENCY_IN_HZ = 50_000_000;
     localparam BAUD_COUNT_CHECK = FREQUENCY_IN_HZ / BAUD;
     localparam NUM_DATA_BITS = 8;  
 

@@ -32,7 +32,7 @@ module btb
    output  logic [31:0]    instr1_btb_target_addr;
 
 
-   localparam WORD_WIDTH = 2; //4 byte
+   localparam WORD_WIDTH = 1; //4 byte
    localparam INDEX_WIDTH = $clog2(BTB_ENTRY_NUM);
    localparam TAG_WIDTH = XLEN_WIDTH - WORD_WIDTH - INDEX_WIDTH; 
    localparam BTB_TARGET_ADDR_WIDTH = XLEN_WIDTH - WORD_WIDTH; //30 bits

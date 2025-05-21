@@ -5,7 +5,7 @@ import common::*;
 
 module cpu(/*AUTOARG*/
    // Outputs
-   debug_flush, debug_is_bj,
+   debug_flush, debug_is_bj,debug_reg,
    // Inputs
    clk, reset_n, write_address, write_data, write_enable
    );
@@ -16,6 +16,7 @@ module cpu(/*AUTOARG*/
    input  	  write_enable;
    output 	  debug_flush;
    output 	  debug_is_bj;
+   output     [31:0]debug_reg[0:REGISTER_FILE_SIZE-1];
    
    
 
@@ -88,6 +89,7 @@ module cpu(/*AUTOARG*/
    logic  id_ex_flush;
    logic  ex_mem_flush;
    logic  mem_wb_flush;
+   
    
    
   
@@ -235,6 +237,7 @@ module cpu(/*AUTOARG*/
 				  .read_data1		(decode_data1),	 // Templated
 				  .read_data2		(decode_data2),	 // Templated
 				  .immediate_data	(decode_immediate_data), // Templated
+				  .debug_reg         (debug_reg),
 				  .control_signals	(decode_control), // Templated
 
 				  // Inputs

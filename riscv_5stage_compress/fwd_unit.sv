@@ -20,18 +20,19 @@ module fwd_unit(
    always_comb begin:forwarding_sel
       fwd_sel_rs1=0;
       fwd_sel_rs2=0;
-      if ( mem_wb_reg.control.reg_write & (mem_wb_reg.reg_rd_id == id_ex_reg.control.rs1_id) )begin
-	        fwd_sel_rs1=2'b01;
-      end
-      else if ( ex_mem_reg.control.reg_write & (ex_mem_reg.reg_rd_id == id_ex_reg.control.rs1_id)) begin
+      if ( ex_mem_reg.control.reg_write & (ex_mem_reg.reg_rd_id == id_ex_reg.control.rs1_id)) begin
 		fwd_sel_rs1=2'b10;
       end
-      
-      if ( mem_wb_reg.control.reg_write & (mem_wb_reg.reg_rd_id == id_ex_reg.control.rs2_id) )begin
-	        fwd_sel_rs2=2'b01;
+      else if ( mem_wb_reg.control.reg_write & (mem_wb_reg.reg_rd_id == id_ex_reg.control.rs1_id) )begin
+	        fwd_sel_rs1=2'b01;
       end
-      else if ( ex_mem_reg.control.reg_write & (ex_mem_reg.reg_rd_id == id_ex_reg.control.rs2_id)) begin
+ 
+      if ( ex_mem_reg.control.reg_write & (ex_mem_reg.reg_rd_id == id_ex_reg.control.rs2_id)) begin
 		fwd_sel_rs2=2'b10;
+      end
+      
+       else if ( mem_wb_reg.control.reg_write & (mem_wb_reg.reg_rd_id == id_ex_reg.control.rs2_id) )begin
+	        fwd_sel_rs2=2'b01;
       end
    end
 endmodule

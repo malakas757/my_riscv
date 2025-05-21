@@ -6,7 +6,7 @@ import common::*;
 module decode_stage(/*AUTOARG*/
    // Outputs
    branch_out, reg_rd_id, pc_out, read_data1, read_data2,
-   immediate_data, control_signals,
+   immediate_data, debug_reg, control_signals,
    // Inputs
    clk, reset_n, instruction, pc,  write_en, write_id, write_data,
    branch_in
@@ -27,11 +27,13 @@ module decode_stage(/*AUTOARG*/
     output logic [31:0] read_data1;
     output logic [31:0] read_data2;
     output logic [31:0] immediate_data;
+    output logic [31:0] debug_reg[0:REGISTER_FILE_SIZE-1];
     output control_type control_signals;
  
 
     logic [31:0] rf_read_data1;
     logic [31:0] rf_read_data2;
+    logic [31:0] rf_debug_reg[0:REGISTER_FILE_SIZE-1];
     
     control_type control;
         
@@ -63,7 +65,8 @@ module decode_stage(/*AUTOARG*/
         .write_id(write_id),
         .write_data(write_data),
         .read1_data(rf_read_data1),
-        .read2_data(rf_read_data2)        
+        .read2_data(rf_read_data2),
+        .debug_reg(rf_debug_reg)        
     );
     
    /* control inst_control(
@@ -86,6 +89,7 @@ module decode_stage(/*AUTOARG*/
     assign control_signals = control;
     assign pc_out = pc;
     assign branch_out = branch_in;
+    assign debug_reg = rf_debug_reg;
    
     
 endmodule
