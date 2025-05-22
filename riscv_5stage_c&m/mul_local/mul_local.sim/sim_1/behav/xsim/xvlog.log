@@ -1,0 +1,50 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/common.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/alu.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/bju.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bju
+INFO: [VRFC 10-2458] undeclared symbol is_rs1_eq_rs2, assumed default net type wire [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/bju.sv:46]
+INFO: [VRFC 10-2458] undeclared symbol is_rs1_lt_rs2, assumed default net type wire [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/bju.sv:47]
+INFO: [VRFC 10-2458] undeclared symbol is_sign_rs1_lt_rs2, assumed default net type wire [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/bju.sv:48]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/btb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module btb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/control_unit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module control_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/cpu.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/data_memory.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/decode_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decode_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/decompress.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decompress
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/divider.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divider
+WARNING: [VRFC 10-3824] variable 'index' must explicitly be declared as automatic or static [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/divider.sv:98]
+WARNING: [VRFC 10-3824] variable 'bit_in' must explicitly be declared as automatic or static [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/divider.sv:99]
+WARNING: [VRFC 10-3824] variable 'temp_calc' must explicitly be declared as automatic or static [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/divider.sv:100]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/execute_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module execute_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/fetch_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fetch_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/fwd_unit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fwd_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/gshare.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module gshare
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/hazard_detect.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module hazard_detect
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/lsu.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lsu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/mem_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mem_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/mul_div.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mul_div
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/program_memory.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module program_memory
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/register_file.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module register_file
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/sequential_multiplier.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module multiplier
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/test.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_tb
+INFO: [VRFC 10-2458] undeclared symbol debug_is_bj, assumed default net type wire [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/test.sv:33]

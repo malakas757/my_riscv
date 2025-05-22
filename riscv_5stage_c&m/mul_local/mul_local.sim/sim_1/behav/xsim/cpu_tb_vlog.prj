@@ -1,0 +1,33 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../rtl/ram2r1w.v" \
+
+sv xil_defaultlib  \
+"../../../../../rtl/common.sv" \
+"../../../../../rtl/alu.sv" \
+"../../../../../rtl/bju.sv" \
+"../../../../../rtl/btb.sv" \
+"../../../../../rtl/control_unit.sv" \
+"../../../../../rtl/cpu.sv" \
+"../../../../../rtl/data_memory.sv" \
+"../../../../../rtl/decode_stage.sv" \
+"../../../../../rtl/decompress.sv" \
+"../../../../../rtl/divider.sv" \
+"../../../../../rtl/execute_stage.sv" \
+"../../../../../rtl/fetch_stage.sv" \
+"../../../../../rtl/fwd_unit.sv" \
+"../../../../../rtl/gshare.sv" \
+"../../../../../rtl/hazard_detect.sv" \
+"../../../../../rtl/lsu.sv" \
+"../../../../../rtl/mem_stage.sv" \
+"../../../../../rtl/mul_div.sv" \
+"../../../../../rtl/program_memory.sv" \
+"../../../../../rtl/register_file.sv" \
+"../../../../../rtl/sequential_multiplier.sv" \
+"../../../../../rtl/test.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,61 @@
+Vivado Simulator 2019.1
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/xelab.exe -wto fd71167b1e8241e283f5f244d6a1a709 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cpu_tb_behav xil_defaultlib.cpu_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-3091] actual bit length 5 differs from formal bit length 4 for port 'control' [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/execute_stage.sv:104]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 10 for port 'byte_address' [E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/mem_stage.sv:40]
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/test.sv" Line 4. Module cpu_tb has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/cpu.sv" Line 6. Module cpu has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/program_memory.sv" Line 5. Module program_memory has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/fetch_stage.sv" Line 4. Module fetch_stage has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/btb.sv" Line 5. Module btb_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/ram2r1w.v" Line 3. Module ram2r1w(ENTRY_NUM=512,ADDR_WIDTH=9,DATA_WIDTH=21) has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/ram2r1w.v" Line 3. Module ram2r1w(ENTRY_NUM=512,ADDR_WIDTH=9,DATA_WIDTH=30) has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/gshare.sv" Line 5. Module gshare has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/hazard_detect.sv" Line 6. Module hazard_detect has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/decode_stage.sv" Line 4. Module decode_stage has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/decompress.sv" Line 24. Module decompress has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/register_file.sv" Line 4. Module register_file has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/control_unit.sv" Line 6. Module control_unit has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/fwd_unit.sv" Line 6. Module fwd_unit has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/execute_stage.sv" Line 6. Module execute_stage has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/alu.sv" Line 6. Module alu has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/bju.sv" Line 6. Module bju has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/lsu.sv" Line 6. Module lsu has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/mul_div.sv" Line 2. Module mul_div has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/sequential_multiplier.sv" Line 2. Module multiplier_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/divider.sv" Line 2. Module divider has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/mem_stage.sv" Line 5. Module mem_stage has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/rtl/data_memory.sv" Line 4. Module data_memory has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/Course/Lund/ICP/Phase2/riscv_g5/riscv_5stage_mult_compress/mul_local/mul_local.sim/sim_1/behav/xsim/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.common
+Compiling module xil_defaultlib.program_memory
+Compiling module xil_defaultlib.ram2r1w(ENTRY_NUM=512,ADDR_WIDTH...
+Compiling module xil_defaultlib.ram2r1w(ENTRY_NUM=512,ADDR_WIDTH...
+Compiling module xil_defaultlib.btb_default
+Compiling module xil_defaultlib.gshare
+Compiling module xil_defaultlib.fetch_stage
+Compiling module xil_defaultlib.hazard_detect
+Compiling module xil_defaultlib.decompress
+Compiling module xil_defaultlib.register_file
+Compiling module xil_defaultlib.control_unit
+Compiling module xil_defaultlib.decode_stage
+Compiling module xil_defaultlib.fwd_unit
+Compiling module xil_defaultlib.alu
+Compiling module xil_defaultlib.bju
+Compiling module xil_defaultlib.lsu
+Compiling module xil_defaultlib.multiplier_default
+Compiling module xil_defaultlib.divider
+Compiling module xil_defaultlib.mul_div
+Compiling module xil_defaultlib.execute_stage
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.mem_stage
+Compiling module xil_defaultlib.cpu
+Compiling module xil_defaultlib.cpu_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cpu_tb_behav
