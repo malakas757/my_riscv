@@ -27,7 +27,7 @@ module top_with_uart(/*AUTOARG*/
 
 
    logic [9:0] 	 write_address;
-   logic [31:0] debug_reg[0:REGISTER_FILE_SIZE-1];
+    (* DONT_TOUCH= "TRUE" *)logic [31:0] debug_reg[0:REGISTER_FILE_SIZE-1];
    logic [31:0]  ram_debug[DATA_RAM_DEPTH/4];
    
    uart inst_uart(
