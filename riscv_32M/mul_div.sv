@@ -22,14 +22,17 @@ module mul_div (
     assign is_multiplication = (operation == ALU_MUL);
     assign is_division = (operation == ALU_DIV || operation == ALU_DIVU || operation == ALU_REM || operation == ALU_REMU);
 
-    multiplier inst_seq_multiplier (
+    multiplier #(
+        .CHUNK_WIDTH(8) 
+    )
+    inst_seq_multiplier (
         .clk(clk),
         .reset_n(reset_n),
         .start(is_multiplication && start),
         .operand1(operand1),
         .operand2(operand2),
         .result(mul_result),
-        .next_ready( mul_ready)
+        .next_ready(mul_ready)
     );
 
 

@@ -59,7 +59,7 @@ module multiplier #(
 
     end
 
-    // ready为组合逻辑，空闲时为1，start拉高同周期为0，计算结束后一拍拉高
+    
     always_comb begin
         if (finish) begin
             ready = 1'b1;
