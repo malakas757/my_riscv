@@ -1,0 +1,57 @@
+`timescale 1ns/1ps
+
+module sramcontroller(/*AUTOARG*/);
+
+
+   input                   clk;
+   input                   rstn;
+   
+   // ISU interface
+   input                   mpc_isu_rc_valid;
+   output 		   mpc_isu_rc_enable;
+   input  logic [1:0] 	   mpc_isu_rc_channel_id;
+   input  logic [2:0] 	   mpc_isu_rc_op_code;
+   input  logic [6:0] 	   mpc_isu_rc_set_way_offset;
+   input  logic [7:0] 	   mpc_isu_rc_wbuffer_id;
+   input  logic [2:0] 	   mpc_isu_rc_xbar_rob_num;
+   input  logic [1:0] 	   mpc_isu_rc_cacheLine_dirty[1:0];
+   input  logic [255:0]    mpc_isu_rc_linefill_data;
+
+   //xbar interface
+   output 		   mpc_rc_xbar_valid;
+   input 		   mpc_rc_xbar_enable;
+   output [1:0]		   mpc_rc_xbar_channel_id;
+   output [2:0]		   mpc_rc_xbar_rob_num;
+   output [127:0] 	   mpc_rc_xbar_data;
+
+   //submem interface
+   output 		   mpc_rc_subm_valid;
+   input 		   mpc_rc_subm_enable;
+   output logic [127:0]    mpc_rc_subm_data;
+   output logic            mpc_rc_subm_offset;
+   output logic            mpc_rc_subm_all_offset;
+   output logic [6:0] 	   mpc_rc_subm_set_way_offset;
+
+   //wbuffer req interface
+   output 		   mpc_rc_wbuf_req_valid;
+   input 		   mpc_rc_wbuf_req_enable;
+   output [1:0] 	   mpc_rc_wbuf_req_channel_id;
+   output [7:0] 	   mpc_rc_wbuf_req_wbuffer_id;
+
+   //wbuffer resp interface
+   input 		   mpc_rc_wbuf_rtn_valid;
+   output 		   mpc_rc_wbuf_rtn_enable;
+   input logic [127:0] 	   mpc_rc_wbuf_rtn_data;
+	   
+   
+   
+   
+   
+   
+endmodule   
+   
+   
+   
+  
+   
+   

@@ -11,28 +11,60 @@ VL_ATTR_COLD void Vcommon___024root___settle__TOP__6(Vcommon___024root* vlSelf) 
     Vcommon__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcommon___024root___settle__TOP__6\n"); );
     // Init
-    CData/*0:0*/ __Vfunc_if_branch_taken__0__Vfuncout;
-    CData/*1:0*/ __Vfunc_if_branch_taken__0__biomd;
-    CData/*0:0*/ __Vfunc_if_branch_taken__1__Vfuncout;
-    CData/*1:0*/ __Vfunc_if_branch_taken__1__biomd;
+    SData/*9:0*/ gshare__DOT__instr0_pht_addr;
+    SData/*9:0*/ gshare__DOT__instr1_pht_addr;
+    SData/*9:0*/ __Vfunc_gshare_hash__0__Vfuncout;
+    SData/*9:0*/ __Vfunc_gshare_hash__0__GHSR;
+    IData/*31:0*/ __Vfunc_gshare_hash__0__branch_pc;
+    SData/*9:0*/ __Vfunc_gshare_hash__1__Vfuncout;
+    SData/*9:0*/ __Vfunc_gshare_hash__1__GHSR;
+    IData/*31:0*/ __Vfunc_gshare_hash__1__branch_pc;
+    SData/*9:0*/ __Vfunc_gshare_hash__2__Vfuncout;
+    SData/*9:0*/ __Vfunc_gshare_hash__2__GHSR;
+    IData/*31:0*/ __Vfunc_gshare_hash__2__branch_pc;
+    CData/*0:0*/ __Vfunc_if_branch_taken__3__Vfuncout;
+    CData/*1:0*/ __Vfunc_if_branch_taken__3__biomd;
+    CData/*0:0*/ __Vfunc_if_branch_taken__4__Vfuncout;
+    CData/*1:0*/ __Vfunc_if_branch_taken__4__biomd;
     // Body
+    __Vfunc_gshare_hash__2__branch_pc = vlSelf->EXE_branch_addr;
+    __Vfunc_gshare_hash__2__GHSR = vlSelf->EXE_GHSR_restore;
+    __Vfunc_gshare_hash__2__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__2__GHSR) 
+                                                  ^ 
+                                                  (__Vfunc_gshare_hash__2__branch_pc 
+                                                   >> 2U)));
+    vlSelf->gshare__DOT__update_pht_addr = __Vfunc_gshare_hash__2__Vfuncout;
     vlSelf->current_instr0_GHSR = vlSelf->gshare__DOT__GHSR;
-    __Vfunc_if_branch_taken__1__biomd = vlSelf->gshare__DOT__GSHARE_PHT
-        [(0x3ffU & (vlSelf->IF_instr1_pc >> 2U))];
-    __Vfunc_if_branch_taken__1__Vfuncout = (1U & ((IData)(__Vfunc_if_branch_taken__1__biomd) 
+    __Vfunc_gshare_hash__0__branch_pc = vlSelf->IF_instr0_pc;
+    __Vfunc_gshare_hash__0__GHSR = vlSelf->current_instr0_GHSR;
+    __Vfunc_gshare_hash__0__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__0__GHSR) 
+                                                  ^ 
+                                                  (__Vfunc_gshare_hash__0__branch_pc 
+                                                   >> 2U)));
+    gshare__DOT__instr0_pht_addr = __Vfunc_gshare_hash__0__Vfuncout;
+    __Vfunc_if_branch_taken__3__biomd = vlSelf->gshare__DOT__GSHARE_PHT
+        [gshare__DOT__instr0_pht_addr];
+    __Vfunc_if_branch_taken__3__Vfuncout = (1U & ((IData)(__Vfunc_if_branch_taken__3__biomd) 
                                                   >> 1U));
-    vlSelf->instr1_predict_taken = __Vfunc_if_branch_taken__1__Vfuncout;
-    __Vfunc_if_branch_taken__0__biomd = vlSelf->gshare__DOT__GSHARE_PHT
-        [(0x3ffU & (vlSelf->IF_instr0_pc >> 2U))];
-    __Vfunc_if_branch_taken__0__Vfuncout = (1U & ((IData)(__Vfunc_if_branch_taken__0__biomd) 
-                                                  >> 1U));
-    vlSelf->instr0_predict_taken = __Vfunc_if_branch_taken__0__Vfuncout;
+    vlSelf->instr0_predict_taken = __Vfunc_if_branch_taken__3__Vfuncout;
     vlSelf->current_instr1_GHSR = vlSelf->gshare__DOT__GHSR;
     vlSelf->current_instr1_GHSR = (((IData)(vlSelf->IF_instr0_hit) 
                                     & (~ (IData)(vlSelf->instr0_predict_taken)))
                                     ? (0x3feU & ((IData)(vlSelf->gshare__DOT__GHSR) 
                                                  << 1U))
                                     : (IData)(vlSelf->gshare__DOT__GHSR));
+    __Vfunc_gshare_hash__1__branch_pc = vlSelf->IF_instr1_pc;
+    __Vfunc_gshare_hash__1__GHSR = vlSelf->current_instr1_GHSR;
+    __Vfunc_gshare_hash__1__Vfuncout = (0x3ffU & ((IData)(__Vfunc_gshare_hash__1__GHSR) 
+                                                  ^ 
+                                                  (__Vfunc_gshare_hash__1__branch_pc 
+                                                   >> 2U)));
+    gshare__DOT__instr1_pht_addr = __Vfunc_gshare_hash__1__Vfuncout;
+    __Vfunc_if_branch_taken__4__biomd = vlSelf->gshare__DOT__GSHARE_PHT
+        [gshare__DOT__instr1_pht_addr];
+    __Vfunc_if_branch_taken__4__Vfuncout = (1U & ((IData)(__Vfunc_if_branch_taken__4__biomd) 
+                                                  >> 1U));
+    vlSelf->instr1_predict_taken = __Vfunc_if_branch_taken__4__Vfuncout;
     vlSelf->gshare__DOT__GHSR_next = ((IData)(vlSelf->flush_valid)
                                        ? ((0x3feU & 
                                            ((IData)(vlSelf->EXE_GHSR_restore) 
@@ -123,6 +155,7 @@ VL_ATTR_COLD void Vcommon___024root___ctor_var_reset(Vcommon___024root* vlSelf) 
     }
     vlSelf->gshare__DOT__GHSR = VL_RAND_RESET_I(10);
     vlSelf->gshare__DOT__GHSR_next = VL_RAND_RESET_I(10);
+    vlSelf->gshare__DOT__update_pht_addr = VL_RAND_RESET_I(10);
     vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v0 = VL_RAND_RESET_I(2);
     vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v1 = VL_RAND_RESET_I(2);
     vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v2 = VL_RAND_RESET_I(2);
@@ -943,4 +976,50 @@ VL_ATTR_COLD void Vcommon___024root___ctor_var_reset(Vcommon___024root* vlSelf) 
     vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v817 = VL_RAND_RESET_I(2);
     vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v818 = VL_RAND_RESET_I(2);
     vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v819 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v820 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v821 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v822 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v823 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v824 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v825 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v826 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v827 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v828 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v829 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v830 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v831 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v832 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v833 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v834 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v835 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v836 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v837 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v838 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v839 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v840 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v841 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v842 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v843 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v844 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v845 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v846 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v847 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v848 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v849 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v850 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v851 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v852 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v853 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v854 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v855 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v856 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v857 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v858 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v859 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v860 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v861 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v862 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v863 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v864 = VL_RAND_RESET_I(2);
+    vlSelf->__Vdlyvval__gshare__DOT__GSHARE_PHT__v865 = VL_RAND_RESET_I(2);
 }

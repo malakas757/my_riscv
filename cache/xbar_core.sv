@@ -24,19 +24,19 @@ module xbar_core(/*AUTOARG*/
 
    input 		  mpc_channel0_valid;   
    output 		  mpc_channel0_enable;   
-   input [2:0] 		  mpc_channel0_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
+   input [1:0] 		  mpc_channel0_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
    input [31:4] 	  mpc_channel0_address;   
    input [127:0] 	  mpc_channel0_data;
    
    input 		  mpc_channel1_valid;   
    output 		  mpc_channel1_enable;   
-   input [2:0] 		  mpc_channel1_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
+   input [1:0] 		  mpc_channel1_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
    input [31:4] 	  mpc_channel1_address;   
    input [127:0] 	  mpc_channel1_data;
 
    input 		  mpc_channel2_valid;   
    output 		  mpc_channel2_enable;   
-   input [2:0] 		  mpc_channel2_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
+   input [1:0] 		  mpc_channel2_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
    input [31:4] 	  mpc_channel2_address;   
    input [127:0] 	  mpc_channel2_data;
 
@@ -123,6 +123,9 @@ module xbar_core(/*AUTOARG*/
    logic [2:0] 		  channel_num_found[3:0];
    int 			  channel_num_int[3:0];
    
+   //logic wubuff
+   logic 		  wbuf_id_valid[3:0];//for 4 banks
+
    
  
    
@@ -483,6 +486,7 @@ module xbar_core(/*AUTOARG*/
    always_comb begin
       cbe_array_invalidate = '{default: '{default: '{default: 1'b0}}};
       for (int i = 0; i < 4; i++) begin
+	 if(upstream_bank_kickoff[i])
 	 cbe_array_invalidate[channel_selected[i]][i][entry_selected[i]] = 1'd1;
       end
 
@@ -505,10 +509,10 @@ module xbar_core(/*AUTOARG*/
    end
 
 
-   assign upstream_bank_valid[0] = can_send_to_bank[0];
-   assign upstream_bank_valid[1] = can_send_to_bank[1];
-   assign upstream_bank_valid[2] = can_send_to_bank[2];
-   assign upstream_bank_valid[3] = can_send_to_bank[3];
+   assign upstream_bank_valid[0] = can_send_to_bank[0] & wbuf_id_valid[0];
+   assign upstream_bank_valid[1] = can_send_to_bank[1] & wbuf_id_valid[1];
+   assign upstream_bank_valid[2] = can_send_to_bank[2] & wbuf_id_valid[2];
+   assign upstream_bank_valid[3] = can_send_to_bank[3] & wbuf_id_valid[3];
    assign upstream_bank_enable[0] = !(mpc_xbar_htu_valid[0] & !mpc_xbar_htu_enable[0]) & !(mpc_xbar_wbuf_req_valid[0] & !mpc_xbar_wbuf_req_enable[0]);
    assign upstream_bank_enable[1] = !(mpc_xbar_htu_valid[1] & !mpc_xbar_htu_enable[1]) & !(mpc_xbar_wbuf_req_valid[1] & !mpc_xbar_wbuf_req_enable[1]);
    assign upstream_bank_enable[2] = !(mpc_xbar_htu_valid[2] & !mpc_xbar_htu_enable[2]) & !(mpc_xbar_wbuf_req_valid[2] & !mpc_xbar_wbuf_req_enable[2]);
@@ -605,7 +609,30 @@ module xbar_core(/*AUTOARG*/
    endfunction
 */
 
-   
+   ///////////////////////////////////////////////////////////////////////
+   //////////////////////////////WBUFFER_IDGEN////////////////////////////
+   ///////////////////////////////////////////////////////////////////////
+
+ 
+
+   genvar ii;
+   generate 
+      for(ii=0;ii<4;ii++) begin :wbuf_id_gen
+	 wbuffer_idgen u_wbuf_id_gen(
+				     // Outputs
+				     .tag_valid	        (wbuf_id_valid[ii]),
+				     .tag	        (mpc_xbar_wbuf_req_wbuffer_id[ii]),
+				     // Inputs
+				     .clk		(clk),
+				     .rstn		(rstn),
+				     .tag_enable	(upstream_bank_kickoff[ii]),
+				     .tag_free	        (mpc_xbar_wbuf_rtn_free_id[ii]));
+      end // block: wbuf_id_gen
+
+      assign mpc_xbar_htu_wbuffer_id = mpc_xbar_wbuf_req_wbuffer_id;
+      
+
+   endgenerate   
 endmodule // xbar_core
 
 module f_bottom(/*AUTOARG*/
@@ -642,7 +669,8 @@ module f_bottom(/*AUTOARG*/
 	 else
 	   find_round_robin = 3'd0;
       end
-  
+
+   
 endmodule
 module f_round_robin(/*AUTOARG*/
    // Outputs

@@ -75,12 +75,12 @@ module mul_div (/*AUTOARG*/
    end
    
    
-    assign is_multiplication = (operation == ALU_MUL);
+    assign is_multiplication = (operation == ALU_MUL || ALU_MULH);
     assign is_division = (operation == ALU_DIV || operation == ALU_DIVU || operation == ALU_REM || operation == ALU_REMU);
    
-   assign is_multiplication_out = (reg_op == ALU_MUL);
+   assign is_multiplication_out = (reg_op == ALU_MUL || ALU_MULH);
    assign is_division_out = (reg_op == ALU_DIV || reg_op == ALU_DIVU || reg_op == ALU_REM || reg_op == ALU_REMU);
-   assign mul_result = mul_product[31:0];
+   assign mul_result = (reg_op == ALU_MULH)?mul_product[63:32] : mul_product[31:0];
    
 
    //valid reg and info of instr

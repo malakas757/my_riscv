@@ -80,24 +80,25 @@ package common;
 
 
    
-    typedef enum logic [3:0] 
+    typedef enum logic [4:0] 
     {
-        ALU_ADD  = 4'b0000 , 
-        ALU_SUB  = 4'b0001 , 
-        ALU_SLT  = 4'b0100 , 
-        ALU_SLTU = 4'b0110 , 
-        ALU_XOR  = 4'b1000 , 
-        ALU_OR   = 4'b1100 , 
-        ALU_AND  = 4'b1110 , 
-        ALU_SLL  = 4'b0010 , 
-        ALU_SRL  = 4'b1010 , 
-        ALU_SRA  = 4'b1011 , 
-        ALU_MUL  = 4'b0011 , 
-        ALU_DIV  = 4'b0101 , 
-        ALU_DIVU = 4'b0111 , 
-        ALU_REM  = 4'b1001 , 
-        ALU_REMU = 4'b1101 ,
-        ALU_PASS = 4'b1111
+        ALU_ADD  = 4'b00000 , 
+        ALU_SUB  = 4'b00001 , 
+        ALU_SLT  = 4'b00100 , 
+        ALU_SLTU = 4'b00110 , 
+        ALU_XOR  = 4'b01000 , 
+        ALU_OR   = 4'b01100 , 
+        ALU_AND  = 4'b01110 , 
+        ALU_SLL  = 4'b00010 , 
+        ALU_SRL  = 4'b01010 , 
+        ALU_SRA  = 4'b01011 , 
+        ALU_MUL  = 4'b00011 , 
+        ALU_DIV  = 4'b00101 , 
+        ALU_DIVU = 4'b00111 , 
+        ALU_REM  = 4'b01001 , 
+        ALU_REMU = 4'b01101 ,
+        ALU_PASS = 4'b01111 ,
+        ALU_MULH = 5'b10000     
     } alu_op_type;
     
     typedef enum logic [2:0]

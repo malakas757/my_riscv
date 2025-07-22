@@ -1,0 +1,252 @@
+`timescale 1ns/1ps
+
+
+`include "define.sv"
+
+
+module Xbar(/*AUTOARG*/
+   // Outputs
+   mpc_channel0_enable, mpc_channel1_enable, mpc_channel2_enable,
+   mpc_xbar_htu_valid, mpc_xbar_htu_channel_id, mpc_xbar_htu_op_code,
+   mpc_xbar_htu_addr, mpc_xbar_htu_set, mpc_xbar_htu_wbuffer_id,
+   mpc_xbar_wbuf_req_valid, mpc_xbar_wbuf_req_channel_id,
+   mpc_xbar_wbuf_req_data, mpc_xbar_wbuf_req_wbuffer_id,
+   // Inputs
+   clk, rstn, mpc_channel0_valid, mpc_channel0_op,
+   mpc_channel0_address, mpc_channel0_data, mpc_channel1_valid,
+   mpc_channel1_op, mpc_channel1_address, mpc_channel1_data,
+   mpc_channel2_valid, mpc_channel2_op, mpc_channel2_address,
+   mpc_channel2_data, mpc_xbar_htu_enable, mpc_xbar_wbuf_req_enable,
+   mpc_xbar_wbuf_rtn_free_id
+   );
+   
+   input                  clk;
+   input                  rstn;
+
+
+
+   input 		  mpc_channel0_valid;   
+   output 		  mpc_channel0_enable;   
+   input [2:0] 		  mpc_channel0_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
+   input [31:4] 	  mpc_channel0_address;   
+   input [127:0] 	  mpc_channel0_data;
+   output 		  mpc_channel0_rtn_valid;
+   output                 mpc_channel0_rtn_enable;
+   output logic [127:0]   mpc_channel0_rtn_data[127:0];
+   
+   
+   
+   
+   input 		  mpc_channel1_valid;   
+   output 		  mpc_channel1_enable;   
+   input [2:0] 		  mpc_channel1_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
+   input [31:4] 	  mpc_channel1_address;   
+   input [127:0] 	  mpc_channel1_data;
+   output 		  mpc_channel1_rtn_valid;
+   output                 mpc_channel1_rtn_enable;
+   output logic [127:0]   mpc_channel1_rtn_data[127:0];   
+
+   input 		  mpc_channel2_valid;   
+   output 		  mpc_channel2_enable;   
+   input [2:0] 		  mpc_channel2_op; //0 = (read)1 = (write)2 = (flush)3 = (invalidate)
+   input [31:4] 	  mpc_channel2_address;   
+   input [127:0] 	  mpc_channel2_data;
+   output 		  mpc_channel2_rtn_valid;
+   output                 mpc_channel2_rtn_enable;
+   output logic [127:0]   mpc_channel2_rtn_data[127:0];
+
+   //hit test port
+   output logic 	  mpc_xbar_htu_valid[3:0];
+   input  logic		  mpc_xbar_htu_enable[3:0];
+   output logic [1:0] 	  mpc_xbar_htu_channel_id[3:0];
+   output logic [1:0] 	  mpc_xbar_htu_op_code[3:0];
+   output logic [31:0] 	  mpc_xbar_htu_addr[3:0];
+   output logic [2:0] 	  mpc_xbar_htu_set[3:0];
+   output logic [7:0] 	  mpc_xbar_htu_wbuffer_id[3:0];
+   //sram port
+   output logic 	  mpc_xbar_wbuf_req_valid[3:0];          		    
+   input  logic 	  mpc_xbar_wbuf_req_enable[3:0];         	
+   output logic [1:0] 	  mpc_xbar_wbuf_req_channel_id[3:0];     
+   output logic [127:0]   mpc_xbar_wbuf_req_data[3:0];            	
+   output logic [7:0] 	  mpc_xbar_wbuf_req_wbuffer_id[3:0];     
+   input  logic [255:0]   mpc_xbar_wbuf_rtn_free_id[3:0];        
+   
+
+   ////////////////////////////////////////////////////////////////////////
+   //////////////////////////////HANDSHAKE/////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////
+
+// from upstream, need handshake with both Xbarcore and KOB,Here is the logic 
+   logic                  chn_xbar_already_sent[3];
+   logic                  chn_KOB_already_sent[3];
+   logic                  chn_xbar_handshake[3];
+   logic                  chn_KOB_handshake[3];
+   logic                  chn_u_handshake[3];   
+   logic 		  chn_xbar_req_valid[3];
+   logic 		  chn_xbar_req_enable[3];
+   logic 		  chn_KOB_req_valid[3];
+   logic 		  chn_KOB_req_enable[3];
+   logic                  mpc_channel_valid[3];
+   logic                  mpc_channel_enable[3];
+
+   assign mpc_channel_valid[0]  = mpc_channel0_valid;
+   assign mpc_channel_valid[1]  = mpc_channel1_valid;
+   assign mpc_channel_valid[2]  = mpc_channel2_valid;
+   assign mpc_channel_enable[0] = mpc_channel0_enable;
+   assign mpc_channel_enable[1] = mpc_channel1_enable;
+   assign mpc_channel_enable[2] = mpc_channel2_enable;
+   
+   
+   
+  
+
+   genvar 		  i;
+   generate  
+      for( i=0;i<3;i++) begin:hs_KOB_xbar
+	    
+	 always_ff@(posedge clk) begin
+	    if(!rstn) begin
+	       chn_xbar_already_sent[i] <= '0;
+	       chn_KOB_already_sent[i]  <= '0;	 
+	    end
+	    else begin
+	       chn_KOB_already_sent[i] <= (chn_KOB_already_sent[i] | chn_KOB_handshake[i]) & !(chn_u_handshake[i]);
+	       chn_xbar_already_sent[i] <= (chn_xbar_already_sent[i] | chn_xbar_handshake[i]) & !(chn_u_handshake[i]);	       
+	    end
+	 end
+
+	 always_comb begin
+	    chn_KOB_req_valid[i]  = !chn_KOB_already_sent[i] & mpc_channel_valid[i];
+	    chn_xbar_req_valid[i]  = !chn_xbar_already_sent[i] & mpc_channel_valid[i];
+	    
+	    
+	    chn_KOB_handshake[i]  = chn_KOB_req_valid[i] & chn_KOB_req_enable[i];
+	    chn_xbar_handshake[i] = chn_xbar_req_valid[i] & chn_xbar_req_enable[i];
+	    mpc_channel_enable[i] = !(chn_KOB_req_valid[i] & !chn_KOB_req_enable) & !(chn_xbar_req_valid[i] & !chn_xbar_req_enable);
+	    
+
+
+	 end
+	 
+   end
+   endgenerate
+
+
+   ////////////////////////////////////////////////////////////////////////
+   //////////////////////////////KOB///////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////
+
+   logic                   kob_rob_req[3];
+   logic                   kob_rob_ack[3];
+   logic [1:0] 		   kob_rob_bank_id[3];
+   
+
+
+
+
+
+	 KOB Inst_KOB(
+		      // Outputs
+		      .u_channel_0_req_ready(chn_KOB_req_enable[0]),
+		      .u_channel_1_req_ready(chn_KOB_req_enable[1]),
+		      .u_channel_2_req_ready(chn_KOB_req_enable[2]),
+		      .d_ch_0_rob_req	(kob_rob_req[0]),
+		      .d_ch_0_rob_bank_id(kob_rob_bank_id[0]),
+		      .d_ch_1_rob_req	(kob_rob_req[1]),
+		      .d_ch_1_rob_bank_id(kob_rob_bank_id[1]),
+		      .d_ch_2_rob_req	(kob_rob_req[2]),
+		      .d_ch_2_rob_bank_id(kob_rob_bank_id[2]),
+		      // Inputs
+		      .clk		(clk),
+		      .rstn		(rstn),
+		      .u_channel_0_req_valid(chn_KOB_req_valid[0]),
+		      .u_channel_0_req_op(mpc_channel0_op),
+		      .u_channel_0_req_bank_id(mpc_channel0_address[9:8]),
+		      .u_channel_1_req_valid(chn_KOB_req_valid[0]),
+		      .u_channel_1_req_op(mpc_channel1_op),
+		      .u_channel_1_req_bank_id(mpc_channel0_address[9:8]),
+		      .u_channel_2_req_valid(chn_KOB_req_valid[0]),
+		      .u_channel_2_req_op(mpc_channel2_op),
+		      .u_channel_2_req_bank_id(mpc_channel0_address[9:8]),
+		      .d_ch_0_rob_ack	(d_ch_0_rob_ack),
+		      .d_ch_1_rob_ack	(d_ch_1_rob_ack),
+		      .d_ch_2_rob_ack	(d_ch_2_rob_ack));
+	 
+
+
+   ////////////////////////////////////////////////////////////////////////
+   //////////////////////////////SWB_GROUP/////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////
+
+
+      
+   
+   SWB_GROUP ch0_SWB (
+		      // Outputs
+		      .u_kob_rob_ack	(kob_rob_ack[0]),
+		      .u_ch_valid	(mpc_channel0_rtn_valid),
+		      .u_ch_data	(mpc_channel0_rtn_data),
+		      .d_bank_0_crdt_rtn(d_bank_0_crdt_rtn),
+		      .d_bank_1_crdt_rtn(d_bank_1_crdt_rtn),
+		      .d_bank_2_crdt_rtn(d_bank_2_crdt_rtn),
+		      .d_bank_3_crdt_rtn(d_bank_3_crdt_rtn),
+		      // Inputs
+		      .clk		(clk),
+		      .rstn		(rstn),
+		      .u_kob_rob_req	(kob_rob_req[0]),
+		      .u_kob_rob_bank_id(kob_rob_bank_id[0]),
+		      .d_rc_valid	(d_rc_valid),
+		      .d_rc_rob_id	(d_rc_rob_id[`ROB_WIDTH-1:0]),
+		      .d_rc_data	(d_rc_data[127:0]),
+		      .d_rc_bank_id	(d_rc_bank_id[1:0]),
+		      .u_ch_ready	(mpc_channel0_rtn_enable));
+
+   SWB_GROUP ch1_SWB (
+		      // Outputs
+		      .u_kob_rob_ack	(kob_rob_ack[1]),
+		      .u_ch_valid	(mpc_channel1_rtn_valid),
+		      .u_ch_data	(mpc_channel1_rtn_data),
+		      .d_bank_0_crdt_rtn(d_bank_0_crdt_rtn),
+		      .d_bank_1_crdt_rtn(d_bank_1_crdt_rtn),
+		      .d_bank_2_crdt_rtn(d_bank_2_crdt_rtn),
+		      .d_bank_3_crdt_rtn(d_bank_3_crdt_rtn),
+		      // Inputs
+		      .clk		(clk),
+		      .rstn		(rstn),
+		      .u_kob_rob_req	(kob_rob_req[1]),
+		      .u_kob_rob_bank_id(kob_rob_bank_id[1]),
+		      .d_rc_valid	(d_rc_valid),
+		      .d_rc_rob_id	(d_rc_rob_id[`ROB_WIDTH-1:0]),
+		      .d_rc_data	(d_rc_data[127:0]),
+		      .d_rc_bank_id	(d_rc_bank_id[1:0]),
+		      .u_ch_ready	(mpc_channel0_rtn_enable));
+
+   SWB_GROUP ch2_SWB (
+		      // Outputs
+		      .u_kob_rob_ack	(kob_rob_ack[2]),
+		      .u_ch_valid	(mpc_channel2_rtn_valid),
+		      .u_ch_data	(mpc_channel2_rtn_data),
+		      .d_bank_0_crdt_rtn(d_bank_0_crdt_rtn),
+		      .d_bank_1_crdt_rtn(d_bank_1_crdt_rtn),
+		      .d_bank_2_crdt_rtn(d_bank_2_crdt_rtn),
+		      .d_bank_3_crdt_rtn(d_bank_3_crdt_rtn),
+		      // Inputs
+		      .clk		(clk),
+		      .rstn		(rstn),
+		      .u_kob_rob_req	(kob_rob_req[2]),
+		      .u_kob_rob_bank_id(kob_rob_bank_id[2]),
+		      .d_rc_valid	(d_rc_valid),
+		      .d_rc_rob_id	(d_rc_rob_id[`ROB_WIDTH-1:0]),
+		      .d_rc_data	(d_rc_data[127:0]),
+		      .d_rc_bank_id	(d_rc_bank_id[1:0]),
+		      .u_ch_ready	(mpc_channel2_rtn_enable));   
+   
+
+
+
+
+
+
+
+
+endmodule // Xbar

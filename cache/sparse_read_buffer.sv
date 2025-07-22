@@ -2,7 +2,10 @@
 
 
 
-module sparse_read_buffer(/*AUTOARG*/
+module sparse_read_buffer
+  #(parameter int SRB_DEPTH = 256,
+   parameter int SRB_WIDTH = 8)
+  (/*AUTOARG*/
    // Outputs
    write_enable, read_enable, read_rtn_valid, read_rtn_data,
    sparse_array_valid, sparse_array_bottom_ptr,
@@ -16,29 +19,29 @@ module sparse_read_buffer(/*AUTOARG*/
    //write port
    input                write_valid;
    output               write_enable;
-   input [7:0]		write_data;
+   input [SRB_WIDTH-1:0] write_data;
    //read port
    input                read_valid;
    output               read_enable;
-   input [2:0]		read_ptr;
+   input [$clog2(SRB_DEPTH)-1:0] read_ptr;
    //read return port
    output 		read_rtn_valid;
    input 		read_rtn_enable;
-   output logic [7:0] 	read_rtn_data;
+   output logic [SRB_WIDTH-1:0] read_rtn_data;
    //state output
-   output logic [7:0] 	sparse_array_valid;
-   output logic [2:0] 	sparse_array_bottom_ptr;
+   output logic [SRB_DEPTH-1:0] sparse_array_valid;
+   output logic [$clog2(SRB_DEPTH)-1:0] sparse_array_bottom_ptr;
 
 
-   logic [2:0] 		write_ptr;
-   logic [2:0] 		write_ptr_n;
+   logic [$clog2(SRB_DEPTH)-1:0] 		write_ptr;
+   logic [$clog2(SRB_DEPTH)-1:0] 		write_ptr_n;
    logic                write_kickoff;
    logic                read_kickoff;
 
 
-   logic [7:0] 		sparse_array[7:0];
+   logic [SRB_WIDTH-1:0] 		sparse_array[SRB_DEPTH-1:0];
 
-   logic [2:0] 		sparse_array_bottom_ptr_n;
+   logic [$clog2(SRB_DEPTH)-1:0] 	sparse_array_bottom_ptr_n;
    
 
    //hand shake
@@ -83,7 +86,7 @@ module sparse_read_buffer(/*AUTOARG*/
    // find bottom
    always_ff@(posedge clk) begin
       if (!rstn) 
-	sparse_array_bottom_ptr <= 3'd7;      
+	sparse_array_bottom_ptr <= '1;      
       else 
 	sparse_array_bottom_ptr <= sparse_array_bottom_ptr_n;
       
@@ -101,34 +104,19 @@ module sparse_read_buffer(/*AUTOARG*/
 
 
 
-   function logic[2:0] find_bottom
+   function logic[$clog2(SRB_DEPTH)-1:0] find_bottom
      (
-      input logic [2:0] bottom_ptr,
-      input logic [7:0] valid_array
+      input logic [$clog2(SRB_DEPTH)-1:0] bottom_ptr,
+      input logic [SRB_DEPTH-1:0] valid_array
       );
-      logic [7:0] 	valid_arrry_aftet_shift;
+      logic [SRB_DEPTH-1:0] 	valid_arrry_aftet_shift;
       assign  valid_arrry_aftet_shift = (valid_array>>bottom_ptr) | valid_array>>(8-bottom_ptr);
-      if (valid_arrry_aftet_shift[0])
-	find_bottom = bottom_ptr;
-      else if (valid_arrry_aftet_shift[1])
-	find_bottom = bottom_ptr+1;
-      else if (valid_arrry_aftet_shift[2])
-	find_bottom = bottom_ptr+2;
-      else if (valid_arrry_aftet_shift[3])
-	find_bottom = bottom_ptr+3;
-      else if (valid_arrry_aftet_shift[4])
-	find_bottom = bottom_ptr+4;
-      else if (valid_arrry_aftet_shift[5])
-	find_bottom = bottom_ptr+5;
-      else if (valid_arrry_aftet_shift[6])
-	find_bottom = bottom_ptr+6;
-      else if (valid_arrry_aftet_shift[7])
-	find_bottom = bottom_ptr+7;
-      else
-	find_bottom = 3'd7;      
-      
-      
-      
+      find_bottom = '1;      
+      for(int i=0 ; i<SRB_DEPTH;i++) begin
+	 if (valid_arrry_aftet_shift[i])
+	   find_bottom = bottom_ptr + i;
+	 break;	 
+      end
    endfunction
 
 endmodule

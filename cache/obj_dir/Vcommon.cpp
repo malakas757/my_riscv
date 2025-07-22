@@ -14,18 +14,47 @@ Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     , mpc_channel0_valid{vlSymsp->TOP.mpc_channel0_valid}
     , mpc_channel0_enable{vlSymsp->TOP.mpc_channel0_enable}
     , mpc_channel0_op{vlSymsp->TOP.mpc_channel0_op}
+    , mpc_channel0_rtn_valid{vlSymsp->TOP.mpc_channel0_rtn_valid}
+    , mpc_channel0_rtn_enable{vlSymsp->TOP.mpc_channel0_rtn_enable}
     , mpc_channel1_valid{vlSymsp->TOP.mpc_channel1_valid}
     , mpc_channel1_enable{vlSymsp->TOP.mpc_channel1_enable}
     , mpc_channel1_op{vlSymsp->TOP.mpc_channel1_op}
+    , mpc_channel1_rtn_valid{vlSymsp->TOP.mpc_channel1_rtn_valid}
+    , mpc_channel1_rtn_enable{vlSymsp->TOP.mpc_channel1_rtn_enable}
     , mpc_channel2_valid{vlSymsp->TOP.mpc_channel2_valid}
     , mpc_channel2_enable{vlSymsp->TOP.mpc_channel2_enable}
     , mpc_channel2_op{vlSymsp->TOP.mpc_channel2_op}
+    , mpc_channel2_rtn_valid{vlSymsp->TOP.mpc_channel2_rtn_valid}
+    , mpc_channel2_rtn_enable{vlSymsp->TOP.mpc_channel2_rtn_enable}
+    , d_bank0_valid{vlSymsp->TOP.d_bank0_valid}
+    , d_bank0_enable{vlSymsp->TOP.d_bank0_enable}
+    , d_bank0_chl_id{vlSymsp->TOP.d_bank0_chl_id}
+    , d_bank0_rob_id{vlSymsp->TOP.d_bank0_rob_id}
+    , d_bank1_valid{vlSymsp->TOP.d_bank1_valid}
+    , d_bank1_enable{vlSymsp->TOP.d_bank1_enable}
+    , d_bank1_chl_id{vlSymsp->TOP.d_bank1_chl_id}
+    , d_bank1_rob_id{vlSymsp->TOP.d_bank1_rob_id}
+    , d_bank2_valid{vlSymsp->TOP.d_bank2_valid}
+    , d_bank2_enable{vlSymsp->TOP.d_bank2_enable}
+    , d_bank2_chl_id{vlSymsp->TOP.d_bank2_chl_id}
+    , d_bank2_rob_id{vlSymsp->TOP.d_bank2_rob_id}
+    , d_bank3_valid{vlSymsp->TOP.d_bank3_valid}
+    , d_bank3_enable{vlSymsp->TOP.d_bank3_enable}
+    , d_bank3_chl_id{vlSymsp->TOP.d_bank3_chl_id}
+    , d_bank3_rob_id{vlSymsp->TOP.d_bank3_rob_id}
     , mpc_channel0_address{vlSymsp->TOP.mpc_channel0_address}
     , mpc_channel0_data{vlSymsp->TOP.mpc_channel0_data}
+    , mpc_channel0_rtn_data{vlSymsp->TOP.mpc_channel0_rtn_data}
     , mpc_channel1_address{vlSymsp->TOP.mpc_channel1_address}
     , mpc_channel1_data{vlSymsp->TOP.mpc_channel1_data}
+    , mpc_channel1_rtn_data{vlSymsp->TOP.mpc_channel1_rtn_data}
     , mpc_channel2_address{vlSymsp->TOP.mpc_channel2_address}
     , mpc_channel2_data{vlSymsp->TOP.mpc_channel2_data}
+    , mpc_channel2_rtn_data{vlSymsp->TOP.mpc_channel2_rtn_data}
+    , d_bank0_data{vlSymsp->TOP.d_bank0_data}
+    , d_bank1_data{vlSymsp->TOP.d_bank1_data}
+    , d_bank2_data{vlSymsp->TOP.d_bank2_data}
+    , d_bank3_data{vlSymsp->TOP.d_bank3_data}
     , mpc_xbar_htu_valid{vlSymsp->TOP.mpc_xbar_htu_valid}
     , mpc_xbar_htu_enable{vlSymsp->TOP.mpc_xbar_htu_enable}
     , mpc_xbar_htu_channel_id{vlSymsp->TOP.mpc_xbar_htu_channel_id}
@@ -39,6 +68,7 @@ Vcommon::Vcommon(VerilatedContext* _vcontextp__, const char* _vcname__)
     , mpc_xbar_wbuf_req_data{vlSymsp->TOP.mpc_xbar_wbuf_req_data}
     , mpc_xbar_wbuf_req_wbuffer_id{vlSymsp->TOP.mpc_xbar_wbuf_req_wbuffer_id}
     , mpc_xbar_wbuf_rtn_free_id{vlSymsp->TOP.mpc_xbar_wbuf_rtn_free_id}
+    , xbar_ISU_crdt_rtn_bank{vlSymsp->TOP.xbar_ISU_crdt_rtn_bank}
     , rootp{&(vlSymsp->TOP)}
 {
 }
@@ -84,7 +114,7 @@ static void _eval_initial_loop(Vcommon__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/cache/xbar_core.sv", 4, "",
+            VL_FATAL_MT("/mnt/hgfs/riscv/cache/xbar.sv", 7, "",
                 "Verilated model didn't DC converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
@@ -114,7 +144,7 @@ void Vcommon::eval_step() {
             Verilated::debug(1);
             __Vchange = Vcommon___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/mnt/hgfs/riscv/cache/xbar_core.sv", 4, "",
+            VL_FATAL_MT("/mnt/hgfs/riscv/cache/xbar.sv", 7, "",
                 "Verilated model didn't converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {

@@ -241,6 +241,9 @@ localparam logic [6:0] AUIPC_INSTRUCTION = 7'b0010111;
     else if ({instruction.funct7, instruction.funct3, instruction.opcode} == MUL_INSTRUCTION) begin
         control.alu_op = ALU_MUL; 
     end
+    else if ({instruction.funct7, instruction.funct3, instruction.opcode} == MULH_INSTRUCTION) begin
+        control.alu_op = ALU_MULH;
+    end       
     else if ({instruction.funct7, instruction.funct3, instruction.opcode} == DIV_INSTRUCTION) begin
         control.alu_op = ALU_DIV;
     end

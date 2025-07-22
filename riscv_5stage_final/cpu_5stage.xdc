@@ -44,3 +44,4 @@ set_property PACKAGE_PIN U9 [get_ports rstn_uart]
 set_property IOSTANDARD LVCMOS33 [get_ports rstn_uart]
 
 
+
